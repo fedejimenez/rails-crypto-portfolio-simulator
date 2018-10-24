@@ -5,3 +5,7 @@
 <% else %>
   <%= link_to 'Login', '/login' %> | <%= link_to 'Signup', '/signup' %>
 <% end %>
+
+<% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>

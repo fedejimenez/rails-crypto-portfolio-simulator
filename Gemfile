@@ -66,3 +66,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # Bootstrap & JQuery
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 gem 'jquery-rails'
+
+# Use fontawesome
+gem 'font-awesome-rails'
+
+# Use Figaro (Protecting keys)
+gem 'figaro'
