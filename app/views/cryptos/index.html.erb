@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Cryptos</h1>
+<h1>Cryptos Listing</h1>
 
 <table>
   <thead>
@@ -15,15 +15,17 @@
 
   <tbody>
     <% @cryptos.each do |crypto| %>
-      <tr>
-        <td><%= crypto.symbol %></td>
-        <td><%= crypto.user_id %></td>
-        <td><%= crypto.cost_per %></td>
-        <td><%= crypto.amount_owned %></td>
-        <td><%= link_to 'Show', crypto %></td>
-        <td><%= link_to 'Edit', edit_crypto_path(crypto) %></td>
-        <td><%= link_to 'Destroy', crypto, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <% if crypto.user_id == current_user.id %>
+        <tr>
+          <td><%= crypto.symbol %></td>
+          <td><%= crypto.user_id %></td>
+          <td><%= crypto.cost_per %></td>
+          <td><%= crypto.amount_owned %></td>
+          <td><%= link_to 'Show', crypto %></td>
+          <td><%= link_to 'Edit', edit_crypto_path(crypto) %></td>
+          <td><%= link_to 'Destroy', crypto, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>

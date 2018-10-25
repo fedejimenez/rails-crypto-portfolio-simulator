@@ -12,13 +12,12 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :symbol %>
-    <%= form.text_field :symbol %>
+    <%= form.number_field :user_id, value: current_user.id, type: "hidden" %>
   </div>
 
   <div class="field">
-    <%= form.label :user_id %>
-    <%= form.number_field :user_id %>
+    <%= form.label :symbol %>
+    <%= form.text_field :symbol %>
   </div>
 
   <div class="field">
