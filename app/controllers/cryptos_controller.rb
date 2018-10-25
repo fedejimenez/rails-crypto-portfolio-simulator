@@ -7,6 +7,12 @@ class CryptosController < ApplicationController
   # GET /cryptos.json
   def index
     @cryptos = Crypto.all
+    # TEST STAGE!!! Move to model  or AJAX
+    @url = 'https://api.coinmarketcap.com/v1/ticker/?limit=50'
+    @uri = URI(@url)
+    @response = Net::HTTP.get(@uri)
+    @lookup_crypto = JSON.parse(@response) 
+    @balance = 0
   end
 
   # GET /cryptos/1
