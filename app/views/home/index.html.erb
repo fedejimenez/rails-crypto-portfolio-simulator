@@ -1,11 +1,24 @@
-<h1>Home#index</h1>
-
-<% if current_user %>
-  Signed in as <%= current_user.name %> | <%= link_to "Logout", '/logout' %>
-<% else %>
-  <%= link_to 'Login', '/login' %> | <%= link_to 'Signup', '/signup' %>
-<% end %>
-
 <% flash.each do |key, value| %>
   <div class="alert alert-<%= key %>"><%= value %></div>
 <% end %>
+
+<h2> Top 20 Crypto Currencies </h2>
+<br>
+<table class="table">
+  <thead>
+  	<th>Symbol</th>
+  	<th>Name</th>
+  	<th>Price (U$D)</th>
+  	<th>Variation (24hs)</th>
+  </thead>
+  <tbody>
+    <% @coins.each do |c| %>
+      <tr>
+        <td> <%= c["symbol"] %> </td>
+        <td> <%= c["name"] %> </td>
+        <td> <%= c["price_usd"] %> </td>
+        <td> <%= c["percent_change_24h"] %> </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
