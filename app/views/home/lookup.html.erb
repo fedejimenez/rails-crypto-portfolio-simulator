@@ -1,0 +1,13 @@
+<br>
+<div class="container">
+	<% if @symbol %>
+		<% @lookup_coin.each do |c| %>
+			<% if @symbol == c["symbol"] %>
+				<%= c["symbol"] %> <br>
+				<%= c["name"] %>: U$D <%= c["price_usd"] %> <br>
+				<%= c["percent_change_24h"] %> %
+			<% end %>
+		<% end %>
+	<% end %>
+</div>
+
