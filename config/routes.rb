@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :cryptos
   # Homepage
   root 'home#index'
   get 'home/about'

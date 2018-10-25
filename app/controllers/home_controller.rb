@@ -30,7 +30,7 @@ class HomeController < ApplicationController
   	@symbol = params[:sym]
   	if @symbol
   		@symbol = @symbol.upcase
-  	end
+    end
 
   	if @symbol == ""
   		@symbol = "The search field can't be empty"
