@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 <h1>Cryptos Listing - <%= current_user.name%> </h1>
 <br>
-<table class="table table-striped table-hover">
+<table class="table table-striped table-hover table-responsive">
   <thead class="">
     <tr>
       <th>Symbol</th>
@@ -23,7 +23,7 @@
       <% if crypto.user_id == current_user.id %>
         <tr>
           <td><%= link_to crypto.symbol, crypto %></td>
-          <% for c in @lookup_crypto %>
+          <% for c in @coins %>
             <% if crypto.symbol == c["symbol"] %>
               <td> <%= link_to c["name"], crypto %> </td>
               <td> $<%= c["price_usd"] %> </td>

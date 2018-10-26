@@ -3,16 +3,12 @@ class CryptosController < ApplicationController
   before_action :authorize
   before_action :correct_user, only: [:edit, :update, :destroy, :show]
   rescue_from ActiveRecord::RecordNotFound, with: :handle_record_not_found
+  include CryptosHelper
   # GET /cryptos
   # GET /cryptos.json
   def index
     @cryptos = Crypto.all
-    # TEST STAGE!!! Move to model  or AJAX
-    @url = 'https://api.coinmarketcap.com/v1/ticker/?limit=50'
-    @uri = URI(@url)
-    @response = Net::HTTP.get(@uri)
-    @lookup_crypto = JSON.parse(@response) 
-    @balance = 0
+    get_data_from_API
   end
 
   # GET /cryptos/1
