@@ -76,3 +76,7 @@ gem 'font-awesome-rails'
 
 # Use Figaro (Protecting keys)
 gem 'figaro'
+
+# google signup/login
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
