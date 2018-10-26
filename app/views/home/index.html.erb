@@ -5,7 +5,7 @@
 <h2> Top 50 Crypto Currencies of the day </h2>
 <br>
 <table class="table table-responsive">
-  <thead>
+  <thead class="">
   	<th>Symbol</th>
   	<th>Name</th>
   	<th>Price (U$D)</th>
@@ -14,8 +14,8 @@
   <tbody>
     <% @coins.each do |c| %>
       <tr>
-        <td> <%= c["symbol"] %> </td>
-        <td> <%= c["name"] %> </td>
+        <td> <%= link_to c["symbol"], "/search?q=#{c['symbol']}" %> </td>
+        <td> <%= link_to c["name"], "/search?q=#{c['symbol']}" %> </td>
         <td> <%= c["price_usd"] %> </td>
         <td> <%= c["percent_change_24h"] %> </td>
       </tr>

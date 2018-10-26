@@ -3,6 +3,8 @@ class CryptosController < ApplicationController
   before_action :authorize
   before_action :correct_user, only: [:edit, :update, :destroy, :show]
   rescue_from ActiveRecord::RecordNotFound, with: :handle_record_not_found
+  before_action :calculate_quantity, only: [:update]
+
   include CryptosHelper
   # GET /cryptos
   # GET /cryptos.json
@@ -29,7 +31,7 @@ class CryptosController < ApplicationController
   # POST /cryptos.json
   def create
     @crypto = Crypto.new(crypto_params)
-
+    @crypto.last_transaction ||= 0.0
     respond_to do |format|
       if @crypto.save
         format.html { redirect_to @crypto, notice: 'Crypto was successfully created.' }
@@ -55,6 +57,10 @@ class CryptosController < ApplicationController
     end
   end
 
+  def calculate_quantity
+    @crypto.amount_owned = @crypto.amount_owned + @crypto.last_transaction
+  end
+
   # DELETE /cryptos/1
   # DELETE /cryptos/1.json
   def destroy
@@ -73,7 +79,7 @@ class CryptosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def crypto_params
-      params.require(:crypto).permit(:symbol, :user_id, :cost_per, :amount_owned)
+      params.require(:crypto).permit(:symbol, :user_id, :cost_per, :amount_owned, :last_transaction)
     end
 
     def correct_user
