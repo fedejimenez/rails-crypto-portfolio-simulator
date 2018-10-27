@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_25_112106) do
+ActiveRecord::Schema.define(version: 2018_10_27_031812) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,10 +29,30 @@ ActiveRecord::Schema.define(version: 2018_10_25_112106) do
     t.string "symbol"
     t.integer "user_id"
     t.decimal "cost_per"
-    t.decimal "amount_owned"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "amount_owned"
+    t.decimal "last_transaction"
+    t.string "last_action"
     t.index ["user_id"], name: "index_cryptos_on_user_id"
+  end
+
+  create_table "searches", force: :cascade do |t|
+    t.string "keywords"
+    t.string "id_crypto"
+    t.string "name"
+    t.string "symbol"
+    t.string "rank"
+    t.string "market"
+    t.string "category"
+    t.decimal "min_price"
+    t.decimal "max_price"
+    t.decimal "volume_24h_usd"
+    t.string "percent_change_1h"
+    t.string "percent_change_24h"
+    t.string "percent_change_7d"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

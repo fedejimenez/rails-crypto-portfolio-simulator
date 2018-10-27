@@ -1,0 +1,26 @@
+<h2>Advanced Search</h2><br><br>
+
+<%= form_for @search do |f| %>
+	
+	<div class="field">
+		<%= f.label :min_price, "Min Price (U$D):" %>  <%= f.text_field :min_price, size: 10 %>
+		<%= f.label :max_price, "Max Price (U$D):" %>  <%= f.text_field :max_price, size: 10 %>
+	</div>	
+
+	<div class="Variation">
+		<br>
+		<%= f.label "Variation (24 hs) greater than (%):" %> <%= f.text_field :percent_change_24h, size: 10 %>
+	</div>
+	<br>
+
+	<div class="field actions">
+		<p>
+			<%= f.submit "Search", class: "btn btn-primary" %>
+		</p>
+	</div>
+<% end %> 
+
+<br>
+<p>
+	<%= link_to "Back to Home", root_path %>
+</p>

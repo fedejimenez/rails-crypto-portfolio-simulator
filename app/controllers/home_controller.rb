@@ -11,9 +11,16 @@ class HomeController < ApplicationController
 
   def lookup
     get_data_from_API
-  	@symbol = params[:sym].upcase
-  	if @symbol == ""
-  		@symbol = "The search field can't be empty"
-  	end
+    respond_to do |format|
+      format.html {
+        @lookup = params[:q].upcase
+        if @lookup == ""
+          @lookup = "The search field can't be empty"
+        end
+      }
+      format.json {
+        render json: @coins
+      }
+    end
   end
 end

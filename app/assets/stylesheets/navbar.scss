@@ -107,18 +107,8 @@ $blue: #008489;
                         SEARCH BAR
  =========================================================================*/
 .navbar-form{
-  margin-top: 25px;
+  margin-top: 25px !important;
 }
-
-.nav-search{
-  padding: 15px 0 0 0;
-  margin: 0;
-}
-#nav-search{
-  padding: 0;
-  margin: 0;
-}
-
 
 .search-icon{
   display: inline;
