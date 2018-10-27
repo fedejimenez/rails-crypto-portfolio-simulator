@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @movement.price %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @movement.date %>
+</p>
+
+<p>
+  <strong>Quantity:</strong>
+  <%= @movement.quantity %>
+</p>
+
+<p>
+  <strong>Crypto:</strong>
+  <%= @movement.crypto_id %>
+</p>
+
+<p>
+  <strong>Operation:</strong>
+  <%= @movement.operation %>
+</p>
+
+<%= link_to 'Edit', edit_movement_path(@movement) %> |
+<%= link_to 'Back', movements_path %>

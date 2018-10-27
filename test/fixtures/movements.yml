@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  price: 9.99
+  date: 2018-10-27 15:29:13
+  quantity: 1
+  crypto_id: 1
+  operation: MyString
+
+two:
+  price: 9.99
+  date: 2018-10-27 15:29:13
+  quantity: 1
+  crypto_id: 1
+  operation: MyString
