@@ -9,13 +9,13 @@ class HomeController < ApplicationController
   def about 
   end
 
-  def search
+  def lookup
     get_data_from_API
     respond_to do |format|
       format.html {
-        @search = params[:q].upcase
-        if @search == ""
-          @search = "The search field can't be empty"
+        @lookup = params[:q].upcase
+        if @lookup == ""
+          @lookup = "The search field can't be empty"
         end
       }
       format.json {

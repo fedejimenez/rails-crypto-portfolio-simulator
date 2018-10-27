@@ -3,9 +3,9 @@ Rails.application.routes.draw do
   # Homepage
   root 'home#index'
   get 'home/about'
-  get :search, controller: :home
-  post '/search' => 'home#search'
-
+  get :lookup, controller: :home
+  post '/lookup' => 'home#lookup'
+  resources :searches
 
   # Signup. The first renders a form, the second receives the form and create a user in the database.
   get '/signup' => 'users#new'

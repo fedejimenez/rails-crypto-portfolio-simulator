@@ -20,16 +20,16 @@
     </div>
     <div class="field">
       <%= form.label "Current Price:" %>
-      U$D <%= current_coin(crypto.symbol)["price_usd"] %>
+      U$D <%= @current_usd = current_coin(crypto.symbol)["price_usd"] %>
     </div>
 
     <div class="field">
       <%= form.label "Buying Price:" %>
-      <%= form.text_field :cost_per, size: "10", class: "text-center" %>
+      <%= form.number_field :cost_per, min: "#{@current_usd.to_d.round(2)}", pattern: "[0-9]{5}", class: "text-center" %>
     </div>
 
     <div class="field">
-      <%= form.label "Amount owned: " %>
+      <%= form.label "Amount: " %>
       <%= crypto.amount_owned.to_i %>
     </div>
 

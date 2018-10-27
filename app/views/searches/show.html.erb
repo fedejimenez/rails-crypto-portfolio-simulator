@@ -1,0 +1,42 @@
+<h2> Advanced Search Results </h2>
+<p>
+	<%= link_to 'New Search', new_search_path, class: "btn btn-primary"%>
+</p>
+
+<% if !@search.advanced_search %>
+	<p>
+		No results found. Please try again with different parameters.
+	</p>
+
+<% else %>
+
+	<% @search.advanced_search.each do |c| %>
+		<br>
+		<div class="panel">
+			<h3>
+				<strong> <%= c["symbol"] %> </strong><br>
+			</h3>
+				<p>
+				<strong>Name:</strong>
+					<%= c["name"] %> <br> 
+				</p>
+				<p>		
+					<strong>Current Price:</strong>
+					U$D <%= c["price_usd"] %> <br>
+				</p>
+				<p>
+					<strong>Variation (1h):</strong>
+					<%= c["percent_change_1h"] %> %
+				</p>
+				<p>
+					<strong>Variation (24h):</strong>
+					<%= c["percent_change_24h"] %> %
+				</p>
+				<p>
+					<strong>Variation (7 days):</strong>
+					<%= c["percent_change_7d"] %> %
+				</p>
+		</div>
+	<% end %>
+
+<% end %>

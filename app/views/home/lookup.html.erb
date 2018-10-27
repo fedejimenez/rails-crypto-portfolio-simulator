@@ -9,9 +9,9 @@
 	</div>
 	<div class="panel-body">
 		<div class="col-md-6">
-			<% if @search %>
+			<% if @lookup %>
 				<% @coins.each do |c| %>
-					<% if @search == c["symbol"] %>
+					<% if @lookup == c["symbol"] %>
 						<h3>
 							<strong> <%= c["symbol"] %> </strong><br>
 						</h3>
