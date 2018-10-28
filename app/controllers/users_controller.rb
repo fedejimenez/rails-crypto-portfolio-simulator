@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   	user = User.new(user_params)
   	if user.save
   		session[:user_id] = user.id
-      flash[:success] = "User was successfully created!!"
+      flash[:success] = "User was successfully created!! Now you have U$D 10000 to start the game!!"
       redirect_to '/'
     else
       flash[:warning] = "Oh no! There was a problem and the User was not created"

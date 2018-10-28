@@ -7,10 +7,10 @@ $(document).on('turbolinks:load', function() {
 		},
 		list: {
 			onChooseEvent: function(){
-				let url = $('#lookup').getSelectedItemData().symbol
+				let url = $('.lookup').getSelectedItemData().symbol
 				window.location.href = "/lookup?q=" + url
 			}
 		}
 	}
-	$('#lookup').easyAutocomplete(options)
+	$('.lookup').easyAutocomplete(options)
 })

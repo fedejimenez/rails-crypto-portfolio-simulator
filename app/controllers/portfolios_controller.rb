@@ -25,7 +25,6 @@ class PortfoliosController < ApplicationController
   # POST /portfolios.json
   def create
     @portfolio = Portfolio.new(portfolio_params)
-
     respond_to do |format|
       if @portfolio.save
         format.html { redirect_to @portfolio, notice: 'Portfolio was successfully created.' }

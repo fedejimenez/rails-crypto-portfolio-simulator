@@ -6,13 +6,14 @@ module CryptosHelper
 	    @uri = URI(@url)
 	    @response = Net::HTTP.get(@uri)
 	    @coins = JSON.parse(@response) 
+
 	    @balance = 0
   end	
 
   def current_coin(symbol)
   	get_data_from_API
  		for c in @coins
-      if symbol == c["symbol"]
+      		if symbol == c["symbol"]
       	return c
       end
   	end

@@ -4,6 +4,14 @@
 
 <br>
 
+<% @crypto.each do |c| %>
+	<%  if c['symbol'] == @lookup %>
+		<% if c['user_id'].to_s == current_user.id.to_s %>
+			<% controller.redirect_to edit_crypto_path(c.id) %>
+		<% end %>
+	<% end %>
+<% end %>
+
 <div class="panel panel-default">
 	<div class="panel-heading">
 	</div>
@@ -34,8 +42,8 @@
 		<div class="col-md-6 text-center">
 			<br>	<br>	<br>	
 			<% if logged_in? %>
-				<%= link_to 'Buy', new_crypto_path, class: "btn btn-success" %>
-				<%= link_to 'Sell', new_crypto_path, class: "btn btn-danger" %>
+				<%= link_to 'Buy', new_portfolio_crypto_path(current_portfolio.id), class: "btn btn-success" %>
+				<%= link_to 'Sell', new_portfolio_crypto_path(current_portfolio.id), class: "btn btn-danger" %>
 
 			<% end %>
 		</div>

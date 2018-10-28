@@ -1,5 +1,6 @@
 class MovementsController < ApplicationController
   before_action :set_movement, only: [:show, :edit, :update, :destroy]
+  before_action :get_portfolio_and_crypto, only: [:create, :new]
 
   # GET /movements
   # GET /movements.json
@@ -25,7 +26,7 @@ class MovementsController < ApplicationController
   # POST /movements.json
   def create
     @movement = Movement.new(movement_params)
-
+    @movement.protfolio_id = current_portfolio.id
     respond_to do |format|
       if @movement.save
         format.html { redirect_to @movement, notice: 'Movement was successfully created.' }
@@ -61,7 +62,13 @@ class MovementsController < ApplicationController
     end
   end
 
+  def get_portfolio_and_crypto
+    @portfolio = Portfolio.find(params[:portfolio_id])
+    @crypto = Portfolio.cryptos.find(params[:crypto_id])
+  end
+
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_movement
       @movement = Movement.find(params[:id])
@@ -69,6 +76,6 @@ class MovementsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def movement_params
-      params.require(:movement).permit(:price, :date, :quantity, :crypto_id, :operation)
+      params.require(:movement).permit(:price, :date, :quantity, :crypto_id, :operation, :portfolio_id, :user_id)
     end
 end
