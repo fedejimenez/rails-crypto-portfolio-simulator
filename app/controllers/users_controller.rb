@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  include UsersHelper
 	def new
   end
 
@@ -6,8 +7,9 @@ class UsersController < ApplicationController
   	user = User.new(user_params)
   	if user.save
   		session[:user_id] = user.id
-      flash[:success] = "User was successfully created!!"
-      redirect_to '/'
+      flash[:success] = "User was successfully created!! Now you have U$D 10000 to start the game!!"
+      sign_in(user)
+      redirect_to root_path
     else
       flash[:warning] = "Oh no! There was a problem and the User was not created"
   		redirect_to '/signup'

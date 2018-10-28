@@ -22,6 +22,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
+    reset_session
     flash[:success] = 'Successfully Logged Out!'
     redirect_to '/'
   end
@@ -42,7 +43,7 @@ class SessionsController < ApplicationController
       # you are expected to have a path that leads to a page for editing user details
       # @next = edit_user_path(user)
       @next = root_path
-      flash[:success] = 'User was successfully created!!'
+      flash[:success] = 'User was successfully created, now you have U$D 10000 to start the game!'
     end
     session[:user_id] = user.id
     sign_in(user)

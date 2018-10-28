@@ -1,6 +1,7 @@
 <p id="notice"><%= notice %></p>
-<h1>Cryptos Listing - <%= current_user.name%> </h1>
+<h2><strong>Portfolio Details </strong></h2>
 <br>
+
 <table class="table table-striped table-hover table-responsive">
   <thead class="">
     <tr>
@@ -30,22 +31,38 @@
               <td> <%= c["percent_change_1h"] %> % </td>
               <td> <%= c["percent_change_24h"] %> %</td>
               <td> <%= c["percent_change_7d"] %> %</td>
-              <td><%= crypto.amount_owned.to_i %> </td>
-              <td><%= number_to_currency(crypto.cost_per) %></td>
+              <td> <%= crypto.amount_owned.to_i %> </td>
+              <td> <%= number_to_currency(crypto.cost_per) %></td>
               <td> $<%= c["price_usd"].to_i * crypto.amount_owned.to_i %> </td>
               <td> $<%= (c["price_usd"].to_i * crypto.amount_owned.to_i)-(crypto.cost_per * crypto.amount_owned) %> </td>
-              <td> $<% @balance += (c["price_usd"].to_i * crypto.amount_owned.to_i)-(crypto.cost_per * crypto.amount_owned) %> </td>
+              <td> <% @balance += (c["price_usd"].to_i * crypto.amount_owned.to_i)-(crypto.cost_per * crypto.amount_owned) %> </td>
             <% end %>
           <% end %>
-          <td><%= link_to 'Buy', edit_crypto_path(crypto) %></td>
-          <td><%= link_to 'Sell', edit_crypto_path(crypto) %></td>
+          <td> <%= link_to 'New Order', edit_crypto_path(crypto) %></td>
         </tr>
       <% end %>
     <% end %>
   </tbody>
 </table>
 
-<strong>Total Portfolio Balance: </strong> $<%= @balance %>
+<div class="panel panel-default"> 
+  <div class="panel-heading">
+    <h4> <strong>Portfolio Summary </strong></h4>
+  </div>
+  <div class="panel-body"> 
+    <p>
+      <strong>Total Portfolio Balance: </strong> U$D <%= @balance.to_d %> <br>
+    </p>
+    <p>
+      <strong>Total Amount invested: </strong> U$D <%= 10000 - current_portfolio.balance %>  <br>
+    </p>
+    <p>
+      <strong>Total Amount Available to invest: </strong> U$D<%= current_portfolio.balance %>
+    </p>
+  </div>
+</div>
 <br><br>
 
-<%= link_to 'Buy Crypto', new_crypto_path, class: "btn btn-primary" %>
+<div class="text-center">
+  <%= link_to 'Buy Crypto', new_portfolio_crypto_path(current_portfolio.id), class: "btn btn-primary" %>
+</div>

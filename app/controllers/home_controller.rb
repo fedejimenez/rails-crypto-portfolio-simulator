@@ -1,9 +1,11 @@
 class HomeController < ApplicationController
   # before_action :authorize
   include CryptosHelper
+  include PortfoliosHelper
 
   def index
     get_data_from_API
+    current_portfolio
   end
 
   def about 
@@ -11,6 +13,7 @@ class HomeController < ApplicationController
 
   def lookup
     get_data_from_API
+    @crypto = Crypto.all
     respond_to do |format|
       format.html {
         @lookup = params[:q].upcase

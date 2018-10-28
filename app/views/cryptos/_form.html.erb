@@ -1,4 +1,6 @@
-<%= form_with(model: crypto, local: true) do |form| %>
+ <!-- form_with(model: crypto, local: true) do |form|  -->
+<%= form_with scope: :crypto, url: new_portfolio_crypto_path(current_portfolio.id), local: true do |form| %>
+
   <% if crypto.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(crypto.errors.count, "error") %> prohibited this crypto from being saved:</h2>
@@ -16,16 +18,16 @@
 
     <div class="field">
       <%= form.label :symbol %>
-      <%= form.text_field :symbol %>
+      <%= form.text_field :symbol , id: "selected-symbol"%>
     </div>
 
     <div class="field">
       <%= form.label :cost_per %>
-      <%= form.text_field :cost_per %>
+      <%= form.text_field :cost_per, id: "selected-price" %>
     </div>
 
     <div class="field">
-      <%= form.label :amount_owned %>
+      <%= form.label "Quantity" %>
       <%= form.text_field :amount_owned %>
     </div>
     
