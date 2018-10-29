@@ -1,5 +1,4 @@
 require_relative 'boot'
-require "rspec-rails"
 
 require 'rails/all'
 
