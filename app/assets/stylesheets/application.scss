@@ -10,8 +10,25 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *= require easy-autocomplete
+ *= require easy-autocomplete.themes
  *= require_tree .
  *= require_self
  */
 
+@import "bootstrap";
 @import "font-awesome";
+
+body{
+	margin:auto
+}
+
+// .container{
+// 	margin-left: 200px;
+// }
+
+// @media(min-width: 1200px){
+// 	.container {
+// 	    width: 1500px;
+// 	}
+// }

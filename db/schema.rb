@@ -10,10 +10,73 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_24_083931) do
+ActiveRecord::Schema.define(version: 2018_10_27_114405) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "authentications", force: :cascade do |t|
+    t.string "uid"
+    t.string "token"
+    t.string "provider"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_authentications_on_user_id"
+  end
+
+  create_table "cryptos", force: :cascade do |t|
+    t.string "symbol"
+    t.integer "user_id"
+    t.decimal "cost_per"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.decimal "amount_owned"
+    t.decimal "last_transaction"
+    t.string "last_action"
+    t.integer "portfolio_id"
+    t.index ["user_id"], name: "index_cryptos_on_user_id"
+  end
+
+  create_table "movements", force: :cascade do |t|
+    t.decimal "price"
+    t.datetime "date"
+    t.integer "quantity"
+    t.integer "crypto_id"
+    t.string "operation"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.integer "portfolio_id"
+    t.index ["crypto_id"], name: "index_movements_on_crypto_id"
+  end
+
+  create_table "portfolios", force: :cascade do |t|
+    t.integer "user_id"
+    t.decimal "balance"
+    t.string "last_action"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_portfolios_on_user_id"
+  end
+
+  create_table "searches", force: :cascade do |t|
+    t.string "keywords"
+    t.string "id_crypto"
+    t.string "name"
+    t.string "symbol"
+    t.string "rank"
+    t.string "market"
+    t.string "category"
+    t.decimal "min_price"
+    t.decimal "max_price"
+    t.decimal "volume_24h_usd"
+    t.string "percent_change_1h"
+    t.string "percent_change_24h"
+    t.string "percent_change_7d"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name", null: false
@@ -33,4 +96,5 @@ ActiveRecord::Schema.define(version: 2018_10_24_083931) do
     t.index ["email"], name: "index_users_on_email"
   end
 
+  add_foreign_key "authentications", "users"
 end

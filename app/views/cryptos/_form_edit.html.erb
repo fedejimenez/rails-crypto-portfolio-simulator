@@ -1,0 +1,45 @@
+<%= form_with(model: crypto, local: true) do |form| %>
+  <% if crypto.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(crypto.errors.count, "error") %> prohibited this crypto from being saved:</h2>
+      <ul>
+      <% crypto.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+    <div class="field">
+      <%= form.number_field :user_id, value: current_user.id, type: "hidden" %>
+    </div>
+
+    <div class="field">
+      <%= form.label "Symbol:" %>
+      <%= crypto.symbol %>
+    </div>
+    <div class="field">
+      <%= form.label "Current Price:" %>
+      U$D <%= @current_usd = current_coin(crypto.symbol)["price_usd"].to_d.round(5) %>
+    </div>
+
+    <div class="field">
+      <%= form.label "Buying Price:" %>
+      <%= form.number_field :cost_per, min: "#{(@current_usd.round(5))*1.001}", :value => @current_usd*1.001,  step: :any, class: "text-center" %> (% added to simulate Broker Comision)
+    </div>
+
+    <div class="field">
+      <%= form.label "Amount owned: " %>
+      <%= crypto.amount_owned.to_i %>
+    </div>
+
+    <div class="field">
+      <%= form.label "Amount to buy" %>
+      <%= form.number_field :last_transaction, value: "1", min: "1", max: "500", class: "text-center" %>
+    </div>
+    
+    <div class="actions">
+      <%= form.submit 'Buy', class: "btn btn-success"%>
+    </div>
+
+<% end %>

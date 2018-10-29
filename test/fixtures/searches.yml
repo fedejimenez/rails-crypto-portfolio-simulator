@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  keywords: MyString
+  category: MyString
+  min_price: 
+  max_price: 9.99
+  rank: MyString
+  market: MyString
+  24h_volume_usd: 9.99
+  symbol: MyString
+  id: MyString
+  name: MyString
+  percent_change_1h: MyString
+  percent_change_24h: MyString
+  percent_change_7d: MyString
+
+two:
+  keywords: MyString
+  category: MyString
+  min_price: 
+  max_price: 9.99
+  rank: MyString
+  market: MyString
+  24h_volume_usd: 9.99
+  symbol: MyString
+  id: MyString
+  name: MyString
+  percent_change_1h: MyString
+  percent_change_24h: MyString
+  percent_change_7d: MyString

@@ -1,0 +1,44 @@
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h4><strong>New Order</strong></h4>
+		
+	</div>
+	<div class="panel-body">
+		
+		<p> Choose the currency </p>
+		<% array_names = @coins.map {|c| c['symbol']} %>
+		<% array_prices = @coins.map{|c| c['price_usd']} %>
+      	<% @user_coins = [] %>
+		<% @cryptos.each do |crypto| %>
+      				<% if crypto.user_id == current_user.id %>
+      			<% @user_coins.push((crypto['symbol'])) unless @user_coins.include?((crypto['symbol'])) %>
+			<% end %>
+		<% end %>
+		
+		<%= select(:model, :coin, @coins.map {|c| [c['symbol'] + " | " + c['name'] + " | " + c['price_usd']]},{:prompt => 'Symbol | name'}, id:"new-order", onchange: "showForm('#{array_names}', '#{@user_coins}', '#{array_prices}')" )%> <br>
+		<br>
+
+		<div id='form-new' style='visibility: hidden'>
+			<%= render 'form', crypto: @crypto %>
+		</div>
+	</div>
+</div>	
+
+<script>
+	function showForm(names, user_coins, array_prices){
+		var selectOption = document.querySelector('#new-order');
+		var userInput = selectOption.options[selectOption.selectedIndex].value;
+		var userInput_coin = userInput.split('|')[0].slice(0,-1)
+		var userInput_price = userInput.split('|')[2].slice(0,-1)
+
+		 if (user_coins.indexOf(userInput_coin) > -1) {
+		 	window.location.href = "/lookup?q=" + userInput_coin;
+		 } else {
+		 	document.querySelector('#form-new').style.visibility = 'visible'
+		 	document.querySelector('#selected-symbol').value = userInput_coin
+		 	document.querySelector('#selected-price').value = userInput_price
+		 }
+		return false;
+	}
+</script>

@@ -1,13 +1,55 @@
+<% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
+
 <br>
-<div class="container">
-	<% if @symbol %>
-		<% @lookup_coin.each do |c| %>
-			<% if @symbol == c["symbol"] %>
-				<%= c["symbol"] %> <br>
-				<%= c["name"] %>: U$D <%= c["price_usd"] %> <br>
-				<%= c["percent_change_24h"] %> %
-			<% end %>
+
+<% @crypto.each do |c| %>
+	<%  if c['symbol'] == @lookup %>
+		<% if c['user_id'].to_s == current_user.id.to_s %>
+			<% controller.redirect_to edit_crypto_path(c.id) %>
 		<% end %>
 	<% end %>
-</div>
+<% end %>
 
+<div class="panel panel-default">
+	<div class="panel-heading">
+	</div>
+	<div class="panel-body">
+		<div class="col-md-6">
+			<% if @lookup %>
+				<% @coins.each do |c| %>
+					<% if @lookup == c["symbol"] %>
+						<h3>
+							<strong> <%= c["symbol"] %> </strong><br>
+						</h3>
+						<p>
+						<strong>Name:</strong>
+							<%= c["name"] %> <br> 
+						</p>
+						<p>		
+							<strong>Current Price:</strong>
+							U$D <%= c["price_usd"] %> <br>
+						</p>
+						<p>
+							<strong>Variation (24h):</strong>
+							<%= c["percent_change_24h"] %> %
+						</p>
+					<% end %>
+				<% end %>
+			<% end %>
+		</div>
+		<div class="col-md-6 text-center">
+			<br>	<br>	<br>	
+			<% if logged_in? %>
+				<%= link_to 'Buy', new_portfolio_crypto_path(current_portfolio.id), class: "btn btn-success" %>
+				<%= link_to 'Sell', new_portfolio_crypto_path(current_portfolio.id), class: "btn btn-danger" %>
+
+			<% end %>
+		</div>
+	</div>
+	<div>
+		<div class="panel-footer">
+		</div>
+	</div>
+</div>
