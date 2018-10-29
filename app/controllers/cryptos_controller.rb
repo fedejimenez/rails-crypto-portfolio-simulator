@@ -65,12 +65,20 @@ class CryptosController < ApplicationController
   end
 
   def calculate_quantity
-    @crypto.amount_owned = @crypto.amount_owned + @crypto.last_transaction
+    if @crypto[:last_action] == "Sell"
+      @crypto.amount_owned = @crypto.amount_owned - @crypto.last_transaction
+    elsif @crypto[:last_action] == "Buy"
+      @crypto.amount_owned = @crypto.amount_owned + @crypto.last_transaction
+    end
   end
 
   def update_portfolio_balance
     @portfolio = Portfolio.where(user_id: current_user.id).first
-    @portfolio.balance = @portfolio.balance - @crypto.cost_per
+    if @crypto.last_action == "Sell"
+      @portfolio.balance = @portfolio.balance + @crypto.cost_per
+    elsif @crypto.last_action == "Buy"
+      @portfolio.balance = @portfolio.balance - @crypto.cost_per
+    end
     @portfolio.save
   end
 
