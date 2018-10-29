@@ -31,9 +31,9 @@
               <td> <%= c["percent_change_1h"] %> % </td>
               <td> <%= c["percent_change_24h"] %> %</td>
               <td> <%= c["percent_change_7d"] %> %</td>
-              <td> <%= crypto.amount_owned.to_i %> </td>
+              <td> <%= crypto.amount_owned.to_d %> </td>
               <td> <%= number_to_currency(crypto.cost_per) %></td>
-              <td> $<%= c["price_usd"].to_i * crypto.amount_owned.to_i %> </td>
+              <td> $<%= c["price_usd"].to_i * crypto.amount_owned %> </td>
               <td> $<%= (c["price_usd"].to_i * crypto.amount_owned.to_i)-(crypto.cost_per * crypto.amount_owned) %> </td>
               <td> <% @balance += (c["price_usd"].to_i * crypto.amount_owned.to_i)-(crypto.cost_per * crypto.amount_owned) %> </td>
             <% end %>
