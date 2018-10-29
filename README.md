@@ -1,24 +1,17 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a Fictional Crypto Currencies Exchange Simulator. After sign up the user will have U$D 10000 to start trading crypto currencies. 
+
+[LIVE in HEROKU] (https://cryptosimulator.herokuapp.com)
 
 Things you may want to cover:
 
-* Ruby version
+* Framework version
+  Ruby on Rails 5.2.1
 
-* System dependencies
+* Database creation and initialization
+Just type in the console:
+ > rake db:create
+ > rake db:migrate
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* This App is still on developing stage, others features will be added soon.
