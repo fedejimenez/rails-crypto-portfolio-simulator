@@ -2,23 +2,58 @@
   <div class="alert alert-<%= key %>"><%= value %></div>
 <% end %>
 
-<h2> Top 50 Crypto Currencies of the day </h2>
+<h3 class="text-muted"> <strong> Top 50 Crypto Currencies of the day</strong> </h3>
 <br>
-<table class="table table-responsive">
-  <thead class="">
-  	<th>Symbol</th>
-  	<th>Name</th>
-  	<th>Price (U$D)</th>
-  	<th>Variation (24hs)</th>
-  </thead>
-  <tbody>
-    <% @coins.each do |c| %>
-      <tr>
-        <td> <%= link_to c["symbol"], "/lookup?q=#{c['symbol']}" %> </td>
-        <td> <%= link_to c["name"], "/lookup?q=#{c['symbol']}" %> </td>
-        <td> <%= c["price_usd"] %> </td>
-        <td> <%= c["percent_change_24h"] %> </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="col-md-10">
+  <div class="table-responsive">
+    <table class="table">
+      <thead class="">
+        <th>Symbol</th>
+        <th>Name</th>
+        <th>Price (U$D)</th>
+        <th>Variation (24hs)</th>
+      </thead>
+      <tbody>
+        <% @coins.each do |c| %>
+          <tr>
+            <td> <%= link_to c["symbol"], "/lookup?q=#{c['symbol']}" %> </td>
+            <td> <%= link_to c["name"], "/lookup?q=#{c['symbol']}" %> </td>
+            <td> <%= c["price_usd"] %> </td>
+            <td> <%= c["percent_change_24h"] %> </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<!--  Add Users Profit Rankings -->
+
+<!--   <div class="col-md-2 panel panel-default">
+    <div class="">
+      <h4 class="text-muted text-center"> Users Ranking</h4>
+    </div>
+    <div class="">
+      <table class="table">
+        <thead>
+            <th> User </th>
+            <th> Balance </th>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+               User.all.each do |u| %>
+                = u.name.partition(" ").first %>
+              end %>
+            </td>
+            <td>
+               Portfolio.all.each do |p| %>
+               $  p.balance.round(2) %>
+              end %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div> -->

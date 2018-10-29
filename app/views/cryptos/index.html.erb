@@ -35,7 +35,7 @@
               <td> <%= number_to_currency(crypto.cost_per) %></td>
               <td> $<%= c["price_usd"].to_i * crypto.amount_owned.to_i %> </td>
               <td> $<%= (c["price_usd"].to_i * crypto.amount_owned.to_i)-(crypto.cost_per * crypto.amount_owned) %> </td>
-              <td> <% @balance += (c["price_usd"].to_i * crypto.amount_owned.to_i)-(crypto.cost_per * crypto.amount_owned) %> </td>
+              <td> <% @profit += (c["price_usd"].to_i * crypto.amount_owned.to_i)-(crypto.cost_per * crypto.amount_owned) %> </td>
             <% end %>
           <% end %>
           <td> <%= link_to 'New Order', edit_crypto_path(crypto) %></td>
@@ -51,13 +51,13 @@
   </div>
   <div class="panel-body"> 
     <p>
-      <strong>Total Portfolio Balance: </strong> U$D <%= @balance.to_d %> <br>
+      <strong>Total Portfolio Profit: </strong> U$D <%= @profit.to_d.round(2) %> -- (% <%= ((@profit.to_d)*100/current_portfolio.balance).round(2) %>) <br>
     </p>
     <p>
-      <strong>Total Amount invested: </strong> U$D <%= 10000 - current_portfolio.balance %>  <br>
+      <strong>Total Amount invested: </strong> U$D <%= 10000 - current_portfolio.balance.round(2) %>  <br>
     </p>
     <p>
-      <strong>Total Amount Available to invest: </strong> U$D<%= current_portfolio.balance %>
+      <strong>Total Amount Available to invest: </strong> U$D <%= current_portfolio.balance.round(2) %>
     </p>
   </div>
 </div>
