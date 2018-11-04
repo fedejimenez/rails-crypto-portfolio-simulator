@@ -1,4 +1,4 @@
-<%= form_with(model: crypto, local: true) do |form| %>
+<%= form_with(model: crypto, local: true, id: "form-edit-crypto") do |form| %>
   <% if crypto.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(crypto.errors.count, "error") %> prohibited this crypto from being saved:</h2>
@@ -46,7 +46,7 @@
     </div>
     
     <div class="actions">
-      <%= form.submit 'Place Order', class: "btn btn-success"%>
+      <%= form.submit 'Place Order', class: "btn btn-success", data: { confirm: 'Are you sure?'} %>
     </div>
 
 <% end %>

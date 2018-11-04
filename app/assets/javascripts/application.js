@@ -17,4 +17,6 @@
 //= require bootstrap-sprockets
 //= require jquery.easy-autocomplete
 //= require lookup.js
+//= require sweetalert2
+//= require sweet-alert2-rails
 //= require_tree .
