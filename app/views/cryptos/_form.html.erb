@@ -22,7 +22,6 @@
 
 
     <div class="field">
-      <%= form.label "Check the box if you want to sell   " %>
       <%= form.text_field :last_action, value: "Buy", type: "hidden" %>
     </div>
 
@@ -32,13 +31,14 @@
     </div>
 
     <div class="field">
-      <%= form.label :cost_per %>
-      <%= form.text_field :cost_per, id: "selected-price" %>
+      <%= form.label "Buying Price" %>
+      <%= form.number_field :cost_per, id: "selected-price", step: :any %>
     </div>
 
     <div class="field">
       <%= form.label "Quantity" %>
-      <%= form.text_field :amount_owned, step: :any %>
+      <%= form.number_field :amount_owned, value: "1", min: "0.01", max: "500", step: :any, class: "text-center" %>
+
     </div>
     
     <div class="actions">

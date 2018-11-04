@@ -11,7 +11,7 @@
 		<% array_prices = @coins.map{|c| c['price_usd']} %>
       	<% @user_coins = [] %>
 		<% @cryptos.each do |crypto| %>
-      				<% if crypto.user_id == current_user.id %>
+      		<% if crypto.user_id == current_user.id %>
       			<% @user_coins.push((crypto['symbol'])) unless @user_coins.include?((crypto['symbol'])) %>
 			<% end %>
 		<% end %>
@@ -37,7 +37,7 @@
 		 } else {
 		 	document.querySelector('#form-new').style.visibility = 'visible'
 		 	document.querySelector('#selected-symbol').value = userInput_coin
-		 	document.querySelector('#selected-price').value = userInput_price
+		 	document.querySelector('#selected-price').value = userInput_price * 1.001
 		 }
 		return false;
 	}

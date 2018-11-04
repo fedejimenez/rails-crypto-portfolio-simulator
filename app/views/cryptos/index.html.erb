@@ -1,4 +1,8 @@
 <p id="notice"><%= notice %></p>
+<% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
+
 <h2><strong>Portfolio Details </strong></h2>
 <br>
 
@@ -33,9 +37,10 @@
               <td> <%= c["percent_change_7d"] %> %</td>
               <td> <%= crypto.amount_owned.to_d %> </td>
               <td> <%= number_to_currency(crypto.cost_per) %></td>
-              <td> $<%= c["price_usd"].to_i * crypto.amount_owned %> </td>
-              <td> $<%= (c["price_usd"].to_i * crypto.amount_owned.to_i)-(crypto.cost_per * crypto.amount_owned) %> </td>
-              <td> <% @profit += (c["price_usd"].to_i * crypto.amount_owned.to_i)-(crypto.cost_per * crypto.amount_owned) %> </td>
+              <td> $<%= (c["price_usd"].to_d * crypto.amount_owned.to_d).round(2) %> </td>
+              <td> $<%= ((c["price_usd"].to_d * crypto.amount_owned.to_d)-(crypto.cost_per * crypto.amount_owned)).round(2) %> </td>
+              <!-- Calculate Profit  -->
+              <td> <% @profit += ((c["price_usd"].to_d * crypto.amount_owned.to_d)-(crypto.cost_per.to_d * crypto.amount_owned.to_d)).round(2) %> </td>
             <% end %>
           <% end %>
           <td> <%= link_to 'New Order', edit_crypto_path(crypto) %></td>

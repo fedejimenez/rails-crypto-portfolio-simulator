@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_27_114405) do
+ActiveRecord::Schema.define(version: 2018_11_04_144823) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,13 +41,13 @@ ActiveRecord::Schema.define(version: 2018_10_27_114405) do
   create_table "movements", force: :cascade do |t|
     t.decimal "price"
     t.datetime "date"
-    t.integer "quantity"
     t.integer "crypto_id"
     t.string "operation"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.integer "portfolio_id"
+    t.decimal "quantity"
     t.index ["crypto_id"], name: "index_movements_on_crypto_id"
   end
 

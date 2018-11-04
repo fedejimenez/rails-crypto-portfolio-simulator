@@ -8,16 +8,12 @@ class Crypto < ApplicationRecord
 
 
 	def buy(quantity)
-		# self.amount_owned ||= 0
-		self.amount_owned = self.amount_owned + quantity;
-		movements.build(:quantity => quantity, :price => cost_per, :operation => "buy", :date => Time.now(), :portfolio_id => self.portfolio_id, :user_id => self.user_id)
+		movements.build(:quantity => last_transaction, :price => cost_per, :operation => "buy", :date => Time.now(), :portfolio_id => self.portfolio_id, :user_id => self.user_id)
 		save 
 	end	
 
 	def sell(quantity)
-		# self.amount_owned ||= 0
-		self.amount_owned = self.amount_owned - quantity;
-		movements.build(:quantity => quantity, :price => cost_per, :operation => "sell", :date => Time.now(), :portfolio_id => self.portfolio_id, :user_id => self.user_id)
+		movements.build(:quantity => amount_owned, :price => cost_per, :operation => "sell", :date => Time.now(), :portfolio_id => self.portfolio_id, :user_id => self.user_id)
 		save 
 	end
 
