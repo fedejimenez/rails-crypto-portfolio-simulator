@@ -40,7 +40,11 @@ module CryptosHelper
       @crypto.amount_owned = @crypto.amount_owned + @crypto.last_transaction
       @crypto.buy(params[:crypto][:amount_owned])
     end
-    @crypto.save
+    if @crypto.amount_owned == 0
+      @crypto.delete
+    else
+      @crypto.save
+    end
   end
 
   def update_portfolio_balance
@@ -55,7 +59,11 @@ module CryptosHelper
 
   def check_amount_available
     @portfolio = Portfolio.where(user_id: current_user.id).first
-    amount_to_buy = @crypto[:last_transaction]
+    if @crypto.amount_owned == nil
+      amount_to_buy = @crypto[:amount_owned]
+    else
+      amount_to_buy = @crypto[:last_transaction]
+    end
     quantity_to_sell = @crypto[:last_transaction]
     price = @crypto[:cost_per]
 

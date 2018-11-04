@@ -8,7 +8,6 @@ class CryptosController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :handle_record_not_found
   after_action :calculate_quantity, only: [:update]
   after_action :update_portfolio_balance, only: [:update, :create]
-  before_action :check_amount_available, only: [:update, :create]
 
   # GET /cryptos
   # GET /cryptos.json
@@ -39,10 +38,10 @@ class CryptosController < ApplicationController
     @crypto = Crypto.new(crypto_params)
     @crypto.last_transaction ||= @crypto.amount_owned
     @crypto.portfolio_id = current_portfolio.id
+    check_amount_available
     respond_to do |format|
-      # if @crypto.save
       if @crypto.buy(params[:crypto][:quantity].to_i)
-        format.html { redirect_to portfolio_cryptos_url(current_portfolio.id), notice: 'Crypto was successfully created.' }
+        format.html { redirect_to portfolio_cryptos_url(current_portfolio.id), :flash => { :success => "A new currency #{@crypto.symbol} was successfully added into the Portfolio." }}
         format.json { render :show, status: :created, location: @crypto }
       else
         format.html { render :new }
