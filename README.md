@@ -1,24 +1,18 @@
-# README
+<h3> Crypto Portfolio Simulator </h3>
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+<p> This is a Fictional Crypto Currencies Exchange Simulator. After sign up the user will have U$D 10000 to start trading crypto currencies. </p>
+<p> The prices are obtained through the Coinmarketcap API and the goal is allowing the user to simulate trades in a safe enviroment, before jumping into real operations with a broker. </p>
 
-Things you may want to cover:
+<h3> <a href="https://cryptosimulator.herokuapp.com">LIVE in HEROKU</a> </h3>
 
-* Ruby version
+<h3> Framework version </h3>
+<p> Ruby on Rails 5.2.1 </p>
 
-* System dependencies
+<h3> Setup </h3>
+<p> Clone this repository and run <code> bundle install </code></p> 
 
-* Configuration
+<h3> Database creation and initialization </h3> 
+ <code>  rake db:create </code>  
+ <code>  rake db:migrate </code>
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+<h3> This Website is still in developing stage, more changes and features will be added soon. </h3> 

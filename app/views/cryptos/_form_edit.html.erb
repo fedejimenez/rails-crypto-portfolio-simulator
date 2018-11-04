@@ -18,6 +18,7 @@
       <%= form.label "Symbol:" %>
       <%= crypto.symbol %>
     </div>
+    
     <div class="field">
       <%= form.label "Current Price:" %>
       U$D <%= @current_usd = current_coin(crypto.symbol)["price_usd"].to_d.round(5) %>
