@@ -14,7 +14,11 @@
   
     <div class="field">
       <%= form.number_field :user_id, value: current_user.id, type: "hidden" %>
-    </div>
+    </div>  
+  
+    <div class="field">
+      <%= form.text_field :last_action, value: "Buy", type: "hidden" %>
+    </div>  
 
     <div class="field">
       <%= form.label :symbol %>
@@ -28,7 +32,7 @@
 
     <div class="field">
       <%= form.label "Quantity" %>
-      <%= form.text_field :amount_owned %>
+      <%= form.text_field :amount_owned, step: :any %>
     </div>
     
     <div class="actions">
