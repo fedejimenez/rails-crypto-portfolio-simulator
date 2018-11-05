@@ -5,8 +5,11 @@
 	<div class="panel-body">
 
 		<%= render 'form_edit', crypto: @crypto %>
+
 	</div>
-	<div class="panel-footer">
-		<%= link_to 'Back', cryptos_path, class: "btn btn-primary" %>
+
+	<div class="panel-footer" id="total-amount-footer">
+		<br>
+		<%= render 'totals' %>
 	</div>
 </div>

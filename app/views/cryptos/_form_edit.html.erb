@@ -24,6 +24,10 @@
       U$D <%= @current_usd = current_coin(crypto.symbol)["price_usd"].to_d.round(5) %>
     </div>
 
+    <div class="field">
+      <%= form.label "Quantity owned: " %>
+      <%= crypto.amount_owned.to_d.round(2) %>
+    </div>
 
     <div class="field">
      <%= form.label "Check the box if you want to sell" %>
@@ -31,22 +35,22 @@
     </div>
 
     <div class="field">
-      <%= form.label "Transaction Price:" %>
-      <%= form.number_field :cost_per, min: "#{(@current_usd.round(5))*1.001}", :value => @current_usd*1.001,  step: :any, class: "text-center", oninput: "validity.valid||(value='')"%> (0.1 % added to simulate Broker Comision)
+      <%= form.label "Transaction Price (U$D):" %>
+      <%= form.number_field :cost_per, min: "#{(@current_usd.round(5))*1.001}", :value => @current_usd*1.001,  step: :any, class: "text-center", id: "selected-price", oninput: "validity.valid||(value='')", onchange: "showTotalAmount()"%> (0.1 % added to simulate Broker Comision)
     </div>
 
     <div class="field">
-      <%= form.label "Amount owned: " %>
-      <%= crypto.amount_owned.to_d.round(2) %>
-    </div>
-
-    <div class="field">
-      <%= form.label "Amount" %>
-      <%= form.number_field :last_transaction, value: "1", min: "0.01", max: "500", step: :any, class: "text-center" %>
+      <%= form.label "Quantity" %>
+      <%= form.number_field :last_transaction, class: "text-center", id: "selected-quantity" , value: "1", min: "0.01", max: "50000", step: :any, onchange: "showTotalAmount()" %>
     </div>
     <br>
-    <div class="actions">
-      <%= form.submit 'Place Order', class: "btn btn-success", data: { confirm: 'Are you sure?'} %>
+    <div class="">
+      <div class="actions col-md-2">
+        <%= form.submit 'Place Order', class: "btn btn-success", id: "button-submit", data: { confirm: 'Are you sure?'} %>
+      </div>
+      <div class="col-md-2">
+        <%= link_to 'Cancel Order', cryptos_path, class: "btn btn-danger" %>
+      </div>
+      <div class="col-md-8"></div>
     </div>
-
 <% end %>

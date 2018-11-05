@@ -23,20 +23,20 @@
     <div class="field">
       <%= form.label :symbol %>
       <%= form.text_field :symbol , id: "selected-symbol" , class: "text-center" , readonly: true%>
-    </div>
+    </div><br>
 
     <div class="field">
-      <%= form.label "Buying Price" %>
+      <%= form.label "Buying Price (U$D) " %>
       <%= form.number_field :cost_per, id: "selected-price" , onchange: "showTotalAmount()",  step: :any, oninput: "validity.valid||(value='')" %> (0.1 % added to simulate Broker Comision)
-    </div>
+    </div><br>
 
     <div class="field">
       <%= form.label "Quantity" %>
-      <%= form.number_field :amount_owned, id: "selected-quantity", onchange: "showTotalAmount()" ,value: "1", min: "0.01", max: "500", step: :any, class: "text-center", oninput: "validity.valid||(value='')" %>
-    </div>
+      <%= form.number_field :amount_owned, id: "selected-quantity", onchange: "showTotalAmount()" ,value: "1", min: "0.01", max: "50000", step: :any, class: "text-center", oninput: "validity.valid||(value='')" %>
+    </div><br>
     
-    <div class="actions">
-      <%= form.submit 'Buy', id: "button-edit", class: "btn btn-success", data: { confirm: 'Are you sure?'} %>
+    <div class="actions col-md-2">
+      <%= form.submit 'Buy Currency', id: "button-submit", class: "btn btn-success", data: { confirm: 'Are you sure?'} %>
     </div>
 
 <% end %>
