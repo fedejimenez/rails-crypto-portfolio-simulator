@@ -6,7 +6,7 @@
 
 <% @crypto.each do |c| %>
 	<%  if c['symbol'] == @lookup %>
-		<% if c['user_id'].to_s == current_user.id.to_s %>
+		<% if (c['user_id'].to_s == current_user.id.to_s) && (c['amount_owned'] > 0) %>
 			<% controller.redirect_to edit_crypto_path(c.id) %>
 		<% end %>
 	<% end %>

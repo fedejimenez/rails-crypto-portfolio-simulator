@@ -28,7 +28,7 @@
         <tr>
           <td><%= link_to crypto.symbol, crypto %></td>
           <% for c in @coins %>
-            <% if crypto.symbol == c["symbol"] %>
+            <% if (crypto.symbol == c["symbol"]) && (c["amount_owned"] > 0) %>
               <td> <%= link_to c["name"], crypto %> </td>
               <td> $<%= c["price_usd"] %> </td>
               <td> <%= c["percent_change_1h"] %> % </td>
@@ -68,6 +68,7 @@
     <div class="col-md-4 text-center"> 
       <br>
       <%= link_to 'New Order', new_portfolio_crypto_path(current_portfolio.id), class: "btn btn-primary" %>
+      <%= link_to 'Movements', portfolio_movements_path(current_portfolio.id), class: "btn btn-primary" %>
     </div>
   </div>
   <div class="panel-footer">

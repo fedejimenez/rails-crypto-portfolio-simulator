@@ -40,11 +40,7 @@ module CryptosHelper
       @crypto.amount_owned = @crypto.amount_owned + @crypto.last_transaction
       @crypto.buy(params[:crypto][:amount_owned])
     end
-    if @crypto.amount_owned == 0
-      @crypto.delete
-    else
-      @crypto.save
-    end
+    @crypto.save
   end
 
   def update_portfolio_balance
