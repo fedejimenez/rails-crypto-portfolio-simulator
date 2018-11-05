@@ -89,10 +89,14 @@ class CryptosController < ApplicationController
 
     def correct_user
       @correct = current_user.cryptos.find_by(id: params[:id])
-      redirect_to cryptos_path, notice: "Oops! You're not Authorized to view or edit this page! " if @correct.nil?
+      if @correct.nil?
+        flash[:warning] = "Oops! You're not Authorized to view or edit this page! " 
+        redirect_to cryptos_path
+      end
     end
 
     def handle_record_not_found
-      redirect_to cryptos_path, notice: "Oops! You're not Authorized to view or edit this page" 
+      flash[:warning] = "Oops! You're not Authorized to view or edit this page! "
+      redirect_to cryptos_path
     end
 end

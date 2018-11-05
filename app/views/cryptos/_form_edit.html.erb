@@ -32,7 +32,7 @@
 
     <div class="field">
       <%= form.label "Transaction Price:" %>
-      <%= form.number_field :cost_per, min: "#{(@current_usd.round(5))*1.001}", :value => @current_usd*1.001,  step: :any, class: "text-center" %> (% added to simulate Broker Comision)
+      <%= form.number_field :cost_per, min: "#{(@current_usd.round(5))*1.001}", :value => @current_usd*1.001,  step: :any, class: "text-center", oninput: "validity.valid||(value='')"%> (0.1 % added to simulate Broker Comision)
     </div>
 
     <div class="field">
@@ -44,7 +44,7 @@
       <%= form.label "Amount" %>
       <%= form.number_field :last_transaction, value: "1", min: "0.01", max: "500", step: :any, class: "text-center" %>
     </div>
-    
+    <br>
     <div class="actions">
       <%= form.submit 'Place Order', class: "btn btn-success", data: { confirm: 'Are you sure?'} %>
     </div>

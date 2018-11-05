@@ -54,19 +54,27 @@
     <h4> <strong>Portfolio Summary </strong></h4>
   </div>
   <div class="panel-body"> 
-    <p>
-      <strong>Total Portfolio Profit: </strong> U$D <%= @profit.to_d.round(2) %> -- (% <%= ((@profit.to_d)*100/current_portfolio.balance).round(2) %>) <br>
-    </p>
-    <p>
-      <strong>Total Amount invested: </strong> U$D <%= 10000 - current_portfolio.balance.round(2) %>  <br>
-    </p>
-    <p>
-      <strong>Total Amount Available to invest: </strong> U$D <%= current_portfolio.balance.round(2) %>
-    </p>
+    <div class="col-md-8">
+      <p>
+        <strong>Total Portfolio Profit: </strong> U$D <%= @profit.to_d.round(2) %> -- (% <%= ((@profit.to_d)*100/current_portfolio.balance).round(2) %>) <br>
+      </p>
+      <p>
+        <strong>Total Amount invested: </strong> U$D <%= @t_invested = 10000 - current_portfolio.balance.round(2) %>  <br>
+      </p>
+      <p>
+        <strong>Total Amount Available to invest: </strong> U$D <%= @t_available = current_portfolio.balance.round(2) %>
+      </p>
+    </div>
+    <div class="col-md-4 text-center"> 
+      <br>
+      <%= link_to 'New Order', new_portfolio_crypto_path(current_portfolio.id), class: "btn btn-primary" %>
+    </div>
+  </div>
+  <div class="panel-footer">
+    <h4>   
+      <strong>Total Consolidated Amount: </strong> U$D <%= (@t_invested + @t_available + @profit).round(2)  %>
+    </h4>
   </div>
 </div>
-<br><br>
+<br>
 
-<div class="text-center">
-  <%= link_to 'Buy Crypto', new_portfolio_crypto_path(current_portfolio.id), class: "btn btn-primary" %>
-</div>
