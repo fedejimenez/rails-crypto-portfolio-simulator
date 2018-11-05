@@ -1,6 +1,8 @@
 <% flash.each do |key, value| %>
   <div class="alert alert-<%= key %>"><%= value %></div>
 <% end %>
+<strong id="last-updated"><p class="pull-right">Last Updated: <%= Time.now.strftime('%H:%M:%S') %></p></strong>
+
 
 <h3 class="text-muted"> <strong> Top 50 Crypto Currencies of the day</strong> </h3>
 <br>
