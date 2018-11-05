@@ -16,6 +16,8 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require jquery.easy-autocomplete
+//= require dataTables/jquery.dataTables
+//= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require lookup.js
 //= require sweetalert2
 //= require sweet-alert2-rails

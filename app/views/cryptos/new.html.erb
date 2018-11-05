@@ -10,7 +10,7 @@
 		<% array_prices = @coins.map{|c| c['price_usd']} %>
       	<% @user_coins = [] %>
 		<% @cryptos.each do |crypto| %>
-      		<% if crypto.user_id == current_user.id %>
+      		<% if (crypto.user_id == current_user.id) && (crypto.amount_owned != 0) %>
       			<% @user_coins.push((crypto['symbol'])) unless @user_coins.include?((crypto['symbol'])) %>
 			<% end %>
 		<% end %>

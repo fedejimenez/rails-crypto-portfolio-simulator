@@ -2,52 +2,7 @@
   <div class="alert alert-<%= key %>"><%= value %></div>
 <% end %>
 
-<h2><strong>Portfolio Details </strong></h2>
 <br>
-
-<table class="table table-striped table-hover table-responsive">
-  <thead class="">
-    <tr>
-      <th>Symbol</th>
-      <th>Name</th>
-      <th>Current Price</th>
-      <th>1 hr</th>
-      <th>24 hr</th>
-      <th>7 days</th>
-      <th>Qty</th>
-      <th>Buying Price</th>
-      <th>Total Amount</th>
-      <th>Balance</th>
-      <th colspan="3" class="text-center"> Actions</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @cryptos.each do |crypto| %>
-      <% if crypto.user_id == current_user.id %>
-        <tr>
-          <td><%= link_to crypto.symbol, crypto %></td>
-          <% for c in @coins %>
-            <% if (crypto.symbol == c["symbol"]) && (c["amount_owned"] > 0) %>
-              <td> <%= link_to c["name"], crypto %> </td>
-              <td> $<%= c["price_usd"] %> </td>
-              <td> <%= c["percent_change_1h"] %> % </td>
-              <td> <%= c["percent_change_24h"] %> %</td>
-              <td> <%= c["percent_change_7d"] %> %</td>
-              <td> <%= crypto.amount_owned.to_d %> </td>
-              <td> <%= number_to_currency(crypto.cost_per) %></td>
-              <td> $<%= (c["price_usd"].to_d * crypto.amount_owned.to_d).round(2) %> </td>
-              <td> $<%= ((c["price_usd"].to_d * crypto.amount_owned.to_d)-(crypto.cost_per * crypto.amount_owned)).round(2) %> </td>
-              <!-- Calculate Profit  -->
-              <td> <% @profit += ((c["price_usd"].to_d * crypto.amount_owned.to_d)-(crypto.cost_per.to_d * crypto.amount_owned.to_d)).round(2) %> </td>
-            <% end %>
-          <% end %>
-          <td> <%= link_to 'New Order', edit_crypto_path(crypto) %></td>
-        </tr>
-      <% end %>
-    <% end %>
-  </tbody>
-</table>
 
 <div class="panel panel-default"> 
   <div class="panel-heading">
@@ -59,16 +14,16 @@
         <strong>Total Portfolio Profit: </strong> U$D <%= @profit.to_d.round(2) %> -- (% <%= ((@profit.to_d)*100/current_portfolio.balance).round(2) %>) <br>
       </p>
       <p>
-        <strong>Total Amount invested: </strong> U$D <%= @t_invested = 10000 - current_portfolio.balance.round(2) %>  <br>
+        <strong>Total Amount Invested: </strong> U$D <%= @t_invested = 10000 - current_portfolio.balance.round(2) %>  <br>
       </p>
       <p>
-        <strong>Total Amount Available to invest: </strong> U$D <%= @t_available = current_portfolio.balance.round(2) %>
+        <strong>Total Amount Available to Invest: </strong> U$D <%= @t_available = current_portfolio.balance.round(2) %>
       </p>
     </div>
     <div class="col-md-4 text-center"> 
       <br>
       <%= link_to 'New Order', new_portfolio_crypto_path(current_portfolio.id), class: "btn btn-primary" %>
-      <%= link_to 'Movements', portfolio_movements_path(current_portfolio.id), class: "btn btn-primary" %>
+      <%= link_to 'Movements', portfolio_movements_path(current_portfolio.id), class: "btn btn-info" %>
     </div>
   </div>
   <div class="panel-footer">
@@ -76,6 +31,53 @@
       <strong>Total Consolidated Amount: </strong> U$D <%= (@t_invested + @t_available + @profit).round(2)  %>
     </h4>
   </div>
-</div>
+</div><br>
+
+<h3><strong>Portfolio Details </strong></h3><br>
+
+<table class="table table-striped table-hover table-responsive datatable" id="table-cryptos">
+  <thead>
+    <tr>
+      <th>Symbol</th>
+      <th>Name</th>
+      <th>Current Price</th>
+      <th>1 hr</th>
+      <th>24 hr</th>
+      <th>7 days</th>
+      <th>Qty</th>
+      <th>Buying Price</th>
+      <th>Total Amount</th>
+      <th>Balance</th>
+      <th> Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cryptos.each do |crypto| %>
+      <% if (crypto.user_id == current_user.id)  && (crypto.amount_owned != 0) %>
+        <tr>
+          <td><%= link_to crypto.symbol, crypto %></td>
+          <% for c in @coins %>
+            <% if (crypto.symbol == c["symbol"]) %>
+              <td> <%= link_to c["name"], crypto %> </td>
+              <td> $<%= c["price_usd"] %> </td>
+              <td> <%= c["percent_change_1h"] %> % </td>
+              <td> <%= c["percent_change_24h"] %> %</td>
+              <td> <%= c["percent_change_7d"] %> %</td>
+              <td> <%= crypto.amount_owned.to_d %> </td>
+              <td> <%= number_to_currency(crypto.cost_per) %></td>
+              <td> $<%= (c["price_usd"].to_d * crypto.amount_owned.to_d).round(2) %> </td>
+              <td> $<%= ((c["price_usd"].to_d * crypto.amount_owned.to_d)-(crypto.cost_per * crypto.amount_owned)).round(2) %> </td>
+              <!-- Calculate Profit  -->
+                   <% @profit += ((c["price_usd"].to_d * crypto.amount_owned.to_d)-(crypto.cost_per.to_d * crypto.amount_owned.to_d)).round(2) %> 
+            <% end %>
+          <% end %>
+          <td> <%= link_to 'New Order', edit_crypto_path(crypto) %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
 <br>
+
 
