@@ -25,9 +25,8 @@ Rails.application.routes.draw do
 
   #Portfolio and Movements
   resources :portfolios do
-    resources :cryptos do 
-      resources :movements
-    end
+    resources :cryptos 
+    resources :movements
   end
   resources :cryptos
   post 'portfolios/:id/cryptos/new' => 'cryptos#create'
