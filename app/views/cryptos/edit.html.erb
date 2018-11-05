@@ -1,5 +1,15 @@
-<h2> New Order </h2><br>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h4><strong>New Order</strong></h4>
+	</div>
+	<div class="panel-body">
 
-<%= render 'form_edit', crypto: @crypto %>
+		<%= render 'form_edit', crypto: @crypto %>
 
-<%= link_to 'Back', cryptos_path %>
+	</div>
+
+	<div class="panel-footer" id="total-amount-footer">
+		<br>
+		<%= render 'totals' %>
+	</div>
+</div>

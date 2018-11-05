@@ -18,31 +18,25 @@
   
     <div class="field">
       <%= form.text_field :last_action, value: "Buy", type: "hidden" %>
-    </div>  
-
-
-    <div class="field">
-      <%= form.label "Check the box if you want to sell   " %>
-      <%= form.text_field :last_action, value: "Buy", type: "hidden" %>
-    </div>
+    </div> 
 
     <div class="field">
       <%= form.label :symbol %>
-      <%= form.text_field :symbol , id: "selected-symbol"%>
-    </div>
+      <%= form.text_field :symbol , id: "selected-symbol" , class: "text-center" , readonly: true%>
+    </div><br>
 
     <div class="field">
-      <%= form.label :cost_per %>
-      <%= form.text_field :cost_per, id: "selected-price" %>
-    </div>
+      <%= form.label "Buying Price (U$D) " %>
+      <%= form.number_field :cost_per, id: "selected-price" , onchange: "showTotalAmount()",  step: :any, oninput: "validity.valid||(value='')" %> (0.1 % added to simulate Broker Comision)
+    </div><br>
 
     <div class="field">
       <%= form.label "Quantity" %>
-      <%= form.text_field :amount_owned, step: :any %>
-    </div>
+      <%= form.number_field :amount_owned, id: "selected-quantity", onchange: "showTotalAmount()" ,value: "1", min: "0.01", max: "50000", step: :any, class: "text-center", oninput: "validity.valid||(value='')" %>
+    </div><br>
     
-    <div class="actions">
-      <%= form.submit 'Buy', class: "btn btn-success"%>
+    <div class="actions col-md-2">
+      <%= form.submit 'Buy Currency', id: "button-submit", class: "btn btn-success", data: { confirm: 'Are you sure?'} %>
     </div>
 
 <% end %>

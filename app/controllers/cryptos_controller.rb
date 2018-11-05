@@ -1,14 +1,14 @@
 class CryptosController < ApplicationController
+  include CryptosHelper
+  include PortfoliosHelper
+
   before_action :set_crypto, only: [:show, :edit, :update, :destroy]
   before_action :authorize
   before_action :correct_user, only: [:edit, :update, :destroy, :show]
   rescue_from ActiveRecord::RecordNotFound, with: :handle_record_not_found
-  before_action :calculate_quantity, only: [:update]
+  after_action :calculate_quantity, only: [:update]
   after_action :update_portfolio_balance, only: [:update, :create]
 
-
-  include CryptosHelper
-  include PortfoliosHelper
   # GET /cryptos
   # GET /cryptos.json
   def index
@@ -38,10 +38,10 @@ class CryptosController < ApplicationController
     @crypto = Crypto.new(crypto_params)
     @crypto.last_transaction ||= @crypto.amount_owned
     @crypto.portfolio_id = current_portfolio.id
+    check_amount_available
     respond_to do |format|
-      # if @crypto.save
       if @crypto.buy(params[:crypto][:quantity].to_i)
-        format.html { redirect_to portfolio_cryptos_url(current_portfolio.id), notice: 'Crypto was successfully created.' }
+        format.html { redirect_to portfolio_cryptos_url(current_portfolio.id), :flash => { :success => "A new currency #{@crypto.symbol} was successfully added into the Portfolio." }}
         format.json { render :show, status: :created, location: @crypto }
       else
         format.html { render :new }
@@ -55,31 +55,13 @@ class CryptosController < ApplicationController
   def update
     respond_to do |format|
       if @crypto.update(crypto_params)
-        format.html { redirect_to portfolio_cryptos_url(current_portfolio.id), notice: 'Crypto was successfully updated.' }
+        format.html { redirect_to portfolio_cryptos_url(current_portfolio.id) }
         format.json { render :show, status: :ok, location: @crypto }
       else
-        format.html { render :edit }
+        format.html { render :edit, notice: 'Error while processing the transaction. Please check your balance and the quantity.' }
         format.json { render json: @crypto.errors, status: :unprocessable_entity }
       end
     end
-  end
-
-  def calculate_quantity
-    if @crypto[:last_action] == "Sell"
-      @crypto.amount_owned = @crypto.amount_owned - @crypto.last_transaction
-    elsif @crypto[:last_action] == "Buy"
-      @crypto.amount_owned = @crypto.amount_owned + @crypto.last_transaction
-    end
-  end
-
-  def update_portfolio_balance
-    @portfolio = Portfolio.where(user_id: current_user.id).first
-    if @crypto.last_action == "Sell"
-      @portfolio.balance = @portfolio.balance + @crypto.cost_per
-    elsif @crypto.last_action == "Buy"
-      @portfolio.balance = @portfolio.balance - @crypto.cost_per
-    end
-    @portfolio.save
   end
 
   # DELETE /cryptos/1
@@ -87,18 +69,11 @@ class CryptosController < ApplicationController
   def destroy
     @crypto.destroy
     respond_to do |format|
-      if @crypto.sell(params[:crypto][:quantity].to_i)
+      if @crypto.sell(params[:crypto][:amount_owned].to_i)
         format.html { redirect_to portfolio_cryptos_url(current_portfolio.id), notice: 'Crypto was successfully destroyed.' }
         format.json { head :no_content }
       end
     end
-  end
-
-  def buy 
-    @crypto = @portfolio.buy(params[:crypto][:symbol], params[:crypto][:quantity].to_i)
-  end
-  def sell 
-    @crypto = @portfolio.sell(params[:crypto][:symbol], params[:crypto][:quantity].to_i)
   end
 
   private
@@ -114,10 +89,14 @@ class CryptosController < ApplicationController
 
     def correct_user
       @correct = current_user.cryptos.find_by(id: params[:id])
-      redirect_to cryptos_path, notice: "Oops! You're not Authorized to view or edit this page! " if @correct.nil?
+      if @correct.nil?
+        flash[:warning] = "Oops! You're not Authorized to view or edit this page! " 
+        redirect_to cryptos_path
+      end
     end
 
     def handle_record_not_found
-      redirect_to cryptos_path, notice: "Oops! You're not Authorized to view or edit this page" 
+      flash[:warning] = "Oops! You're not Authorized to view or edit this page! "
+      redirect_to cryptos_path
     end
 end

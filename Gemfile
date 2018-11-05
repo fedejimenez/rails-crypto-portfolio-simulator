@@ -85,3 +85,10 @@ gem 'figaro'
 # google signup/login
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
+
+# Security Update
+gem "loofah", ">= 2.2.3"
+
+# Customize alerts
+gem 'rails-assets-sweetalert2', '~> 5.1.1', source: 'https://rails-assets.org'
+gem 'sweet-alert2-rails'
