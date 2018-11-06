@@ -1,0 +1,40 @@
+<% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
+
+<h3>Welcome, <%= current_user.name %></h3><br>
+
+<%= render "user" %>
+<br>
+
+<div>
+  <% if current_user.avatar.blank? %>
+    <%= image_tag("avatar.svg", :alt => "avatar", class: "avatar-edit") %>
+  <% else %>  
+  <%= image_tag(current_user.avatar.url, :alt => "avatar",  class: "avatar-edit") %>
+  <% end %> 
+</div>
+<br>
+
+<div class="form-group">
+  <%= form_for current_user, url: {action: "update"} do |form| %>
+    <%= form.label :profile_picture%>
+    <%= form.file_field :avatar %> 
+    
+    <% if !current_user.avatar.blank? %>
+      <%= form.check_box :remove_avatar %>
+         Remove picture 
+    <% end%>
+
+    <%= form.submit 'Update Picture'%>
+  <% end%>
+</div>
+
+<div id = "user-details">
+  <p>First name: <%= current_user.name.split(' ').first %></p>
+  <p>Last name: <%= current_user.name.split(' ').last %></p>
+  <p>Email: <%= current_user.email %></p>
+  <p>Date joined: <%= current_user.created_at %></p>
+  <%= link_to 'Edit', edit_user_path(current_user) %>
+
+</div>

@@ -1,0 +1,666 @@
+<h1>Edit My Account</h1>
+
+<% form_for current_user, url: {action: "update"} do |f| %>
+  <%= render :partial => "form", :object => f %>
+
+  <%= f.submit "Update" %>
+<% end %>
+
+<main id="site-content" role="main" tabindex="-1">
+  <div id="notification-area"/>
+    <div class="page-container-responsive space-top-4 space-4">
+      <div class="">
+        <div class="col-md-3 space-sm-4 side-bar">
+          <div class="sidenav">
+            <ul class="sidenav-list">
+              <li>
+                <a href="" aria-selected="true" class="sidenav-item">Edit Profile</a>
+              </li>
+              <li>
+                <a href="" aria-selected="false" class="sidenav-item">Photos</a>
+              </li>
+              <li>
+                <a href="" aria-selected="false" class="sidenav-item">Trust and Verification</a>
+              </li>
+              <li>
+                <a href="" aria-selected="false" class="sidenav-item">Reviews</a>
+              </li>
+              <li>
+                <a href="" aria-selected="false" class="sidenav-item">References</a>
+              </li>
+              <li/>
+            </ul>
+          </div>
+          <%= link_to 'View Profile', user_path(current_user), class: "btn btn-default btn-profile" %>
+        </div>
+
+        <div class="col-md-9">
+          <div id="dashboard-content">
+            <!-- <form accept-charset="UTF-8" action="/update/175283939" data-hook="update-profile-form" enctype="multipart/form-data" id="update_form" method="post"> -->
+            <%= form_for(@user) do |f| %>
+              <div class="panel space-4">
+                <div class="panel-header">
+                  <h2 class="edit-profile-section-heading">Required</h2>
+                </div>
+                <div class="panel-body">
+                  <%= content_tag :div, class: 'row row-condensed space-4' do %>
+                    <%= f.label :user_first_name,  class: 'text-right col-sm-3' do %>
+                      First Name
+                    <% end %>
+                    <%= content_tag :div, class: 'col-sm-9' do %>
+                      <p><%= f.text_field :firstname  %></p>
+                    <% end %>
+                  <% end %>
+                  <%= content_tag :div, class: 'row row-condensed space-4' do %>
+                    <%= f.label :user_last_name,  class: 'text-right col-sm-3' do %>
+                      Last Name
+                    <% end %>
+                    <%= content_tag :div, class: 'col-sm-9' do %>
+                      <p><%= f.text_field :lastname  %></p>
+                      <div class="text-muted space-top-1">Your public profile only shows your first name. When you request a booking, your host will see your first and last name.
+                    <% end %>
+                    </div>
+                  <% end %>
+                  <div class="row row-condensed space-4">
+                    <label class="text-right col-sm-3" for="user_sex"> I am</label>
+                    <div class="col-sm-9">
+                      <%= f.select(:gender, options_for_select([['Female', 'Female'], ['Male', 'Male'], ['Other', 'Other']], @user.gender )) %>
+                      <div class="text-muted space-top-1">We use this data for analysis and never share it with other users.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row row-condensed space-4">
+                    <label class="text-right col-sm-3" for="user_birthdate">Bitrh Date</label>
+                    <div class="col-sm-9">
+                      <fieldset>
+                      <div class="select">
+                        <select aria-label="Month" id="user_birthdate_2i" name="user[birthdate(2i)]">
+                        <option value="">Month</option>
+                        <option value="1">January</option>
+                        <option value="2">February</option>
+                        <option value="3">March</option>
+                        <option value="4">April</option>
+                        <option value="5">May</option>
+                        <option selected="selected" value="6">June</option>
+                        <option value="7">July</option>
+                        <option value="8">August</option>
+                        <option value="9">September</option>
+                        <option value="10">October</option>
+                        <option value="11">November</option>
+                        <option value="12">December</option>
+                        </select>
+                      </div>
+
+                      <div class="select">
+                        <select aria-label="Day" id="user_birthdate_3i" name="user[birthdate(3i)]">
+                          <option value="">Day</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                          <option value="6">6</option>
+                          <option value="7">7</option>
+                          <option value="8">8</option>
+                          <option value="9">9</option>
+                          <option value="10">10</option>
+                          <option value="11">11</option>
+                          <option value="12">12</option>
+                          <option value="13">13</option>
+                          <option value="14">14</option>
+                          <option value="15">15</option>
+                          <option value="16">16</option>
+                          <option value="17">17</option>
+                          <option value="18">18</option>
+                          <option value="19">19</option>
+                          <option value="20">20</option>
+                          <option value="21">21</option>
+                          <option value="22">22</option>
+                          <option value="23">23</option>
+                          <option value="24">24</option>
+                          <option value="25">25</option>
+                          <option value="26">26</option>
+                          <option value="27">27</option>
+                          <option value="28">28</option>
+                          <option value="29">29</option>
+                          <option value="30">30</option>
+                          <option value="31">31</option>
+                        </select>
+                      </div>
+
+                      <div class="select">
+                        <select aria-label="Year" id="user_birthdate_1i" name="user[birthdate(1i)]">
+                          <option value="">Year</option>
+                          <option value="2018">2018</option>
+                          <option value="2017">2017</option>
+                          <option value="2016">2016</option>
+                          <option value="2015">2015</option>
+                          <option value="2014">2014</option>
+                          <option value="2013">2013</option>
+                          <option value="2012">2012</option>
+                          <option value="2011">2011</option>
+                          <option value="2010">2010</option>
+                          <option value="2009">2009</option>
+                          <option value="2008">2008</option>
+                          <option value="2007">2007</option>
+                          <option value="2006">2006</option>
+                          <option value="2005">2005</option>
+                          <option value="2004">2004</option>
+                          <option value="2003">2003</option>
+                          <option value="2002">2002</option>
+                          <option value="2001">2001</option>
+                          <option value="2000">2000</option>
+                          <option value="1999">1999</option>
+                          <option value="1998">1998</option>
+                          <option value="1997">1997</option>
+                          <option value="1996">1996</option>
+                          <option value="1995">1995</option>
+                          <option value="1994">1994</option>
+                          <option value="1993">1993</option>
+                          <option value="1992">1992</option>
+                          <option value="1991">1991</option>
+                          <option value="1990">1990</option>
+                          <option value="1989">1989</option>
+                          <option value="1988">1988</option>
+                          <option value="1987">1987</option>
+                          <option value="1986">1986</option>
+                          <option value="1985">1985</option>
+                          <option value="1984">1984</option>
+                          <option value="1983">1983</option>
+                          <option value="1982">1982</option>
+                          <option value="1981">1981</option>
+                          <option value="1980">1980</option>
+                          <option value="1979">1979</option>
+                          <option value="1978">1978</option>
+                          <option value="1977">1977</option>
+                          <option value="1976">1976</option>
+                          <option value="1975">1975</option>
+                          <option value="1974">1974</option>
+                          <option value="1973">1973</option>
+                          <option value="1972">1972</option>
+                          <option value="1971">1971</option>
+                          <option value="1970">1970</option>
+                          <option value="1969">1969</option>
+                          <option value="1968">1968</option>
+                          <option value="1967">1967</option>
+                          <option value="1966">1966</option>
+                          <option value="1965">1965</option>
+                          <option value="1964">1964</option>
+                          <option value="1963">1963</option>
+                          <option value="1962">1962</option>
+                          <option value="1961">1961</option>
+                          <option value="1960">1960</option>
+                          <option value="1959">1959</option>
+                          <option value="1958">1958</option>
+                          <option value="1957">1957</option>
+                          <option value="1956">1956</option>
+                          <option value="1955">1955</option>
+                          <option value="1954">1954</option>
+                          <option value="1953">1953</option>
+                          <option value="1952">1952</option>
+                          <option value="1951">1951</option>
+                          <option value="1950">1950</option>
+                          <option value="1949">1949</option>
+                          <option value="1948">1948</option>
+                          <option value="1947">1947</option>
+                          <option value="1946">1946</option>
+                          <option value="1945">1945</option>
+                          <option value="1944">1944</option>
+                          <option value="1943">1943</option>
+                          <option value="1942">1942</option>
+                          <option value="1941">1941</option>
+                          <option value="1940">1940</option>
+                          <option value="1939">1939</option>
+                          <option value="1938">1938</option>
+                          <option value="1937">1937</option>
+                          <option value="1936">1936</option>
+                          <option value="1935">1935</option>
+                          <option value="1934">1934</option>
+                          <option value="1933">1933</option>
+                          <option value="1932">1932</option>
+                          <option value="1931">1931</option>
+                          <option value="1930">1930</option>
+                          <option value="1929">1929</option>
+                          <option value="1928">1928</option>
+                          <option value="1927">1927</option>
+                          <option value="1926">1926</option>
+                          <option value="1925">1925</option>
+                          <option value="1924">1924</option>
+                          <option value="1923">1923</option>
+                          <option value="1922">1922</option>
+                          <option value="1921">1921</option>
+                          <option value="1920">1920</option>
+                          <option value="1919">1919</option>
+                          <option value="1918">1918</option>
+                        </select>
+                      </div>
+                      </fieldset>
+                      <div class="text-muted space-top-1">The magical day you were dropped from the sky by a stork. We use this data for analysis and never share it with other users.
+                      </div>
+                    </div>
+                  </div>
+
+                  <%= content_tag :div, class: 'row row-condensed space-4' do %>
+                    <%= f.label :user_email,  class: 'text-right col-sm-3' do %>
+                      Email
+                    <% end %>
+                    <%= content_tag :div, class: 'col-sm-9' do %>
+                      <p><%= f.text_field :email  %></p>
+                      <div class="text-muted space-top-1">
+                         We won’t share your private email address with other Airbnb users.
+                      <a href="/help/article/694" target="blank">Learn more</a>.
+                      </div>    
+                    <% end %>
+                  <% end %>
+
+                  <%= content_tag :div, class: 'row row-condensed space-4' do %>
+                    <%= f.label :user_phone,  class: 'text-right col-sm-3' do %>
+                      Phone Number
+                    <% end %>
+                    <%= content_tag :div, class: 'col-sm-9' do %>
+                      <p><%= f.text_field :phone  %></p>
+                      <div class="text-muted space-top-1">This is only shared once you have a confirmed booking with another Airbnb user. This is how we can all get in touch.</div>
+                    <% end %>
+                  <% end %>
+
+                  <div class="row row-condensed space-4">
+                    <label class="text-right col-sm-3" for="user_profile_info_preferred_language">Preferred Language</label>
+                    <div class="col-sm-9">
+                      <div class="select">
+                        <select id="user_profile_info_preferred_language" name="user[preferred_locale]">
+                          <option value="id">Bahasa Indonesia</option>
+                          <option value="ms">Bahasa Melayu</option>
+                          <option value="ca">Català</option>
+                          <option value="da">Dansk</option>
+                          <option value="de" selected="selected">Deutsch</option>
+                          <option value="en">English</option>
+                          <option value="es">Español</option>
+                          <option value="el">Eλληνικά</option>
+                          <option value="fr">Français</option>
+                          <option value="hr">Hrvatski</option>
+                          <option value="it">Italiano</option>
+                          <option value="hu">Magyar</option>
+                          <option value="nl">Nederlands</option>
+                          <option value="no">Norsk</option>
+                          <option value="pl">Polski</option>
+                          <option value="pt">Português</option>
+                          <option value="fi">Suomi</option>
+                          <option value="sv">Svenska</option>
+                          <option value="tr">Türkçe</option>
+                          <option value="is">Íslenska</option>
+                          <option value="cs">Čeština</option>
+                          <option value="ru">Русский</option>
+                          <option value="th">ภาษาไทย</option>
+                          <option value="zh">中文 (简体)</option>
+                          <option value="zh-TW">中文 (繁體)</option>
+                          <option value="ja">日本語</option>
+                          <option value="ko">한국어</option>
+                        </select>                      
+                      </div>
+                      <div class="text-muted space-top-1">We'll send you messages in this language.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row row-condensed space-4">
+                    <label class="text-right col-sm-3" for="user_profile_info_preferred_currency">Preferred Currency</label>
+                    <div class="col-sm-9">
+                      <div class="select">
+                        <select id="user_profile_info_preferred_currency" name="user[native_currency]">
+                          <option value="ARS">Argentine peso</option>
+                          <option value="AUD">Australian dollar</option>
+                          <option value="BRL">Brazilian real</option>
+                          <option value="BGN">Bulgarian lev</option>
+                          <option value="CAD">Canadian dollar</option>
+                          <option value="CLP">Chilean peso</option>
+                          <option value="CNY">Chinese yuan</option>
+                          <option value="COP">Colombian peso</option>
+                          <option value="CRC">Costa Rican colon</option>
+                          <option value="HRK">Croatian kuna</option>
+                          <option value="CZK">Czech koruna</option>
+                          <option value="DKK">Danish krone</option>
+                          <option value="AED">Emirati dirham</option>
+                          <option value="EUR">Euro</option>
+                          <option value="HKD">Hong Kong dollar</option>
+                          <option value="HUF">Hungarian forint</option>
+                          <option value="INR">Indian rupee</option>
+                          <option value="ILS">Israeli new shekel</option>
+                          <option value="JPY">Japanese yen</option>
+                          <option value="MYR">Malaysian ringgit</option>
+                          <option value="MXN">Mexican peso</option>
+                          <option value="MAD">Moroccan dirham</option>
+                          <option value="TWD">New Taiwan dollar</option>
+                          <option value="NZD">New Zealand dollar</option>
+                          <option value="NOK">Norwegian krone</option>
+                          <option value="PEN">Peruvian sol</option>
+                          <option value="PHP">Philippine peso</option>
+                          <option value="PLN">Polish zloty</option>
+                          <option value="GBP">Pound sterling</option>
+                          <option value="RON">Romanian leu</option>
+                          <option value="RUB">Russian ruble</option>
+                          <option value="SAR">Saudi Arabian riyal</option>
+                          <option value="SGD">Singapore dollar</option>
+                          <option value="ZAR">South African rand</option>
+                          <option value="KRW">South Korean won</option>
+                          <option value="SEK">Swedish krona</option>
+                          <option value="CHF">Swiss franc</option>
+                          <option value="THB">Thai baht</option>
+                          <option value="TRY">Turkish lira</option>
+                          <option value="USD">United States dollar</option>
+                          <option value="UYU">Uruguayan peso</option>
+                        </select>
+                       </div>
+                      </div>
+                      <div class="text-muted space-top-1">We’ll show you prices in this currency.</div>
+                  </div>
+                  <div class="row row-condensed space-4">
+                    <label class="text-right col-sm-3" for="user_profile_info_current_city">Where You Live</label>
+                    <div class="col-sm-9">
+                    <input id="user_profile_info_current_city" name="user_profile_info[current_city]" placeholder="e.g. Paris, France / Brooklyn, NY / Chicago, IL" size="30" type="text" value="Berlin, Berlin, Germany"/>
+                    </div>
+                  </div>
+                  <div class="row row-condensed space-4">
+                    <label class="text-right col-sm-3" for="user_profile_info_about">Describe Yourself</label>
+                    <div class="col-sm-9">
+                      <textarea cols="40" id="user_profile_info_about" name="user_profile_info[about]" rows="5"/></textarea>
+                      <div class="text-muted space-top-1">
+                        Airbnb is built on relationships. Help other people get to know you.
+                        <br/>
+                        <br/>
+                        Tell them about the things you like: What are 5 things you can’t live without? Share your favorite travel destinations, books, movies, shows, music, food.
+                        <br/>
+                        <br/>
+                        Tell them what it’s like to have you as a guest or host: What’s your style of traveling? Of Airbnb hosting?
+                        <br/>
+                        <br/>
+                        Tell them about you: Do you have a life motto?
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="panel space-4">
+                <div class="panel-header">
+                  <h2 class="edit-profile-section-heading">Optional</h2>
+                </div>
+                <div class="panel-body">
+
+                  <div class="row row-condensed space-4">
+                    <label class="text-right col-sm-3" for="user_profile_info_university">School</label>
+                    <div class="col-sm-9">
+                    <input id="user_profile_info_university" name="user_profile_info[university]" size="30" type="text" value=""/>
+                    </div>
+                  </div>
+
+                  <div class="row row-condensed space-4">
+                    <label class="text-right col-sm-3" for="user_profile_info_employer">Work</label>
+                    <div class="col-sm-9">
+                      <input id="user_profile_info_employer" name="user_profile_info[employer]" placeholder="company name or job title" size="30" type="text" value=""/>
+                    </div>
+                  </div>
+
+                  <div class="row row-condensed space-4">
+                    <label class="text-right col-sm-3" for="user_preference_time_zone">Time Zone</label>
+                    <div class="col-sm-9">
+                      <div class="select">
+                        <select id="user_preference_time_zone" name="user_preference[time_zone]">
+                          <option value=""/>
+                          <option value="International Date Line West">(GMT-11:00) International Date Line West</option>
+                          <option value="Midway Island">(GMT-11:00) Midway Island</option>
+                          <option value="Samoa">(GMT-11:00) Samoa</option>
+                          <option value="Hawaii">(GMT-10:00) Hawaii</option>
+                          <option value="Alaska">(GMT-09:00) Alaska</option>
+                          <option value="Pacific Time (US & Canada)">(GMT-08:00) Pacific Time (US & Canada)</option>
+                          <option value="Tijuana">(GMT-08:00) Tijuana</option>
+                          <option value="Arizona">(GMT-07:00) Arizona</option>
+                          <option value="Chihuahua">(GMT-07:00) Chihuahua</option>
+                          <option value="Mazatlan">(GMT-07:00) Mazatlan</option>
+                          <option value="Mountain Time (US & Canada)">(GMT-07:00) Mountain Time (US & Canada)</option>
+                          <option value="America/Chicago">(GMT-06:00) America/Chicago</option>
+                          <option value="Central America">(GMT-06:00) Central America</option>
+                          <option value="Central Time (US & Canada)">(GMT-06:00) Central Time (US & Canada)</option>
+                          <option value="Guadalajara">(GMT-06:00) Guadalajara</option>
+                          <option value="Mexico City">(GMT-06:00) Mexico City</option>
+                          <option value="Monterrey">(GMT-06:00) Monterrey</option>
+                          <option value="Saskatchewan">(GMT-06:00) Saskatchewan</option>
+                          <option value="Bogota">(GMT-05:00) Bogota</option>
+                          <option value="Eastern Time (US & Canada)">(GMT-05:00) Eastern Time (US & Canada)</option>
+                          <option value="Indiana (East)">(GMT-05:00) Indiana (East)</option>
+                          <option value="Lima">(GMT-05:00) Lima</option>
+                          <option value="Quito">(GMT-05:00) Quito</option>
+                          <option value="Atlantic Time (Canada)">(GMT-04:00) Atlantic Time (Canada)</option>
+                          <option value="Caracas">(GMT-04:00) Caracas</option>
+                          <option value="Georgetown">(GMT-04:00) Georgetown</option>
+                          <option value="La Paz">(GMT-04:00) La Paz</option>
+                          <option value="Santiago">(GMT-04:00) Santiago</option>
+                          <option value="Newfoundland">(GMT-03:30) Newfoundland</option>
+                          <option value="Brasilia">(GMT-03:00) Brasilia</option>
+                          <option value="Buenos Aires">(GMT-03:00) Buenos Aires</option>
+                          <option value="Greenland">(GMT-03:00) Greenland</option>
+                          <option value="Mid-Atlantic">(GMT-02:00) Mid-Atlantic</option>
+                          <option value="Azores">(GMT-01:00) Azores</option>
+                          <option value="Cape Verde Is.">(GMT-01:00) Cape Verde Is.</option>
+                          <option value="Casablanca">(GMT+00:00) Casablanca</option>
+                          <option value="Dublin">(GMT+00:00) Dublin</option>
+                          <option value="Edinburgh">(GMT+00:00) Edinburgh</option>
+                          <option value="Lisbon">(GMT+00:00) Lisbon</option>
+                          <option value="London">(GMT+00:00) London</option>
+                          <option value="Monrovia">(GMT+00:00) Monrovia</option>
+                          <option value="UTC">(GMT+00:00) UTC</option>
+                          <option value="Amsterdam">(GMT+01:00) Amsterdam</option>
+                          <option value="Belgrade">(GMT+01:00) Belgrade</option>
+                          <option value="Berlin">(GMT+01:00) Berlin</option>
+                          <option value="Bern">(GMT+01:00) Bern</option>
+                          <option value="Bratislava">(GMT+01:00) Bratislava</option>
+                          <option value="Brussels">(GMT+01:00) Brussels</option>
+                          <option value="Budapest">(GMT+01:00) Budapest</option>
+                          <option value="Copenhagen">(GMT+01:00) Copenhagen</option>
+                          <option value="Europe/Rome">(GMT+01:00) Europe/Rome</option>
+                          <option value="Ljubljana">(GMT+01:00) Ljubljana</option>
+                          <option value="Madrid">(GMT+01:00) Madrid</option>
+                          <option value="Paris">(GMT+01:00) Paris</option>
+                          <option value="Prague">(GMT+01:00) Prague</option>
+                          <option value="Rome">(GMT+01:00) Rome</option>
+                          <option value="Sarajevo">(GMT+01:00) Sarajevo</option>
+                          <option value="Skopje">(GMT+01:00) Skopje</option>
+                          <option value="Stockholm">(GMT+01:00) Stockholm</option>
+                          <option value="Vienna">(GMT+01:00) Vienna</option>
+                          <option value="Warsaw">(GMT+01:00) Warsaw</option>
+                          <option value="West Central Africa">(GMT+01:00) West Central Africa</option>
+                          <option value="Zagreb">(GMT+01:00) Zagreb</option>
+                          <option value="Athens">(GMT+02:00) Athens</option>
+                          <option value="Bucharest">(GMT+02:00) Bucharest</option>
+                          <option value="Cairo">(GMT+02:00) Cairo</option>
+                          <option value="Harare">(GMT+02:00) Harare</option>
+                          <option value="Helsinki">(GMT+02:00) Helsinki</option>
+                          <option value="Jerusalem">(GMT+02:00) Jerusalem</option>
+                          <option value="Kyiv">(GMT+02:00) Kyiv</option>
+                          <option value="Pretoria">(GMT+02:00) Pretoria</option>
+                          <option value="Riga">(GMT+02:00) Riga</option>
+                          <option value="Sofia">(GMT+02:00) Sofia</option>
+                          <option value="Tallinn">(GMT+02:00) Tallinn</option>
+                          <option value="Vilnius">(GMT+02:00) Vilnius</option>
+                          <option value="Baghdad">(GMT+03:00) Baghdad</option>
+                          <option value="Istanbul">(GMT+03:00) Istanbul</option>
+                          <option value="Kuwait">(GMT+03:00) Kuwait</option>
+                          <option value="Minsk">(GMT+03:00) Minsk</option>
+                          <option value="Moscow">(GMT+03:00) Moscow</option>
+                          <option value="Nairobi">(GMT+03:00) Nairobi</option>
+                          <option value="Riyadh">(GMT+03:00) Riyadh</option>
+                          <option value="St. Petersburg">(GMT+03:00) St. Petersburg</option>
+                          <option value="Volgograd">(GMT+03:00) Volgograd</option>
+                          <option value="Tehran">(GMT+03:30) Tehran</option>
+                          <option value="Abu Dhabi">(GMT+04:00) Abu Dhabi</option>
+                          <option value="Baku">(GMT+04:00) Baku</option>
+                          <option value="Muscat">(GMT+04:00) Muscat</option>
+                          <option value="Tbilisi">(GMT+04:00) Tbilisi</option>
+                          <option value="Yerevan">(GMT+04:00) Yerevan</option>
+                          <option value="Kabul">(GMT+04:30) Kabul</option>
+                          <option value="Ekaterinburg">(GMT+05:00) Ekaterinburg</option>
+                          <option value="Islamabad">(GMT+05:00) Islamabad</option>
+                          <option value="Karachi">(GMT+05:00) Karachi</option>
+                          <option value="Tashkent">(GMT+05:00) Tashkent</option>
+                          <option value="Chennai">(GMT+05:30) Chennai</option>
+                          <option value="Kolkata">(GMT+05:30) Kolkata</option>
+                          <option value="Mumbai">(GMT+05:30) Mumbai</option>
+                          <option value="New Delhi">(GMT+05:30) New Delhi</option>
+                          <option value="Sri Jayawardenepura">(GMT+05:30) Sri Jayawardenepura</option>
+                          <option value="Kathmandu">(GMT+05:45) Kathmandu</option>
+                          <option value="Almaty">(GMT+06:00) Almaty</option>
+                          <option value="Astana">(GMT+06:00) Astana</option>
+                          <option value="Dhaka">(GMT+06:00) Dhaka</option>
+                          <option value="Urumqi">(GMT+06:00) Urumqi</option>
+                          <option value="Rangoon">(GMT+06:30) Rangoon</option>
+                          <option value="Bangkok">(GMT+07:00) Bangkok</option>
+                          <option value="Hanoi">(GMT+07:00) Hanoi</option>
+                          <option value="Jakarta">(GMT+07:00) Jakarta</option>
+                          <option value="Krasnoyarsk">(GMT+07:00) Krasnoyarsk</option>
+                          <option value="Novosibirsk">(GMT+07:00) Novosibirsk</option>
+                          <option value="Beijing">(GMT+08:00) Beijing</option>
+                          <option value="Chongqing">(GMT+08:00) Chongqing</option>
+                          <option value="Hong Kong">(GMT+08:00) Hong Kong</option>
+                          <option value="Irkutsk">(GMT+08:00) Irkutsk</option>
+                          <option value="Kuala Lumpur">(GMT+08:00) Kuala Lumpur</option>
+                          <option value="Perth">(GMT+08:00) Perth</option>
+                          <option value="Singapore">(GMT+08:00) Singapore</option>
+                          <option value="Taipei">(GMT+08:00) Taipei</option>
+                          <option value="Ulaan Bataar">(GMT+08:00) Ulaan Bataar</option>
+                          <option value="Osaka">(GMT+09:00) Osaka</option>
+                          <option value="Sapporo">(GMT+09:00) Sapporo</option>
+                          <option value="Seoul">(GMT+09:00) Seoul</option>
+                          <option value="Tokyo">(GMT+09:00) Tokyo</option>
+                          <option value="Yakutsk">(GMT+09:00) Yakutsk</option>
+                          <option value="Adelaide">(GMT+09:30) Adelaide</option>
+                          <option value="Darwin">(GMT+09:30) Darwin</option>
+                          <option value="Brisbane">(GMT+10:00) Brisbane</option>
+                          <option value="Canberra">(GMT+10:00) Canberra</option>
+                          <option value="Guam">(GMT+10:00) Guam</option>
+                          <option value="Hobart">(GMT+10:00) Hobart</option>
+                          <option value="Melbourne">(GMT+10:00) Melbourne</option>
+                          <option value="Port Moresby">(GMT+10:00) Port Moresby</option>
+                          <option value="Sydney">(GMT+10:00) Sydney</option>
+                          <option value="Vladivostok">(GMT+10:00) Vladivostok</option>
+                          <option value="Magadan">(GMT+11:00) Magadan</option>
+                          <option value="New Caledonia">(GMT+11:00) New Caledonia</option>
+                          <option value="Solomon Is.">(GMT+11:00) Solomon Is.</option>
+                          <option value="Auckland">(GMT+12:00) Auckland</option>
+                          <option value="Fiji">(GMT+12:00) Fiji</option>
+                          <option value="Kamchatka">(GMT+12:00) Kamchatka</option>
+                          <option value="Marshall Is.">(GMT+12:00) Marshall Is.</option>
+                          <option value="Wellington">(GMT+12:00) Wellington</option>
+                          <option value="Nuku'alofa">(GMT+13:00) Nuku'alofa</option>
+                        </select>
+                      </div>
+
+                      <div class="text-muted space-top-1">Your home time zone.</div>
+                    </div>
+                  </div>
+
+                  <div class="row row-condensed space-4">
+                    <label class="text-right col-sm-3" for="user_languages">Languages</label>
+                    <div class="col-sm-9">
+                      <div class="space-top-1"/>
+                        <div class="multiselect languages" data-select_dialog_url="https://www.airbnb.com/users/languages_multiselect" data-update_url="https://www.airbnb.com/users/languages_update/175283939">
+                          <div class="space-1"/>
+                            <div class="none text-muted space-1">None</div>
+                            <a class="link-icon multiselect-add-more" href="#">
+                            <input id="user_languages" name="user[languages]" type="hidden" value=""/>
+                            <span class="template hide multiselect-option" data-key="%KEY%">
+                          </div>
+                        </div>
+
+                        <div class="text-muted space-top-1">Add any languages that others can use to speak with you on Airbnb
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row row-condensed space-4">
+                    <label class="text-right col-sm-3" for="user_vat_id">VAT Number</label>
+                    <div class="col-sm-9">
+                      <div class="vat-number-section space-top-1">
+                      <a href="#" class="add-vat-link">
+                      </div>
+                      <div class="text-muted space-top-1">
+                        For European Union users or users in other countries for which VAT applies, VAT will be assessed on our Service Fees. If you live in a country where we need to charge VAT, you will not be charged VAT if you enter a valid VAT ID Number.
+                        <a href="https://www.airbnb.com/help/topic/249">Visit VAT FAQs »</a>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="row row-condensed space-4">
+                    <label class="text-right col-sm-3" for="user_emergency_contact_phone">Phone</label>
+                    <div class="col-sm-9">
+                      <input id="user_emergency_contact_phone" name="user_emergency_contact[phone]" size="30" type="text"/>
+                    </div>
+                  </div>
+
+                  <div class="row row-condensed space-4">
+                    <label class="text-right col-sm-3" for="user_emergency_contact_email">Email</label>
+                    <div class="col-sm-9">
+                      <input id="user_emergency_contact_email" name="user_emergency_contact[email]" size="30" type="text"/>
+                    </div>
+                  </div>
+          
+                  <div class="row row-condensed space-4">
+                    <label class="text-right col-sm-3" for="user_emergency_contact_relationship">Relationship</label>
+                    <div class="col-sm-9">
+                      <input id="user_emergency_contact_relationship" name="user_emergency_contact[relationship]" size="30" type="text"/>
+                    </div>
+                  </div>
+
+                  <div id="host-shipping-address">
+                    <div class="row row-condensed space-4">
+                      <div class="text-right col-sm-3 space-2">
+                        Shipping Address
+                        <i class="icon icon-lock icon-ebisu" data-behavior="tooltip" role="img" aria-label="Private"/>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="business-travel" class="panel space-4">
+                <div class="panel-header">
+                  <h2 class="edit-profile-section-heading">Work Travel</h2>
+                </div>                  
+                <div class="panel-body">
+                  <div class="bt-quick-enroll" data-reactroot="">
+                    <div class="row row-condensed space-4">
+                        <label class="text-right col-sm-3" for="new-entry-field">
+                         Work Email                
+                        </label>
+                        <div class="col-sm-9">
+                          <div class="space-1">
+                            <div class="input-addon hide-btn">
+                              <input type="text" class="" id="new-entry-field" value="" size="50"/>
+                              <span class="input-suffix with-btn" type="text">
+                            </div>
+                            <div class="text-muted space-top-1">
+                              Find homes perfect for work trips by choosing the
+                              <strong>Trip type</strong>
+                              filter on your next search.
+                              <a type="button" class="_n5wk6ic" aria-busy="">Learn more</a>
+                            </div>
+                          </div>
+                        </div>  
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- <button type="submit" class="btn btn-primary btn-large">Save</button> -->
+            <!-- </form> -->
+	            <div class="submit-field">
+
+				        <%= f.submit 'Save', class: 'btn btn-primary btn-large' %>
+				      </div>
+
+			       <% end %>
+
+            <div class="modal reauth-modal" role="dialog" aria-hidden="true" style="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
