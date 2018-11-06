@@ -4,12 +4,12 @@
 
 <h3><strong> Profile - <%= current_user.name %></strong></h3> <br>
 
-<div class="col-md-4">
-  <div class="panel panel-default">
+<div class="col-md-3">
+  <div class="panel-default">
     <div class="panel-heading">
       <%= label_tag :profile_picture%>
     </div>
-    <div class="panel-body">
+    <div class="panel-body pull-center">
       <br>
       <div class="container">
         <% if current_user.avatar.blank? %>
@@ -32,13 +32,13 @@
           </div>
         </div>
         <div class="panel-footer">
-          <%= form.submit 'Update' , class:"btn btn-primary"%>
+          <%= form.submit 'Save', method: :update, class: 'btn btn-primary btn-large'  %>
         </div>
       <% end%>
   </div>
 </div>
 
-<div class="col-md-8"> 
+<div class="col-md-9"> 
   <div class="panel panel-default"  id = "user-details">
     <div class="panel-heading">
       <%= label_tag "User Information"%> <span class="pull-right"><b>Date joined: </b><%= current_user.created_at %>  <span>

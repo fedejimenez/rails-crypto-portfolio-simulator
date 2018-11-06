@@ -22,3 +22,23 @@
 //= require sweetalert2
 //= require sweet-alert2-rails
 //= require_tree .
+
+// Add style to search bar (easyAutocomplete)
+
+$(document).on('turbolinks:load', function() {
+	document.querySelector('#q').classList.add("lookup-input")
+	document.querySelector('#q').parentNode.classList.add("lookup-input")
+})
+
+// Google Places autocomplete (Search Bar)
+var autocomplete;
+
+function initAutocomplete() {
+	// Create the autocomplete object
+	autocomplete = new google.maps.places.Autocomplete(
+	    /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
+	    {types: ['geocode']});
+	autocomplete.addListener('place_changed',  function() {
+	// var place = autocomplete.getPlace();
+  });
+}
