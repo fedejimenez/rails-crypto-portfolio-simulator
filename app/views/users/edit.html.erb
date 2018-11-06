@@ -1,4 +1,4 @@
-<h1>Edit My Account</h1>
+<h2><strong>Edit My Profile</strong></h2>
 
 <% form_for current_user, url: {action: "update"} do |f| %>
   <%= render :partial => "form", :object => f %>
@@ -10,37 +10,13 @@
   <div id="notification-area"/>
     <div class="page-container-responsive space-top-4 space-4">
       <div class="">
-        <div class="col-md-3 space-sm-4 side-bar">
-          <div class="sidenav">
-            <ul class="sidenav-list">
-              <li>
-                <a href="" aria-selected="true" class="sidenav-item">Edit Profile</a>
-              </li>
-              <li>
-                <a href="" aria-selected="false" class="sidenav-item">Photos</a>
-              </li>
-              <li>
-                <a href="" aria-selected="false" class="sidenav-item">Trust and Verification</a>
-              </li>
-              <li>
-                <a href="" aria-selected="false" class="sidenav-item">Reviews</a>
-              </li>
-              <li>
-                <a href="" aria-selected="false" class="sidenav-item">References</a>
-              </li>
-              <li/>
-            </ul>
-          </div>
-          <%= link_to 'View Profile', user_path(current_user), class: "btn btn-default btn-profile" %>
-        </div>
-
         <div class="col-md-9">
           <div id="dashboard-content">
             <!-- <form accept-charset="UTF-8" action="/update/175283939" data-hook="update-profile-form" enctype="multipart/form-data" id="update_form" method="post"> -->
             <%= form_for(@user) do |f| %>
               <div class="panel space-4">
                 <div class="panel-header">
-                  <h2 class="edit-profile-section-heading">Required</h2>
+                  <h3 class="edit-profile-section-heading">Required</h3>
                 </div>
                 <div class="panel-body">
                   <%= content_tag :div, class: 'row row-condensed space-4' do %>
@@ -57,188 +33,41 @@
                     <% end %>
                     <%= content_tag :div, class: 'col-sm-9' do %>
                       <p><%= f.text_field :lastname  %></p>
-                      <div class="text-muted space-top-1">Your public profile only shows your first name. When you request a booking, your host will see your first and last name.
+                      <div class="text-muted space-top-1">Your public profile only shows your first name or your username.
                     <% end %>
                     </div>
-                  <% end %>
+                  <% end %> <br>
+
+                  <%= content_tag :div, class: 'row row-condensed space-4' do %>
+                    <%= f.label :name,  class: 'text-right col-sm-3' do %>
+                      Username
+                    <% end %>
+                    <%= content_tag :div, class: 'col-sm-9' do %>
+                      <p><%= f.text_field :name  %></p>
+                      <div class="text-muted space-top-1">Your public profile only shows your first name or your username.
+                    <% end %>
+                    </div>
+                  <% end %> <br>
+
                   <div class="row row-condensed space-4">
                     <label class="text-right col-sm-3" for="user_sex"> I am</label>
                     <div class="col-sm-9">
-                      <%= f.select(:gender, options_for_select([['Female', 'Female'], ['Male', 'Male'], ['Other', 'Other']], @user.gender )) %>
+                      <%= f.select(:gender, options_for_select([['Female', 'Female'], ['Male', 'Male'], ['Other', 'Other']], @user.gender ), :selected => params[:gender]) %>
                       <div class="text-muted space-top-1">We use this data for analysis and never share it with other users.
                       </div>
                     </div>
-                  </div>
+                  </div> <br>
+
                   <div class="row row-condensed space-4">
-                    <label class="text-right col-sm-3" for="user_birthdate">Bitrh Date</label>
+                    <label class="text-right col-sm-3" for="user_birthdate">Birth Date</label>
                     <div class="col-sm-9">
                       <fieldset>
                       <div class="select">
-                        <select aria-label="Month" id="user_birthdate_2i" name="user[birthdate(2i)]">
-                        <option value="">Month</option>
-                        <option value="1">January</option>
-                        <option value="2">February</option>
-                        <option value="3">March</option>
-                        <option value="4">April</option>
-                        <option value="5">May</option>
-                        <option selected="selected" value="6">June</option>
-                        <option value="7">July</option>
-                        <option value="8">August</option>
-                        <option value="9">September</option>
-                        <option value="10">October</option>
-                        <option value="11">November</option>
-                        <option value="12">December</option>
-                        </select>
-                      </div>
-
-                      <div class="select">
-                        <select aria-label="Day" id="user_birthdate_3i" name="user[birthdate(3i)]">
-                          <option value="">Day</option>
-                          <option value="1">1</option>
-                          <option value="2">2</option>
-                          <option value="3">3</option>
-                          <option value="4">4</option>
-                          <option value="5">5</option>
-                          <option value="6">6</option>
-                          <option value="7">7</option>
-                          <option value="8">8</option>
-                          <option value="9">9</option>
-                          <option value="10">10</option>
-                          <option value="11">11</option>
-                          <option value="12">12</option>
-                          <option value="13">13</option>
-                          <option value="14">14</option>
-                          <option value="15">15</option>
-                          <option value="16">16</option>
-                          <option value="17">17</option>
-                          <option value="18">18</option>
-                          <option value="19">19</option>
-                          <option value="20">20</option>
-                          <option value="21">21</option>
-                          <option value="22">22</option>
-                          <option value="23">23</option>
-                          <option value="24">24</option>
-                          <option value="25">25</option>
-                          <option value="26">26</option>
-                          <option value="27">27</option>
-                          <option value="28">28</option>
-                          <option value="29">29</option>
-                          <option value="30">30</option>
-                          <option value="31">31</option>
-                        </select>
-                      </div>
-
-                      <div class="select">
-                        <select aria-label="Year" id="user_birthdate_1i" name="user[birthdate(1i)]">
-                          <option value="">Year</option>
-                          <option value="2018">2018</option>
-                          <option value="2017">2017</option>
-                          <option value="2016">2016</option>
-                          <option value="2015">2015</option>
-                          <option value="2014">2014</option>
-                          <option value="2013">2013</option>
-                          <option value="2012">2012</option>
-                          <option value="2011">2011</option>
-                          <option value="2010">2010</option>
-                          <option value="2009">2009</option>
-                          <option value="2008">2008</option>
-                          <option value="2007">2007</option>
-                          <option value="2006">2006</option>
-                          <option value="2005">2005</option>
-                          <option value="2004">2004</option>
-                          <option value="2003">2003</option>
-                          <option value="2002">2002</option>
-                          <option value="2001">2001</option>
-                          <option value="2000">2000</option>
-                          <option value="1999">1999</option>
-                          <option value="1998">1998</option>
-                          <option value="1997">1997</option>
-                          <option value="1996">1996</option>
-                          <option value="1995">1995</option>
-                          <option value="1994">1994</option>
-                          <option value="1993">1993</option>
-                          <option value="1992">1992</option>
-                          <option value="1991">1991</option>
-                          <option value="1990">1990</option>
-                          <option value="1989">1989</option>
-                          <option value="1988">1988</option>
-                          <option value="1987">1987</option>
-                          <option value="1986">1986</option>
-                          <option value="1985">1985</option>
-                          <option value="1984">1984</option>
-                          <option value="1983">1983</option>
-                          <option value="1982">1982</option>
-                          <option value="1981">1981</option>
-                          <option value="1980">1980</option>
-                          <option value="1979">1979</option>
-                          <option value="1978">1978</option>
-                          <option value="1977">1977</option>
-                          <option value="1976">1976</option>
-                          <option value="1975">1975</option>
-                          <option value="1974">1974</option>
-                          <option value="1973">1973</option>
-                          <option value="1972">1972</option>
-                          <option value="1971">1971</option>
-                          <option value="1970">1970</option>
-                          <option value="1969">1969</option>
-                          <option value="1968">1968</option>
-                          <option value="1967">1967</option>
-                          <option value="1966">1966</option>
-                          <option value="1965">1965</option>
-                          <option value="1964">1964</option>
-                          <option value="1963">1963</option>
-                          <option value="1962">1962</option>
-                          <option value="1961">1961</option>
-                          <option value="1960">1960</option>
-                          <option value="1959">1959</option>
-                          <option value="1958">1958</option>
-                          <option value="1957">1957</option>
-                          <option value="1956">1956</option>
-                          <option value="1955">1955</option>
-                          <option value="1954">1954</option>
-                          <option value="1953">1953</option>
-                          <option value="1952">1952</option>
-                          <option value="1951">1951</option>
-                          <option value="1950">1950</option>
-                          <option value="1949">1949</option>
-                          <option value="1948">1948</option>
-                          <option value="1947">1947</option>
-                          <option value="1946">1946</option>
-                          <option value="1945">1945</option>
-                          <option value="1944">1944</option>
-                          <option value="1943">1943</option>
-                          <option value="1942">1942</option>
-                          <option value="1941">1941</option>
-                          <option value="1940">1940</option>
-                          <option value="1939">1939</option>
-                          <option value="1938">1938</option>
-                          <option value="1937">1937</option>
-                          <option value="1936">1936</option>
-                          <option value="1935">1935</option>
-                          <option value="1934">1934</option>
-                          <option value="1933">1933</option>
-                          <option value="1932">1932</option>
-                          <option value="1931">1931</option>
-                          <option value="1930">1930</option>
-                          <option value="1929">1929</option>
-                          <option value="1928">1928</option>
-                          <option value="1927">1927</option>
-                          <option value="1926">1926</option>
-                          <option value="1925">1925</option>
-                          <option value="1924">1924</option>
-                          <option value="1923">1923</option>
-                          <option value="1922">1922</option>
-                          <option value="1921">1921</option>
-                          <option value="1920">1920</option>
-                          <option value="1919">1919</option>
-                          <option value="1918">1918</option>
-                        </select>
-                      </div>
-                      </fieldset>
+                        <%= f.date_select(:birthdate, :start_year => 1950, :selected => current_user.birthdate) %>
                       <div class="text-muted space-top-1">The magical day you were dropped from the sky by a stork. We use this data for analysis and never share it with other users.
-                      </div>
+                      </div><br>
                     </div>
-                  </div>
+                  </div> <br>
 
                   <%= content_tag :div, class: 'row row-condensed space-4' do %>
                     <%= f.label :user_email,  class: 'text-right col-sm-3' do %>
@@ -247,156 +76,39 @@
                     <%= content_tag :div, class: 'col-sm-9' do %>
                       <p><%= f.text_field :email  %></p>
                       <div class="text-muted space-top-1">
-                         We won’t share your private email address with other Airbnb users.
+                         We won’t share your private email address with other users.
                       <a href="/help/article/694" target="blank">Learn more</a>.
                       </div>    
                     <% end %>
-                  <% end %>
+                  <% end %> <br>
 
-                  <%= content_tag :div, class: 'row row-condensed space-4' do %>
-                    <%= f.label :user_phone,  class: 'text-right col-sm-3' do %>
-                      Phone Number
-                    <% end %>
-                    <%= content_tag :div, class: 'col-sm-9' do %>
-                      <p><%= f.text_field :phone  %></p>
-                      <div class="text-muted space-top-1">This is only shared once you have a confirmed booking with another Airbnb user. This is how we can all get in touch.</div>
-                    <% end %>
-                  <% end %>
-
-                  <div class="row row-condensed space-4">
-                    <label class="text-right col-sm-3" for="user_profile_info_preferred_language">Preferred Language</label>
-                    <div class="col-sm-9">
-                      <div class="select">
-                        <select id="user_profile_info_preferred_language" name="user[preferred_locale]">
-                          <option value="id">Bahasa Indonesia</option>
-                          <option value="ms">Bahasa Melayu</option>
-                          <option value="ca">Català</option>
-                          <option value="da">Dansk</option>
-                          <option value="de" selected="selected">Deutsch</option>
-                          <option value="en">English</option>
-                          <option value="es">Español</option>
-                          <option value="el">Eλληνικά</option>
-                          <option value="fr">Français</option>
-                          <option value="hr">Hrvatski</option>
-                          <option value="it">Italiano</option>
-                          <option value="hu">Magyar</option>
-                          <option value="nl">Nederlands</option>
-                          <option value="no">Norsk</option>
-                          <option value="pl">Polski</option>
-                          <option value="pt">Português</option>
-                          <option value="fi">Suomi</option>
-                          <option value="sv">Svenska</option>
-                          <option value="tr">Türkçe</option>
-                          <option value="is">Íslenska</option>
-                          <option value="cs">Čeština</option>
-                          <option value="ru">Русский</option>
-                          <option value="th">ภาษาไทย</option>
-                          <option value="zh">中文 (简体)</option>
-                          <option value="zh-TW">中文 (繁體)</option>
-                          <option value="ja">日本語</option>
-                          <option value="ko">한국어</option>
-                        </select>                      
-                      </div>
-                      <div class="text-muted space-top-1">We'll send you messages in this language.
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row row-condensed space-4">
-                    <label class="text-right col-sm-3" for="user_profile_info_preferred_currency">Preferred Currency</label>
-                    <div class="col-sm-9">
-                      <div class="select">
-                        <select id="user_profile_info_preferred_currency" name="user[native_currency]">
-                          <option value="ARS">Argentine peso</option>
-                          <option value="AUD">Australian dollar</option>
-                          <option value="BRL">Brazilian real</option>
-                          <option value="BGN">Bulgarian lev</option>
-                          <option value="CAD">Canadian dollar</option>
-                          <option value="CLP">Chilean peso</option>
-                          <option value="CNY">Chinese yuan</option>
-                          <option value="COP">Colombian peso</option>
-                          <option value="CRC">Costa Rican colon</option>
-                          <option value="HRK">Croatian kuna</option>
-                          <option value="CZK">Czech koruna</option>
-                          <option value="DKK">Danish krone</option>
-                          <option value="AED">Emirati dirham</option>
-                          <option value="EUR">Euro</option>
-                          <option value="HKD">Hong Kong dollar</option>
-                          <option value="HUF">Hungarian forint</option>
-                          <option value="INR">Indian rupee</option>
-                          <option value="ILS">Israeli new shekel</option>
-                          <option value="JPY">Japanese yen</option>
-                          <option value="MYR">Malaysian ringgit</option>
-                          <option value="MXN">Mexican peso</option>
-                          <option value="MAD">Moroccan dirham</option>
-                          <option value="TWD">New Taiwan dollar</option>
-                          <option value="NZD">New Zealand dollar</option>
-                          <option value="NOK">Norwegian krone</option>
-                          <option value="PEN">Peruvian sol</option>
-                          <option value="PHP">Philippine peso</option>
-                          <option value="PLN">Polish zloty</option>
-                          <option value="GBP">Pound sterling</option>
-                          <option value="RON">Romanian leu</option>
-                          <option value="RUB">Russian ruble</option>
-                          <option value="SAR">Saudi Arabian riyal</option>
-                          <option value="SGD">Singapore dollar</option>
-                          <option value="ZAR">South African rand</option>
-                          <option value="KRW">South Korean won</option>
-                          <option value="SEK">Swedish krona</option>
-                          <option value="CHF">Swiss franc</option>
-                          <option value="THB">Thai baht</option>
-                          <option value="TRY">Turkish lira</option>
-                          <option value="USD">United States dollar</option>
-                          <option value="UYU">Uruguayan peso</option>
-                        </select>
-                       </div>
-                      </div>
-                      <div class="text-muted space-top-1">We’ll show you prices in this currency.</div>
-                  </div>
                   <div class="row row-condensed space-4">
                     <label class="text-right col-sm-3" for="user_profile_info_current_city">Where You Live</label>
                     <div class="col-sm-9">
-                    <input id="user_profile_info_current_city" name="user_profile_info[current_city]" placeholder="e.g. Paris, France / Brooklyn, NY / Chicago, IL" size="30" type="text" value="Berlin, Berlin, Germany"/>
-                    </div>
-                  </div>
-                  <div class="row row-condensed space-4">
-                    <label class="text-right col-sm-3" for="user_profile_info_about">Describe Yourself</label>
-                    <div class="col-sm-9">
-                      <textarea cols="40" id="user_profile_info_about" name="user_profile_info[about]" rows="5"/></textarea>
-                      <div class="text-muted space-top-1">
-                        Airbnb is built on relationships. Help other people get to know you.
-                        <br/>
-                        <br/>
-                        Tell them about the things you like: What are 5 things you can’t live without? Share your favorite travel destinations, books, movies, shows, music, food.
-                        <br/>
-                        <br/>
-                        Tell them what it’s like to have you as a guest or host: What’s your style of traveling? Of Airbnb hosting?
-                        <br/>
-                        <br/>
-                        Tell them about you: Do you have a life motto?
-                      </div>
+                    <input id="user_profile_info_current_city" name="user[country]" placeholder="e.g. Paris, France / Brooklyn, NY / Chicago, IL" size="30" type="text" value="Berlin, Berlin, Germany"/>
                     </div>
                   </div>
                 </div>
               </div>
               <div class="panel space-4">
                 <div class="panel-header">
-                  <h2 class="edit-profile-section-heading">Optional</h2>
+                  <h3 class="edit-profile-section-heading">Optional</h3>
                 </div>
                 <div class="panel-body">
 
                   <div class="row row-condensed space-4">
-                    <label class="text-right col-sm-3" for="user_profile_info_university">School</label>
+                    <label class="text-right col-sm-3" for="user_profile_info_university">School / University</label>
                     <div class="col-sm-9">
-                    <input id="user_profile_info_university" name="user_profile_info[university]" size="30" type="text" value=""/>
+                      <input id="user_profile_info_university" name="user_profile_info[university]" placeholder="School / University name" size="30" type="text" value=""/>
                     </div>
-                  </div>
+                  </div> <br>
 
                   <div class="row row-condensed space-4">
                     <label class="text-right col-sm-3" for="user_profile_info_employer">Work</label>
                     <div class="col-sm-9">
-                      <input id="user_profile_info_employer" name="user_profile_info[employer]" placeholder="company name or job title" size="30" type="text" value=""/>
+                      <input id="user_profile_info_employer" name="user_profile_info[employer]" placeholder="Company name or job title" size="30" type="text" value=""/>
                     </div>
-                  </div>
+                  </div> <br>
 
                   <div class="row row-condensed space-4">
                     <label class="text-right col-sm-3" for="user_preference_time_zone">Time Zone</label>
@@ -550,114 +262,27 @@
                           <option value="Nuku'alofa">(GMT+13:00) Nuku'alofa</option>
                         </select>
                       </div>
-
                       <div class="text-muted space-top-1">Your home time zone.</div>
                     </div>
-                  </div>
-
-                  <div class="row row-condensed space-4">
-                    <label class="text-right col-sm-3" for="user_languages">Languages</label>
-                    <div class="col-sm-9">
-                      <div class="space-top-1"/>
-                        <div class="multiselect languages" data-select_dialog_url="https://www.airbnb.com/users/languages_multiselect" data-update_url="https://www.airbnb.com/users/languages_update/175283939">
-                          <div class="space-1"/>
-                            <div class="none text-muted space-1">None</div>
-                            <a class="link-icon multiselect-add-more" href="#">
-                            <input id="user_languages" name="user[languages]" type="hidden" value=""/>
-                            <span class="template hide multiselect-option" data-key="%KEY%">
-                          </div>
-                        </div>
-
-                        <div class="text-muted space-top-1">Add any languages that others can use to speak with you on Airbnb
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="row row-condensed space-4">
-                    <label class="text-right col-sm-3" for="user_vat_id">VAT Number</label>
-                    <div class="col-sm-9">
-                      <div class="vat-number-section space-top-1">
-                      <a href="#" class="add-vat-link">
-                      </div>
-                      <div class="text-muted space-top-1">
-                        For European Union users or users in other countries for which VAT applies, VAT will be assessed on our Service Fees. If you live in a country where we need to charge VAT, you will not be charged VAT if you enter a valid VAT ID Number.
-                        <a href="https://www.airbnb.com/help/topic/249">Visit VAT FAQs »</a>
-                      </div>
-                    </div>
-                  </div>
+                  </div> <br>
 
 
                   <div class="row row-condensed space-4">
                     <label class="text-right col-sm-3" for="user_emergency_contact_phone">Phone</label>
                     <div class="col-sm-9">
-                      <input id="user_emergency_contact_phone" name="user_emergency_contact[phone]" size="30" type="text"/>
-                    </div>
-                  </div>
-
-                  <div class="row row-condensed space-4">
-                    <label class="text-right col-sm-3" for="user_emergency_contact_email">Email</label>
-                    <div class="col-sm-9">
-                      <input id="user_emergency_contact_email" name="user_emergency_contact[email]" size="30" type="text"/>
-                    </div>
-                  </div>
-          
-                  <div class="row row-condensed space-4">
-                    <label class="text-right col-sm-3" for="user_emergency_contact_relationship">Relationship</label>
-                    <div class="col-sm-9">
-                      <input id="user_emergency_contact_relationship" name="user_emergency_contact[relationship]" size="30" type="text"/>
-                    </div>
-                  </div>
-
-                  <div id="host-shipping-address">
-                    <div class="row row-condensed space-4">
-                      <div class="text-right col-sm-3 space-2">
-                        Shipping Address
-                        <i class="icon icon-lock icon-ebisu" data-behavior="tooltip" role="img" aria-label="Private"/>
-                      </div>
+                      <input id="user_emergency_contact_phone" name="user_emergency_contact[phone]" size="30" type="text" placeholder="55512345678" />
                     </div>
                   </div>
                 </div>
+              </div><br>
+              <div class="col-md-2"></div>
+              <div class="submit-field">
+                <%= f.submit 'Save', class: 'col-md-2 btn btn-primary btn-large' %> 
               </div>
-              <div id="business-travel" class="panel space-4">
-                <div class="panel-header">
-                  <h2 class="edit-profile-section-heading">Work Travel</h2>
-                </div>                  
-                <div class="panel-body">
-                  <div class="bt-quick-enroll" data-reactroot="">
-                    <div class="row row-condensed space-4">
-                        <label class="text-right col-sm-3" for="new-entry-field">
-                         Work Email                
-                        </label>
-                        <div class="col-sm-9">
-                          <div class="space-1">
-                            <div class="input-addon hide-btn">
-                              <input type="text" class="" id="new-entry-field" value="" size="50"/>
-                              <span class="input-suffix with-btn" type="text">
-                            </div>
-                            <div class="text-muted space-top-1">
-                              Find homes perfect for work trips by choosing the
-                              <strong>Trip type</strong>
-                              filter on your next search.
-                              <a type="button" class="_n5wk6ic" aria-busy="">Learn more</a>
-                            </div>
-                          </div>
-                        </div>  
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- <button type="submit" class="btn btn-primary btn-large">Save</button> -->
-            <!-- </form> -->
-	            <div class="submit-field">
-
-				        <%= f.submit 'Save', class: 'btn btn-primary btn-large' %>
-				      </div>
-
+              <div class="col-md-1"></div>
 			       <% end %>
-
-            <div class="modal reauth-modal" role="dialog" aria-hidden="true" style="">
-          </div>
+             <%= link_to "Cancel", user_path(current_user.id), class: "col-md-2 btn btn-danger" %>
+            <br><br><br>
         </div>
       </div>
     </div>

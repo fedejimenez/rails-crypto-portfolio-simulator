@@ -2,39 +2,53 @@
   <div class="alert alert-<%= key %>"><%= value %></div>
 <% end %>
 
-<h3>Welcome, <%= current_user.name %></h3><br>
+<h3><strong> Profile - <%= current_user.name %></strong></h3> <br>
 
-<%= render "user" %>
-<br>
-
-<div>
-  <% if current_user.avatar.blank? %>
-    <%= image_tag("avatar.svg", :alt => "avatar", class: "avatar-edit") %>
-  <% else %>  
-  <%= image_tag(current_user.avatar.url, :alt => "avatar",  class: "avatar-edit") %>
-  <% end %> 
+<div class="col-md-4">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <%= label_tag :profile_picture%>
+    </div>
+    <div class="panel-body">
+      <br>
+      <div class="container">
+        <% if current_user.avatar.blank? %>
+          <%= image_tag("avatar.svg", :alt => "avatar", class: "avatar-edit") %>
+        <% else %>  
+        <%= image_tag(current_user.avatar.url, :alt => "avatar",  class: "avatar-edit") %>
+        <% end %> 
+      </div>
+      <hr>
+          <div class="form-group">
+            <%= form_for current_user, url: {action: "update"} do |form| %>
+              <%= form.label "Select an image" %> <br><br>
+              <%= form.file_field :avatar %>  <hr> 
+              <% if !current_user.avatar.blank? %>
+                <%= form.label "Check the box below to remove the picture" %> <br><br>
+                <%= form.check_box :remove_avatar %> 
+                <strong><p id="checkbox_user" class= "btn btn-light active">Delete</p> </strong>
+              <% end%>
+              <div class="clearfix"></div>
+          </div>
+        </div>
+        <div class="panel-footer">
+          <%= form.submit 'Update' , class:"btn btn-primary"%>
+        </div>
+      <% end%>
+  </div>
 </div>
-<br>
 
-<div class="form-group">
-  <%= form_for current_user, url: {action: "update"} do |form| %>
-    <%= form.label :profile_picture%>
-    <%= form.file_field :avatar %> 
-    
-    <% if !current_user.avatar.blank? %>
-      <%= form.check_box :remove_avatar %>
-         Remove picture 
-    <% end%>
+<div class="col-md-8"> 
+  <div class="panel panel-default"  id = "user-details">
+    <div class="panel-heading">
+      <%= label_tag "User Information"%> <span class="pull-right"><b>Date joined: </b><%= current_user.created_at %>  <span>
+    </div>
+    <div class="panel-body">
+      <%= render "user" %>
+    </div>
+    <div class="panel-footer">
+      <%= link_to 'Edit Profile', edit_user_path(current_user), class: "btn btn-primary" %>
+    </div>
 
-    <%= form.submit 'Update Picture'%>
-  <% end%>
-</div>
-
-<div id = "user-details">
-  <p>First name: <%= current_user.name.split(' ').first %></p>
-  <p>Last name: <%= current_user.name.split(' ').last %></p>
-  <p>Email: <%= current_user.email %></p>
-  <p>Date joined: <%= current_user.created_at %></p>
-  <%= link_to 'Edit', edit_user_path(current_user) %>
-
+  </div>
 </div>
