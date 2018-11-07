@@ -22,7 +22,7 @@
       </ul>  
       <ul class="nav navbar-nav navbar-center">
         <%= form_tag lookup_path, local: true, method: :GET, class: "navbar-form navbar-left" do %>
-          <%= text_field_tag 'q',nil, class: "form-control lookup", data: {behavior: "autocomplete"},  placeholder: 'Search for a Currency', size: 20 %>
+          <%= text_field_tag 'q',nil, class: "form-control lookup lookup-input ", data: {behavior: "autocomplete"},  placeholder: 'Search for a Currency', size: 20 %>
           <%= submit_tag '', class: "hidden" %>
         <% end%>
       </ul>    
@@ -48,8 +48,8 @@
 						<% end %>	
 						<b class="caret"></b></a>
 						<ul class="dropdown-menu">
-              <li><%= link_to "My Orders", "/users/show" %></li> 
-		          <li><%= link_to "Edit Profile", "/users/show" %></li> 
+              <li><%= link_to "Movements", portfolio_movements_path(current_portfolio.id) %></li> 
+		          <li><%= link_to "Edit Profile", user_path(current_user.id) %></li> 
               <li><%= link_to "Messages", "#" %></li>
 		          <li><%= link_to "Invite Friends", "#" %></li>
 		          <li><%= link_to "Account Settings", "#" %></li>
@@ -133,7 +133,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
               </div>
               <div class="modal-body">
-                <%= button_tag onclick: "location.href='/auth/google_oauth2'",
+                <%= button_tag onclick: "location.href='/auth/facebook'",
                   type: :button, class: "btn-fb" do %>
                   <i class="fa fa-fw fa-facebook" aria-hidden="true"></i>
                   <%= t('.Sign_up_with_Facebook')%>

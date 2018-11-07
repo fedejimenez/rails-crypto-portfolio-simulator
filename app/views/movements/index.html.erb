@@ -1,14 +1,17 @@
 <p id="notice"><%= notice %></p>
+<strong id="last-updated"><p class="pull-right">Last Updated: <%= Time.now.strftime('%H:%M:%S') %></p></strong>
 
-<h1>Movements</h1>
+<h2><strong>Orders History</strong></h2><br>
 
-<table>
+<table class="table table-striped table-hover table-responsive datatable" id="table-movements">
   <thead>
     <tr>
-      <th>Price</th>
-      <th>Date</th>
+      <th>Order Nr</th>
+      <th>Currency</th>
       <th>Quantity</th>
-      <th>Crypto</th>
+      <th>Price</th>
+      <th>Total Amount</th>
+      <th>Date</th>
       <th>Operation</th>
       <th colspan="3"></th>
     </tr>
@@ -17,19 +20,16 @@
   <tbody>
     <% @movements.each do |movement| %>
       <tr>
-        <td><%= movement.price %></td>
-        <td><%= movement.date %></td>
+        <td><%= movement.id %></td>
+        <td><%= Crypto.find(movement.crypto_id).symbol %></td>
         <td><%= movement.quantity %></td>
-        <td><%= movement.crypto_id %></td>
-        <td><%= movement.operation %></td>
-        <td><%= link_to 'Show', movement %></td>
-        <td><%= link_to 'Edit', edit_movement_path(movement) %></td>
-        <td><%= link_to 'Destroy', movement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= movement.price.to_f.round(3) %></td>
+        <td><%= (movement.price.to_f * movement.quantity.to_f).round(3) %></td>
+        <td><%= movement.date %></td>
+        <td><%= movement.operation.capitalize %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Movement', new_movement_path %>

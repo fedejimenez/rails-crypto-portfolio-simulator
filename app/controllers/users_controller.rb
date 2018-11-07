@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
   include UsersHelper
+
+  before_action :correct_user, only: [:edit, :update, :destroy, :show]
+
 	def new
   end
 
@@ -16,9 +19,35 @@ class UsersController < ApplicationController
   	end
   end
 
-  private
-  def user_params
-  	params.require(:user).permit(:name, :email, :password, :password_confirmation)
-  end   
+  def edit
+    @user = User.find_by id: params[:id]
+  end
 
+  def update
+    @user = User.find(current_user.id)
+    respond_to do |format|
+      if @user.update(user_params)
+        flash[:success] = "User was successfully updated."
+        format.html { redirect_to user_path(current_user.id) }
+        format.json { render :show, status: :ok, location: @user }
+      else
+        format.html { render :edit, notice: 'Error while processing the update. Please try again later.' }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  private
+  
+  def correct_user
+    @correct = User.find_by(id: params[:id])
+    if @correct.id != current_user.id
+      flash[:warning] = "Oops! You're not Authorized to view or edit this page! " 
+      redirect_to user_path(current_user.id)
+    end
+  end
+
+  def user_params
+  	params.require(:user).permit(:name, :email, :avatar, :remove_avatar, :gender, :birthdate, :firstname, :lastname, :country, :password, :password_confirmation)
+  end   
 end

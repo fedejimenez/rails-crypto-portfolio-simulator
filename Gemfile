@@ -39,6 +39,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem "database_cleaner"
   gem "rspec-rails"
   gem "database_cleaner"
 
@@ -84,3 +85,21 @@ gem 'figaro'
 # google signup/login
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
+gem 'omniauth-facebook'
+
+
+# Security Update
+gem "loofah", ">= 2.2.3"
+
+# Customize alerts
+gem 'rails-assets-sweetalert2', '~> 5.1.1', source: 'https://rails-assets.org'
+gem 'sweet-alert2-rails'
+
+# Datatables
+gem 'jquery-datatables-rails', '~> 3.4.0'
+
+# Use CarrierWave for image uploading
+gem 'carrierwave', '~> 1.0'
+
+# Use mini_magick to resize images
+gem 'mini_magick'

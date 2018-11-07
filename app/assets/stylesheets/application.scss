@@ -12,12 +12,25 @@
  *
  *= require easy-autocomplete
  *= require easy-autocomplete.themes
+ *= require sweetalert2
+ *= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
  *= require_tree .
  *= require_self
  */
 
+
 @import "bootstrap";
 @import "font-awesome";
+/* Override Bootstrap 3 font locations */
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url('../assets/glyphicons-halflings-regular.eot');
+  src: url('../assets/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
+  url('../assets/glyphicons-halflings-regular.woff') format('woff'),
+  url('../assets/glyphicons-halflings-regular.woff2') format('woff'),
+  url('../assets/glyphicons-halflings-regular.ttf') format('truetype'),
+  url('../assets/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
 
 body{
 	margin:auto

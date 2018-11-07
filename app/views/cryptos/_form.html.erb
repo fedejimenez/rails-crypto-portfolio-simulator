@@ -14,31 +14,34 @@
   
     <div class="field">
       <%= form.number_field :user_id, value: current_user.id, type: "hidden" %>
-    </div>
-
+    </div>  
+  
+    <div class="field">
+      <%= form.text_field :last_action, value: "Buy", type: "hidden"%>
+    </div> 
+    <div class="clearfix"></div><br>
+    <div class="field">
+      <%= form.label :symbol, class: "col-md-2" %>
+      <%= form.text_field :symbol , id: "selected-symbol" , class: "col-md-2 text-center custom-input-short" , readonly: true%>
+      <input type="number" id="current-price" readonly="" value="" style="visibility: hidden;"/> 
+      <div class="clearfix"></div>
+    </div><br>
 
     <div class="field">
-      <%= form.label "Check the box if you want to sell   " %>
-      <%= form.text_field :last_action, value: "Buy", type: "hidden" %>
-    </div>
+      <%= form.label "Buying Price (U$D) ", class: "col-md-2" %>
+      <%= form.number_field :cost_per, id: "selected-price" ,class: "col-md-2 text-center custom-input-short" , onchange: "showTotalAmount()",  step: :any, oninput: "validity.valid||(value='')" %> <span>(0.1 % added to simulate Broker Comision)</span>
+      <div class="clearfix"></div>
+    </div><br>
 
     <div class="field">
-      <%= form.label :symbol %>
-      <%= form.text_field :symbol , id: "selected-symbol"%>
-    </div>
-
-    <div class="field">
-      <%= form.label :cost_per %>
-      <%= form.text_field :cost_per, id: "selected-price" %>
-    </div>
-
-    <div class="field">
-      <%= form.label "Quantity" %>
-      <%= form.text_field :amount_owned %>
-    </div>
+      <%= form.label "Quantity", class: "col-md-2" %>
+      <%= form.number_field :amount_owned, id: "selected-quantity", onchange: "showTotalAmount()" ,value: "1", min: "0.01", max: "50000", step: :any, class: "col-md-2 text-center custom-input-short", oninput: "validity.valid||(value='')" %>
+      <div class="clearfix"></div>
+    </div><br>
     
-    <div class="actions">
-      <%= form.submit 'Buy', class: "btn btn-success"%>
+    <div class="actions col-md-1"></div>
+    <div class="actions col-md-2">
+      <%= form.submit 'Buy Currency', id: "button-submit", class: "btn btn-success", data: { confirm: 'Are you sure?'} %>
     </div>
 
 <% end %>
