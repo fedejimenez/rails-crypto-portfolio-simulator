@@ -3,7 +3,8 @@ $(document).on('turbolinks:load', function() {
 	 });
 
 	 $('#table-index').DataTable({
-    	"iDisplayLength": 25
+    	"iDisplayLength": 25,
+    	 "order": [[ 0, "asc" ]]
 	 });
 
 	 $('#table-cryptos').DataTable({
