@@ -1,4 +1,26 @@
- GOOGLE_APP_ID: '870142329409-rq0ruiijoeeenhcqdkqpunblvtohe81c.apps.googleusercontent.com'  
- GOOGLE_APP_SECRET: 'MVoUnyuKVfY-vqrOCDfNZcEh'
+GOOGLE_APP_ID: '870142329409-rq0ruiijoeeenhcqdkqpunblvtohe81c.apps.googleusercontent.com'  
+GOOGLE_APP_SECRET: 'MVoUnyuKVfY-vqrOCDfNZcEh'
 
- GOOGLE_MAPS_API_KEY: 'AIzaSyB7BkN0mhT_tppFOcF-STOg9AiKRcmaTDU'
+GOOGLE_MAPS_API_KEY: 'AIzaSyB7BkN0mhT_tppFOcF-STOg9AiKRcmaTDU'
+
+FACEBOOK_KEY: '300229577425686'
+FACEBOOK_SECRET: '863acf5ecb21e1214e5c6d58fc29b00a'
+
+# development:
+#   AWS_ACCESS_KEY_ID: 'PASTE ACCESS ID'
+#   AWS_SECRET_ACCESS_KEY: 'SECRET KEY'
+# test:
+#   AWS_ACCESS_KEY_ID: 'PASTE ACCESS ID'
+#   AWS_SECRET_ACCESS_KEY: 'SECRET KEY'
+# production:
+#   AWS_ACCESS_KEY_ID: 'PASTE ACCESS ID'
+#   AWS_SECRET_ACCESS_KEY: 'SECRET KEY'
+
+# BRAINTREE_MERCHANT_ID: 't2sy9nwv79mmyszb'
+# BRAINTREE_PUBLIC_KEY: 'drnzq7hj6rwvsmt9'
+# BRAINTREE_PRIVATE_KEY: 'a984182f686da8bef6e89bbd4e474046'
+
+# GMAIL_USERNAME: 'fjclonebnb@gmail.com'
+# GMAIL_PASSWORD: 'clonebnb2018'
+
+# REDIS_URL: 'redis://localhost:6379/0/cache'
