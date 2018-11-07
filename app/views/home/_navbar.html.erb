@@ -21,8 +21,8 @@
         </li>
       </ul>  
       <ul class="nav navbar-nav navbar-center">
-        <%= form_tag lookup_path, local: true, method: :GET, class: "navbar-form navbar-left lookup-input" do %>
-          <%= text_field_tag 'q',nil, class: "form-control lookup", data: {behavior: "autocomplete"},  placeholder: 'Search for a Currency', size: 20 %>
+        <%= form_tag lookup_path, local: true, method: :GET, class: "navbar-form navbar-left" do %>
+          <%= text_field_tag 'q',nil, class: "form-control lookup lookup-input ", data: {behavior: "autocomplete"},  placeholder: 'Search for a Currency', size: 20 %>
           <%= submit_tag '', class: "hidden" %>
         <% end%>
       </ul>    

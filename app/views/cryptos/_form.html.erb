@@ -19,23 +19,23 @@
     <div class="field">
       <%= form.text_field :last_action, value: "Buy", type: "hidden"%>
     </div> 
-
+    <div class="clearfix"></div><br>
     <div class="field">
       <%= form.label :symbol, class: "col-md-2" %>
-      <%= form.text_field :symbol , id: "selected-symbol" , class: "col-md-2 text-center" , readonly: true%>
+      <%= form.text_field :symbol , id: "selected-symbol" , class: "col-md-2 text-center custom-input-short" , readonly: true%>
       <input type="number" id="current-price" readonly="" value="" style="visibility: hidden;"/> 
       <div class="clearfix"></div>
     </div><br>
 
     <div class="field">
       <%= form.label "Buying Price (U$D) ", class: "col-md-2" %>
-      <%= form.number_field :cost_per, id: "selected-price" ,class: "col-md-2 text-center" , onchange: "showTotalAmount()",  step: :any, oninput: "validity.valid||(value='')" %> (0.1 % added to simulate Broker Comision)
+      <%= form.number_field :cost_per, id: "selected-price" ,class: "col-md-2 text-center custom-input-short" , onchange: "showTotalAmount()",  step: :any, oninput: "validity.valid||(value='')" %> <span>(0.1 % added to simulate Broker Comision)</span>
       <div class="clearfix"></div>
     </div><br>
 
     <div class="field">
       <%= form.label "Quantity", class: "col-md-2" %>
-      <%= form.number_field :amount_owned, id: "selected-quantity", onchange: "showTotalAmount()" ,value: "1", min: "0.01", max: "50000", step: :any, class: "col-md-2 text-center", oninput: "validity.valid||(value='')" %>
+      <%= form.number_field :amount_owned, id: "selected-quantity", onchange: "showTotalAmount()" ,value: "1", min: "0.01", max: "50000", step: :any, class: "col-md-2 text-center custom-input-short", oninput: "validity.valid||(value='')" %>
       <div class="clearfix"></div>
     </div><br>
     
