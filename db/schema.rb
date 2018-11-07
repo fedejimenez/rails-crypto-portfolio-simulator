@@ -33,8 +33,8 @@ ActiveRecord::Schema.define(version: 2018_11_04_144823) do
     t.datetime "updated_at", null: false
     t.decimal "amount_owned"
     t.decimal "last_transaction"
-    t.string "last_action"
     t.integer "portfolio_id"
+    t.string "last_action"
     t.index ["user_id"], name: "index_cryptos_on_user_id"
   end
 
