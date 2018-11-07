@@ -18,12 +18,15 @@ Rails.application.routes.draw do
   get '/signup' => 'users#new'
   post '/users' => 'users#create'
 
+  # Routes for showing and editing users data
+  resources :users
+
   # Gmail signup/login
   get "/auth/:provider/callback" => "sessions#create_from_omniauth"
   get 'auth/failure', to: redirect('/')
   get 'login', to: redirect('/auth/google_oauth2'), as: 'login_google'
 
-  #Portfolio and Movements
+  # Portfolio and Movements
   resources :portfolios do
     resources :cryptos 
     resources :movements

@@ -45,7 +45,8 @@ function checkQuantity(){
 				hideError()
 			}
 		}else{
-			hideError()
+			hideError();
+			checkAmount();
 		}
 	}
 }

@@ -22,3 +22,11 @@
 //= require sweetalert2
 //= require sweet-alert2-rails
 //= require_tree .
+
+// Add style to search bar (easyAutocomplete)
+
+$(document).on('turbolinks:load', function() {
+	document.querySelector('#q').classList.add("lookup-input")
+	document.querySelector('#q').parentNode.classList.add("lookup-input")
+})
+

@@ -1,0 +1,54 @@
+<% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
+
+<h3><strong> Profile - <%= current_user.name %></strong></h3> <br>
+
+<div class="col-md-3">
+  <div class="panel-default">
+    <div class="panel-heading">
+      <%= label_tag :profile_picture%>
+    </div>
+    <div class="panel-body pull-center">
+      <br>
+      <div class="container">
+        <% if current_user.avatar.blank? %>
+          <%= image_tag("avatar.svg", :alt => "avatar", class: "avatar-edit") %>
+        <% else %>  
+        <%= image_tag(current_user.avatar.url, :alt => "avatar",  class: "avatar-edit") %>
+        <% end %> 
+      </div>
+      <hr>
+          <div class="form-group">
+            <%= form_for current_user, url: {action: "update"} do |form| %>
+              <%= form.label "Select an image" %> <br><br>
+              <%= form.file_field :avatar %>  <hr> 
+              <% if !current_user.avatar.blank? %>
+                <%= form.label "Check the box below to remove the picture" %> <br><br>
+                <%= form.check_box :remove_avatar %> 
+                <strong><p id="checkbox_user" class= "btn btn-light active">Delete</p> </strong>
+              <% end%>
+              <div class="clearfix"></div>
+          </div>
+        </div>
+        <div class="panel-footer">
+          <%= form.submit 'Save', class: 'btn btn-primary btn-large'  %>
+        </div>
+      <% end%>
+  </div>
+</div>
+
+<div class="col-md-9"> 
+  <div class="panel panel-default"  id = "user-details">
+    <div class="panel-heading">
+      <%= label_tag "User Information"%> <span class="pull-right"><b>Date joined: </b><%= current_user.created_at %>  <span>
+    </div>
+    <div class="panel-body">
+      <%= render "user" %>
+    </div>
+    <div class="panel-footer">
+      <%= link_to 'Edit Profile', edit_user_path(current_user), class: "btn btn-primary" %>
+    </div>
+
+  </div>
+</div>

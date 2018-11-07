@@ -14,9 +14,9 @@
       			<% @user_coins.push((crypto['symbol'])) unless @user_coins.include?((crypto['symbol'])) %>
 			<% end %>
 		<% end %>
-		
-		<%= select(:model, :coin, @coins.map {|c| [c['symbol'] + " | " + c['name'] + " | " + c['price_usd']]},{:prompt => 'Symbol | name'}, id:"new-order", onchange: "showForm('#{array_names}', '#{@user_coins}', '#{array_prices}')" , class: "custom-select") %> <br><br>
-
+		<div class="col-md-5">
+			<%= select(:model, :coin, @coins.map {|c| [c['symbol'] + " | " + c['name'] + " | " + c['price_usd']]},{:prompt => 'Symbol | Name | Price'}, id:"new-order", onchange: "showForm('#{array_names}', '#{@user_coins}', '#{array_prices}')" , class: "custom-input custom-select") %> <br><br>
+		</div>
 		<div id='form-new' style='visibility: hidden'>
 			<%= render 'form', crypto: @crypto %>
 		</div>
