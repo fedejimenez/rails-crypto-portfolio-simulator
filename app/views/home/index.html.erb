@@ -10,6 +10,7 @@
   <div class="table-responsive">
     <table class="table datatable" id="table-index">
       <thead class="">
+        <th>Rank</th>
         <th>Symbol</th>
         <th>Name</th>
         <th>Price (U$D)</th>
@@ -19,6 +20,7 @@
       <tbody>
         <% @coins.each do |c| %>
           <tr>
+            <td><%= c['rank'] %></td>
             <td> <%= link_to c["symbol"], "/lookup?q=#{c['symbol']}" %> </td>
             <td> <%= link_to c["name"], "/lookup?q=#{c['symbol']}" %> </td>
             <td> <%= c["price_usd"] %> </td>

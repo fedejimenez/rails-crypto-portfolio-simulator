@@ -85,6 +85,8 @@ gem 'figaro'
 # google signup/login
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
+gem 'omniauth-facebook'
+
 
 # Security Update
 gem "loofah", ">= 2.2.3"
