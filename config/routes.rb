@@ -9,14 +9,12 @@ Rails.application.routes.draw do
   # Signup. The first renders a form, the second receives the form and create a user in the database.
   get '/signup' => 'users#new'
   post '/users' => 'users#create'
+  # get '/users' => 'users#show'
 
   # these routes are for showing users a login form and log in / out.
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
-
-  get '/signup' => 'users#new'
-  post '/users' => 'users#create'
 
   # Routes for showing and editing users data
   resources :users
@@ -25,6 +23,9 @@ Rails.application.routes.draw do
   get "/auth/:provider/callback" => "sessions#create_from_omniauth"
   get 'auth/failure', to: redirect('/')
   get 'login', to: redirect('/auth/google_oauth2'), as: 'login_google'
+
+  # Facebook signup/login
+  get 'login', to: redirect('/auth/facebook'), as: 'login_facebook'
 
   # Portfolio and Movements
   resources :portfolios do

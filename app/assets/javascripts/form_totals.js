@@ -19,7 +19,11 @@ function showForm(names, user_coins, array_prices){
 }
 
 function showTotalAmount(){
-	document.querySelector('#total-amount').value = (document.querySelector('#selected-price').value * document.querySelector('#selected-quantity').value * 1.001).toFixed(5)
+	if ($('#selected-checkbox').is(":checked")) {
+		document.querySelector('#total-amount').value = (document.querySelector('#selected-price').value * document.querySelector('#selected-quantity').value * .999).toFixed(5)
+	}else {
+		document.querySelector('#total-amount').value = (document.querySelector('#selected-price').value * document.querySelector('#selected-quantity').value * 1.001).toFixed(5)
+	}
 	checkAmount();
 	checkQuantity();
 }	
@@ -62,10 +66,12 @@ function hideError(){
 
 function checkboxText(){
 	if ($('#selected-checkbox').is(":checked")) {
-		document.querySelector('#text-checkbox').innerHTML = "Sell"
+		document.querySelector('#text-checkbox').innerHTML = "Sell";
+		showTotalAmount();
 		checkQuantity()
 	}else {
 		document.querySelector('#text-checkbox').innerHTML = "Buy"
+		showTotalAmount();
 		checkQuantity()
 	}
 }

@@ -18,6 +18,28 @@
 	margin-top: -18px;
 }
 
+/* ......... Beat effect for icons (Small beat)..... */
+.beat-less:hover {
+  animation: 7s infinite beat-less;
+}
+@keyframes beat-less {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.025);
+  }
+  50% {
+    transform: scale(1);
+  }
+  75% {
+    transform: scale(1.025);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 /*========================================================================
                  GOOGLE PLACES AUTOCOMPLETE 
  ========================================================================*/

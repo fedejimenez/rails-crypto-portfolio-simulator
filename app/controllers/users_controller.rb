@@ -3,6 +3,9 @@ class UsersController < ApplicationController
 
   before_action :correct_user, only: [:edit, :update, :destroy, :show]
 
+  def index
+  end
+
 	def new
   end
 
@@ -15,7 +18,7 @@ class UsersController < ApplicationController
       redirect_to root_path
     else
       flash[:warning] = "Oh no! There was a problem and the User was not created"
-  		redirect_to '/signup'
+  		redirect_to '/'
   	end
   end
 
@@ -31,7 +34,8 @@ class UsersController < ApplicationController
         format.html { redirect_to user_path(current_user.id) }
         format.json { render :show, status: :ok, location: @user }
       else
-        format.html { render :edit, notice: 'Error while processing the update. Please try again later.' }
+        flash[:warning] = 'Error while processing the update. Please try again later.' 
+        format.html { render :edit}
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
@@ -48,6 +52,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-  	params.require(:user).permit(:name, :email, :avatar, :remove_avatar, :gender, :birthdate, :firstname, :lastname, :country, :password, :password_confirmation)
+  	params.require(:user).permit(:name, :email, :avatar, :remove_avatar, :gender, :birthdate, :firstname, :lastname, :username, :country, :password_digest)
   end   
 end

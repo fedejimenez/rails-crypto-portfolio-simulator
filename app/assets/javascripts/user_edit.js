@@ -1,4 +1,7 @@
-// Google Places autocomplete (Search Bar)
+/*========================================================================
+                 Google Places autocomplete (Search Bar)
+========================================================================*/
+
 var autocomplete;
 
 function initAutocomplete() {

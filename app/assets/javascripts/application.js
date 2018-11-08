@@ -22,6 +22,7 @@
 //= require sweetalert2
 //= require sweet-alert2-rails
 //= require_tree .
+//= stub 'validation'
 
 // Add style to search bar (easyAutocomplete)
 
