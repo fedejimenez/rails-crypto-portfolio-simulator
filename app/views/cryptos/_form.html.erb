@@ -29,7 +29,7 @@
 
     <div class="field">
       <%= form.label "Buying Price (U$D) ", class: "col-md-2" %>
-      <%= form.number_field :cost_per, id: "selected-price" ,class: "col-md-2 text-center custom-input-short" , onchange: "showTotalAmount()",  step: :any, oninput: "validity.valid||(value='')" %> <span>(0.1 % added to simulate Broker Comision)</span>
+      <%= form.number_field :cost_per, id: "selected-price" ,class: "col-md-2 text-center custom-input-short" , onchange: "showTotalAmount()",  step: :any, oninput: "validity.valid||(value='')" %>
       <div class="clearfix"></div>
     </div><br>
 
@@ -41,7 +41,10 @@
     
     <div class="actions col-md-1"></div>
     <div class="actions col-md-2">
-      <%= form.submit 'Buy Currency', id: "button-submit", class: "btn btn-success", data: { confirm: 'Are you sure?'} %>
+      <%= form.submit 'Buy Currency', id: "button-submit", class: "btn btn-success", data: {
+                                                                                             confirm: 'Are you sure?',
+                                                                                             text: '0.1 % Transaction fee will be added '
+                                                                                           } %>
     </div>
 
 <% end %>
