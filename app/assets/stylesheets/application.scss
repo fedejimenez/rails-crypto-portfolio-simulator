@@ -45,3 +45,17 @@ body{
 // 	    width: 1500px;
 // 	}
 // }
+
+/*---FOR MOBILE VIEW---*/
+@media screen and (max-width: 400px) {
+  h1 {
+    padding: 15px;
+    font-size: 25px;
+  }
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+}

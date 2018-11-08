@@ -1,4 +1,7 @@
-// $(document).ready(function(){
+ /*========================================================================
+                 AJAX AUTOCOMPLETE - SEARCHBAR
+ ========================================================================*/
+
 $(document).on('turbolinks:load', function() {
 	var options = {
 		url: "/lookup.json",

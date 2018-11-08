@@ -14,11 +14,7 @@ class User < ApplicationRecord
 	validates :email, presence: true,
 			  format: { with: VALID_EMAIL_REGEX },
 			  uniqueness: { case_sensitive: false }
-			  
-	# validates :gender, presence: true
-	# validates :country, presence: true
-	# validates :birthdate, presence: true
-	# validates :encrypted_password, presence: true, length: { minimum: 6 }
+	validates :password_digest, presence: true, length: { minimum: 4 }
 
 	# Avatar image
 	mount_uploader :avatar, AvatarUploader # Create uploader

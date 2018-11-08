@@ -90,6 +90,7 @@ ActiveRecord::Schema.define(version: 2018_11_04_144823) do
     t.datetime "updated_at", null: false
     t.string "firstname"
     t.string "lastname"
+    t.string "username"
     t.boolean "verification"
     t.string "role", default: "user"
     t.string "avatar"
