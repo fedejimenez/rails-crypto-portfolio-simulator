@@ -107,3 +107,6 @@ gem 'mini_magick'
 # Upload images on Cloud AWS
 gem 'carrierwave-aws'
 gem 'aws-sdk-rails'
+
+# Sidekiq for sending emails
+gem 'sidekiq'

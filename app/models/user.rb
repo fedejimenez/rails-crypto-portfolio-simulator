@@ -4,6 +4,7 @@ class User < ApplicationRecord
 	has_one :portfolio, dependent: :destroy
   	has_many :authentications, dependent: :destroy
 	after_create :create_portfolio
+	after_create :send_email
 
 	# Validatons
 	before_save { |user| user.email = email.downcase }
@@ -48,5 +49,13 @@ class User < ApplicationRecord
 	  @user.portfolio = @portfolio
 	  @user.save
 	  @portfolio.save
+	end
+
+	# Send welcome email
+	def send_email()
+		@user = User.last
+		mail = UsersMailer.welcome_email(@user.id)
+		#mail.deliver_now
+		mail.deliver_later
 	end
 end
