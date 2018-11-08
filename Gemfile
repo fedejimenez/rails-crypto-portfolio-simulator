@@ -103,3 +103,7 @@ gem 'carrierwave', '~> 1.0'
 
 # Use mini_magick to resize images
 gem 'mini_magick'
+
+# Upload images on Cloud AWS
+gem 'carrierwave-aws'
+gem 'aws-sdk-rails'
