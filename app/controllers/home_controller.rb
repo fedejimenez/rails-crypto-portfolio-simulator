@@ -5,9 +5,8 @@ class HomeController < ApplicationController
 
   def index
     get_data_from_API
+    get_historical_from_API
     current_portfolio
-    # @user = User.all
-    # @portfolio = Portfolio.all
   end
 
   def about 

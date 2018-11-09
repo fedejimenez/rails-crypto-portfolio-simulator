@@ -25,30 +25,22 @@
                 </div>
                 <div class="panel-body">
                   <%= content_tag :div, class: 'row row-condensed space-4' do %>
-                    <%= f.label :user_first_name,  class: 'text-right col-sm-3' do %>
-                      First Name
+                    <%= f.label :user_name,  class: 'text-right col-sm-3' do %>
+                      Full Name
                     <% end %>
                     <%= content_tag :div, class: 'col-sm-9' do %>
-                      <p><%= f.text_field :firstname, class: "custom-input", required: true  %></p>
-                    <% end %>
-                  <% end %> <br>
-                  <%= content_tag :div, class: 'row row-condensed space-4' do %>
-                    <%= f.label :user_last_name,  class: 'text-right col-sm-3' do %>
-                      Last Name
-                    <% end %>
-                    <%= content_tag :div, class: 'col-sm-9' do %>
-                      <p><%= f.text_field :lastname, class: "custom-input", required: true  %></p>
+                      <p><%= f.text_field :name, class: "custom-input", required: true  %></p>
                       <div class="text-muted space-top-1">
                     <% end %>
                     </div>
                   <% end %> <br>
 
                   <%= content_tag :div, class: 'row row-condensed space-4' do %>
-                    <%= f.label :name,  class: 'text-right col-sm-3' do %>
+                    <%= f.label :username,  class: 'text-right col-sm-3' do %>
                       Username
                     <% end %>
                     <%= content_tag :div, class: 'col-sm-9' do %>
-                      <p><%= f.text_field :name, class: "custom-input", required: 'true' %></p>
+                      <p><%= f.text_field :username, class: "custom-input", required: true %></p>
                       <div class="text-muted space-top-1">Your public profile only shows your first name or your username.
                     <% end %>
                     </div>
