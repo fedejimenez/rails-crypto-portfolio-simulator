@@ -14,6 +14,7 @@ class CryptosController < ApplicationController
   def index
     @cryptos = Crypto.all
     get_data_from_API
+    get_historical_from_API
   end
 
   # GET /cryptos/1

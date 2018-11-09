@@ -1,13 +1,21 @@
 module CryptosHelper
-	def get_data_from_API
+  def get_data_from_API
+    require 'net/http'
+    require 'json'
+      @url = 'https://api.coinmarketcap.com/v1/ticker/?limit=50'
+      @uri = URI(@url)
+      @response = Net::HTTP.get(@uri)
+      @coins = JSON.parse(@response) 
+      @profit = 0
+  end 
+
+	def get_historical_from_API
 		require 'net/http'
 		require 'json'
-	    @url = 'https://api.coinmarketcap.com/v1/ticker/?limit=50'
+	    @url = 'https://api.coindesk.com/v1/bpi/historical/close.json'
 	    @uri = URI(@url)
 	    @response = Net::HTTP.get(@uri)
-	    @coins = JSON.parse(@response) 
-
-	    @profit = 0
+	    @historical = JSON.parse(@response) 
   end	
 
   def current_coin(symbol)
