@@ -41,9 +41,6 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem "database_cleaner"
   gem "rspec-rails"
-  gem "database_cleaner"
-
-
 end
 
 group :development do
@@ -86,7 +83,6 @@ gem 'figaro'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
-
 
 # Security Update
 gem "loofah", ">= 2.2.3"

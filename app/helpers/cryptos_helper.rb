@@ -8,7 +8,7 @@ module CryptosHelper
 	    @coins = JSON.parse(@response) 
 
 	    @profit = 0
-  	end	
+  end	
 
   def current_coin(symbol)
   	get_data_from_API
