@@ -1,3 +1,4 @@
+require 'sidekiq/web'
 Rails.application.routes.draw do
   # Homepage
   root 'home#index'
@@ -34,5 +35,8 @@ Rails.application.routes.draw do
   end
   resources :cryptos
   post 'portfolios/:id/cryptos/new' => 'cryptos#create'
+
+  # Sidekiq
+  mount Sidekiq::Web => '/sidekiq'
 
 end

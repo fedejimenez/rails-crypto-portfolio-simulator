@@ -10,11 +10,16 @@ module StockPortfolioSimulator
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
-	config.active_record.default_timezone = :local
+	  config.active_record.default_timezone = :local
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
+
+    # Use sidekiq
+  	config.active_job.queue_adapter = Rails.env.production? ? :sidekiq : :async
+    # config.action_mailer.deliver_later_queue_name = 'default_mailer_queue'
+
   end
 end

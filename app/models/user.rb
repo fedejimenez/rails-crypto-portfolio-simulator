@@ -54,8 +54,9 @@ class User < ApplicationRecord
 	# Send welcome email
 	def send_email()
 		@user = User.last
-		mail = UsersMailer.welcome_email(@user.id)
-		#mail.deliver_now
+		mail = UserMailer.welcome_email(@user.id)
+		# mail.deliver_now
 		mail.deliver_later
+        # UserJob.perform_later(@user.id)
 	end
 end
