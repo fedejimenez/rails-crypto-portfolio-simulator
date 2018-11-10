@@ -44,7 +44,7 @@
 
     <div class="field">
       <%= form.label "Transaction Price (U$D):" , class: "col-md-2"%>
-      <%= form.number_field :cost_per, min: "#{@current_usd.round(5)}", :value => @current_usd.round(5),  step: :any, class: "text-center col-md-2 custom-input-short", id: "selected-price", oninput: "validity.valid||(value='')", onchange: "showTotalAmount()"%> >
+      <%= form.number_field :cost_per, min: "#{@current_usd.round(5)}", :value => @current_usd.round(5),  step: :any, class: "text-center col-md-2 custom-input-short", id: "selected-price", oninput: "validity.valid||(value='')", onchange: "showTotalAmount()"%>
       <div class="clearfix"></div>
     </div>
 

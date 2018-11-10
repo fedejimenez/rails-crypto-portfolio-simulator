@@ -42,7 +42,7 @@
 <div class="col-md-8"> 
   <div class="panel panel-default"  id = "user-details">
     <div class="panel-heading">
-      <%= label_tag "User Information"%> <span class="pull-right"><b>Date joined: </b><%= current_user.created_at %>  <span>
+      <%= label_tag "User Information"%> <span class="pull-right"><b>Date joined: </b><%= current_user.created_at.localtime %>  <span>
     </div>
     <div class="panel-body">
       <%= render "user" %>

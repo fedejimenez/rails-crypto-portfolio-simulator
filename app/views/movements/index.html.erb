@@ -1,5 +1,10 @@
 <p id="notice"><%= notice %></p>
-<strong id="last-updated"><p class="pull-right">Last Updated: <%= Time.now.strftime('%H:%M:%S') %></p></strong>
+<strong id="last-updated">
+  <button class="pull-right btn btn-default" onClick="history.go(0)">
+    <i class="fa fa-repeat"> . </i>
+    <strong> <p class="pull-right"> Last Updated: <%= Time.now.strftime('%H:%M:%S') %></p></strong>
+  </button>
+</strong>
 
 <h2><strong>Orders History</strong></h2><br>
 
@@ -24,8 +29,8 @@
         <td><%= Crypto.find(movement.crypto_id).symbol %></td>
         <td><%= movement.quantity %></td>
         <td><%= movement.price.to_f.round(3) %></td>
-        <td><%= (movement.price.to_f * movement.quantity.to_f).round(3) %></td>
-        <td><%= movement.date %></td>
+        <td><%= @total_amount = (movement.price.to_f * movement.quantity.to_f).round(3) %></td>
+        <td><%= @date = movement.date %></td>
         <td><%= movement.operation.capitalize %></td>
       </tr>
     <% end %>
@@ -33,3 +38,44 @@
 </table>
 
 <br>
+
+
+
+<!-- Nav tabs -->
+<ul class="nav nav-tabs" id="movementsTab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="transactions-tab" data-toggle="tab" href="#transanctions" role="tab" aria-controls="transanctions" aria-selected="true">Transactions</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="amount-tab" data-toggle="tab" href="#amount" role="tab" aria-controls="amount" aria-selected="false">Total Amount</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="operations-tab" data-toggle="tab" href="#operations" role="tab" aria-controls="operations" aria-selected="false">Operations</a>
+  </li>
+</ul><br><br>
+
+<!-- Tab panes -->
+<div class="tab-content">
+  <div class="tab-pane active" id="transanctions" role="tabpanel" aria-labelledby="transactions-tab">
+    <div class= "col-md-2">
+    </div>
+    <div class= "col-md-8">
+      <%= column_chart Movement.group_by_day_of_week(:created_at, format: "%a").count, title: "Total transactions per day (Last Week)" %>
+    </div>
+  </div>
+  <div class="tab-pane" id="amount" role="tabpanel" aria-labelledby="amount-tab">
+    <div class= "col-md-2">
+    </div>
+    <div class= "col-md-8">
+      <%= column_chart Movement.group_by_day(:created_at).sum('price*quantity'), prefix: "$ ", title: "Total amount operated per day" %>
+    </div>
+  </div>
+  <div class="tab-pane" id="operations" role="tabpanel" aria-labelledby="operations-tab">
+    <div class= "col-md-2">
+    </div>
+    <div class= "col-md-8">
+      <%= pie_chart Movement.group(:operation).count, prefix: "$ ", title: "Total operations" %>
+    </div>
+  </div>
+</div>
+<div class="clearfix"></div><br><br><hr><br>

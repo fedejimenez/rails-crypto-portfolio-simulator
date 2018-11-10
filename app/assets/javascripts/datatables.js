@@ -7,7 +7,7 @@ $(document).on('turbolinks:load', function() {
 	 });
 
 	 $('#table-index').DataTable({
-    	"iDisplayLength": 25,
+    	"iDisplayLength": 10,
     	 "order": [[ 0, "asc" ]]
 	 });
 

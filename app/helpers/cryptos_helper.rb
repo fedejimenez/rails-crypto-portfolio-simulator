@@ -15,7 +15,7 @@ module CryptosHelper
 	    @url = 'https://api.coindesk.com/v1/bpi/historical/close.json'
 	    @uri = URI(@url)
 	    @response = Net::HTTP.get(@uri)
-	    @historical = JSON.parse(@response) 
+	    @historical = JSON.parse(@response)['bpi'] 
   end	
 
   def current_coin(symbol)

@@ -4,11 +4,13 @@
 
 <br>
 
-<% @crypto.each do |c| %>
-	<% if c['amount_owned'] != 0 %>
-		<%  if c['symbol'] == @lookup %>
-			<% if (c['user_id'].to_s == current_user.id.to_s) %>
-				<% controller.redirect_to edit_crypto_path(c.id) %>
+<% if logged_in? %> 
+	<% @crypto.each do |c| %>
+		<% if c['amount_owned'] != 0 %>
+			<%  if c['symbol'] == @lookup %>
+				<% if (c['user_id'].to_s == current_user.id.to_s) %>
+					<% controller.redirect_to edit_crypto_path(c.id) %>
+				<% end %>
 			<% end %>
 		<% end %>
 	<% end %>
@@ -18,14 +20,14 @@
 	<div class="panel-heading">
 	</div>
 	<div class="panel-body">
-		<div class="col-md-6">
+		<div class="col-md-4">
 			<% if @lookup %>
 				<% @coins.each do |c| %>
 					<% if @lookup == c["symbol"] %>
 						<h3>
 							<strong> <%= c["symbol"] %> </strong><br>
 						</h3>
-						<p>
+						<p><hr>
 						<strong>Name:</strong>
 							<%= c["name"] %> <br> 
 						</p>
@@ -34,20 +36,40 @@
 							U$D <%= c["price_usd"] %> <br>
 						</p>
 						<p>
+							<strong>Variation (1h):</strong>
+							<span class="color-text"><%= c["percent_change_1h"] %> %</span>
+						</p>
+						<p>
 							<strong>Variation (24h):</strong>
-							<%= c["percent_change_24h"] %> %
+							<span class="color-text"><%= c["percent_change_24h"] %> %</span>
+						</p>
+						<p>
+							<strong>Variation (7d):</strong>
+							<span class="color-text"><%= c["percent_change_7d"] %> %</span>
+						</p>
+						<p>
+							<strong>Volume 24hs (U$D):</strong>
+							<span ><%= c["24h_volume_usd"] %> %</span>
 						</p>
 					<% end %>
 				<% end %>
 			<% end %>
 		</div>
-		<div class="col-md-6 text-center">
-			<br>	<br>	<br>	
+		<div class="col-md-2">
+		</div>
+		<div class="col-md-4 text-center">
+			<br><br><br><br><br>	
 			<% if logged_in? %>
-				<%= link_to 'Buy', new_portfolio_crypto_path(current_portfolio.id), class: "btn btn-success" %>
-				<%= link_to 'Sell', new_portfolio_crypto_path(current_portfolio.id), class: "btn btn-danger" %>
-
+				<%= link_to 'New Order', new_portfolio_crypto_path(current_portfolio.id), class: "btn btn-primary" %>
+			<% else %>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<p><strong> Sign up or Login to make a transaction. </strong></p>
+					</div>
+				</div>
 			<% end %>
+		</div>
+		<div class="col-md-2">
 		</div>
 	</div>
 	<div>

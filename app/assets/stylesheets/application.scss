@@ -36,15 +36,16 @@ body{
 	margin:auto
 }
 
-// .container{
-// 	margin-left: 200px;
-// }
+.container{
+	margin: auto;
+  padding: 0px 30px;
+}
 
-// @media(min-width: 1200px){
-// 	.container {
-// 	    width: 1500px;
-// 	}
-// }
+@media(min-width: 1200px){
+	.container {
+	    width: 1500px;
+	}
+}
 
 /*---FOR MOBILE VIEW---*/
 @media screen and (max-width: 400px) {
@@ -58,4 +59,14 @@ body{
 @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
+}
+
+.red{
+  color: red;
+  font-weight: 600;
+}
+
+.green{
+  color: green;
+  font-weight: 600;
 }
