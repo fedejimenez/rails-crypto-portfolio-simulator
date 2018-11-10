@@ -25,6 +25,7 @@
 //= require chartkick
 //= require_tree .
 //= stub 'validation'
+//= stub 'tabs'
 
 // Add style to search bar (easyAutocomplete)
 

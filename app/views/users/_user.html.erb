@@ -22,7 +22,7 @@
   </div>
   <div class="col-md-4">
     <% if current_user.birthdate? %>
-     <%= current_user.birthdate.strftime('%d/%m/%y') %>
+     <%= current_user.birthdate.strftime('%d/%m/%Y') %>
     <% else %>
       --/--/--  <span class="" style="color:red"> Please complete this field </span>
     <% end %>
