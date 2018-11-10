@@ -21,8 +21,11 @@
 //= require lookup.js
 //= require sweetalert2
 //= require sweet-alert2-rails
+//= require Chart.bundle
+//= require chartkick
 //= require_tree .
 //= stub 'validation'
+//= stub 'tabs'
 
 // Add style to search bar (easyAutocomplete)
 
@@ -30,4 +33,24 @@ $(document).on('turbolinks:load', function() {
 	document.querySelector('#q').classList.add("lookup-input")
 	document.querySelector('#q').parentNode.classList.add("lookup-input")
 })
+
+// Add style to variation if positive/negative number
+$(document).on('turbolinks:load', function() {
+	textColor();
+})
+$(document).ready(function() {
+	textColor();
+})
+
+function textColor(){
+	var vals = document.querySelectorAll('.color-text')
+	for(var i = 0; i < vals.length; i++){
+		if (parseFloat(vals[i].innerText) < 0 ) {
+			vals[i].classList.add("red")
+		}else{
+			vals[i].classList.add("green")
+		}
+	}
+}
+
 

@@ -106,3 +106,7 @@ gem 'aws-sdk-rails'
 
 # Sidekiq for sending emails
 gem 'sidekiq'
+
+# Graphs
+gem 'chartkick'
+gem 'groupdate'
