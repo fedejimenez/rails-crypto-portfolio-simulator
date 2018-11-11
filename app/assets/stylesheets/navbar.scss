@@ -19,12 +19,11 @@ $blue: #008489;
 
 .navbar-header{
   padding: 10px 0;
+  padding-left: 20px;
   background-color: #ffffff;  
 }
 
 .navbar-nav > li > a {
-  // padding-top:30px;
-  // padding-bottom:30px;
   height: 80px;
   margin-top: 7px;
 }
@@ -36,6 +35,8 @@ $blue: #008489;
 
 .navbar-collapse{
   background-color: #ffffff;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 15px 2px !important;
+  border-radius: 4px !important;
   .navbar-nav li{ 
     color:#484848;
     font-weight: 600;
@@ -45,7 +46,7 @@ $blue: #008489;
     color:#484848;
     font-weight: 600;
     padding-top: 20px; 
-    border-bottom: 2px solid #ffffff
+    border-bottom: 2px solid #ffffff;
   }
   .navbar-nav a:hover{
     border-bottom: 2px solid #616161

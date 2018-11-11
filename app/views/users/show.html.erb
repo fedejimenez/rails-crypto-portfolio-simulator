@@ -30,7 +30,7 @@
             <div class="clearfix"></div><hr>
           <% end%> 
           <div class="col-md-2"></div>
-          <%= form.submit 'Save', class: 'col-md-8 btn btn-primary btn-large'  %>
+          <%= form.submit 'Save', class: 'col-md-8 btn-custom btn-custom-blue ripple'  %>
         <% end%>
       </div>
     </div>
@@ -46,10 +46,10 @@
     </div>
     <div class="panel-body">
       <%= render "user" %>
-    </div>
-    <div class="panel-footer">
-      <%= link_to 'Edit Profile', edit_user_path(current_user), class: "btn btn-primary" %>
-    </div>
+    </div><hr>
+    <div class="text-center col-md-12">
+      <%= link_to 'Edit Profile', edit_user_path(current_user), :class => 'ripple btn-custom btn-custom-blue', :style => 'color: white; text-decoration: none;' %>
+    </div><br><br>
 
   </div>
 </div>

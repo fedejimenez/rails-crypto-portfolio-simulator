@@ -4,11 +4,12 @@ body {font-family: "Lato", sans-serif;}
 .tab {
     float: left;
     border: 1px solid #ccc;
-    // background-color: #f1f1f1;
     background-color: white;
     width: 5%;
     height: auto;
-    margin-right: 5px;
+    margin-right: 20px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 10px 25px 2px;
+    border-radius: 4px;
 }
 
 /* Style the buttons inside the tab */
@@ -39,10 +40,12 @@ body {font-family: "Lato", sans-serif;}
 /* Style the tab content */
 .tabcontent {
     float: left;
-    padding: 0px 12px;
+    padding: 30px;
     border: 1px solid #ccc;
     width: 90%;
     height: auto;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 10px 25px 2px;
+    border-radius: 4px;
 }
 
 /* On screens that are less than 768px wide, make the sidebar into a topbar */

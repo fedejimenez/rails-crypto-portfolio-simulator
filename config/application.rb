@@ -20,5 +20,10 @@ module StockPortfolioSimulator
   	config.active_job.queue_adapter = Rails.env.production? ? :sidekiq : :async
     # config.action_mailer.deliver_later_queue_name = 'default_mailer_queue'
 
+    # Add fonts
+    config.assets.enabled = true
+    config.assets.paths << Rails.root.join("app", "assets", "fonts")
+    config.assets.paths << Rails.root.join('/app/assets/fonts')
+
   end
 end

@@ -110,3 +110,6 @@ gem 'sidekiq'
 # Graphs
 gem 'chartkick'
 gem 'groupdate'
+
+# Cryptocurrencies fonts
+gem 'cryptofont-rails'

@@ -9,7 +9,7 @@
         <span class="icon-bar"></span>
       </button>
 			<%= link_to root_path, class:"navbar-brand" do %>
-   			<%= image_tag("brand-logo.svg", width:"30px",  border: 0) %>
+   			<%= image_tag("brand-logo.svg", width:"30px",  border: 0, onClick: "history.go(0)") %>
 			<% end %>
     </div>
 
@@ -48,15 +48,7 @@
 						<% end %>	
 						<b class="caret"></b></a>
 						<ul class="dropdown-menu">
-              <li><%= link_to "Movements", portfolio_movements_path(current_portfolio.id) %></li> 
-		          <li><%= link_to "Edit Profile", user_path(current_user.id) %></li> 
-              <li><%= link_to "Messages", "#" %></li>
-		          <li><%= link_to "Invite Friends", "#" %></li>
-		          <li><%= link_to "Account Settings", "#" %></li>
-              <li><%= link_to "About Us", home_about_path %> </li>
-              <li><%= link_to "Help", home_about_path %></li>
-		          <li class="divider"></li>
-		          <li><%= link_to ("Log Out"), logout_path %></li>
+		          <li><%= link_to "Log Out", logout_path %></li>
 				    </ul>
 					</li>
 				<% end %>
