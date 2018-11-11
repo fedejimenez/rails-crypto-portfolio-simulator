@@ -1,30 +1,25 @@
-<p id="notice"><%= notice %></p>
-<strong id="last-updated">
-  <button class="pull-right btn btn-default" onClick="history.go(0)">
-    <i class="fa fa-repeat"> . </i>
-    <strong> <p class="pull-right"> Last Updated: <%= Time.now.strftime('%H:%M:%S') %></p></strong>
-  </button>
-</strong>
+<% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
 
-<h2><strong>Movements</strong></h2><br><br><br>
+<h3><strong>Movements</strong></h3><br><br>
 <div class="tab responsive">
   <button class="tablinks" onclick="openCity(event, 'details')" id="defaultOpen"><strong><i class="fa fa-list fa-2x"></i></strong></button>
   <button class="tablinks" onclick="openCity(event, 'graphs')"><strong><i class="fa fa-signal fa-2x"></i></strong></button>
 </div>
 
-<div id="details" class="tabcontent responsive"><br>
-  <div class="table table-responsive">
-    <table class="table table-responsive table-striped table-hover" id="table-movements">
-      <thead>
+<div id="details" class="tabcontent"><br>
+  <div class="table">
+    <table class="table table-hover text-center" id="table-movements">
+      <thead >
         <tr>
-          <th>Order Nr</th>
-          <th>Currency</th>
-          <th>Quantity</th>
-          <th>Price</th>
-          <th>Total Amount</th>
-          <th>Date</th>
-          <th>Operation</th>
-          <th colspan="3"></th>
+          <th class="text-center">Order Nr</th>
+          <th class="text-center">Currency</th>
+          <th class="text-center">Quantity</th>
+          <th class="text-center">Price</th>
+          <th class="text-center">Total Amount</th>
+          <th class="text-center">Date</th>
+          <th class="text-center">Operation</th>
         </tr>
       </thead>
       <tbody>

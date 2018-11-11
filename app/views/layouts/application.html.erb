@@ -23,7 +23,10 @@
   <body>
     
     <%= render 'home/navbar' %>
+    <%= render 'home/sidebar' %>
+
     <div class="container">
+      <%= render "home/last_updated" %>
       <%= yield %>
     </div>
 

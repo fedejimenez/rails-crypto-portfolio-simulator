@@ -4,6 +4,7 @@ class HomeController < ApplicationController
   include PortfoliosHelper
 
   def index
+    @cryptos = Crypto.all
     get_data_from_API
     get_historical_from_API
     current_portfolio

@@ -1,32 +1,25 @@
 <% flash.each do |key, value| %>
   <div class="alert alert-<%= key %>"><%= value %></div>
 <% end %>
-<strong id="last-updated">
-  <button class="pull-right btn btn-default" onClick="history.go(0)">
-    <i class="fa fa-repeat"> . </i>
-    <strong> <p class="pull-right"> Last Updated: <%= Time.now.strftime('%H:%M:%S') %></p></strong>
-  </button>
-</strong>
 
 <h3 class="text-muted"> <strong> Top 50 Crypto Currencies of the day</strong> </h3><br><br>
 <br>
-<div class="col-md-8">
-  <div class="">
-    <table class="table datatable table-responsive" id="table-index">
+
+<div class="col-md-6">
+  <div class="table custom-shadow">
+    <table class="table table-hover text-center" id="table-index">
       <thead class="">
-        <th>Rank</th>
-        <th>Symbol</th>
-        <th>Name</th>
-        <th>Price (U$D)</th>
-        <th> % (1 hs)</th>
-        <th> % (24 hs)</th>
+        <th class="text-center">Rank</th>
+        <th class="text-center">Symbol</th>
+        <th class="text-center">Price (U$D)</th>
+        <th class="text-center"> % (1 hs)</th>
+        <th class="text-center"> % (24 hs)</th>
       </thead>
       <tbody>
         <% @coins.each do |c| %>
           <tr>
             <td><%= c['rank'] %></td>
-            <td> <%= link_to c["symbol"], "/lookup?q=#{c['symbol']}" %> </td>
-            <td> <%= link_to c["name"], "/lookup?q=#{c['symbol']}" %> </td>
+            <td> <i class="cf cf-<%=c["symbol"].downcase %>"></i><abbr title="<%= c["name"] %>"><%= link_to c["symbol"], "/lookup?q=#{c['symbol']}" %></abbr></td>
             <td> <%= c["price_usd"].to_d.round(5) %> </td>
             <td class="color-text"> <%= c["percent_change_1h"] %> </td>
             <td class="color-text"> <%= c["percent_change_24h"] %> </td>
@@ -36,9 +29,9 @@
     </table>
   </div>
 </div>
-
-<div class="col-md-4">  
-  <div class="  panel-default ">
+<br><br>
+<div class="col-md-5">  
+  <div class="panel-default custom-shadow"><br><br>
     <div class="card">
         <h5 class="text-center"> <strong> <i class="fa fa-btc"></i> BTC Price (U$D) - Last Month </strong></h5>
     </div>

@@ -1,23 +1,4 @@
 module CryptosHelper
-  def get_data_from_API
-    require 'net/http'
-    require 'json'
-      @url = 'https://api.coinmarketcap.com/v1/ticker/?limit=50'
-      @uri = URI(@url)
-      @response = Net::HTTP.get(@uri)
-      @coins = JSON.parse(@response) 
-      @profit = 0
-  end 
-
-	def get_historical_from_API
-		require 'net/http'
-		require 'json'
-	    @url = 'https://api.coindesk.com/v1/bpi/historical/close.json'
-	    @uri = URI(@url)
-	    @response = Net::HTTP.get(@uri)
-	    @historical = JSON.parse(@response)['bpi'] 
-  end	
-
   def current_coin(symbol)
   	get_data_from_API
  		for c in @coins
@@ -25,19 +6,6 @@ module CryptosHelper
       	return c
       end
   	end
-  end
-
-  def calculate_profit
-  	 @cryptos.each do |crypto| 
-       if crypto.user_id == current_user.id 
-           for c in @coins 
-             if crypto.symbol == c["symbol"] 
-               @profit += (c["price_usd"].to_i * crypto.amount_owned.to_i)-(crypto.cost_per * crypto.amount_owned)
-            end
-          end 
-      end
-  	end
-  	return @profit
   end
 
   def calculate_quantity

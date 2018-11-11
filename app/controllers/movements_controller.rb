@@ -2,6 +2,8 @@ class MovementsController < ApplicationController
   before_action :set_movement, only: [:show, :edit, :update, :destroy]
   before_action :get_portfolio_and_crypto, only: [:create, :new]
 
+  include CryptosHelper
+  include PortfoliosHelper
   # GET /movements
   # GET /movements.json
   def index
