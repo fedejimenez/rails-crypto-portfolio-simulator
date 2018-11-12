@@ -72,12 +72,12 @@ body {
   border-radius: 0 0 0 5px;
   z-index: 1000;
   .panel .panel-body{
-    // background: rgba(51, 122, 183, 0.02);
     border: 1px solid rgba(51, 122, 183, 0.09);
   }
   .panel .panel-body a{
     color: #888888 !important;
     text-decoration: none !important;
+    transition: 0.5s;
   }
   .panel .panel-body a:hover{
     color:#111 !important;
@@ -99,7 +99,7 @@ body {
   top: 300px;
   right: -40px;
   margin-right: 0px;
-  background: rgba(51, 122, 183, 0.09);
+  background: rgba(51, 122, 183, 0.09); // #EDF3F9 
   transform: rotate(-90deg);
   @include transition(all, .3s, ease-out);
 }
@@ -110,7 +110,6 @@ body {
   i {
     transform: rotate(180deg);
   }
-
 }
 
 .rank {

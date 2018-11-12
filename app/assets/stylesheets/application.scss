@@ -59,7 +59,7 @@ body{
 
 .container{
 	margin: auto;
-  padding: 0px 100px 0px 30px; 
+  padding: 0px 100px 0px 10px; 
 }
 
 .container-fluid{
@@ -111,3 +111,9 @@ body{
   box-shadow: rgba(0, 0, 0, 0.15) 0px 10px 25px 2px;
   border-radius: 4px;
 }
+
+// Glyphicons sizes
+.gi-2x{font-size: 2em;}
+.gi-3x{font-size: 3em;}
+.gi-4x{font-size: 4em;}
+.gi-5x{font-size: 5em;}

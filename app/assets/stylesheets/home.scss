@@ -8,3 +8,18 @@
 .table-index abbr{
 	margin-left: 10px;
 }
+
+#last-updated{
+    transition: 0.5s;
+	strong{
+		color: #337AB7;
+	}
+	p{
+		padding-top: 5px;
+	}
+
+	i{
+		margin-right: 10px;
+		padding-top: 5px;
+	}
+}

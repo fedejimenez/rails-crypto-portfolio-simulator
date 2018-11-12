@@ -1,4 +1,4 @@
-function openCity(evt, cityName) {
+function toggleTabs(evt, cityName) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
     for (i = 0; i < tabcontent.length; i++) {

@@ -5,11 +5,11 @@
 <h3><strong>Portfolio Details </strong></h3><br><br>
 
 <div class="tab responsive">
-  <button class="tablinks" onclick="openCity(event, 'graphs-portfolio')" id="defaultOpen"><strong><i class="fa fa-signal fa-2x"></i></strong></button>
-  <button class="tablinks" onclick="openCity(event, 'details-portfolio')" ><strong><i class="fa fa-list fa-2x"></i></strong></button>
+  <button class="tablinks" onclick="toggleTabs(event, 'graphs-portfolio')" id="defaultOpen" title="General"><strong><i class="glyphicon glyphicon-stats fa-2x"></i></strong></button>
+  <button class="tablinks" onclick="toggleTabs(event, 'details-portfolio')" title="Details"><strong><i class="fa fa-list fa-2x"></i></strong></button>
 </div>
 
-<div id="details-portfolio" class="tabcontent"  ><br>
+<div id="details-portfolio" class="tabcontent" ><br>
   <div class="table">
     <table class="table table-hover table-condensed text-center" id="table-cryptos"  >
       <thead>
