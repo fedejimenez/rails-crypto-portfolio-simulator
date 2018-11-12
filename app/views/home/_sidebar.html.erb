@@ -3,7 +3,10 @@
     <div class="sidebar-offcanvas sidebar">
       <div class="panel panel-default custom-shadow">
         <div class="panel-body">
-          <h3><strong> <%= current_user.name %> </strong></h3>
+          <div class="rank"> 
+            <strong><i class="fa fa-trophy"></i><strong>
+            <%= @rank %> 
+          </div>
           <h3 class="text-primary ml-3"> 
             <strong>U$D <%= @initial_amount + @profit %> </strong> 
           </h3>

@@ -88,6 +88,9 @@ body {
     vertical-align: top !important;
     font-size: 16px;
   }
+  h3{
+    margin-top: 0px !important;
+  }
 }
 .btn-collapse {
   z-index: 1000;
@@ -106,5 +109,13 @@ body {
   
   i {
     transform: rotate(180deg);
+  }
+
+}
+
+.rank {
+  margin: -5px 0 7px 120px;
+  i{
+    color: orange;
   }
 }

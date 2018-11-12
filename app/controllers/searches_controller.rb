@@ -1,4 +1,6 @@
 class SearchesController < ApplicationController
+    before_action :calculate_profit
+
 	def new
 		@search = Search.new
 	end	

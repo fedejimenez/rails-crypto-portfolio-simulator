@@ -15,7 +15,7 @@
         <th class="text-center"> % (1 hs)</th>
         <th class="text-center"> % (24 hs)</th>
       </thead>
-      <tbody>
+      <tbody class="table-index">
         <% @coins.each do |c| %>
           <tr>
             <td><%= c['rank'] %></td>
@@ -42,34 +42,34 @@
     </div>
   </div>
 </div>
-
+<div class="clearfix"></div>
 
 <!--  Add Users Profit Rankings -->
 
-<!--   <div class="col-md-2 panel panel-default">
-    <div class="">
-      <h4 class="text-muted text-center"> Users Ranking</h4>
-    </div>
-    <div class="">
-      <table class="table">
-        <thead>
-            <th> User </th>
-            <th> Balance </th>
-        </thead>
-        <tbody>
+<div class="col-md-6">
+  <div class="table custom-shadow">
+    <table class="table table-hover text-center" id="table-ranking">
+      <thead>
+        <tr>
+          <th class="text-center"> Rank </th>
+          <th class="text-center"> User </th>
+          <th class="text-center"> Balance </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% User.all.each_with_index do |u,i| %>
           <tr>
-            <td>
-               User.all.each do |u| %>
-                = u.name.partition(" ").first %>
-              end %>
-            </td>
-            <td>
-               Portfolio.all.each do |p| %>
-               $  p.balance.round(2) %>
-              end %>
-            </td>
+              <td>
+              </td>
+              <td>
+                  <%= u.name.split(' ').first %>
+              </td>
+              <td>
+                  <%= @initial_amount + @profit_array[i] %>
+              </td>
           </tr>
-        </tbody>
-      </table>
-    </div>
-  </div> -->
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

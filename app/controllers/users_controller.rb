@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   include UsersHelper
+  before_action :calculate_profit
 
   before_action :correct_user, only: [:edit, :update, :destroy, :show]
 

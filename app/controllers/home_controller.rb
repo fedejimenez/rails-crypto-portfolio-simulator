@@ -3,11 +3,9 @@ class HomeController < ApplicationController
   include CryptosHelper
   include PortfoliosHelper
 
+  before_action :calculate_profit
+  
   def index
-    @cryptos = Crypto.all
-    get_data_from_API
-    get_historical_from_API
-    current_portfolio
   end
 
   def about 
