@@ -54,4 +54,20 @@ module ApplicationHelper
 	@rank = @hash_ranking.find_index { |k,_| k== current_user.id } + 1 
   end
 
+  def find_icon(icon)
+    icons = ["adc","aeo","amp","anc","ard","aur","bay","bcn","brk","brx","bsd","bta","btc","bts","das","dcr",
+    	"dgb","dgd","dgx","dmd","emc","erc","etc","eth","fct","flo","frk","ftc","gld","gnt","btc-alt",
+    	"cloak","btcd","clam","doge","game","heat","incnt","kore","kobo","ldoge","grc","grs","icn","ifc",
+    	"ioc","kmd","lbc","lsk","ltc","mue","nlg","nmc","nuc","nxt","maid","mint","mona","neos","note",
+    	"ok","omni","pink","pivx","pot","ppc","qrk","rby","rdd","rep","rise","sjcx","sls","steem","strat",
+    	"sys","trig","ubq","unity","usdt","vrc","vtc","waves","xcp","xem","xmr","xrp","zec"]
+
+    if icons.include?(icon)
+      return "cf cf-#{icon}"
+    else
+      return "glyphicon glyphicon-usd"
+    end
+  end
+
 end
+

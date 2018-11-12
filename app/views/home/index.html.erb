@@ -19,7 +19,7 @@
         <% @coins.each do |c| %>
           <tr>
             <td><%= c['rank'] %></td>
-            <td> <i class="cf cf-<%=c["symbol"].downcase %>"></i><abbr title="<%= c["name"] %>"><%= link_to c["symbol"], "/lookup?q=#{c['symbol']}" %></abbr></td>
+            <td> <i class="<%=find_icon(c['symbol'].downcase)%>"</i><abbr title="<%= c["name"] %>"><%= link_to c["symbol"], "/lookup?q=#{c['symbol']}" %></abbr></td>
             <td> <%= c["price_usd"].to_d.round(5) %> </td>
             <td class="color-text"> <%= c["percent_change_1h"] %> </td>
             <td class="color-text"> <%= c["percent_change_24h"] %> </td>
