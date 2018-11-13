@@ -28,5 +28,6 @@ $(document).on('turbolinks:load', function() {
 	 $('#table-movements').parent().addClass('table-responsive');
 	 $('#table-index').parent().addClass('table-responsive');
 	 $('#table-cryptos').parent().addClass('table-responsive');
+	 $('#table-ranking').parent().addClass('table-responsive');
 
 })

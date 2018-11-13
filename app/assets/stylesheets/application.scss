@@ -56,6 +56,8 @@
 body{
 	margin:auto;
   padding-top: 0px;
+  overflow-x: hidden;
+  overflow-y: visible;
 }
 
 .container{
@@ -117,3 +119,13 @@ body{
 .gi-3x{font-size: 3em;}
 .gi-4x{font-size: 4em;}
 .gi-5x{font-size: 5em;}
+
+// Flash messages 
+.page-alerts {
+    margin-bottom: 20px;
+}
+
+.page-alerts .page-alert {
+    border-radius: 0;
+    margin-bottom: 0;
+}

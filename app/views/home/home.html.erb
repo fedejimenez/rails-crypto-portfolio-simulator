@@ -2,10 +2,8 @@
 	<%= render 'home/landing' %>
 <% else%>
 
-	<% flash.each do |key, value| %>
-	  <div class="alert alert-<%= key %>"><%= value %></div>
-	<% end %>
-
+	<%= render 'layouts/flash' %>
+	
 	<h3><strong>Dashboard </strong></h3><br><br>
 
 	<div class="tab responsive">

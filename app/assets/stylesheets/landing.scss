@@ -26,6 +26,10 @@
 
 .banner-content{
   text-align: center;
+  a, a:visited{
+    color: white !important;
+    text-decoration: none;
+  }
 }
 
 .banner-content h1 {
@@ -79,6 +83,81 @@
     font-size: 18px;
   }
 }
+
+// Buttons signup/login
+
+.btn-min-block {
+    min-width: 170px;
+}
+
+.btn-theme {
+    color: #fff;
+    border: 2px solid white !important;
+    margin-right: 15px;
+    font-size: 20px !important;
+    font-weight: 600 ;
+    text-decoration: none;
+}
+.btn-theme:active{
+  color: #fff !important;
+}
+
+.btn-theme:hover {
+    color: #000 !important;
+    background-color: #fff;
+    border-color: #fff;
+    text-shadow: none !important;
+}
+
+//=================================
+
+
+//==========================================
+//          FadeInUp Animation
+//==========================================
+
+/* Animation */
+
+@keyframes fadeInUp {
+    from {
+        transform: translate3d(0,60px,0)
+    }
+
+    to {
+        transform: translate3d(0,0,0);
+        opacity: 1
+    }
+}
+
+@-webkit-keyframes fadeInUp {
+    from {
+        transform: translate3d(0,60px,0)
+    }
+
+    to {
+        transform: translate3d(0,0,0);
+        opacity: 1
+    }
+}
+
+.animated {
+    animation-duration: 3s;
+    animation-fill-mode: both;
+    -webkit-animation-duration: 3s;
+    -webkit-animation-fill-mode: both
+}
+
+.animatedFadeInUp {
+    opacity: 0
+}
+
+.fadeInUp {
+    opacity: 0;
+    animation-name: fadeInUp;
+    -webkit-animation-name: fadeInUp;
+}
+
+//===========================================
 
 #footer-index{
   margin: 0;

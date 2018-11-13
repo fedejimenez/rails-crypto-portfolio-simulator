@@ -1,3 +1,5 @@
+<%= render 'layouts/flash' %>
+
 <% if logged_in? %> 
 	<% @crypto.each do |c| %>
 		<% if c['amount_owned'] != 0 %>

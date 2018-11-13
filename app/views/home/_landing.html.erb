@@ -1,15 +1,16 @@
 <div class="container-landing">
   <div class="banner">
-    <div class="banner-content">
+    <div class="banner-content animated animatedFadeInUp fadeInUp">
       <h1>My playground app</h1><br>
       <p>This is the important line everyone reads..</p><br><br><br><br>
-      <p>
-        <a href="#" class="btn btn-primary btn-lg">Start</a>
-      </p>
+      <div>
+        <a class="btn btn-theme btn-sm btn-min-block" data-toggle="modal" data-target= "#at-login" href="#">Login</a>
+        <a class="btn btn-theme btn-sm btn-min-block" data-toggle="modal" data-target= "#at-signup" href="#">Register</a>
+      </div>
     </div>
   </div>
   <div class="container-index">
-    <div class="row">
+    <div class="row animated animatedFadeInUp fadeInUp">
       <div class="col-xs-12 col-sm-6 col-md-3">
         <div class="card">
           <%= image_tag("briefcase.png", width:"100px", alt: "picture description") %>
@@ -40,9 +41,9 @@
       </div>
     </div>
   </div>
-  <div class="text-center" id="footer-index">
-    <p>This is my playground landing page</p><br>
-    <ul class="list-inline">
+  <div class="text-center " id="footer-index">
+    <p class="animated animatedFadeInUp fadeInUp">This is my playground landing page</p><br>
+    <ul class="list-inline animated animatedFadeInUp fadeInUp">
       <li><a href="#"><i class="fa fa-youtube fa-2x"></i></a></li>
       <li><a href="#"><i class="fa fa-facebook fa-2x"></i></a></li>
       <li><a href="#"><i class="fa fa-twitter fa-2x"></i></a></li>
@@ -51,3 +52,4 @@
   </div>
 </div>
   
+<%= javascript_include_tag 'fadeinup-animation' %>
