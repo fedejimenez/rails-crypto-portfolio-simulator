@@ -12,7 +12,6 @@ class HomeController < ApplicationController
   end
 
   def lookup
-    get_data_from_API
     @crypto = Crypto.all
     respond_to do |format|
       format.html {

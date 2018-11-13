@@ -10,11 +10,19 @@ $blue: #008489;
 }
 
 .navbar {
-  min-height:80px !important
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
 }
 
 .navbar-default{
   margin: 0px;
+}
+
+.navbar-fixed-top {
+}
+
+.navbar-fixed-top, .navbar-fixed-bottom {
+  position: relative; /* this can also be static */
 }
 
 .navbar-header{
@@ -114,32 +122,6 @@ $blue: #008489;
 .search-icon{
   display: inline;
   padding-left: 20px;
-}
-
-/*========================================================================
-                 NAVBAR SUBMENU (FOR FILTERS) 
- ========================================================================*/
-.navbar-secondary{
-  position: fixed;
-  top: 80px;
-  width: 100%;
-  z-index: 1;
-  margin-bottom: 50px;
-}
-
-#myCollapseBar2{
-  vertical-align: middle;
-  padding-left: 75px;
-  padding-top: 10px;
-  padding-bottom: 5px;
-  border-bottom: 1px solid #ddd;
-  button{
-    margin: 8px;
-  }
-  .dropdown-menu{
-  box-shadow: rgba(0, 0, 0, 0.15) 0px 14px 36px 2px;
-  border-radius: 4px;
-  }
 }
 
  /*========================================================================

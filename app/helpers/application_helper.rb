@@ -1,4 +1,6 @@
 module ApplicationHelper
+  include UsersHelper
+
   def get_data_from_API
     require 'net/http'
     require 'json'
@@ -18,10 +20,10 @@ module ApplicationHelper
   end	
 
   def calculate_profit
-    @initial_amount = 10000
-    @cryptos = Crypto.all
     get_data_from_API
     get_historical_from_API
+    @initial_amount = 10000
+    @cryptos = Crypto.all
     @profit = 0
     @array_ids = []
     @profit_array = User.all.length.times.collect{|i| 0}
@@ -41,8 +43,11 @@ module ApplicationHelper
       end
     end
     # Find the position of the object current_user
-    position = User.all.map(&:id).index(current_user.id.to_i)
-    @profit = @profit_array[position]
+    if logged_in?
+      position = User.all.map(&:id).index(current_user.id.to_i)
+      @profit = @profit_array[position]
+    end
+
     update_ranking
     return @profit, @profit_array
   end
@@ -51,7 +56,11 @@ module ApplicationHelper
     @length = Array(1..User.all.length)
     @hash_profit = Hash[@array_ids.uniq.zip(@profit_array)]
   	@hash_ranking = @hash_profit.sort_by {|k,v| -v}.to_h
-	@rank = @hash_ranking.find_index { |k,_| k== current_user.id } + 1 
+
+    # Update current user position
+    if logged_in?
+	   @rank = @hash_ranking.find_index { |k,_| k== current_user.id } + 1 
+    end
   end
 
   def find_icon(icon)

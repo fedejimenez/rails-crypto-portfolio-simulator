@@ -1,0 +1,102 @@
+// ==========================================================
+// ================ LANDING PAGE ============================
+// ==========================================================
+
+/* style.css */
+
+.container-landing{
+}
+
+.banner{
+  background-image: url("wallpaper.jpg");
+  background-size: cover;
+  
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center; 
+  
+  color: white;
+  text-shadow: 1px 1px 5px black;
+  display: flex;
+  height: 100vh;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.banner-content{
+  text-align: center;
+}
+
+.banner-content h1 {
+  color: white;
+  font-size: 50px;
+}
+
+.banner-content p {
+  color: white;
+  opacity: 0.7;
+  font-size: 30px;
+  font-weight: lighter;
+}
+
+.container-index{
+  // background: rgba(255, 249, 192, 0.2); 
+  // background-image: url("background.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center; 
+  h1{
+    font-family: Courier;
+    color: red;
+    font-weight: lighter;
+    font-size: 50px;
+    text-shadow: 1px 1px 5px black;
+
+  }
+  h2 {
+    font-family: Courier;
+    color: black;
+    font-size: 25px;
+    font-weight: bold;
+    text-shadow: 1px 1px 1px black;
+
+  }
+  a {
+    color: lightblue;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: none;
+    color: green;
+  }
+
+
+  .card{
+    padding: 100px 50px;
+    text-align: center;
+    font-weight: lighter;
+    font-size: 18px;
+  }
+}
+
+#footer-index{
+  margin: 0;
+  padding: 80px;
+  background: rgb(30, 30, 30);
+  color: lightgrey;
+  a {
+    color: lightgrey;
+    font-size: 20px;
+  }
+  a:hover {
+    color: white;
+  }
+  p{
+    margin: 20px;
+    font-size: 16px;
+  }
+  i{
+    padding: 10px;
+  }
+}

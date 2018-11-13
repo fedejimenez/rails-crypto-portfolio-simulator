@@ -23,12 +23,15 @@
   <body>
     
     <%= render 'home/navbar' %>
-    <%= render 'home/sidebar' %>
-
-    <div class="container">
-      <%= render "home/last_updated" %>
+    <% if logged_in? %>
+      <%= render 'home/sidebar' %>
+      <div class="container">
+          <%= render "home/last_updated" %>
+        <%= yield %>
+      </div>
+    <% else %>      
       <%= yield %>
-    </div>
+    <% end %>
 
   </body>
 </html>

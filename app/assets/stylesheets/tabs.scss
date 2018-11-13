@@ -42,7 +42,7 @@ body {font-family: "Lato", sans-serif;}
 .tab button.active {
     background-color: #222;
 }
-.tab button.active, button:hover{  
+.tab button.active, .tab button:hover{  
     opacity: 1;
     filter: alpha(opacity=100); /* For IE8 and earlier */
     transform: scale(1.1, 1.1);

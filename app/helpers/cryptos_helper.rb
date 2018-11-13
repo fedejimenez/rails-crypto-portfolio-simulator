@@ -1,6 +1,5 @@
 module CryptosHelper
   def current_coin(symbol)
-  	get_data_from_API
  		for c in @coins
       if symbol == c["symbol"]
       	return c

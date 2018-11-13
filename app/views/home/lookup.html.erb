@@ -1,9 +1,3 @@
-<% flash.each do |key, value| %>
-  <div class="alert alert-<%= key %>"><%= value %></div>
-<% end %>
-
-<br>
-
 <% if logged_in? %> 
 	<% @crypto.each do |c| %>
 		<% if c['amount_owned'] != 0 %>

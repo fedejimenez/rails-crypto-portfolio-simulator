@@ -68,7 +68,7 @@ body {
 }
 
 .sidebar {
-  margin-top: 100px;
+  margin-top: 30vh;
   border-radius: 0 0 0 5px;
   z-index: 1000;
   .panel .panel-body{
@@ -96,7 +96,7 @@ body {
   z-index: 1000;
   position: absolute;
   border-radius: 5px 5px 0 0;
-  top: 300px;
+  top: 50vh;
   right: -40px;
   margin-right: 0px;
   background: rgba(51, 122, 183, 0.09); // #EDF3F9 
