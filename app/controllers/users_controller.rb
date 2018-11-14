@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   include UsersHelper
+  before_action :calculate_profit
 
   before_action :correct_user, only: [:edit, :update, :destroy, :show]
 
@@ -15,10 +16,10 @@ class UsersController < ApplicationController
   		session[:user_id] = user.id
       flash[:success] = "User was successfully created!! Now you have U$D 10000 to start the game!!"
       sign_in(user)
-      redirect_to root_path
+      redirect_to home_path, turbolinks: false
     else
       flash[:warning] = "Oh no! There was a problem and the User was not created"
-  		redirect_to '/'
+      redirect_to root_path, turbolinks: false
   	end
   end
 

@@ -5,10 +5,10 @@ class CryptosController < ApplicationController
   before_action :set_crypto, only: [:show, :edit, :update, :destroy]
   before_action :authorize
   before_action :correct_user, only: [:edit, :update, :destroy, :show]
+  before_action :calculate_profit
   rescue_from ActiveRecord::RecordNotFound, with: :handle_record_not_found
   after_action :calculate_quantity, only: [:update]
   after_action :update_portfolio_balance, only: [:update, :create]
-
   # GET /cryptos
   # GET /cryptos.json
   def index

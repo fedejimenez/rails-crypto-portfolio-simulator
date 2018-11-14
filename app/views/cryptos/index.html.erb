@@ -5,11 +5,11 @@
 <h3><strong>Portfolio Details </strong></h3><br><br>
 
 <div class="tab responsive">
-  <button class="tablinks" onclick="openCity(event, 'graphs-portfolio')" id="defaultOpen"><strong><i class="fa fa-signal fa-2x"></i></strong></button>
-  <button class="tablinks" onclick="openCity(event, 'details-portfolio')" ><strong><i class="fa fa-list fa-2x"></i></strong></button>
+  <button class="tablinks" onclick="toggleTabs(event, 'graphs-portfolio')" id="defaultOpen" title="General"><strong><i class="glyphicon glyphicon-stats fa-2x"></i></strong></button>
+  <button class="tablinks" onclick="toggleTabs(event, 'details-portfolio')" title="Details"><strong><i class="fa fa-list fa-2x"></i></strong></button>
 </div>
 
-<div id="details-portfolio" class="tabcontent"  ><br>
+<div id="details-portfolio" class="tabcontent" ><br>
   <div class="table">
     <table class="table table-hover table-condensed text-center" id="table-cryptos"  >
       <thead>
@@ -48,8 +48,6 @@
                   <% @current_amount << (c["price_usd"].to_d * crypto.amount_owned.to_d).round(2) %>
                   <td> $ <%= @current_amount.last %> </td>
                   <td> <span class="color-text"> <%= @balance = ((c["price_usd"].to_d * crypto.amount_owned.to_d)-(crypto.cost_per.to_d * crypto.amount_owned.to_d)).round(2) %> </span> </td>
-                  <!-- Calculate Profit  -->
-                       <% @profit += @balance %> 
                 <% end %>
               <% end %>
               <td> <%= link_to 'New Order', edit_crypto_path(crypto) %></td>
@@ -68,7 +66,7 @@
       <div class="col-md-4">
         <br>
         <p><br>
-          <strong>Total Portfolio Profit (U$D): </strong> <p class="text-center"> <span class= "color-text"><%= @profit.to_d.round(2) %>  (% <%= ((@profit.to_d)*100/current_portfolio.balance).round(2) %> )</span> </p>
+          <strong>Total Portfolio Profit (U$D): </strong> <p class="text-center"> <span class= "color-text"><%= @profit.to_d.round(2) %>  (% <%= ((@profit.to_d)*100/@initial_amount).round(2) %> )</span> </p>
         </p><hr>
         <p><br>
           <strong>Total Amount Invested: </strong><p class="text-center"> U$D <%= @t_invested = @initial_amount - current_portfolio.balance.round(2) %> </p> 

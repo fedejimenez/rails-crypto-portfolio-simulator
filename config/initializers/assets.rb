@@ -15,13 +15,13 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 
 Rails.application.config.assets.precompile += %w( validation.js )
 Rails.application.config.assets.precompile += %w( tabs.js )
+Rails.application.config.assets.precompile += %w( fadeinup-animation.js )
+Rails.application.config.assets.precompile += %w( tabs-slides.js )
 
 # Fonts
 Rails.application.config.assets.precompile << /\.(?:svg|eot|woff|ttf)\z/
 Rails.application.config.assets.precompile += %w( cryptofont.css )
 
-Rails.application.config.assets.precompile += %w( '.ttf' ) 
-Rails.application.config.assets.precompile += %w( '.eot' ) 
-Rails.application.config.assets.precompile += %w( '.woff' ) 
-Rails.application.config.assets.precompile += %w( '.woff2' ) 
+Rails.application.config.assets.precompile += %w( .svg .eot .woff .woff2 .ttf )
+
 

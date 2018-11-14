@@ -26,6 +26,8 @@
 //= require_tree .
 //= stub 'validation'
 //= stub 'tabs'
+//= stub 'fadeinup-animation'
+//= stub 'tabs-slides'
 
 // Add style to search bar (easyAutocomplete)
 
@@ -58,4 +60,12 @@ $(document).on('turbolinks:load', function() {
   $('[data-toggle=offcanvas]').click(function () {
     $('.row-offcanvas').toggleClass('active');
   });
+});
+
+// Flash Messages - Close
+$(function() {
+    $('.page-alert .close').click(function(e) {
+        e.preventDefault();
+        $(this).closest('.page-alert').slideUp();
+    });
 });

@@ -1,12 +1,9 @@
 <h2><strong>Edit My Profile</strong></h2>
 
-<% flash.each do |key, value| %>
-  <div class="alert alert-<%= key %>"><%= value %></div>
-<% end %>
+<%= render 'layouts/flash' %>
 
 <% form_for current_user, url: {action: "update"} do |f| %>
   <%= render :partial => "form", :object => f %>
-
   <%= f.submit "Update" %>
 <% end %>
 

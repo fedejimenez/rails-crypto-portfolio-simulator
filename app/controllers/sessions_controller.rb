@@ -13,11 +13,12 @@ class SessionsController < ApplicationController
       flash[:success] = 'Successfully Logged In!'
       session[:user_id] = user.id
       sign_in(user)
-      redirect_to root_path
+      redirect_to home_path, turbolinks: false
+
     else
     # If user's login doesn't work, send them back to the login form.
       flash[:warning] = 'Invalid Username or Password'
-      redirect_to '/'
+      redirect_to root_path, turbolinks: false
     end
   end
 
@@ -25,7 +26,7 @@ class SessionsController < ApplicationController
     session[:user_id] = nil
     reset_session
     flash[:success] = 'Successfully Logged Out!'
-    redirect_to '/'
+    redirect_to root_path, turbolinks: false
   end
 
   def create_from_omniauth
@@ -36,19 +37,19 @@ class SessionsController < ApplicationController
     if authentication.user
       user = authentication.user
       authentication.update_token(auth_hash)
-      @next = root_url
+      @next = home_path
       flash[:success] = 'Successfully Logged In!'
     # else: user logs in with OAuth for the first time
     else
       user = User.create_with_auth_and_hash(authentication, auth_hash)
       # you are expected to have a path that leads to a page for editing user details
       # @next = edit_user_path(user)
-      @next = root_path
+      @next = home_path
       flash[:success] = 'User was successfully created, now you have U$D 10000 to start the game!'
     end
     session[:user_id] = user.id
     sign_in(user)
-    redirect_to @next
+    redirect_to @next , turbolinks: false
   end
 
 end

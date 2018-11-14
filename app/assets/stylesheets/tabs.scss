@@ -3,28 +3,36 @@ body {font-family: "Lato", sans-serif;}
 /* Style the tab */
 .tab {
     float: left;
-    border: 1px solid #ccc;
-    background-color: white;
-    width: 5%;
+    background-color: none;
+    width: 6%;
     height: auto;
-    margin-right: 20px;
-    box-shadow: rgba(0, 0, 0, 0.15) 0px 10px 25px 2px;
-    border-radius: 4px;
+    margin-right: 25px;
 }
 
 /* Style the buttons inside the tab */
 .tab button {
+    font-size: 17px;
+    color: black;
     display: block;
     background-color: inherit;
-    color: black;
-    padding: 22px 16px;
-    width: 100%;
-    border: none;
+    width: 4vw;
+    height: 4vw;
+    padding: 16px 0 22px 0;
+    margin-bottom: 10px;
+    text-align: center;
+    vertical-align: center;
     outline: none;
-    text-align: left;
     cursor: pointer;
-    transition: 0.3s;
-    font-size: 17px;
+    opacity: 0.3;
+    filter: alpha(opacity=30); /* For IE8 and earlier */
+    border-radius: 4px;
+    transition: 0.5s;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 7px 20px 2px;
+    border: 1px solid #ccc;
+    i{
+        color: #F09A34;
+        font-size: 2vw;
+    }
 }
 
 /* Change background color of buttons on hover */
@@ -34,15 +42,22 @@ body {font-family: "Lato", sans-serif;}
 
 /* Create an active/current "tab button" class */
 .tab button.active {
-    background-color: #bbb;
+    background-color: #222;
 }
-
+.tab button.active, .tab button:hover{  
+    opacity: 1;
+    filter: alpha(opacity=100); /* For IE8 and earlier */
+    transform: scale(1.1, 1.1);
+    -ms-transform: scale(1.1, 1.1);
+    -webkit-transform: scale(1.1, 1.1);
+    border: 1px solid #ccc;
+}
 /* Style the tab content */
 .tabcontent {
     float: left;
     padding: 30px;
     border: 1px solid #ccc;
-    width: 90%;
+    width: 87%;
     height: auto;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 10px 25px 2px;
     border-radius: 4px;
@@ -51,9 +66,12 @@ body {font-family: "Lato", sans-serif;}
 /* On screens that are less than 768px wide, make the sidebar into a topbar */
 @media screen and (max-width: 768px) {
   .tab {
-    width: 100%;
+    width: 100% !important;
     height: auto;
     position: relative;
+    button{
+        width: 90% !important;
+    }
   }
   .tab a {float: left;}
   div.content {margin-left: 0;}
