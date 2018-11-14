@@ -1,9 +1,12 @@
 class HomeController < ApplicationController
   # before_action :authorize
   include CryptosHelper
+  include UsersHelper
   include PortfoliosHelper
 
-  before_action :calculate_profit
+  before_action :calculate_profit, except: [:landing]
+  before_action :get_historical_from_API, only: [:home]
+
   
   def index
   end
@@ -19,7 +22,7 @@ class HomeController < ApplicationController
 
   def home
     if !logged_in?
-      redirect_to root, turbolinks: false
+      redirect_to root_path, turbolinks: false
     end
   end
 

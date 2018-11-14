@@ -49,7 +49,7 @@ $blue: #008489;
     padding-top: 20px; 
     border-bottom: 2px solid #ffffff;
   }
-  .navbar-nav a:hover{
+  .navbar-nav a:hover, .navbar-nav a.active{
     border-bottom: 2px solid #616161
   }
 }

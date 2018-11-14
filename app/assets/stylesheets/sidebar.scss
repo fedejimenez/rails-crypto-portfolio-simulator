@@ -22,24 +22,24 @@
 @media screen and (min-width: 768px) {
   .row-offcanvas {
     position: relative;
-    right: 12%;
+    right: 13vw;
     @include transition(all, .3s, ease-out);
     &.active {
        right: 0; /* 3 columns */
       .content {
-        width: 100%; /* 12 columns */
+        width: 15vw; /* 12 columns */
       }      
     }
     .content {
-      width: 75%; /* 9 columns */
+      width: 12vw; /* 9 columns */
       float: right;
       @include transition(all, .3s, ease-out);
     }
     .sidebar-offcanvas {
       position: absolute;
       top: 0;
-      width: 25%; /* 3 columns */
-      right: -25%; /* 3 columns */
+      width: 25vw; /* 3 columns */
+      right: -25vw; /* 3 columns */
     }
   }
 }
@@ -73,23 +73,29 @@
   z-index: 1000;
   .panel .panel-body{
     border: 1px solid rgba(51, 122, 183, 0.09);
+    width: 90vw;
   }
   .panel .panel-body a{
     color: #888888 !important;
     text-decoration: none !important;
     transition: 0.5s;
+    i{
+      font-size: 1vw;
+      padding-top: 0.2vw;
+    }
   }
   .panel .panel-body a:hover{
     color:#111 !important;
   }
   .panel .panel-body .sidebar-text{
-    padding: 20px 0px 10px 15px !important;
+    padding: 20px 0px 10px 0.6vw !important;
     display: inline;
     vertical-align: top !important;
-    font-size: 16px;
+    font-size: 1vw;
   }
   h3{
     margin-top: 0px !important;
+    font-size: 1.5vw;
   }
 }
 .btn-collapse {
@@ -113,8 +119,9 @@
 }
 
 .rank {
-  margin: -5px 0 7px 120px;
+  margin: -5px 0 7px 7vw;
   i{
     color: orange;
+    font-size: 0.3vw;
   }
 }

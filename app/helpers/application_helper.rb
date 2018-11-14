@@ -4,24 +4,32 @@ module ApplicationHelper
   def get_data_from_API
     require 'net/http'
     require 'json'
-	  @url = 'https://api.coinmarketcap.com/v1/ticker/?limit=50'
-	  @uri = URI(@url)
-	  @response = Net::HTTP.get(@uri)
-	  @coins = JSON.parse(@response) 
+    require "open-uri"
+    @url_API = 'https://api.coinmarketcap.com/v1/ticker/?limit=50'
+    @uri_API = URI(@url_API)
+    http_API = Net::HTTP.new(@uri_API.host, @uri_API.port)
+    http_API.use_ssl = true
+    http_API.verify_mode = OpenSSL::SSL::VERIFY_PEER
+    @response_API = Net::HTTP.get(@uri_API)
+    @coins = JSON.parse(@response_API) 
   end 
 
   def get_historical_from_API
-	require 'net/http'
-	require 'json'
-    @url = 'https://api.coindesk.com/v1/bpi/historical/close.json'
-    @uri = URI(@url)
-    @response = Net::HTTP.get(@uri)
-    @historical = JSON.parse(@response)['bpi'] 
-  end	
+    require 'net/http'
+    require 'json'
+    require "open-uri"
+    @url_hist = 'https://api.coindesk.com/v1/bpi/historical/close.json'
+    @uri_hist = URI(@url_hist)
+    http_hist = Net::HTTP.new(@uri_hist.host, @uri_hist.port)
+    http_hist.use_ssl = true
+    http_hist.verify_mode = OpenSSL::SSL::VERIFY_PEER
+    @response_hist = URI.parse(@url_hist).read
+    # @response_hist = Net::HTTP.get(@uri_hist)
+    @historical = JSON.parse(@response_hist)['bpi'] 
+  end 
 
   def calculate_profit
     get_data_from_API
-    get_historical_from_API
     @initial_amount = 10000
     @cryptos = Crypto.all
     @profit = 0

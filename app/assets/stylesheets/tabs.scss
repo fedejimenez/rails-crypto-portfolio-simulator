@@ -3,7 +3,6 @@ body {font-family: "Lato", sans-serif;}
 /* Style the tab */
 .tab {
     float: left;
-    // border: 1px solid #ccc;
     background-color: none;
     width: 6%;
     height: auto;
@@ -13,13 +12,15 @@ body {font-family: "Lato", sans-serif;}
 /* Style the buttons inside the tab */
 .tab button {
     font-size: 17px;
-    text-align: left;
     color: black;
     display: block;
     background-color: inherit;
-    width: 100%;
-    padding: 22px 0 22px 25px;
-    margin: 0px 0px 15px 0;
+    width: 4vw;
+    height: 4vw;
+    padding: 16px 0 22px 0;
+    margin-bottom: 10px;
+    text-align: center;
+    vertical-align: center;
     outline: none;
     cursor: pointer;
     opacity: 0.3;
@@ -30,6 +31,7 @@ body {font-family: "Lato", sans-serif;}
     border: 1px solid #ccc;
     i{
         color: #F09A34;
+        font-size: 2vw;
     }
 }
 
@@ -64,18 +66,21 @@ body {font-family: "Lato", sans-serif;}
 /* On screens that are less than 768px wide, make the sidebar into a topbar */
 @media screen and (max-width: 768px) {
   .tab {
-    width: 100%;
+    width: 100% !important;
     height: auto;
     position: relative;
+    button{
+        width: 90% !important;
+    }
   }
   .tab a {float: left;}
   div.content {margin-left: 0;}
 }
 
 /* On screens that are less than 400px, display the bar vertically, instead of horizontally */
-// @media screen and (max-width: 400px) {
-//   .tab a {
-//     text-align: center;
-//     float: none;
-//   }
-// }
+@media screen and (max-width: 400px) {
+  .tab a {
+    text-align: center;
+    float: none;
+  }
+}

@@ -44,9 +44,9 @@
   font-weight: lighter;
 }
 
-.container-index{
+.container-why-how{
   // background: rgba(255, 249, 192, 0.2); 
-  height: 50vh;
+  height: 60vh;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center; 
@@ -75,9 +75,34 @@
     text-decoration: none;
     color: green;
   }
-  p{
-    padding: 20px 200px; 
-    font-size: 18px;
+  .text-slide{
+    text-align: center;
+    align-items: center; 
+    width: 100%;
+    height: 55vh;
+    float: left;
+    overflow: hidden;
+    position: relative;
+    p{
+      padding: 0 5vw;
+      font-size: 1.4em;
+      line-height: 2.6em;
+    }
+  }
+  .text-slide:before{
+    content: '';
+    display: block;
+    width: 50%;
+    margin-left: 12vw;
+    height: 3px;
+    background-color: #888;
+    position: absolute;
+    bottom: 0;
+    transform: scale3d(0.4, 1, 1);
+    transition: all 1s ease;
+  }
+  .text-slide:hover:before {
+    transform: scale3d(0.7, 1, 1);
   }
 }
 
@@ -86,7 +111,8 @@
 // ===========================================
 
 #section-tabs{
-  height: 20vh;
+  height: 30vh;
+  padding-top: 3vh;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center; 
@@ -95,8 +121,7 @@
 }
 
 .wrimagecard{ 
-  margin-top: 0;
-  margin-bottom: 1.5rem;
+  margin: 0 10px 1.5rem 5px;
   text-align: left;
   position: relative;
   background: #fff;
@@ -105,20 +130,21 @@
   transition: all 0.3s ease;
   opacity: 0.2;
 }
-.wrimagecard .fa{
+.wrimagecard .fa, .wrimagecard .glyphicon{
   position: relative;
     font-size: 70px;
 }
 .wrimagecard-topimage_header{
-padding: 20px;
+  padding: 20px;
 }
-a.wrimagecard:hover, .wrimagecard-topimage:hover {
+a.wrimagecard:hover, .wrimagecard-topimage:hover, .wrimagecard-topimage.active {
   text-decoration: none !important;
   box-shadow: 12px 15px 20px 0px rgba(46,61,73,0.15);
+  transform: scale(1.1, 1.1);
+    -ms-transform: scale(1.1, 1.1);
+    -webkit-transform: scale(1.1, 1.1);
 }
 .wrimagecard-topimage.active {
-  text-decoration: none !important;
-  box-shadow: 12px 15px 20px 0px rgba(46,61,73,0.15);
   opacity: 1 !important;
 }
 .wrimagecard-topimage a {
@@ -177,6 +203,52 @@ a.wrimagecard:hover, .wrimagecard-topimage:hover {
     text-shadow: none !important;
 }
 
+//=============================================
+//   Return to Top Button
+//=============================================
+/* ---------- Go to top button -------------*/
+#return-to-top {
+    position: fixed;
+    bottom: 150px;
+    right: 20px;
+    background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.8);
+    width: 80px;
+    height: 80px;
+    display: block;
+    z-index: 1;
+    text-decoration: none;
+    -webkit-border-radius: 35px;
+    -moz-border-radius: 35px;
+    border-radius: 40px;
+    display: none;
+    -webkit-transition: all 0.3s linear;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+#return-to-top i {
+    color: #fff;
+    margin: 0;
+    position: relative;
+    left: 31px;
+    top: 36px;
+    font-size: 19px;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+#return-to-top:hover {
+    background: rgba(0, 0, 0, 0.9);
+}
+#return-to-top:hover i {
+    color: #fff;
+    top: 15px;
+}
+/* ----------------------------------------- */
 //==========================================
 //          FadeInUp Animation
 //==========================================

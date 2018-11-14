@@ -27,6 +27,7 @@
 //= stub 'validation'
 //= stub 'tabs'
 //= stub 'fadeinup-animation'
+//= stub 'tabs-slides'
 
 // Add style to search bar (easyAutocomplete)
 

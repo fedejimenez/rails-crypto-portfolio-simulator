@@ -20,25 +20,26 @@
  */
 
 @import "bootstrap";
+@import "bootstrap-sprockets";
 @import "font-awesome";
 @import "cryptofont";
 
 /* Override Bootstrap 3 font locations */
 @font-face {
   font-family: 'Glyphicons Halflings';
-  src: font-url('../assets/glyphicons-halflings-regular.eot');
-  src: font-url('../assets/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
-    font-url('../assets/glyphicons-halflings-regular.woff') format('woff'),
-    font-url('../assets/glyphicons-halflings-regular.woff2') format('woff'),
-    font-url('../assets/glyphicons-halflings-regular.ttf') format('truetype'),
-    font-url('../assets/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+  src: url('../assets/glyphicons-halflings-regular.eot');
+  src: url('../assets/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
+  url('../assets/glyphicons-halflings-regular.woff') format('woff'),
+  url('../assets/glyphicons-halflings-regular.woff2') format('woff'),
+  url('../assets/glyphicons-halflings-regular.ttf') format('truetype'),
+  url('../assets/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }
 
 @font-face {
   font-family: 'CryptoFont';
   src: font-url('cryptofont-webfont.eot');
   src: font-url('cryptofont-webfont.eot?#iefix') format('embedded-opentype'),
-       font-url('cryptofont-webfont.woff') format('woff2'),
+       // font-url('cryptofont-webfont.woff2') format('woff2'),
        font-url('cryptofont-webfont.woff') format('woff'),
        font-url('cryptofont-webfont.ttf') format('truetype'),
        font-url('cryptofont-webfont.svg#cryptofont-webfont') format('svg');
