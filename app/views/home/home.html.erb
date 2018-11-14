@@ -79,7 +79,7 @@
                   <%= @initial_amount + @profit_array[i] %>
               </td>
               <td>
-                  <span class= "color-text"><%= ((@profit.to_d)*100/current_portfolio.balance).round(2) %> % </span>
+                  <span class= "color-text"><%= ((@profit_array[i].to_d)*100/@initial_amount).round(2) %> % </span>
               </td>
           </tr>
         <% end %>

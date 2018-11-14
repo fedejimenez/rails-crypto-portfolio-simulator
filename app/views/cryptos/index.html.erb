@@ -66,7 +66,7 @@
       <div class="col-md-4">
         <br>
         <p><br>
-          <strong>Total Portfolio Profit (U$D): </strong> <p class="text-center"> <span class= "color-text"><%= @profit.to_d.round(2) %>  (% <%= ((@profit.to_d)*100/current_portfolio.balance).round(2) %> )</span> </p>
+          <strong>Total Portfolio Profit (U$D): </strong> <p class="text-center"> <span class= "color-text"><%= @profit.to_d.round(2) %>  (% <%= ((@profit.to_d)*100/@initial_amount).round(2) %> )</span> </p>
         </p><hr>
         <p><br>
           <strong>Total Amount Invested: </strong><p class="text-center"> U$D <%= @t_invested = @initial_amount - current_portfolio.balance.round(2) %> </p> 

@@ -18,7 +18,7 @@ module ApplicationHelper
     require 'net/http'
     require 'json'
     require "open-uri"
-    @url_hist = 'https://api.coindesk.com/v1/bpi/historical/close.json'
+    @url_hist = 'http://api.coindesk.com/v1/bpi/historical/close.json'
     @uri_hist = URI(@url_hist)
     http_hist = Net::HTTP.new(@uri_hist.host, @uri_hist.port)
     http_hist.use_ssl = true

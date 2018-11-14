@@ -23,7 +23,7 @@
     <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="">
-          <%= link_to "ADVANCED SEARCH", new_search_path, class: "", role: "button" %>
+          <%= link_to "ADVANCED SEARCH", new_search_path, class: "section-advanced", role: "button" %>
         </li>
       </ul>  
       <ul class="nav navbar-nav navbar-center">
@@ -43,7 +43,7 @@
           <li><%= link_to 'LOG IN', users_path, { :class => 'section-login dropdown-toggle', 'data-toggle' => 'modal', 'data-target' => '#at-login'} %></li> 
           <li> <a href="javascript:void(0)" class="section-help" >HELP</a> </li>
           <li> <a href="javascript:void(0)" class="section-tabs" >FEATURES</a> </li>
-          <li> <a href="javascript:void(0)" class="section-about">ABOUT ME</a> </li>
+          <li> <a href="javascript:void(0)" class="section-about">ABOUT</a> </li>
 
 				<% end %>
 				<% if logged_in? %>
