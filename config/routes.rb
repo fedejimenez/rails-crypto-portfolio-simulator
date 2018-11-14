@@ -1,8 +1,9 @@
 require 'sidekiq/web'
 Rails.application.routes.draw do
   # Homepage
-  root 'home#home'
-  get 'home/about'
+  root 'home#landing'
+  get '/about' => 'home#about'
+  get '/home' => 'home#home'
   get :lookup, controller: :home
   post '/lookup' => 'home#lookup'
   resources :searches

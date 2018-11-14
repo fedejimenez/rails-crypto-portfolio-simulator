@@ -11,6 +11,18 @@ class HomeController < ApplicationController
   def about 
   end
 
+  def landing
+    if logged_in?
+      redirect_to home_path, turbolinks: false
+    end
+  end
+
+  def home
+    if !logged_in?
+      redirect_to root, turbolinks: false
+    end
+  end
+
   def lookup
     @crypto = Crypto.all
     respond_to do |format|
