@@ -72,19 +72,17 @@ module ApplicationHelper
   end
 
   def find_icon(icon)
-    icons = ["adc","aeo","amp","anc","ard","aur","bay","bcn","brk","brx","bsd","bta","btc","bts","das","dcr",
-    	"dgb","dgd","dgx","dmd","emc","erc","etc","eth","fct","flo","frk","ftc","gld","gnt","btc-alt",
-    	"cloak","btcd","clam","doge","game","heat","incnt","kore","kobo","ldoge","grc","grs","icn","ifc",
-    	"ioc","kmd","lbc","lsk","ltc","mue","nlg","nmc","nuc","nxt","maid","mint","mona","neos","note",
-    	"ok","omni","pink","pivx","pot","ppc","qrk","rby","rdd","rep","rise","sjcx","sls","steem","strat",
-    	"sys","trig","ubq","unity","usdt","vrc","vtc","waves","xcp","xem","xmr","xrp","zec"]
+    icons = ["ada","bat","bch","bcn", "bnb", "btc","btg", "btm","bts", "dash","dcr",
+    	"dgb","doge","eos","etc","eth","icx","lsk","ltc","miota","nano","neo","omg","ppt",
+      "qtum","sc","trx","usdt","waves","xem","xlm","xmr", "xrp","xtz", "xvg", "zec"]
 
     if icons.include?(icon)
-      return "cf cf-#{icon}"
+      return "https://cryptospaniards.com/simulator/static/coins/#{icon}.png"
     else
-      return "glyphicon glyphicon-usd"
+      return "https://www.glyphicons.com/img/glyphicons/basic/2x/glyphicons-basic-227-dollar@2x.png"
     end
   end
+
 
 end
 

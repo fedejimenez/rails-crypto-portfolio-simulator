@@ -12,7 +12,7 @@
 
   <div class="clearfix"></div>
 
-  <section class="container-why-how animated animatedFadeInUp fadeInUp" id="section-help">
+  <section class="container-two-columns animated animatedFadeInUp fadeInUp" id="section-help">
     <div class=" col-md-6">
       <div class="text-slide">
       <h1> WHAT?</h1>
@@ -29,9 +29,9 @@
         <p>Start learning and playing now!</p>
       </div>
     </div>
+    <div class="clearfix"></div><br><br>
   </section>
 
-  <div class="clearfix"></div><br><br>
 
   <!-- Tabs Buttons with images -->
   <section class="animated animatedFadeInUp fadeInUp" id="section-tabs">
@@ -85,11 +85,9 @@
         </a>
       </div>
     </div>
-  </section>
 
-  <!-- Tabs Content -->
-  <div class="col-md-8 col-md-offset-2 animated animatedFadeInUp fadeInUp"> 
-    <div class="slider-container" id="slider-container">
+    <!-- Tabs Content -->
+    <div class="slider-container col-md-8 col-md-offset-2 animated animatedFadeInUp fadeInUp" id="slider-container">
       <div class="slider-outer clearfix" id="slider-outer">
         <div class="slide clearfix">
             <div class="slide-thump"><img src="https://d2lm6fxwu08ot6.cloudfront.net/img-thumbs/960w/DI64TAJTIS.jpg"/>
@@ -141,11 +139,11 @@
         </div>
       </div>
     </div>
-  </div>
+    <div class="clearfix"></div>
+  </section>
 
-  <div class="clearfix"></div>
   <!--  About -->
-  <section class="container-why-how animated animatedFadeInUp fadeInUp" id="section-about">
+  <section class="container-two-columns animated animatedFadeInUp fadeInUp" id="section-about">
     <div class=" col-md-6">
       <div class="text-slide">
       <h1> ABOUT ME</h1>
@@ -194,36 +192,36 @@
         delay);
   });
 
-  $(".section-help").click(function() {
-    $(".section-help").addClass('active');
-    $(".section-tabs").removeClass('active');
-    $(".section-about").removeClass('active');
-    
-    $('html, body').animate({
-        scrollTop: $("#section-help").offset().top -85},
-        delay);
+  //smoothscroll
+  $(document).on("scroll", onScroll);
+  $('.sections').on('click', function (e) {
+      e.preventDefault();
+      $('.sections a').each(function () {
+          $(this).removeClass('active');
+      })
+      $(this).addClass('active');
+      var target = this.hash,
+          menu = target;
+      $target = $(target);
+      $('html, body').stop().animate({
+          'scrollTop': $target.offset().top-85},delay);
   });
 
-  $(".section-tabs").click(function() {
-    $(".section-help").removeClass('active');
-    $(".section-tabs").addClass('active');
-    $(".section-about").removeClass('active');
-    
-    $('html, body').animate({
-        scrollTop: $("#section-tabs").offset().top -85},
-        delay);
-  });
+  function onScroll(event){
+      var scrollPos = $(document).scrollTop();
+      $('.sections').each(function () {
+        var currLink = $(this);
+        var refElement = $(currLink.attr("href"));
+        if (refElement.position().top-86 <= scrollPos && refElement.position().top-86 + refElement.height() > scrollPos) {
+            $('.sections').removeClass("active");
+            currLink.addClass("active");
+        }
+        else{
+            currLink.removeClass("active");
+        }
+      });
+  }
 
-  $(".section-about").click(function() {
-    $(".section-help").removeClass('active');
-    $(".section-tabs").removeClass('active');
-    $(".section-about").addClass('active');
-
-    $('html, body').animate({
-        scrollTop: $("#section-about").offset().top -85},
-        delay);
-  });
-  
   // When the user scrolls down 50px from the top of the document, show the button
   $(window).scroll(function() {
       if ($(this).scrollTop() >= 50) {        // If page is scrolled more than 50px
@@ -235,7 +233,7 @@
   $('#return-to-top').click(function() {      // When arrow is clicked
       $('body,html').animate({
           scrollTop : 0                       // Scroll to top of body
-      }, 500);
+      }, 1000);
   });
 
 </script>

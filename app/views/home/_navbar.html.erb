@@ -41,9 +41,9 @@
         <% if !logged_in? %>
           <li><%= link_to 'SIGN UP', users_path, { :class => 'section-signup dropdown-toggle', 'data-toggle' => 'modal', 'data-target' => '#at-signup'} %></li> 
           <li><%= link_to 'LOG IN', users_path, { :class => 'section-login dropdown-toggle', 'data-toggle' => 'modal', 'data-target' => '#at-login'} %></li> 
-          <li> <a href="javascript:void(0)" class="section-help" >HELP</a> </li>
-          <li> <a href="javascript:void(0)" class="section-tabs" >FEATURES</a> </li>
-          <li> <a href="javascript:void(0)" class="section-about">ABOUT</a> </li>
+          <li> <a href="#section-help" class="sections" >HELP</a> </li>
+          <li> <a href="#section-tabs" class="sections" >FEATURES</a> </li>
+          <li> <a href="#section-about" class="sections">ABOUT</a> </li>
 
 				<% end %>
 				<% if logged_in? %>
