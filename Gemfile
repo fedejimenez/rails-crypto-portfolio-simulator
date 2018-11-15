@@ -113,3 +113,6 @@ gem 'groupdate'
 
 # Cryptocurrencies fonts
 gem 'cryptofont-rails'
+
+#Security Update
+gem "rack", ">= 2.0.6"

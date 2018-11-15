@@ -1,5 +1,7 @@
 class Portfolio < ApplicationRecord
 	has_many :cryptos, :dependent => :destroy
+	has_many :movements, :dependent => :destroy
+
   	after_create :default_values
 
 	def default_values

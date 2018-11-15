@@ -51,6 +51,7 @@
   background-attachment: fixed;
   background-position: center; 
   text-align: center;
+  display: flex;
   align-items: center;
   h1{
     font-family: Courier;
@@ -114,7 +115,7 @@
   height: 90vh;
   padding-top: 5vh;
   // background-image: url("wallpaper.jpg");
-  
+
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;

@@ -5,8 +5,8 @@ class HomeController < ApplicationController
   include PortfoliosHelper
 
   before_action :calculate_profit, except: [:landing]
-  before_action :get_historical_from_API, only: [:home]
-
+  before_action :get_monthly_from_API, only: [:home, :index]
+  before_action :get_historical_from_API, only: [:home, :index]
   
   def index
   end

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root 'home#landing'
   get '/about' => 'home#about'
   get '/home' => 'home#home'
+  get '/home/index' => 'home#index'
   get :lookup, controller: :home
   post '/lookup' => 'home#lookup'
   resources :searches

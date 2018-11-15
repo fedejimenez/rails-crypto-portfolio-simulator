@@ -1,4 +1,7 @@
+<div id="header-navbar">
+  
 <nav class="navbar navbar-default navbar-expand-custom navbar-fixed-top">
+
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -45,22 +48,22 @@
           <li> <a href="#section-tabs" class="sections" >FEATURES</a> </li>
           <li> <a href="#section-about" class="sections">ABOUT</a> </li>
 
-				<% end %>
-				<% if logged_in? %>
-			  	<li class="dropdown nav-right">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-						<% if current_user.avatar.blank? %>
-							<%= image_tag("avatar.svg", :alt => "avatar", id:"img-avatar") %>
-						<% else %>	
-						  <%= image_tag(current_user.avatar.url, :alt => "avatar", id:"img-avatar") %>
-						<% end %>	
-						<b class="caret"></b></a>
-						<ul class="dropdown-menu">
-		          <li><%= link_to "LOG OUT", logout_path, onClick: "history.go(0)" %></li>
-				    </ul>
-					</li>
-				<% end %>
-    	</ul>
+        <% end %>
+        <% if logged_in? %>
+          <li class="dropdown nav-right">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <% if current_user.avatar.blank? %>
+              <%= image_tag("avatar.svg", :alt => "avatar", id:"img-avatar") %>
+            <% else %>  
+              <%= image_tag(current_user.avatar.url, :alt => "avatar", id:"img-avatar") %>
+            <% end %> 
+            <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><%= link_to "LOG OUT", logout_path, onClick: "history.go(0)" %></li>
+            </ul>
+          </li>
+        <% end %>
+      </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
@@ -260,4 +263,5 @@
       </section>
     </div>
   </div>
+</div>
 </div>

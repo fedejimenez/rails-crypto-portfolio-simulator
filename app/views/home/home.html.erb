@@ -46,9 +46,7 @@
         <h4 class="text-center"> <strong> <i class="fa fa-btc"></i> BTC Price (U$D) - Last Month </strong></h4>
     </div>
     <div class="panel-body">
-      <!-- Append current value, and graph -->
-      <% @historical.store(Time.now().strftime('%Y-%m-%d'), @coins.first['price_usd'] ) %>
-      <%= line_chart @historical, min: nil, max: nil, prefix: "$ " %>
+      <%= line_chart @monthly, min: nil, max: nil, prefix: "$ " %>
     </div>
   </div>
 </div>

@@ -11,6 +11,15 @@
     <!--  JQuery form validation -->
     <%= javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/jquery.validate.min.js" %>
     <%= javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/additional-methods.min.js" %>
+
+    <!-- Chart Movements -->
+    <link href="https://cdn.jsdelivr.net/npm/chartist@0.11.0/dist/chartist.min.css" rel="stylesheet">
+    <!-- Chart BTC -->
+    <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+    <script src="https://www.amcharts.com/lib/3/serial.js"></script>
+    <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+    <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
     
     <meta charset="UTF-8">
     <meta name=viewport content="width=device-width, initial-scale=1">
@@ -22,14 +31,17 @@
 
   <body>
     
-    <%= render 'home/navbar' %>
     <% if logged_in? %>
       <%= render 'home/sidebar' %>
-      <div class="container">
+      <!-- <div class="container"> -->
+      <div id="right-panel" class="right-panel">
+          <%= render 'home/navbar' %>
+
           <%= render "home/last_updated" %>
         <%= yield %>
       </div>
-    <% else %>      
+    <% else %> 
+      <%= render 'home/navbar' %>     
       <%= yield %>
     <% end %>
 
