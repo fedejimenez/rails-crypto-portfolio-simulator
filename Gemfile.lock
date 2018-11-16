@@ -1,3 +1,20 @@
+GIT
+  remote: git://github.com/amatsuda/kaminari.git
+  revision: c5186f5d9b7f23299d115408e62047447fd3189d
+  specs:
+    kaminari (1.1.1)
+      activesupport (>= 4.1.0)
+      kaminari-actionview (= 1.1.1)
+      kaminari-activerecord (= 1.1.1)
+      kaminari-core (= 1.1.1)
+    kaminari-actionview (1.1.1)
+      actionview
+      kaminari-core (= 1.1.1)
+    kaminari-activerecord (1.1.1)
+      activerecord
+      kaminari-core (= 1.1.1)
+    kaminari-core (1.1.1)
+
 GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
@@ -330,6 +347,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   jquery-datatables-rails (~> 3.4.0)
   jquery-rails
+  kaminari!
   listen (>= 3.0.5, < 3.2)
   loofah (>= 2.2.3)
   mini_magick

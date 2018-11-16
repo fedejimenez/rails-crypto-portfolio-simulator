@@ -60,4 +60,5 @@ class User < ApplicationRecord
 		mail.deliver_later
         # UserJob.perform_later(@user.id)
 	end
+
 end

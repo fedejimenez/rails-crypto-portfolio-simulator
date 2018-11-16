@@ -81,7 +81,6 @@ module ApplicationHelper
       @profit = @profit_array[position]
     end
 
-    update_ranking
     return @profit, @profit_array
   end
 

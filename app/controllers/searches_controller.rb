@@ -12,6 +12,10 @@ class SearchesController < ApplicationController
 
 	def show
 		@search = Search.find(params[:id])
+
+		# Search advanced
+		@search_filtered = Kaminari.paginate_array([@search.advanced_search], total_count: @search.advanced_search.count).page(params[:page]).per(10)
+
 	end
 
 	private

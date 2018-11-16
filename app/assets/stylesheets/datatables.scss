@@ -8,3 +8,16 @@ table tr th{
   text-align:left;
   vertical-align:center;
 }
+
+#tab-ranking{
+	.row{
+		text-align: left !important;
+		.col-sm-6{
+			width: 0% !important;
+		}
+	}
+}
+
+#table-ranking tbody tr td{
+	line-height: 5vh !important;
+}
