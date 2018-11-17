@@ -41,9 +41,13 @@
         <%= yield %>
       </div>
     <% else %> 
+    <div class="container-fluid">
+      
       <%= render 'home/navbar' %>     
       <%= yield %>
+    </div>
     <% end %>
+
 
   </body>
 </html>

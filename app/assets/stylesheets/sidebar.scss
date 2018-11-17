@@ -1,130 +1,130 @@
-/* Variables */
+// /* Variables */
 
-/* Mixins*/
-@mixin transition($transition-property, $transition-time, $method) {
-    -webkit-transition: $transition-property $transition-time $method;
-    -moz-transition: $transition-property $transition-time $method;
-    -ms-transition: $transition-property $transition-time $method;
-    -o-transition: $transition-property $transition-time $method;
-    transition: $transition-property $transition-time $method;
-}
-
-
-/* Style tweaks */
-// html, 
-// body {
-//   overflow-x: hidden; /* Prevent scroll on narrow devices */
-//   height: 100%;
+// /* Mixins*/
+// @mixin transition($transition-property, $transition-time, $method) {
+//     -webkit-transition: $transition-property $transition-time $method;
+//     -moz-transition: $transition-property $transition-time $method;
+//     -ms-transition: $transition-property $transition-time $method;
+//     -o-transition: $transition-property $transition-time $method;
+//     transition: $transition-property $transition-time $method;
 // }
 
-/* Off Canvas */
 
-@media screen and (min-width: 768px) {
-  .row-offcanvas {
-    position: relative;
-    right: 13vw;
-    @include transition(all, .3s, ease-out);
-    &.active {
-       right: 0; /* 3 columns */
-      .content {
-        width: 15vw; /* 12 columns */
-      }      
-    }
-    .content {
-      width: 12vw; /* 9 columns */
-      float: right;
-      @include transition(all, .3s, ease-out);
-    }
-    .sidebar-offcanvas {
-      position: absolute;
-      top: 0;
-      width: 25vw; /* 3 columns */
-      right: -25vw; /* 3 columns */
-    }
-  }
-}
+// /* Style tweaks */
+// // html, 
+// // body {
+// //   overflow-x: hidden; /* Prevent scroll on narrow devices */
+// //   height: 100%;
+// // }
 
-@media screen and (max-width: 767px) {
-  .row-offcanvas {
-    right: 0;
-    position: relative;
-    @include transition(all, .3s, ease-out);
-    &.active {
-      right: 50%; /* 6 columns */
-    }
-  }
-  .sidebar-offcanvas {
-    position: absolute;
-    top: 0;
-    width: 50%; /* 6 columns */
-    right: -50%; /* 6 columns */
-  }
-}
+// /* Off Canvas */
 
-/* styling the sidebar and the toggle button */
+// @media screen and (min-width: 768px) {
+//   .row-offcanvas {
+//     position: relative;
+//     right: 13vw;
+//     @include transition(all, .3s, ease-out);
+//     &.active {
+//        right: 0; /* 3 columns */
+//       .content {
+//         width: 15vw; /* 12 columns */
+//       }      
+//     }
+//     .content {
+//       width: 12vw; /* 9 columns */
+//       float: right;
+//       @include transition(all, .3s, ease-out);
+//     }
+//     .sidebar-offcanvas {
+//       position: absolute;
+//       top: 0;
+//       width: 25vw; /* 3 columns */
+//       right: -25vw; /* 3 columns */
+//     }
+//   }
+// }
 
-.content {
-  position: relative;
-}
+// @media screen and (max-width: 767px) {
+//   .row-offcanvas {
+//     right: 0;
+//     position: relative;
+//     @include transition(all, .3s, ease-out);
+//     &.active {
+//       right: 50%; /* 6 columns */
+//     }
+//   }
+//   .sidebar-offcanvas {
+//     position: absolute;
+//     top: 0;
+//     width: 50%; /* 6 columns */
+//     right: -50%; /* 6 columns */
+//   }
+// }
 
-.sidebar {
-  margin-top: 30vh;
-  border-radius: 0 0 0 5px;
-  z-index: 1000;
-  .panel .panel-body{
-    border: 1px solid rgba(51, 122, 183, 0.09);
-    width: 90vw;
-  }
-  .panel .panel-body a{
-    color: #888888 !important;
-    text-decoration: none !important;
-    transition: 0.5s;
-    i{
-      font-size: 1vw;
-      padding-top: 0.2vw;
-    }
-  }
-  .panel .panel-body a:hover{
-    color:#111 !important;
-  }
-  .panel .panel-body .sidebar-text{
-    padding: 20px 0px 10px 0.6vw !important;
-    display: inline;
-    vertical-align: top !important;
-    font-size: 1vw;
-  }
-  h3{
-    margin-top: 0px !important;
-    font-size: 1.5vw;
-  }
-}
-.btn-collapse {
-  z-index: 1000;
-  position: absolute;
-  border-radius: 5px 5px 0 0;
-  top: 50vh;
-  right: -40px;
-  margin-right: 0px;
-  background: rgba(51, 122, 183, 0.09); // #EDF3F9 
-  transform: rotate(-90deg);
-  @include transition(all, .3s, ease-out);
-}
-.row-offcanvas.active .btn-collapse {
-  right: 0;
-  @include transition(all, .3s, ease-out);
+// /* styling the sidebar and the toggle button */
+
+// .content {
+//   position: relative;
+// }
+
+// .sidebar {
+//   margin-top: 30vh;
+//   border-radius: 0 0 0 5px;
+//   z-index: 1000;
+//   .panel .panel-body{
+//     border: 1px solid rgba(51, 122, 183, 0.09);
+//     width: 90vw;
+//   }
+//   .panel .panel-body a{
+//     color: #888888 !important;
+//     text-decoration: none !important;
+//     transition: 0.5s;
+//     i{
+//       font-size: 1vw;
+//       padding-top: 0.2vw;
+//     }
+//   }
+//   .panel .panel-body a:hover{
+//     color:#111 !important;
+//   }
+//   .panel .panel-body .sidebar-text{
+//     padding: 20px 0px 10px 0.6vw !important;
+//     display: inline;
+//     vertical-align: top !important;
+//     font-size: 1vw;
+//   }
+//   h3{
+//     margin-top: 0px !important;
+//     font-size: 1.5vw;
+//   }
+// }
+// .btn-collapse {
+//   z-index: 1000;
+//   position: absolute;
+//   border-radius: 5px 5px 0 0;
+//   top: 50vh;
+//   right: -40px;
+//   margin-right: 0px;
+//   background: rgba(51, 122, 183, 0.09); // #EDF3F9 
+//   transform: rotate(-90deg);
+//   @include transition(all, .3s, ease-out);
+// }
+// .row-offcanvas.active .btn-collapse {
+//   right: 0;
+//   @include transition(all, .3s, ease-out);
   
-  i {
-    transform: rotate(180deg);
-  }
-}
+//   i {
+//     transform: rotate(180deg);
+//   }
+// }
 
-.rank {
-  margin: -5px 0 7px 7vw;
-  i{
-    color: orange;
-    font-size: 0.3vw;
-  }
-}
+// .rank {
+//   margin: -5px 0 7px 7vw;
+//   i{
+//     color: orange;
+//     font-size: 0.3vw;
+//   }
+// }
 
 //=========================================================
 /* This css file is to over write bootstarp css
@@ -677,15 +677,15 @@ canvas {
 aside.left-panel {
   background: #fff;
   height: 100vh;
+  width: 225px;
   padding: 0;
   vertical-align: top;
-  width: 280px;
   -webkit-box-shadow: 1px 0 20px rgba(0, 0, 0, 0.08);
           box-shadow: 1px 0 20px rgba(0, 0, 0, 0.08);
   position: fixed;
   left: 0;
   bottom: 0;
-  top: 90px;
+  top: 55px;
   z-index: 999; }
   aside.left-panel:hover {
     overflow-x: scroll; }
@@ -694,13 +694,12 @@ aside.left-panel {
   overflow-x: inherit; }
 
 .small-device .right-panel {
-  margin-left: 83px; }
+  margin-left: 85px !important; }
 
-aside{ 
   .navbar {
-    background: #fff;
+    background: #fff !important;
     border-radius: 0;
-    border: none;
+    border: none !important;
     display: inline-block;
     margin: 0;
     padding: 0;
@@ -836,7 +835,7 @@ aside{
     line-height: 20px;
     margin-right: 15px;
     text-align: center; }
-}
+// }
 
 .open .navbar .navbar-brand.hidden {
   display: block; }
@@ -939,10 +938,10 @@ aside{
 
 /* Right panel */
 .right-panel {
-  background: #cde6fa !important;
-  margin-left: 280px;
-  margin-top: 85px; 
-  height: 90vh; 
+  margin-left: 225px;
+  padding-top: 55px; 
+  height: 100%;
+  background-color: #C9DBFC;
 }
 
   .right-panel .top-left {
@@ -993,12 +992,12 @@ aside{
   top: 0;
   z-index: 999; }
 .right-panel .navbar-brand {
-  width: 250px;
+  width: 150px;
   display: inline-block; }
 .right-panel .menutoggle {
   padding-top: 7px; }
 .right-panel .navbar-header {
-  width: 5%;
+  width: 100%;
   background-color: #fff;
   // padding: 0 1.25em 0 0;
    }
@@ -1136,7 +1135,9 @@ header .form-inline {
     right: 0 !important;
     -webkit-box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
             box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
-    line-height: 35px; }
+    line-height: 35px; 
+  }
+
     .header-left .dropdown .dropdown-menu p {
       font-size: 15px;
       margin: 0;
@@ -1318,7 +1319,7 @@ header .form-inline {
 
 .content {
   float: left;
-  padding: 1.875em 1.875em 0 1.875em;
+  padding: 1.875em;
   width: 100%;
 }
 
@@ -1560,7 +1561,8 @@ header .form-inline {
 #flotPie1 {
   height: 90px; }
   #flotPie1 .pieLabel {
-    display: none; }
+    // display: none; 
+  }
   #flotPie1 .legend tr {
     padding-bottom: 5px; }
   #flotPie1 .legendColorBox {
@@ -2197,6 +2199,19 @@ header .form-inline {
 .badges h1, .badges h2, .badges h3, .badges h4, .badges h5, .badges h6 {
   margin: 5px 0; }
 
+.badge {
+  color: white;
+  padding: 10px;
+  text-transform: uppercase;
+  font-weight: normal; 
+}
+.badge-complete {
+  background-color: #00c292 !important; 
+}
+.badge-pending {
+  background-color: #fb9678 !important; 
+} 
+
 .vue-lists ul, .vue-lists ol {
   padding-left: 30px; }
 
@@ -2550,8 +2565,8 @@ footer.site-footer {
         -ms-flex: none;
             flex: none; } }
 @media (max-width: 768px) {
-  .navbar {
-    height: 100vh; }
+  aside.navbar {
+    height: 100vh; 
     .navbar .navbar-nav li.menu-item-has-children > a:before {
       display: block !important; }
     .navbar .main-menu {
@@ -2560,6 +2575,7 @@ footer.site-footer {
 
   .left-panel {
     display: none; }
+  }
 
   aside.left-panel {
     overflow: scroll; }

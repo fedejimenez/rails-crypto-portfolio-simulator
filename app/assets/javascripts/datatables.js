@@ -4,6 +4,10 @@
 
 $(document).on('turbolinks:load', function() {
 	 $('#table-movements').DataTable({
+	 	"iDisplayLength": 10,
+    	"order": [[ 2, "desc" ]],
+    	"lengthChange": false,
+    	"info": false
 	 });
 
 	 $('#table-index').DataTable({

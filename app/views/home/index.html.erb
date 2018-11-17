@@ -89,7 +89,7 @@
                     <div class="row">
                         <div class="col-lg-8">
                             <div class="card-body">
-                                <div id="chartdiv" style="width: 50vw; height: 40vh;" ></div>
+                                <div id="charthistorical" style="width: 50vw; height: 40vh;padding-top: 2vh;" ></div>
                             </div>
                         </div>
                         <div class="col-lg-4">
@@ -214,7 +214,7 @@
 <!--  Chart BTC -->
 <script>
     var data = [<%= raw @array_of_hashes.to_json %>];
-    var chart = AmCharts.makeChart("chartdiv", {
+    var chartHistorical = AmCharts.makeChart("charthistorical", {
         "type": "serial",
         "theme": "light",
         "marginRight": 40,
@@ -235,6 +235,7 @@
         },
         "graphs": [{
             "id": "g1",
+            "fillAlphas": 0.4,
             "balloon":{
               "drop":true,
               "adjustBorderColor":false,
@@ -292,11 +293,11 @@
         }
     });
 
-    chart.addListener("rendered", zoomChart);
+    chartHistorical.addListener("rendered", zoomChart);
 
     zoomChart();
 
     function zoomChart() {
-        chart.zoomToIndexes(chart.dataProvider.length - 40, chart.dataProvider.length - 1);
+        chartHistorical.zoomToIndexes(chartHistorical.dataProvider.length - 40, chartHistorical.dataProvider.length - 1);
     }    
 </script>
