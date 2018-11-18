@@ -1,127 +1,31 @@
 // =============================================================================
 //                        NAVBAR
 // =============================================================================
-// $dark-grey: #616161;
-// $light-grey: #bdc3c7;
-// $blue: #008489;
+.btn-space{
+  margin-right: 15px;
+}
+.container-fluid > .not-logged{
+  position: fixed;
+  width: 100%;
+  background-color: white;
+  z-index: 1000;
+  a.active{
+    color: black;
+  }
+}
 
-// #header-navbar{
-//   .nav{
-//     color: #484848;
-//   }
-
-//   .navbar {
-//     margin-top: 0px !important;
-//     margin-bottom: 0px !important;
-//   }
-
-//   .navbar-default{
-//     margin: 0px;
-//   }
-
-//   .navbar-header{
-//     padding: 10px 0;
-//     padding-left: 20px;
-//     background-color: #ffffff;  
-//   }
-
-//   .navbar-nav > li > a {
-//     height: 80px;
-//     margin-top: 7px;
-//   }
-
-//   .navbar-nav a{
-//     padding-top: 25px !important;
-//   }
-
-
-//   .navbar-collapse{
-//     background-color: #ffffff;
-//     box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 15px 2px !important;
-//     border-radius: 4px !important;
-//     .navbar-nav li{ 
-//       color:#484848;
-//       font-weight: 600;
-//       padding-right: 10px;
-//     }
-//     .navbar-nav a{ 
-//       color:#484848;
-//       font-weight: 600;
-//       padding-top: 20px; 
-//       border-bottom: 2px solid #ffffff;
-//     }
-//     .navbar-nav a:hover, .navbar-nav a.active{
-//       border-bottom: 2px solid #616161
-//     }
-//   }
-
-//   .nav-logo{
-//     a{
-//       align-items: center;
-//       text-decoration: none;
-//     }
-//     i{  
-//       color: #616161;
-//     }
-//     img{
-//       width: 85px;
-//       }
-//   }
-
-//   .nav-links{
-//   }
-
-//   .nav-right{
-//     img{
-//       width: 35px;
-//       height: 35px;
-//       border-radius: 50%;
-//       border: 1px solid $light-grey;
-//       box-shadow: 2px 2px 2px 2px rgba(220,220,220,0.6);
-//     }
-//   }
-//   .navbar-nav.navbar-right:last-child {
-//       margin-right: 0px;
-//       margin-top: 0px;
-//   }
-//   // center the dropdown with avatar
-//   #img-avatar{
-//     width: 30px;
-//     height: 30px;
-//     margin-top: -5px !important;
-//     }
-
-//   .dropdown-menu{ 
-//     vertical-align: middle;
-//     padding: 0;
-//     a:hover{
-//       background-color: #ffffff !important;
-//     }
-//     .divider{
-//       padding: 0;
-//       margin: 0;
-//     }
-//   }
-// }
-/*========================================================================
-                        FIX COLLAPSE 
- =========================================================================*/
-
-/*========================================================================
-                        SEARCH BAR
- =========================================================================*/
-// .navbar-form{
-//   margin-top: 25px !important;
-// }
-
-// .search-icon{
-//   display: inline;
-//   padding-left: 20px;
-// }
 
  /*========================================================================
                 LOGIN/SIGNUP MODALS 
  =========================================================================*/
+
+
+@media (max-width: 768px) {
+  .modal-content{
+    width: 90% !important;
+  }
+}
+
 
 .at-login-form {
   .btn-fb {

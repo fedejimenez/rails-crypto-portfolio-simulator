@@ -23,6 +23,8 @@
 //= require sweet-alert2-rails
 //= require Chart.bundle
 //= require chartkick
+//= require jquery.minicolors
+//= require jquery.minicolors.simple_form
 //= require_tree .
 //= stub 'validation'
 //= stub 'tabs'

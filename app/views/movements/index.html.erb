@@ -1,5 +1,9 @@
 <%= render 'layouts/flash' %>
 
+<input class="colorPicker" id= "main-panel-color" placeholder="Select">
+<input class="colorPicker" id= "navbar-color" placeholder="Select">
+<input class="colorPicker" id= "left-panel-color" placeholder="Select">
+
 <div class="breadcrumbs">
     <div class="breadcrumbs-inner">
         <div class="row m-0">
@@ -27,6 +31,7 @@
         </div>
     </div>
 </div>
+
 
 <div class="content">
     <!-- Animated -->
@@ -252,5 +257,25 @@
       }
     }
 
+</script>
+<script>
+//  Color Picker
+  $(document).ready(function(){
+      $('.colorPicker').minicolors({theme: 'bootstrap'});
+      $("#main-panel-color").change(function(){
+          $('.right-panel').css('background-color', document.querySelector("#main-panel-color").value);
+      });
+      $("#navbar-color").change(function(){
+          $('.header').css('background-color', document.querySelector("#navbar-color").value);
+          $('#header').css('background-color', document.querySelector("#navbar-color").value);
+          $('.navbar').css('background-color', document.querySelector("#navbar-color").value);
+          $('.navbar-header').css('background-color', document.querySelector("#navbar-color").value);
+      });
+      $("#left-panel-color").change(function(){
+          $('#main-menu').css('background-color', document.querySelector("#left-panel-color").value);
+          $('.left-panel').css('background-color', document.querySelector("#left-panel-color").value);
+          $('.left-panel .active').css('background-color', document.querySelector("#left-panel-color").value);
+      });
+  });
 </script>
 

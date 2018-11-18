@@ -198,7 +198,7 @@
 
   $(".wrimagecard").click(function() {
     $('html, body').animate({
-        scrollTop: $("#section-tabs").offset().top -85},
+        scrollTop: $("#section-tabs").offset().top -55},
         delay);
   });
 
@@ -214,7 +214,7 @@
           menu = target;
       $target = $(target);
       $('html, body').stop().animate({
-          'scrollTop': $target.offset().top-85},delay);
+          'scrollTop': $target.offset().top-55},delay);
   });
 
   function onScroll(event){
@@ -222,7 +222,7 @@
       $('.sections').each(function () {
         var currLink = $(this);
         var refElement = $(currLink.attr("href"));
-        if (refElement.position().top-86 <= scrollPos && refElement.position().top-86 + refElement.height() > scrollPos) {
+        if (refElement.position().top-56 <= scrollPos && refElement.position().top-56 + refElement.height() > scrollPos) {
             $('.sections').removeClass("active");
             currLink.addClass("active");
         }
