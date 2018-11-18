@@ -51,7 +51,7 @@
                             <div class="stat-content">
                                 <div class="text-left dib">
                                     <div class="stat-text"><strong><span class=""><%= current_portfolio.movements.last.operation.upcase %></span></strong></div>
-                                    <div class="stat-heading">Last Order: <strong><%=@crypto_names[@last_crypto_id].upcase%></strong></div>
+                                    <div class="stat-heading">Last: <strong><%=@crypto_names[@last_crypto_id].upcase%></strong></div>
                                 </div>
                             </div>
                         </div>
@@ -86,9 +86,11 @@
                     <div class="card-body text-center">
                         <h4 class="box-title"><i class="glyphicon glyphicon-btc" style="color:orange"> </i> Bitcoin Historical Chart and Current Data (U$D)</h4>
                     </div>
+
                     <div class="row">
                         <div class="col-lg-8">
                             <div class="card-body">
+                                <button class="btn btn-default" value="Full Screen" onclick="showPopup('charthistorical');"> <i class="fa fa-arrows-alt"> </i> Full Screen</button> 
                                 <div id="charthistorical" style="width: 50vw; height: 40vh;padding-top: 2vh;" ></div>
                             </div>
                         </div>
@@ -118,7 +120,7 @@
                                 </div>
                                 <div class="progress-box progress-2">
                                     <h4 class="por-title">Percentage change (24 hr)</h4>
-                                    <div class="por-txt color-text"><%=@coins.first['percent_change_24h'] %>%</div>
+                                    <div class="por-txt color-text"> <%= @coins.first['percent_change_24h'] %>%</div>
                                 </div>
                             </div> <!-- /.card-body -->
                         </div>
@@ -131,49 +133,25 @@
     </div>
 </div>
 
-<!-- Scripts -->
+<%= javascript_include_tag 'count' %>
+
 <!-- <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script> -->
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
 <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script> -->
 <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
 <!-- <script src="assets/js/main.js"></script> -->
-
 <!--  Chart js -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.7.3/dist/Chart.bundle.min.js"></script>
-
 <!--Chartist Chart-->
 <script src="https://cdn.jsdelivr.net/npm/chartist@0.11.0/dist/chartist.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartist-plugin-legend@0.6.2/chartist-plugin-legend.min.js"></script>
-
 <script src="https://cdn.jsdelivr.net/npm/jquery.flot@0.8.3/jquery.flot.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/flot-pie@1.0.0/src/jquery.flot.pie.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/flot-spline@0.0.1/js/jquery.flot.spline.min.js"></script>
-
-<!-- <script src="https://cdn.jsdelivr.net/npm/simpleweather@3.1.0/jquery.simpleWeather.min.js"></script> -->
-<!-- <script src="assets/js/init/weather-init.js"></script> -->
-
 <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
-<!-- <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.js"></script> -->
-<!-- <script src="assets/js/init/fullcalendar-init.js"></script>
- -->
 
 
 <script>
-    
-    // Counter Number
-    $('.count').each(function () {
-        $(this).prop('Counter',0).animate({
-            Counter: $(this).text()
-        }, {
-            duration: 3000,
-            easing: 'swing',
-            step: function (now) {
-                $(this).text(Math.ceil(now));
-            }
-        });
-    });
-    // - Counter End
-
     // Traffic Chart using chartist
     if ($('#traffic-chart').length) {
         var chart = new Chartist.Line('#traffic-chart', {
@@ -209,10 +187,7 @@
     }
     // Traffic Chart using chartist End
 
-</script>
-
-<!--  Chart BTC -->
-<script>
+    // Chart BTC 
     var data = [<%= raw @array_of_hashes.to_json %>];
     var chartHistorical = AmCharts.makeChart("charthistorical", {
         "type": "serial",
@@ -300,4 +275,21 @@
     function zoomChart() {
         chartHistorical.zoomToIndexes(chartHistorical.dataProvider.length - 40, chartHistorical.dataProvider.length - 1);
     }    
+    // End Chart BTC
+
+    // Make Full screen
+    function showPopup( id ) {
+      var chart = $( "#" + id );
+      var modal = $( "<div>" ).addClass( "modal-chart" );
+      var shade = $( "<div>" ).addClass( "shade" ).appendTo( modal ).on( "click", close );
+      var placeholder = $( "<div>" ).prop( "id", id + "_placeholder" ).hide().insertBefore( chart );
+      $( document.body ).append( modal );
+      chart.appendTo( modal ).addClass( "chart" );
+
+      function close() {
+        chart.insertAfter( placeholder ).removeClass( "chart" );
+        placeholder.remove();
+        modal.remove();
+      }
+    }
 </script>

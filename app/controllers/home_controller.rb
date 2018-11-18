@@ -31,6 +31,7 @@ class HomeController < ApplicationController
 
   def lookup
     @crypto = Crypto.all
+    get_data_from_API
     respond_to do |format|
       format.html {
         @lookup = params[:q].upcase

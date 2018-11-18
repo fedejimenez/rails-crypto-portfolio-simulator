@@ -8,24 +8,18 @@
 		.col-sm-6{
 			width: 0% !important;
 		}
+		a{
+			font-size: 1.5vh;
+		}
 	}
 }
 
 table tr th{
   background:#CDE6FA;
-  font-size: 1.2vh;
+  font-size: 1.7vh;
   color: #777778;
   text-align:left;
   vertical-align:center;
-}
-
-#tab-ranking{
-	.row{
-		text-align: left !important;
-		.col-sm-6{
-			width: 0% !important;
-		}
-	}
 }
 
 #table-ranking tbody tr td{

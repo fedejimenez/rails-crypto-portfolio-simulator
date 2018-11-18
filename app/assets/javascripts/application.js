@@ -28,12 +28,13 @@
 //= stub 'tabs'
 //= stub 'fadeinup-animation'
 //= stub 'tabs-slides'
+//= stub 'count'
 
 // Add style to search bar (easyAutocomplete)
-// $(document).on('turbolinks:load', function() {
-// 	document.querySelector('#q').classList.add("lookup-input")
-// 	document.querySelector('#q').parentNode.classList.add("lookup-input")
-// })
+$(document).on('turbolinks:load', function() {
+	document.querySelector('#q').classList.add("lookup-input")
+	document.querySelector('#q').parentNode.classList.add("lookup-input")
+})
 
 // Add style to variation if positive/negative number
 $(document).on('turbolinks:load', function() {
@@ -61,20 +62,6 @@ $(function() {
         $(this).closest('.page-alert').slideUp();
     });
 });
-
-
-// Counter Number
-// $('.count').each(function () {
-// 	$(this).prop('Counter',0).animate({
-// 		Counter: $(this).text()
-// 	}, {
-// 		duration: 3000,
-// 		easing: 'swing',
-// 		step: function (now) {
-// 			$(this).text(Math.ceil(now));
-// 		}
-// 	});
-// });
 
 $(document).on('turbolinks:load', function() {
 	// Search Bar 

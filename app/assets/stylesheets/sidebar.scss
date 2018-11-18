@@ -939,7 +939,7 @@ aside.left-panel {
 /* Right panel */
 .right-panel {
   margin-left: 225px;
-  padding-top: 55px; 
+  padding-top: 50px; 
   height: 100%;
   background-color: #C9DBFC;
 }
@@ -2654,3 +2654,46 @@ footer.site-footer {
 
 /*# sourceMappingURL=style.css.map */
 
+
+//   Make amChart Fullscreen 
+#charthistorical {
+    width: 300px;
+    height: 200px;
+}
+
+/**
+ * Modal related
+ */
+.modal-chart, .modal-chart .shade {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 100000;
+}
+
+.modal-chart .shade {
+  background: #000;
+  opacity: 0.7;
+  z-index: 1;
+}
+
+.modal-chart .chart {
+  width: 90%!important;
+  height: 90%!important;
+  top: 5%;
+  left: 5%;
+  position: absolute;
+  background: #fff!important;
+  z-index: 2;
+  border-radius: 5px;
+}
+
+.amcharts-export-menu {
+  display: none;
+}
+
+.modal-chart .amcharts-export-menu {
+  display: block;
+}

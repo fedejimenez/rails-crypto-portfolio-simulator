@@ -1,5 +1,33 @@
 <%= render 'layouts/flash' %>
 
+<div class="breadcrumbs">
+    <div class="breadcrumbs-inner">
+        <div class="row m-0">
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1><strong>MOVEMENTS</strong></h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="page-header float-right">
+                    <div class="page-title">
+                        <ol class="breadcrumb text-right">
+                            <li><a href="#">Dashboard</a></li>
+                            <li><a href="#">Portfolio</a></li>
+                            <li class="active">Movements</li>
+                        </ol>
+                        <ol class="breadcrumb text-right">
+                          <li><small><i class="fa fa-repeat"></i> <a href="#"> Updated: <%=  Time.now.strftime('%H:%M:%S') %></a></small></li>                        
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="content">
     <!-- Animated -->
     <div class="animated fadeIn">
@@ -15,11 +43,11 @@
                             <table class="table text-center" id="table-movements">
                               <thead >
                                 <tr>
-                                  <th class="text-center"># Nr</th>
+                                  <th class="text-center">Nr</th>
                                   <th class="text-center">Currency</th>
                                   <th class="text-center">Quantity</th>
                                   <th class="text-center">Price</th>
-                                  <th class="text-center">Total Amount</th>
+                                  <th class="text-center">Amount</th>
                                   <th class="text-center">Date</th>
                                   <th class="text-center">Operation</th>
                                 </tr>
@@ -74,16 +102,18 @@
                 <div class="col-lg-12">
                     <div class="card" style="height:35vh;">
                         <div class="card-body">
-                          <div class="stat-heading"> <strong> Orders - Last Week</strong>
-                            <canvas id="lineChart" ></canvas>
-                            <% @date = []%>
-                            <% @buy_count = []%>
-                            <% @sell_count = []%>
-                            <% 7.downto(0) do |d| %>
-                              <% @date << d.day.ago.strftime('%A') %>
-                              <% @buy_count << current_portfolio.movements.where(date: d.day.ago.beginning_of_day..d.day.ago.end_of_day, operation: "buy").count %>
-                              <% @sell_count << current_portfolio.movements.where(date: d.day.ago.beginning_of_day..d.day.ago.end_of_day, operation: "sell").count %>
-                            <% end %>
+                          <div class="chart-container ov-h">
+                            <div class="stat-heading"> <strong> Orders - Last Week</strong> <button class="btn btn-default pull-right" value="Full Screen" onclick="showPopup('lineChart');"> <i class="fa fa-arrows-alt"> </i> Full Screen</button> 
+                            </div>
+                              <canvas id="lineChart" style="height:40vh;" ></canvas>
+                              <% @date = []%>
+                              <% @buy_count = []%>
+                              <% @sell_count = []%>
+                              <% 7.downto(0) do |d| %>
+                                <% @date << d.day.ago.strftime('%A') %>
+                                <% @buy_count << current_portfolio.movements.where(date: d.day.ago.beginning_of_day..d.day.ago.end_of_day, operation: "buy").count %>
+                                <% @sell_count << current_portfolio.movements.where(date: d.day.ago.beginning_of_day..d.day.ago.end_of_day, operation: "sell").count %>
+                              <% end %>
                         </div>
                     </div>
                 </div>
@@ -111,17 +141,17 @@
 <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
 <script>
     // Counter Number
-    $('.count').each(function () {
-        $(this).prop('Counter',0).animate({
-            Counter: $(this).text()
-        }, {
-            duration: 3000,
-            easing: 'swing',
-            step: function (now) {
-                $(this).text(Math.ceil(now));
-            }
-        });
-    });
+    // $('.count').each(function () {
+    //     $(this).prop('Counter',0).animate({
+    //         Counter: $(this).text()
+    //     }, {
+    //         duration: 3000,
+    //         easing: 'swing',
+    //         step: function (now) {
+    //             $(this).text(Math.ceil(now));
+    //         }
+    //     });
+    // });
     // - Counter End
 
     // Pie chart flotPie1 - FlotChart
@@ -173,21 +203,23 @@
             labels: dates[0],
             datasets: [
                 {
-                    label: "BUY orders",
-                    borderColor: "rgba(0,0,0,.09)",
+                    label: "BUY Orders",
+                    borderColor: "rgba(102, 187, 106, 0.7)",
                     borderWidth: "1",
-                    backgroundColor: "rgba(0,0,0,.07)",
+                    backgroundColor: "rgba(102, 187, 106, 0.7)",
+                    pointHighlightStroke: "rgba(26,179,148,1)",
                     data: buy_count[0]
                             },
                 {
-                    label: "SELL Orders",
-                    borderColor: "rgba(0, 194, 146, 0.9)",
+                    label: "SELL orders",
+                    borderColor: "rgba(255,1,1,.8)",
+                    fill: true,
                     borderWidth: "1",
-                    backgroundColor: "rgba(0, 194, 146, 0.5)",
-                    pointHighlightStroke: "rgba(26,179,148,1)",
+                    backgroundColor: "rgba(255,1,1,.8)",
                     data: sell_count[0]
                             }
                         ]
+
         },
         options: {
             responsive: true,
@@ -203,6 +235,22 @@
         }
     } );
     // End Line Chart
+
+    // Make Full screen
+    function showPopup( id ) {
+      var chart = $( "#" + id );
+      var modal = $( "<div>" ).addClass( "modal-chart" );
+      var shade = $( "<div>" ).addClass( "shade" ).appendTo( modal ).on( "click", close );
+      var placeholder = $( "<div>" ).prop( "id", id + "_placeholder" ).hide().insertBefore( chart );
+      $( document.body ).append( modal );
+      chart.appendTo( modal ).addClass( "chart" );
+
+      function close() {
+        chart.insertAfter( placeholder ).removeClass( "chart" );
+        placeholder.remove();
+        modal.remove();
+      }
+    }
 
 </script>
 
