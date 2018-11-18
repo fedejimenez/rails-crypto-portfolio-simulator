@@ -3,37 +3,37 @@
  ========================================================================*/
 
 #q {
-  margin-left: -18px;
-  margin-top: -2px;
+  width: 100%;	
 }
 
 .lookup-input {
+	width: 100% !important;	
    // background: url(ajax-loader.gif) no-repeat scroll 0px 0px;
-   background-size: 18px;
-   background-color: #fff;
-   font-family: Circular;
-   font-weight: 600;
-   font-size: 15px;
-   width: 70%;
-   margin-top: 0px;
-   margin-left: -3px;
-   padding: 0px 11px 0px 15px;
-   height: 30px;
-   border: 2px solid #eee;
-   color: black;
-   border-radius: 5px;
-   box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px 0px;
+   // background-size: 18px;
+   // background-color: #fff;
+   // font-family: Circular;
+   // font-weight: 600;
+   // font-size: 15px;
+   // width: 70%;
+   // margin-top: 0px;
+   // margin-left: -3px;
+   // padding: 0px 11px 0px 15px;
+   // height: 30px;
+   // border: 2px solid #eee;
+   // color: black;
+   // border-radius: 5px;
+   // box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px 0px;
  }
 
  .lookup-input:hover {
-  box-shadow: rgba(26, 26, 29, 0.3) 0px 15px 46px -10px;
-  transition: box-shadow 0.3s ease-in-out;
-  color: black;
+  // box-shadow: rgba(26, 26, 29, 0.3) 0px 15px 46px -10px;
+  // transition: box-shadow 0.3s ease-in-out;
+  // color: black;
  }
 
  .lookup-input:focus {
-   width: 100%;
-   transition: width 200ms, height 200ms, background-color 200ms, transform 200ms;
-   color: black;
-   outline-width: 0px;
+   // width: 100%;
+   // transition: width 200ms, height 200ms, background-color 200ms, transform 200ms;
+   // color: black;
+   // outline-width: 0px;
  }

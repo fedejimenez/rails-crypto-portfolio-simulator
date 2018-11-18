@@ -28,7 +28,8 @@
         <% @coins.each do |c| %>
           <tr>
             <td><%= c['rank'] %></td>
-            <td> <i class="<%=find_icon(c['symbol'].downcase)%>"</i><abbr title="<%= c["name"] %>"><%= link_to c["symbol"], "/lookup?q=#{c['symbol']}" %></abbr></td>
+            <td> <img src=<%=find_icon(c['symbol'].downcase)%> width="17vw" alt="">
+              <abbr title="<%= c["name"] %>"><%= link_to c["symbol"], "/lookup?q=#{c['symbol']}" %></abbr></td>
             <td> <%= c["price_usd"].to_d.round(5) %> </td>
             <td class="color-text"> <%= c["percent_change_1h"] %> </td>
             <td class="color-text"> <%= c["percent_change_24h"] %> </td>
@@ -45,14 +46,11 @@
         <h4 class="text-center"> <strong> <i class="fa fa-btc"></i> BTC Price (U$D) - Last Month </strong></h4>
     </div>
     <div class="panel-body">
-      <!-- Append current value, and graph -->
-      <% @historical.store(Time.now().strftime('%Y-%m-%d'), @coins.first['price_usd'] ) %>
-      <%= line_chart @historical, min: nil, max: nil, prefix: "$ " %>
     </div>
   </div>
 </div>
 
-<!--  Add Users Profit Rankings -->
+<!--  Users Profit Rankings -->
 <div id="tab-ranking" class="tabcontent">
   <div class="card">
       <h4 class="text-center"> <strong> User's Ranking </strong></h4>
@@ -89,3 +87,4 @@
 </div>
 
 <%= javascript_include_tag 'tabs' %>
+<%= javascript_include_tag 'count' %>

@@ -1,55 +1,49 @@
-<div class="container-fluid">
-  <div class="row row-offcanvas">
-    <div class="sidebar-offcanvas sidebar">
-      <div class="panel panel-default custom-shadow">
-        <div class="panel-body">
-          <div class="rank"> 
-            <strong><i class="fa fa-trophy"></i><strong>
-            <%= @rank %> 
-          </div>
-          <h3 class="text-primary ml-3"> 
-            <strong>U$D <%= @initial_amount + @profit %> </strong> 
-          </h3>
-          <hr>
-          <a href="/portfolios/<%=current_portfolio.id%>/cryptos">
-            <strong><i class="fa fa-briefcase fa-2x"></i><strong>
-            <div class="sidebar-text"> Portfolio</div>
-          </a><br><hr>
-          <a href="/portfolios/<%=current_portfolio.id%>/cryptos/new">
-            <strong><i class="fa fa-credit-card fa-2x"></i><strong>
-            <div class="sidebar-text"> New Order</div>
-          </a><br><hr>
-          <a href="/portfolios/<%=current_portfolio.id%>/movements">
-            <strong><i class="fa fa-random fa-2x"></i><strong>
-            <div class="sidebar-text"> Movements</div>
-          </a><br><hr>
-          <a href="/users/<%=current_portfolio.id%>">
-            <strong><i class="fa fa-id-card fa-2x"></i></strong>
-            <div class="sidebar-text"> Profile </div>
-          </a><br><hr>
-          <h4>
-            <a href="#"><strong><i class="fa fa-question-circle fa-x"></i></strong>
-              <div class="sidebar-text"> Help</div>
-            </a>
-          </h4>
-          <h4>
-            <a href="#"><strong><i class="fa fa-info-circle fa-x"></i></strong>
-              <div class="sidebar-text"> About Me</div>
-            </a>
-          </h4>
-          <h4>
-            <a href="https://github.com/fedejimenez/crypto-portfolio-simulator"><strong><i class="fa fa-github fa-x"></i></strong>
-              <div class="sidebar-text">Colaborate</div>
-            </a>
-          </h4>
-        </div>
-      </div><!--/.panel-->    
-    </div><!-- /.cols-->
-    
-    <div class="content">
-      <p class="pull-right">
-        <a type="button" class="btn btn-collapse btn-lg" data-toggle="offcanvas"><i class="glyphicon glyphicon-chevron-down"></i> Side Panel</a>
-      </p>
-    </div>
-  </div>
-</div><!-- /.container -->
+<!-- Left Panel -->
+<aside id="left-panel" class="left-panel">
+    <nav class="navbar navbar-expand-sm navbar-default">
+        <div id="main-menu" class="main-menu collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="index.html"><i class="menu-icon fa fa-laptop"></i>DASHBOARD </a>
+                </li>
+                <li class="menu-title">Portfolio</li><!-- /.menu-title -->
+                <li class="">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>DETAILS</a>
+                </li>
+                <li class="">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-bar-chart"></i>CHARTS</a>
+                </li>
+                <li class="">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon glyphicon glyphicon-transfer"></i>MOVEMENTS</a>
+                </li>
+
+                <li class="menu-title">USER</li><!-- /.menu-title -->
+
+                <li class="">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-user"></i>PROFILE</a>
+                </li>
+                <li>
+                    <a href="widgets.html"> <i class="menu-icon fa fa-trophy"></i>RANKING </a>
+                </li>
+                <li class="">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-bar-chart"></i>Charts</a>
+                </li>
+                <li class="menu-title">Extras</li><!-- /.menu-title -->
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-info"></i>HELP</a>
+                </li>
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-question"></i>ABOUT</a>
+                </li>
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-git"></i>COLABORATE</a>
+                </li>
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-sign-out"></i>LOGOUT</a>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </nav>
+</aside>
+<!-- /#left-panel -->
+

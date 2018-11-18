@@ -4,6 +4,10 @@
 
 $(document).on('turbolinks:load', function() {
 	 $('#table-movements').DataTable({
+	 	"iDisplayLength": 10,
+    	"order": [[ 2, "desc" ]],
+    	"lengthChange": false,
+    	"info": false
 	 });
 
 	 $('#table-index').DataTable({
@@ -12,8 +16,10 @@ $(document).on('turbolinks:load', function() {
 	 });
 
 	 var tableRanking = $('#table-ranking').DataTable({
-    	"iDisplayLength": 10,
-    	 "order": [[ 2, "desc" ]]
+	 	"iDisplayLength": 10,
+    	"order": [[ 2, "desc" ]],
+    	"lengthChange": false,
+    	"info": false
 	 });
 
      tableRanking.on('order.dt search.dt', function () {

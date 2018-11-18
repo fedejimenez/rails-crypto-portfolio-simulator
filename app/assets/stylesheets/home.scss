@@ -11,16 +11,22 @@
 
 #last-updated{
     transition: 0.5s;
-	strong{
-		color: #337AB7;
-	}
+    border: none;
+    margin-right: 10px;
+    button{
+    	background-color: #CDE6FA !important;
+    	padding-bottom: 0px;
+    }
+
 	p{
-		padding-top: 5px;
+		padding: 5px 5px 0 0;
+		margin-bottom: 0;
+    	font-weight: 700 !important;
 	}
 
 	i{
 		margin-right: 10px;
-		padding-top: 5px;
+		padding-top: 10px;
 	}
 }
 

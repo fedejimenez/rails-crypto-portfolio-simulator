@@ -22,4 +22,14 @@ class Search < ApplicationRecord
 
     return @coins_filtered
 	end
+
+  # Search Kaminari Pagination
+  def self.search(term, page)
+    if term
+      where('name LIKE ?', "%#{term}%").order('id DESC').page(current_page)
+    else
+      # note: default is all, just sorted
+      order('id DESC').page(current_page) 
+    end
+  end
 end

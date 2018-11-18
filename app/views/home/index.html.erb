@@ -1,0 +1,295 @@
+<div class="content">
+    <!-- Animated -->
+    <div class="animated fadeIn">
+        <!-- Widgets  -->
+        <div class="row">
+            <div class="col-lg-3 col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="stat-widget-five">
+                            <div class="stat-icon dib flat-color-1">
+                                <i class="fa fa-money"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="text-left dib">
+                                    <div class="stat-text"><strong>$<span class="count"><%= (@initial_amount + @profit).round(1) %></span></strong></div>
+                                    <div class="stat-heading">Total</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="stat-widget-five">
+                            <div class="stat-icon dib flat-color-2">
+                                <i class="fa fa-percent"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="text-left dib">
+                                    <div class="stat-text responsive"><strong><span class="color-text"><%= ((@profit.to_d)*100/@initial_amount).round(2) %> % </span> </strong></div>
+                                    <div class="stat-heading">Balance</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="stat-widget-five">
+                            <div class="stat-icon dib flat-color-3">
+                                <% @last_crypto_id = current_portfolio.movements.last.crypto_id %>
+                                <% @last_crypto_symbol = Crypto.where(id: @last_crypto_id).first.symbol.downcase %>
+                                <img src=<%=find_icon(@last_crypto_symbol)%> width="50vw" title="<%=@crypto_names[@last_crypto_id]%>" >
+                            </div>
+                            <div class="stat-content">
+                                <div class="text-left dib">
+                                    <div class="stat-text"><strong><span class=""><%= current_portfolio.movements.last.operation.upcase %></span></strong></div>
+                                    <div class="stat-heading">Last: <strong><%=@crypto_names[@last_crypto_id].upcase%></strong></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="stat-widget-five">
+                            <div class="stat-icon dib flat-color-4">
+                                <i class="fa fa-trophy"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="text-left dib">
+                                    <div class="stat-text"><strong>#<span class="count"> <%= @rank %></span></strong></div>
+                                    <div class="stat-heading">Rank</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Widgets -->
+
+        <!--  BTC info  -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h4 class="box-title"><i class="glyphicon glyphicon-btc" style="color:orange"> </i> Bitcoin Historical Chart and Current Data (U$D)</h4>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="card-body">
+                                <button class="btn btn-default" value="Full Screen" onclick="showPopup('charthistorical');"> <i class="fa fa-arrows-alt"> </i> Full Screen</button> 
+                                <div id="charthistorical" style="width: 50vw; height: 40vh;padding-top: 2vh;" ></div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="card-body">
+                                <div class="progress-box progress-1">
+                                    <h4 class="por-title">Current Price</h4>
+                                    <% @max_btc = @historical.values.take(@historical.values.size - 1).max %>
+                                    <% @price_btc = @coins.first['price_usd'].to_d.round(2) %>
+                                    <% @percentage_max = 100*(@price_btc/@max_btc).to_d.round(2) %>
+
+                                    <div class="por-txt"><strong><%= @price_btc %> </strong> (% <%= @percentage_max %>  from maximum value) </div>
+                                    <div class="progress mb-2" style="height: 5px;">
+                                        <div class="progress-bar bg-flat-color-1" role="progressbar" style="width: <%=@percentage_max%>%;" aria-valuenow="<%=@percentage_max%>" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                                <div class="progress-box progress-2">
+                                    <h4 class="por-title">Volume (24h)</h4>
+                                    <div class="por-txt"><%=@coins.first['24h_volume_usd']%> (% <%= @percentage_volume = (100*(@coins.first['24h_volume_usd'].to_d.round(2))/(@coins.first['market_cap_usd'].to_d.round(2))).round(2)%> from total market cap) </div>
+                                    <div class="progress mb-2" style="height: 5px;">
+                                        <div class="progress-bar bg-flat-color-2" role="progressbar" style="width: <%=@percentage_volume%>%;" aria-valuenow="<%=@percentage_volume%>" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                                <div class="progress-box progress-2">
+                                    <h4 class="por-title">Percentage change (1 hr)</h4>
+                                    <div class="por-txt color-text"><%=@coins.first['percent_change_1h'] %>%</div>
+                                </div>
+                                <div class="progress-box progress-2">
+                                    <h4 class="por-title">Percentage change (24 hr)</h4>
+                                    <div class="por-txt color-text"> <%= @coins.first['percent_change_24h'] %>%</div>
+                                </div>
+                            </div> <!-- /.card-body -->
+                        </div>
+                    </div> <!-- /.row -->
+                    <div class="card-body"></div>
+                </div>
+            </div><!-- /# column -->
+        </div> 
+        <!--  /Info BTC -->
+    </div>
+</div>
+
+<%= javascript_include_tag 'count' %>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
+<!-- <script src="assets/js/main.js"></script> -->
+<!--  Chart js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.7.3/dist/Chart.bundle.min.js"></script>
+<!--Chartist Chart-->
+<script src="https://cdn.jsdelivr.net/npm/chartist@0.11.0/dist/chartist.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartist-plugin-legend@0.6.2/chartist-plugin-legend.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery.flot@0.8.3/jquery.flot.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flot-pie@1.0.0/src/jquery.flot.pie.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flot-spline@0.0.1/js/jquery.flot.spline.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
+
+
+<script>
+    // Traffic Chart using chartist
+    if ($('#traffic-chart').length) {
+        var chart = new Chartist.Line('#traffic-chart', {
+          labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+          series: [
+          [0, 18000, 35000,  25000,  22000,  0],
+          [0, 33000, 15000,  20000,  15000,  300],
+          [0, 15000, 28000,  15000,  30000,  5000]
+          ]
+      }, {
+          low: 0,
+          showArea: true,
+          showLine: false,
+          showPoint: false,
+          fullWidth: true,
+          axisX: {
+            showGrid: true
+        }
+    });
+    chart.on('draw', function(data) {
+        if(data.type === 'line' || data.type === 'area') {
+            data.element.animate({
+                d: {
+                        begin: 2000 * data.index,
+                        dur: 2000,
+                        from: data.path.clone().scale(1, 0).translate(0, data.chartRect.height()).stringify(),
+                        to: data.path.clone().stringify(),
+                        easing: Chartist.Svg.Easing.easeOutQuint
+                    }
+                });
+            }
+        });
+    }
+    // Traffic Chart using chartist End
+
+    // Chart BTC 
+    var data = [<%= raw @array_of_hashes.to_json %>];
+    var chartHistorical = AmCharts.makeChart("charthistorical", {
+        "type": "serial",
+        "theme": "light",
+        "marginRight": 40,
+        "marginLeft": 40,
+        "dataProvider": data[0],
+        "autoMarginOffset": 20,
+        "mouseWheelZoomEnabled":true,
+        "dataDateFormat": "YYYY-MM-DD",
+        "valueAxes": [{
+            "id": "v1",
+            "axisAlpha": 0,
+            "position": "left",
+            "ignoreAxisWidth":true
+        }],
+        "balloon": {
+            "borderThickness": 1,
+            "shadowAlpha": 0
+        },
+        "graphs": [{
+            "id": "g1",
+            "fillAlphas": 0.4,
+            "balloon":{
+              "drop":true,
+              "adjustBorderColor":false,
+              "color":"#ffffff"
+            },
+            "bullet": "round",
+            "bulletBorderAlpha": 1,
+            "bulletColor": "#FFFFFF",
+            "bulletSize": 0,
+            "hideBulletsCount": 50,
+            "lineThickness": 3,
+            "title": "red line",
+            "useLineColorForBulletBorder": true,
+            "valueField": "value",
+            "balloonText": "<span style='font-size:12px;'>[[value]]</span>"
+        }],
+        "chartScrollbar": {
+            "graph": "g1",
+            "oppositeAxis":false,
+            "offset":30,
+            "scrollbarHeight": 80,
+            "backgroundAlpha": 0,
+            "selectedBackgroundAlpha": 0.1,
+            "selectedBackgroundColor": "#888888",
+            "graphFillAlpha": 0,
+            "graphLineAlpha": 0.5,
+            "selectedGraphFillAlpha": 0,
+            "selectedGraphLineAlpha": 1,
+            "autoGridCount":true,
+            "color":"#AAAAAA"
+        },
+        "chartCursor": {
+            "pan": true,
+            "valueLineEnabled": true,
+            "valueLineBalloonEnabled": true,
+            "cursorAlpha":1,
+            "cursorColor":"#258cbb",
+            "limitToGraph":"g1",
+            "valueLineAlpha":0.2,
+            "valueZoomable":true
+        },
+        "valueScrollbar":{
+          "oppositeAxis":false,
+          "offset":50,
+          "scrollbarHeight":10
+        },
+        "categoryField": "date",
+        "categoryAxis": {
+            "parseDates": true,
+            "dashLength": 1,
+            "minorGridEnabled": true
+        },
+        "export": {
+            "enabled": true
+        }
+    });
+
+    chartHistorical.addListener("rendered", zoomChart);
+
+    zoomChart();
+
+    function zoomChart() {
+        chartHistorical.zoomToIndexes(chartHistorical.dataProvider.length - 40, chartHistorical.dataProvider.length - 1);
+    }    
+    // End Chart BTC
+
+    // Make Full screen
+    function showPopup( id ) {
+      var chart = $( "#" + id );
+      var modal = $( "<div>" ).addClass( "modal-chart" );
+      var shade = $( "<div>" ).addClass( "shade" ).appendTo( modal ).on( "click", close );
+      var placeholder = $( "<div>" ).prop( "id", id + "_placeholder" ).hide().insertBefore( chart );
+      $( document.body ).append( modal );
+      chart.appendTo( modal ).addClass( "chart" );
+
+      function close() {
+        chart.insertAfter( placeholder ).removeClass( "chart" );
+        placeholder.remove();
+        modal.remove();
+      }
+    }
+</script>

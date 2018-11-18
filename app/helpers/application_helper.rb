@@ -14,18 +14,40 @@ module ApplicationHelper
     @coins = JSON.parse(@response_API) 
   end 
 
+  def get_monthly_from_API
+    require 'net/http'
+    require 'json'
+    require "open-uri"
+    @url_month = 'http://api.coindesk.com/v1/bpi/historical/close.json'
+    @uri_month = URI(@url_month)
+    http_month = Net::HTTP.new(@uri_month.host, @uri_month.port)
+    http_month.use_ssl = true
+    http_month.verify_mode = OpenSSL::SSL::VERIFY_PEER
+    @response_month = URI.parse(@url_month).read
+    @monthly = JSON.parse(@response_month)['bpi'] 
+    @monthly.store(Time.now().strftime('%Y-%m-%d'), @coins.first['price_usd'] )
+  end 
+
   def get_historical_from_API
     require 'net/http'
     require 'json'
     require "open-uri"
-    @url_hist = 'http://api.coindesk.com/v1/bpi/historical/close.json'
+    today = Time.now.strftime('%Y-%m-%d')
+    @url_hist = 'https://api.coindesk.com/v1/bpi/historical/close.json?start=2015-09-01&end='+today
     @uri_hist = URI(@url_hist)
     http_hist = Net::HTTP.new(@uri_hist.host, @uri_hist.port)
     http_hist.use_ssl = true
     http_hist.verify_mode = OpenSSL::SSL::VERIFY_PEER
     @response_hist = URI.parse(@url_hist).read
-    # @response_hist = Net::HTTP.get(@uri_hist)
     @historical = JSON.parse(@response_hist)['bpi'] 
+    # Array with data
+    @historical.store(Time.now().strftime('%Y-%m-%d'), @coins.first['price_usd'] )
+    # Obtain array of hashes 
+    key_value = @historical.map do |key, value| 
+      [key, value]
+    end
+    @array_of_hashes = [] 
+    key_value.each { |record| @array_of_hashes << {'date' => record[0], 'value' => record[1].to_i }} 
   end 
 
   def calculate_profit
@@ -34,6 +56,7 @@ module ApplicationHelper
     @cryptos = Crypto.all
     @profit = 0
     @array_ids = []
+    @crypto_names = []
     @profit_array = User.all.length.times.collect{|i| 0}
     
     User.all.each_with_index do |u,i|
@@ -41,6 +64,8 @@ module ApplicationHelper
         if (u.id.to_i == crypto.user_id.to_i)
           for c in @coins 
               if crypto.symbol == c["symbol"] 
+                # Save crypto names
+                @crypto_names[crypto.id] = c["name"] 
               	# Save array with user id's
               	@array_ids.push(u.id)
                 # Calculate all the profits for all users
@@ -56,7 +81,6 @@ module ApplicationHelper
       @profit = @profit_array[position]
     end
 
-    update_ranking
     return @profit, @profit_array
   end
 
@@ -72,19 +96,26 @@ module ApplicationHelper
   end
 
   def find_icon(icon)
-    icons = ["adc","aeo","amp","anc","ard","aur","bay","bcn","brk","brx","bsd","bta","btc","bts","das","dcr",
-    	"dgb","dgd","dgx","dmd","emc","erc","etc","eth","fct","flo","frk","ftc","gld","gnt","btc-alt",
-    	"cloak","btcd","clam","doge","game","heat","incnt","kore","kobo","ldoge","grc","grs","icn","ifc",
-    	"ioc","kmd","lbc","lsk","ltc","mue","nlg","nmc","nuc","nxt","maid","mint","mona","neos","note",
-    	"ok","omni","pink","pivx","pot","ppc","qrk","rby","rdd","rep","rise","sjcx","sls","steem","strat",
-    	"sys","trig","ubq","unity","usdt","vrc","vtc","waves","xcp","xem","xmr","xrp","zec"]
+    icons = ["ada","bat","bch","bcn", "bnb", "btc","btg", "btm","bts", "dash","dcr",
+    	"dgb","doge","eos","etc","eth","icx","lsk","ltc","miota","nano","neo","omg","ppt",
+      "qtum","sc","trx","usdt","waves","xem","xlm","xmr", "xrp","xtz", "xvg", "zec"]
 
     if icons.include?(icon)
-      return "cf cf-#{icon}"
+      return "https://cryptospaniards.com/simulator/static/coins/#{icon}.png"
     else
-      return "glyphicon glyphicon-usd"
+      return "https://www.glyphicons.com/img/glyphicons/basic/2x/glyphicons-basic-227-dollar@2x.png"
     end
   end
+
+  # def coin_name_by_id(id)
+  #   for c in @coins
+  #     if (Crypto.where(id = "#{id}").first.symbol == c["symbol"])
+  #       @current_coin_name = c["name"]
+  #       return @current_coin_name
+  #     end
+  #   end
+  # end
+
 
 end
 

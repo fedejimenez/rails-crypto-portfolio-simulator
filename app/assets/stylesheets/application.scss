@@ -15,12 +15,14 @@
  *= require sweetalert2
  *= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
  *= require cryptofont
+ *= require jquery.minicolors
  *= require_tree .
  *= require_self
  */
 
 @import "bootstrap";
 @import "bootstrap-sprockets";
+
 @import "font-awesome";
 @import "cryptofont";
 
@@ -54,9 +56,16 @@
   font-style: normal;
 }
 
+html{
+  width: 100%;
+  height: 100vh;
+  overflow-x: hidden;
+}
 body{
-	margin:auto;
+  margin:auto;
+  height: 100%;
   padding-top: 0px;
+  padding-right: 0px !important;
   overflow-x: hidden;
   overflow-y: visible;
 }
@@ -67,30 +76,47 @@ body{
 
 .container-fluid{
   padding: 0px !important;
+  overflow-x: hidden;
 }
 
-@media(min-width: 1200px){
-	.container {
-	    width: 1500px;
-	}
-}
+// @media(min-width: 1200px){
+// 	.container {
+// 	    width: 1500px;
+// 	}
+// }
 
-/*---FOR MOBILE VIEW---*/
-@media screen and (max-width: 400px) {
-  h1 {
-    padding: 15px;
-    font-size: 25px;
-  }
-}
+// /*---FOR MOBILE VIEW---*/
+// @media screen and (max-width: 400px) {
+//   h1 {
+//     padding: 15px;
+//     font-size: 25px;
+//   }
+// }
 
-/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
-@media screen and (max-height: 450px) {
-    .sidenav {padding-top: 15px;}
-    .sidenav a {font-size: 18px;}
-}
+// /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+// @media screen and (max-height: 450px) {
+//     .sidenav {padding-top: 15px;}
+//     .sidenav a {font-size: 18px;}
+// }
 
 
 //  Text green / red 
+#notifications-id{
+  .dropdown-menu{
+    .show{
+      display: inline-block !important;
+    } 
+  } 
+}
+
+div.dropdown-mennu.show{
+      display: inline-block !important;
+}
+
+.header-left .dropdown .dropdown-menu .show{
+      display: inline-block !important;
+}
+
 .red{
   color: red;
   font-weight: 600;
@@ -98,6 +124,7 @@ body{
 .red:before {
   @extend .fa;
   @extend .fa-caret-down;
+  padding: 0 0.5vw 0 0;
  }
 
 .green{
@@ -107,6 +134,7 @@ body{
 .green:before {
   @extend .fa;
   @extend .fa-caret-up;
+  padding: 0 0 1vw 0;
  }
 
 // Custom Shadow for buttons and panels

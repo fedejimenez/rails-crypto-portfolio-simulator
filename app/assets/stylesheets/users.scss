@@ -43,7 +43,7 @@
 }
 
 /*========================================================================
-                 GOOGLE PLACES AUTOCOMPLETE 
+                 INPUT AUTOCOMPLETE 
  ========================================================================*/
 
 .custom-input {
@@ -64,13 +64,13 @@
  }
 
  .custom-input:hover {
+  width: 100%;
   box-shadow: rgba(26, 26, 29, 0.3) 0px 15px 46px -10px;
   transition: box-shadow 0.3s ease-in-out;
   color: black;
  }
 
  .custom-input:focus {
-   width: 100%;
    transition: width 200ms, height 200ms, background-color 200ms, transform 200ms;
    color: black;
    outline-width: 0px;

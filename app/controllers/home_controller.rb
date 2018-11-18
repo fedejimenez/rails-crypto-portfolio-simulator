@@ -4,11 +4,14 @@ class HomeController < ApplicationController
   include UsersHelper
   include PortfoliosHelper
 
-  before_action :calculate_profit, except: [:landing]
-  before_action :get_historical_from_API, only: [:home]
-
+  before_action :calculate_profit, except: [:landing, :lookup]
+  before_action :update_ranking, except: [:landing, :lookup]
+  before_action :get_historical_from_API, only: [:home, :index]
   
   def index
+  end
+  
+  def ranking
   end
 
   def about 
@@ -28,6 +31,7 @@ class HomeController < ApplicationController
 
   def lookup
     @crypto = Crypto.all
+    get_data_from_API
     respond_to do |format|
       format.html {
         @lookup = params[:q].upcase
