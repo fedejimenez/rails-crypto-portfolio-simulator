@@ -1,0 +1,17 @@
+<h3> This is your space for proposing new ideas. </h3>
+
+<h3>Add a new suggestion</h3>
+
+<%= form_for [current_user, Comment.new] do |f| %>
+<%= f.text_area :body, placeholder: "Add" %><br/>
+<%= f.submit "Add" %>
+<% end %>
+
+
+<h3>See other users's suggestion and reply if you want to</h3>
+
+
+<ul>
+   <%= render(partial: 'comments/comment', collection: Comment.all.where(commentable_type: "User")) %>
+   <!-- I I want just current users comments --- collectiion: current_user.comments --> 
+</ul>

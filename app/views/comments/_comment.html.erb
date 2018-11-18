@@ -1,0 +1,18 @@
+<li>
+  <%= comment.body %> - <%= User.where(id: comment.user_id).first.name %>
+  <small>Submitted <%= time_ago_in_words(comment.created_at) %> ago</small>
+
+  <%= form_for [comment, Comment.new] do |f| %>
+      <%= f.text_area :body, placeholder: "Add a Reply" %><br/>
+      <%= f.submit "Reply"  %>
+      <% end %>
+
+<div class= "col-md-1"></div>
+<div class= "col-md-8">
+  <ul>
+       <%= render partial: 'comments/comment', collection: comment.comments %>
+  </ul>
+</div>
+
+</li>
+<div class="clearfix"></div>

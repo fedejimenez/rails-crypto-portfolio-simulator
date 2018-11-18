@@ -17,6 +17,10 @@ class HomeController < ApplicationController
   def about 
   end
 
+  def suggestions
+    @comment = Comment.new
+  end
+
   def landing
     if logged_in?
       redirect_to home_path, turbolinks: false
