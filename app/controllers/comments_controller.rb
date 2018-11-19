@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
-before_action :find_commentable
+    before_action :find_commentable
+    before_action :authorize
 
     def index
       @comments = Comment.all

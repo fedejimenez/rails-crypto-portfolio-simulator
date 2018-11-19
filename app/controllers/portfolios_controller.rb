@@ -1,6 +1,7 @@
 class PortfoliosController < ApplicationController
   before_action :set_portfolio, only: [:show, :edit, :update, :destroy]
   before_action :calculate_profit
+  before_action :authorize
 
   # GET /portfolios
   # GET /portfolios.json

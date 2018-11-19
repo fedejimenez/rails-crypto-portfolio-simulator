@@ -1,18 +1,53 @@
 <li>
-  <%= comment.body %> - <%= User.where(id: comment.user_id).first.name %>
-  <small>Submitted <%= time_ago_in_words(comment.created_at) %> ago</small>
+	<div class="comment-main-level">
+		<!-- Avatar -->
+		<div class="comment-avatar"><img src="/assets/avatar.svg" alt=""></div>
+		<!-- Contenedor del Comentario -->
+		<div class="comment-box">
+			<div class="comment-head">
+				<h6 class="comment-name by-author"><a href="#"><%= User.where(id: comment.user_id).first.name %></a></h6>
+				<span class="posted-time">  <small>Submitted <%= time_ago_in_words(comment.created_at) %> ago</small></span>
+				<i class="fa fa-reply"></i>
+				<i class="fa fa-heart"></i>
+			</div>
+			<div class="comment-content"> 
+				<%= comment.body %> 
+				<div class="comment-open">
+					<a class="btn-reply">
+						<i class="fa fa-reply"></i>
+						Reply
+					</a>
+					<% if comment.comments.present? %>
+						<a class="btn pull-right" type="button" data-toggle="collapse" data-target="#collapseComment<%=comment.id%>" aria-expanded="false" aria-controls="collapseComment">
+							<i class="fa fa-chevron-down"></i> See Replies
+						</a>
+					<% end %>
+				</div>
+			</div>
+			<% if logged_in? %>
+				<div class="comment-footer">
+					<div class="comment-form">
+					  <%= form_for [comment, Comment.new] do |f| %>
+				      	<%= f.text_area :body, class:"form-control", placeholder: "Add a Reply" %><br/>
+						<div class="pull-right send-button">
+				      		<%= f.submit "Reply", class: "btn-send"  %>
+						</div>
+				      <% end %>
+					</div>
+				</div>
+			<% end %>
+		</div>
+	</div>
 
-  <%= form_for [comment, Comment.new] do |f| %>
-      <%= f.text_area :body, placeholder: "Add a Reply" %><br/>
-      <%= f.submit "Reply"  %>
-      <% end %>
-
-<div class= "col-md-1"></div>
-<div class= "col-md-8">
-  <ul>
-       <%= render partial: 'comments/comment', collection: comment.comments %>
-  </ul>
-</div>
-
+	<div class="collapse" id="collapseComment<%=comment.id%>">
+		<ul class="comments-list reply-list">
+		   <%= render partial: 'comments/comment', collection: comment.comments %>
+		</ul>
+	</div>
 </li>
+
+
 <div class="clearfix"></div>
+
+
+
