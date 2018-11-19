@@ -1,0 +1,51 @@
+<% provide(:title, @title) %>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+       <!-- gravatar_for @user %> -->
+        <%= image_tag(@user.avatar.url, :alt => "avatar", class: "user-avatar rounded-circle") %>
+      <h1><%= @user.name %></h1>
+      <span><%= link_to "view my profile", @user %></span>
+      <span><b>Cryptos: </b> <%= Portfolio.where(user_id: @user.id).first.cryptos.count %></span>
+    </section>
+    <section class="stats">
+      <%= render 'users/stats' %>
+      <% if @users.any? %>
+        <div class="user_avatars">
+          <% @users.each do |user| %>
+            <%= link_to image_tag(user.avatar.url, :alt => "avatar", class: "user-avatar rounded-circle"), user %>
+          <% end %>
+        </div>
+      <% end %>
+    </section>
+  </aside>
+  <div class="col-md-8">
+    <h3><%= @title %></h3>
+    <% if @users.any? %>
+      <ul class="users follow">
+        <% @users.each do |user| %>
+          <div>
+            <%= link_to image_tag(user.avatar.url, :alt => "avatar", class: "user-avatar rounded-circle"), user %>
+            <%= link_to user.name, user_path(user.name) %>
+          </div>
+          <div> Ranking: 
+            <%= @hash_ranking.find_index{|key,_| key == user.id} +1 %>
+          </div>
+          <div> Balance: 
+            <%= user.portfolio.balance.round(2) %>
+          </div>
+          <div> Cryptos: 
+            <ul>
+              <li>
+                <% user.portfolio.crypto_ids.each do |u| %>
+                  <%= Crypto.where(id: u).first.symbol %> 
+                <% end %>
+              </li>
+            </ul>
+          </div>
+        <% end %> 
+      </ul>
+      <%= will_paginate %>
+    <% end %>
+  </div>
+</div>

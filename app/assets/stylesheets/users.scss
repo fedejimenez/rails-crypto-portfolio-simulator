@@ -20,6 +20,45 @@
 	margin-top: -18px;
 }
 
+// Following / Followers
+.stats {
+  overflow: auto;
+  margin-top: 0;
+  padding: 0;
+  a {
+    float: left;
+    padding: 0 10px;
+    border-left: 1px solid lightgrey;
+    color: gray;
+    &:first-child {
+      padding-left: 0;
+      border: 0;
+    }
+    &:hover {
+      text-decoration: none;
+      color: blue;
+    }
+  }
+  strong {
+    display: block;
+  }
+}
+
+.user_avatars {
+  overflow: auto;
+  margin-top: 10px;
+  .gravatar {
+    margin: 1px 1px;
+  }
+  a {
+    padding: 0;
+  }
+}
+
+.users.follow {
+  padding: 0;
+}
+
 /* ......... Beat effect for icons (Small beat)..... */
 .beat-less:hover {
   animation: 7s infinite beat-less;
@@ -42,134 +81,5 @@
   }
 }
 
-/*========================================================================
-                 INPUT AUTOCOMPLETE 
- ========================================================================*/
-
-.custom-input {
-   // background: url(search-solid.svg) no-repeat scroll 12px 14px;
-   background-size: 18px;
-   background-color: #fff;
-   font-family: Circular;
-   font-weight: 600;
-   font-size: 15px;
-   width: 70%;
-   margin-top: -3px;
-   padding: 0px 11px 0px 15px;
-   height: 30px;
-   border: 2px solid #eee;
-   color: black;
-   border-radius: 5px;
-   box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px 0px;
- }
-
- .custom-input:hover {
-  width: 100%;
-  box-shadow: rgba(26, 26, 29, 0.3) 0px 15px 46px -10px;
-  transition: box-shadow 0.3s ease-in-out;
-  color: black;
- }
-
- .custom-input:focus {
-   transition: width 200ms, height 200ms, background-color 200ms, transform 200ms;
-   color: black;
-   outline-width: 0px;
- }
-
-.custom-input::placeholder{
-	color: lightgray;
-}
-
-.custom-input-short {
-   // background: url(search-solid.svg) no-repeat scroll 12px 14px;
-   background-size: 18px;
-   background-color: #fff;
-   font-family: Circular;
-   font-weight: 600;
-   font-size: 15px;
-   width: 23%;
-   margin-top: -3px;
-   padding: 0px 11px 0px 15px;
-   height: 30px;
-   border: 2px solid #eee;
-   color: black;
-   border-radius: 5px;
-   box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px 0px;
- }
-
- .custom-input-short:hover {
-  box-shadow: rgba(26, 26, 29, 0.3) 0px 15px 46px -10px;
-  transition: box-shadow 0.3s ease-in-out;
-  color: black;
- }
-
- .custom-input-short:focus {
-   transition: width 200ms, height 200ms, background-color 200ms, transform 200ms;
-   color: black;
-   outline-width: 0px;
- }
 
 
- //  GOOGLE-PLACES PREDEFINED STYLES (AUTOCOMPLETE SEARCH BOX)
-.pac-container {
- font-family: "Circular";
- outline: none;
- font-weight: 500;
- color: #484848;
- box-shadow: rgba(26, 26, 29, 0.3) 0px 15px 46px -10px;
- -webkit-transition: width 200ms, height 200ms, background-color 200ms, -webkit-transform 200ms;
- transition: width 200ms, height 200ms, background-color 200ms, transform 200ms;
-}
-.pac-container:after {
-  /* Disclaimer: not needed to show 'powered by Google'*/
-  background-image: none !important;
-  color: gray;
-  box-shadow: 4px 4px 4px rgba(220,220,220,0.6);
-  -webkit-transition: width 200ms, height 200ms, background-color 200ms, -webkit-transform 200ms;
-  transition: width 200ms, height 200ms, background-color 200ms, transform 200ms;
-  padding: 0;
-}
-
-.pac-matched {
-  font-family: "Circular";
-  font-size: 14px;
-  background-color: #f2f2f2;
-  word-spacing: 10px;
-
-}
-.pac-matched:hover {
-  font-family: "Circular";
-  font-size: 14px;
-  word-spacing: 10px;
-}
-.pac-item {
-  font-family: "Circular";
-  width: 600;
-  text-align: left;
-  border: none;
-  line-height: 4;
-  word-spacing: 10px;
-}
-.pac-item-query{
-  font-size: 14px;
-  word-spacing: 10px;
-}
-
-.pac-icon{
-  height: 22px;
-  margin-right: 7px;
-  margin-left: 7px;
-  margin-top: 0px;
-  vertical-align: middle;
-  width: 15px;
-}
-
-#type-selector {
- color: gray;
- background-color: #4d90fe;
-}
-#type-selector label {
- color: gray;
-}
-#target {
-}

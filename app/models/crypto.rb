@@ -2,8 +2,7 @@ class Crypto < ApplicationRecord
 	include PortfoliosHelper
 	include UsersHelper
 
-	belongs_to :user
-	belongs_to :portfolio, optional: true
+	belongs_to :portfolio
 	has_many :movements, :dependent => :destroy
 	before_save :charge_fee
 
