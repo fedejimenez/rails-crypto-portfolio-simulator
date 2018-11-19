@@ -5,6 +5,7 @@ class MovementsController < ApplicationController
   before_action :set_movement, only: [:show, :edit, :update, :destroy]
   before_action :get_portfolio_and_crypto, only: [:create, :new]
   before_action :calculate_profit
+  before_action :authorize
 
   # GET /movements
   # GET /movements.json

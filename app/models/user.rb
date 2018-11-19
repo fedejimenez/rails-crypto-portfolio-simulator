@@ -4,6 +4,7 @@ class User < ApplicationRecord
 	has_one :portfolio, dependent: :destroy
 	has_one :movements, dependent: :destroy
   	has_many :authentications, dependent: :destroy
+  	has_many :comments, as: :commentable, dependent: :destroy
 	after_create :create_portfolio
 	after_create :send_email
 

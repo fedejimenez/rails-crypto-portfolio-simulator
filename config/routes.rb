@@ -6,6 +6,16 @@ Rails.application.routes.draw do
   get '/home' => 'home#home'
   get '/home/index' => 'home#index'
   get '/home/ranking' => 'home#ranking'
+  get '/home/suggestions' => 'home#suggestions'
+  post '/home/suggestions/users/:id/new' => 'comment#create'
+
+  resources :comments do
+    resources :comments
+  end
+  resources :users do
+    resources :comments
+  end
+
   get :lookup, controller: :home
   post '/lookup' => 'home#lookup'
   resources :searches
