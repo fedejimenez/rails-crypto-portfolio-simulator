@@ -21,11 +21,11 @@
 
                   <div class="user-area dropdown" data-behavior="notifications">
                     <a href="#" class="dropdown-toggle" data-behavior="notifications-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fa fa-envelope"></i>
+                      <i class="fa fa-envelope" style="width: 30px"></i>
                       <span class="count bg-danger" data-behavior="unread-count"><%= current_user.notifications.where(read_at: nil).count %></span>
                     </a>
                     <div class="user-menu dropdown-menu" data-behavior="notification-items">
-                      <a class="nav-link" href="#"><i class="fa fa-warning"></i>Warning</a> -->
+                      <a class="nav-link" href="#"><i class="fa fa-info"></i></a> 
                     </div>
                   </div>
 
@@ -35,7 +35,7 @@
 
               </div>
 
-              <div class="user-area dropdown float-right">
+              <div class="user-area dropdown float-right" id="usernav-dropdown">
                   <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <!-- <img class="user-avatar rounded-circle" src="/assets/avatar.svg" alt="User Avatar"> -->
                       <!-- <a href="#" class="dropdown-toggle" data-toggle="dropdown"> -->
