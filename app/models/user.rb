@@ -6,6 +6,10 @@ class User < ApplicationRecord
   	has_many :authentications, dependent: :destroy
   	has_many :comments, as: :commentable, dependent: :destroy
 
+  	# Notifications
+  	has_many :notifications, foreign_key: "recipient_id",
+  							 dependent: :destroy
+
   	# Follow other users
   	has_many :active_relationships, class_name: "Relationship", 
   									foreign_key: "follower_id", 
@@ -16,6 +20,7 @@ class User < ApplicationRecord
 									 dependent: :destroy
 	has_many :followers, through: :passive_relationships, source: :follower
 
+	# Actions
 	after_create :create_portfolio
 	after_create :send_email
 

@@ -1179,10 +1179,12 @@ header .form-inline {
     .header-menu .dropdown .dropdown-toggle {
       line-height: 55px; }
 
-.user-area .dropdown-toggle {
+// .user-area .dropdown-toggle {
+  #usernav-dropdown{ 
   position: relative;
   z-index: 0; }
-  .user-area .dropdown-toggle:before {
+  // .user-area .dropdown-toggle:before {
+  #usernav-dropdown:before{ 
     content: "";
     position: absolute;
     right: -3px;
@@ -1193,7 +1195,8 @@ header .form-inline {
     border-radius: 100%;
     border: 2px  solid white;
     z-index: 1; }
-  .user-area .dropdown-toggle.active:before {
+  // .user-area .dropdown-toggle.active:before {
+  #usernav-dropdown:before{ 
     background: #49a342; }
 
 .dropdown-menu {
@@ -2651,9 +2654,6 @@ footer.site-footer {
   #cellPaiChart #pieLabel0 {
     left: inherit !important;
     right: 20px !important; }
-
-/*# sourceMappingURL=style.css.map */
-
 
 //   Make amChart Fullscreen 
 #charthistorical {

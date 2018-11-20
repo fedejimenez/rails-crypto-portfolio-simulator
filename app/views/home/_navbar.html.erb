@@ -19,30 +19,23 @@
                       <% end%>
                   </div>
 
-                  <div class="user-area dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fa fa-envelope"></i>
-                      <span class="count bg-danger">3</span>
+                  <div class="user-area dropdown" data-behavior="notifications">
+                    <a href="#" class="dropdown-toggle" data-behavior="notifications-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <i class="fa fa-envelope" style="width: 30px"></i>
+                      <span class="count bg-danger" data-behavior="unread-count"><%= current_user.notifications.where(read_at: nil).count %></span>
                     </a>
-                    <div class="user-menu dropdown-menu">
-                      <a class="nav-link" href="#"><i class="fa fa-info"></i>Complete your profile</a>
-                      <a class="nav-link" href="#"><i class="fa fa-info"></i>Notifications <span class="count">13</span></a>
-                      <a class="nav-link" href="#"><i class="fa fa-warning"></i>Warning</a>
+                    <div class="user-menu dropdown-menu" data-behavior="notification-items">
+                      <a class="nav-link" href="#"><i class="fa fa-info"></i></a> 
                     </div>
                   </div>
 
                   <div class=" dropdown">
                     <strong style="color: #528bc4"> $ <span class="count" > <%= (@initial_amount + @profit).round(1) %></span></strong> 
-                    <div class="user-menu dropdown-menu">
-                      <a class="nav-link" href="#"><i class="fa fa-info"></i>Server Overloaded</a>
-                      <a class="nav-link" href="#"><i class="fa fa-info"></i>Notifications <span class="count">13</span></a>
-                      <a class="nav-link" href="#"><i class="fa fa-warning"></i>Warning</a>
-                    </div>
                   </div>
 
               </div>
 
-              <div class="user-area dropdown float-right">
+              <div class="user-area dropdown float-right" id="usernav-dropdown">
                   <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <!-- <img class="user-avatar rounded-circle" src="/assets/avatar.svg" alt="User Avatar"> -->
                       <!-- <a href="#" class="dropdown-toggle" data-toggle="dropdown"> -->
@@ -56,7 +49,6 @@
 
                   <div class="user-menu dropdown-menu">
                     <i class="fa fa-user"> </i> <%= link_to "My Profile", user_path(current_user.id)%>
-                    <a class="nav-link" href="#"><i class="fa fa-envelope"></i>Notifications <span class="count">13</span></a>
                     <a class="nav-link" href="#"><i class="fa fa-cog"></i>Settings</a>
                     <i class="fa fa-power-off"></i> <%= link_to "Logout", logout_path, onClick: "history.go(0)" %>
                   </div>

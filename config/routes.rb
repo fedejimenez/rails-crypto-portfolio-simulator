@@ -26,6 +26,13 @@ Rails.application.routes.draw do
   end
   resources :relationships, only: [:create, :destroy]
 
+  # Notifications
+  resources :notifications do 
+    collection do
+      post :mark_as_read
+    end
+  end
+
   # Lookup search
   get :lookup, controller: :home
   post '/lookup' => 'home#lookup'

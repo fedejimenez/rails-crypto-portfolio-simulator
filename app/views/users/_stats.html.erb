@@ -2,7 +2,7 @@
 <a href="<%= following_user_path(@user) %>">
   <div class="profile__stat">
     <div class="profile__icon profile__icon--blue"><i class="fa fa-user-plus"></i></div>
-    <div class="profile__value count"><%= @user.following.count %>
+    <div class="profile__value count" id="following"><%= @user.following.count %>
         <div class="profile__key">Following</div>
     </div>
   </div>
@@ -10,7 +10,7 @@
 <a href="<%= followers_user_path(@user) %>">
   <div class="profile__stat">
     <div class="profile__icon profile__icon--green"><i class="fa fa-users"></i></div>
-    <div class="profile__value count"><%= @user.followers.count %>
+    <div class="profile__value count" id="followers"><%= @user.followers.count %>
         <div class="profile__key">Followers</div>
     </div>
   </div>
