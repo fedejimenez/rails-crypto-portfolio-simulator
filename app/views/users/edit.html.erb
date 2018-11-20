@@ -6,7 +6,7 @@
   <%= f.submit "Update" %>
 <% end %>
 
-<div class="clearfix"></div>
+<div class="clearfix"></div><br><br>
 
 <main>
   <div id="notification-area"/>
@@ -17,9 +17,11 @@
           <div id="dashboard-content">
             <%= form_for(@user) do |f| %>
               <div class="panel space-4">
-                <div class="panel-header">
-                  <h3 class="edit-profile-section-heading">Required</h3><br>
+                <div class="panel-header col-md-6">
+                  <br>
+                  <span><h3 class="edit-profile-section-heading">Required</h3></span>
                 </div>
+                <div class="clearfix"></div> <br>
                 <div class="panel-body">
                   <%= content_tag :div, class: 'row row-condensed space-4' do %>
                     <%= f.label :username,  class: 'text-right col-sm-3' do %>
@@ -94,9 +96,10 @@
                 </div>
               </div><hr>
               <div class="panel space-4">
-                <div class="panel-header">
-                  <h3 class="edit-profile-section-heading">Optional</h3><br>
+                <div class="panel-header col-md-6">
+                  <span><h3 class="edit-profile-section-heading">Optional</h3></span>
                 </div>
+                <div class="clearfix"></div> <br>
                 <div class="panel-body">
 
                   <div class="row row-condensed space-4">
@@ -121,7 +124,7 @@
                   </div>
                 </div>
               </div><br>
-              <div class="col-md-2"></div>
+              <div class="col-md-3"></div>
               <div class="submit-field">
                 <%= f.submit 'Save', class: 'col-md-2 btn btn-primary btn-large',  data: { confirm: 'Are you sure?' }%> 
               </div>
