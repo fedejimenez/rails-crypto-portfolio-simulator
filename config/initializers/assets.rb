@@ -23,6 +23,6 @@ Rails.application.config.assets.precompile += %w( count.js )
 Rails.application.config.assets.precompile << /\.(?:svg|eot|woff|ttf)\z/
 Rails.application.config.assets.precompile += %w( cryptofont.css )
 
-Rails.application.config.assets.precompile += %w( .svg .eot .woff .woff2 .ttf )
+Rails.application.config.assets.precompile += %w( .svg .eot .woff .woff2 .ttf .png)
 
 

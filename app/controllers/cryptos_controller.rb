@@ -4,7 +4,7 @@ class CryptosController < ApplicationController
 
   before_action :set_crypto, only: [:show, :edit, :update, :destroy]
   before_action :authorize
-  before_action :correct_user, only: [:edit, :update, :destroy, :show]
+  before_action :correct_user_cryptos, only: [:edit, :update, :destroy, :show]
   before_action :calculate_profit
   rescue_from ActiveRecord::RecordNotFound, with: :handle_record_not_found
   after_action :calculate_quantity, only: [:update]
@@ -83,8 +83,8 @@ class CryptosController < ApplicationController
       params.require(:crypto).permit(:symbol, :user_id, :cost_per, :amount_owned, :last_transaction, :last_action, :portfolio_id)
     end
 
-    def correct_user
-      @correct = current_user.cryptos.find_by(id: params[:id])
+    def correct_user_cryptos
+      @correct = current_user.portfolio.cryptos.find_by(id: params[:id])
       if @correct.nil?
         flash[:warning] = "Oops! You're not Authorized to view or edit this page! " 
         redirect_to cryptos_path

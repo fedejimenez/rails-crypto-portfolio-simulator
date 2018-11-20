@@ -101,13 +101,17 @@
                   <div class="text-left dib">
                     <div class="stat-text">
                       <strong>
-                        <span class="count">
+                        <span class="">
                           <% @user.portfolio.crypto_ids.each do |u| %>
                             <% coin = Crypto.where(id: u).first.symbol %>
-                            <span>
-                              <img src=<%=find_icon(coin.downcase)%> width="17vw" alt="">
-                              <%= coin %>
-                            </span>
+                            <small class="">
+                              <a href="">
+                                <div>
+                                  <img src="/assets/<%=coin.downcase%>.png" width="17vw" alt="">
+                                  <%= coin %>
+                                </div>
+                              </a>
+                            </small>
                           <% end %>                        
                         </span>
                       </strong>

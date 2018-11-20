@@ -1,18 +1,19 @@
-<h2><strong>Edit My Profile</strong></h2>
-
 <%= render 'layouts/flash' %>
+<%= render 'home/breadcrumbs' %>
 
 <% form_for current_user, url: {action: "update"} do |f| %>
   <%= render :partial => "form", :object => f %>
   <%= f.submit "Update" %>
 <% end %>
 
-<main id="site-content" role="main" tabindex="-1">
+<div class="clearfix"></div>
+
+<main>
   <div id="notification-area"/>
     <div class="page-container-responsive space-top-4 space-4">
       <div class="">
         <div class="col-md-2"></div>
-        <div class="col-md-7">
+        <div class="col-md-8">
           <div id="dashboard-content">
             <%= form_for(@user) do |f| %>
               <div class="panel space-4">
@@ -75,10 +76,10 @@
                       Email
                     <% end %>
                     <%= content_tag :div, class: 'col-sm-9' do %>
-                      <p><%= f.text_field :email, class: "custom-input", required: true  %></p>
+                      <p><%= f.text_field :email, class: "custom-input", required: true, readonly: true  %></p>
                       <div class="text-muted space-top-1">
                          We won’t share your private email address with other users.
-                      <a href="/help/article/694" target="blank">Learn more</a>.
+                      <a href="#" target="blank">Learn more</a>.
                       </div>    
                     <% end %>
                   <% end %> <br>

@@ -14,7 +14,9 @@ class UsersController < ApplicationController
   def show
     @user = User.find_by id: params[:id]
     @breadcrumb_title = 'PROFILE'
-    @breadcrumb_subtitle = ' '
+    @breadcrumb_icon = 'user'
+    @breadcrumb_subtitle = ''
+    @breadcrumb_path1 = ''
     @breadcrumb_current = 'Profile'
   end
 
@@ -33,6 +35,12 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find_by id: params[:id]
+    @breadcrumb_title = 'EDIT PROFILE'
+    @breadcrumb_icon = 'edit'
+    @breadcrumb_subtitle = ''
+    @breadcrumb_path1 = 'Profile'
+    @breadcrumb_link1 = '/users/' + current_user.id.to_s
+    @breadcrumb_current = 'Edit'
   end
 
   def update
