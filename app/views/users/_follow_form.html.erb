@@ -1,9 +1,11 @@
 <% if current_user.id != @user.id %>
-  <div id="follow_form">
-  <% if current_user.following?(@user) %>
-    <%= render 'unfollow' %>
-  <% else %>
-    <%= render 'follow' %>
-  <% end %>
-  </div>
+	<div id="follow_form">
+		<% if current_user.following?(@user) %>
+			<%= render 'unfollow' %>
+		<% else %>
+			<%= render 'follow' %>
+		<% end %>
+	</div>
+<% else %>
+    <%= link_to 'Edit Profile', edit_user_path(@user), :class => 'ripple profile__button', :style => 'text-decoration: none;' %>
 <% end %>

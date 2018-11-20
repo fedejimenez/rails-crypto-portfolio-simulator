@@ -5,7 +5,6 @@ class UsersController < ApplicationController
   before_action :correct_user, only: [:edit, :update, :destroy, :following, :followers]
   before_action :update_ranking, only: [:show, :edit, :following, :followers]
 
-
   def index
   end
 
@@ -14,6 +13,9 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by id: params[:id]
+    @breadcrumb_title = 'PROFILE'
+    @breadcrumb_subtitle = ' '
+    @breadcrumb_current = 'Profile'
   end
 
   def create
