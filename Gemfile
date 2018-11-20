@@ -119,6 +119,7 @@ gem "rack", ">= 2.0.6"
 
 # Pagination
 gem 'kaminari', :git => "git://github.com/amatsuda/kaminari.git"
+gem 'will_paginate'
 
 # ColorPicker
 gem 'jquery-minicolors-rails'

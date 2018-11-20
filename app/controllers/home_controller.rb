@@ -4,7 +4,7 @@ class HomeController < ApplicationController
   include UsersHelper
   include PortfoliosHelper
 
-  before_action :calculate_profit, except: [:landing, :lookup]
+  before_action :calculate_profit, except: [:landing]
   before_action :update_ranking, except: [:landing, :lookup]
   before_action :get_historical_from_API, only: [:home, :index]
   before_action :authorize, except: [:landing]

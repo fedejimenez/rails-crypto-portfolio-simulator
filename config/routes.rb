@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get '/home' => 'home#home'
   get '/home/index' => 'home#index'
   get '/home/ranking' => 'home#ranking'
+
+  # Suggestions / Comments
   get '/home/suggestions' => 'home#suggestions'
   post '/home/suggestions/users/:id/new' => 'comment#create'
 
@@ -16,6 +18,15 @@ Rails.application.routes.draw do
     resources :comments
   end
 
+  # Follow users
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
+  resources :relationships, only: [:create, :destroy]
+
+  # Lookup search
   get :lookup, controller: :home
   post '/lookup' => 'home#lookup'
   resources :searches

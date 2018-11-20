@@ -1,0 +1,35 @@
+<div class="breadcrumbs">
+    <div class="breadcrumbs-inner">
+        <div class="row m-0">
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1> <strong><i class="fa fa-<%=@breadcrumb_icon%>"> </i> <%= @breadcrumb_title %> </strong>
+                            <%= @breadcrumb_subtitle %>
+                        </h1>                    
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="page-header float-right">
+                    <div class="page-title">
+                        <ol class="breadcrumb text-right">
+                            <li><a href="/home/index">Dashboard</a></li>
+                            <% if @breadcrumb_path1 != '' %>
+                                <li>
+                                    <a href="<%=@breadcrumb_link1%>">
+                                        <%= @breadcrumb_path1 %>
+                                    </a>
+                                </li>
+                            <% end %>
+                            <li class="active"><%= @breadcrumb_current %></li>
+                        </ol>
+                        <ol class="breadcrumb text-right">
+                          <li><small><i class="fa fa-repeat"></i> <a href="#"> Updated: <%=  Time.now.strftime('%H:%M:%S') %></a></small></li>                        
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

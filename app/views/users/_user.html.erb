@@ -3,7 +3,7 @@
   	<b>Name:</b>
   </div>
   <div class="col-md-4">
-  	<%= current_user.name %>
+  	<%= @user.name %>
   </div>
 </p>
 <br>
@@ -12,7 +12,7 @@
   	<b>Username:</b>
   </div>
   <div class="col-md-4">
-  	<%= current_user.username %>
+  	<%= @user.username %>
   </div>
 </p>
 <br>
@@ -21,8 +21,8 @@
   	<b>Birthdate:</b>
   </div>
   <div class="col-md-4">
-    <% if current_user.birthdate? %>
-     <%= current_user.birthdate.strftime('%d/%m/%Y') %>
+    <% if @user.birthdate? %>
+     <%= @user.birthdate.strftime('%d/%m/%Y') %>
     <% else %>
       --/--/--  <span class="" style="color:red"> Please complete this field </span>
     <% end %>
@@ -34,8 +34,8 @@
     <b>Location:</b>
   </div>
   <div class="col-md-9">
-    <% if current_user.country? %>
-     <%= current_user.country %>
+    <% if @user.country? %>
+     <%= @user.country %>
     <% else %>
       -------- <span class="" style="color:red"> Please complete this field </span>
     <% end %>
@@ -47,7 +47,7 @@
   	<b>Email:</b>
   </div>
   <div class="col-md-4">
-  	<%= current_user.email %>
+  	<%= @user.email %>
   </div>
 </p>
 
