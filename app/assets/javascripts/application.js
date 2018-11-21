@@ -97,14 +97,14 @@ $(document).on('turbolinks:load', function() {
 
 })
 
-	// Load Resize 
-	$(window).on("load resize", function(event) { 
-		var windowWidth = $(window).width();  		 
-		if (windowWidth<1010) {
-			$('body').addClass('small-device'); 
-		} else {
-			$('body').removeClass('small-device');  
-		} 
-		
-	});
+// Load Resize 
+$(window).on("load resize", function(event) { 
+	var windowWidth = $(window).width();  		 
+	if (windowWidth<1010) {
+		$('body').addClass('small-device'); 
+	} else {
+		$('body').removeClass('small-device');  
+	} 
+	
+});
    

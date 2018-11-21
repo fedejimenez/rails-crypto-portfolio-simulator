@@ -11,9 +11,21 @@ class HomeController < ApplicationController
 
 
   def index
+    @breadcrumb_title = 'TOP 50 CRYPTOS OF THE DAY'
+    @breadcrumb_icon = 'list-alt'
+    @breadcrumb_subtitle = ''
+    @breadcrumb_path1 = ''
+    @breadcrumb_link1 = ''
+    @breadcrumb_current = 'Top 50'
   end
   
   def ranking
+    @breadcrumb_title = "USER's RANKING"
+    @breadcrumb_icon = 'trophy'
+    @breadcrumb_subtitle = ''
+    @breadcrumb_path1 = ''
+    @breadcrumb_link1 = ''
+    @breadcrumb_current = 'Ranking'
   end
 
   def about 
@@ -21,6 +33,12 @@ class HomeController < ApplicationController
 
   def suggestions
     @comment = Comment.new
+    @breadcrumb_title = "SUGGESTIONS"
+    @breadcrumb_icon = 'send'
+    @breadcrumb_subtitle = ''
+    @breadcrumb_path1 = ''
+    @breadcrumb_link1 = ''
+    @breadcrumb_current = 'Suggestions'
   end
 
   def landing

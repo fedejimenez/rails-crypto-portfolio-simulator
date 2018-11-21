@@ -12,7 +12,9 @@ $(document).on('turbolinks:load', function() {
 
 	 $('#table-index').DataTable({
     	"iDisplayLength": 10,
-    	 "order": [[ 0, "asc" ]]
+    	 "order": [[ 0, "asc" ]],
+    	"lengthChange": false,
+    	"info": false
 	 });
 
 	 var tableRanking = $('#table-ranking').DataTable({
