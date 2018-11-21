@@ -5,6 +5,7 @@ class User < ApplicationRecord
 	has_one :movements, dependent: :destroy
   	has_many :authentications, dependent: :destroy
   	has_many :comments, as: :commentable, dependent: :destroy
+  	has_many :likes, dependent: :destroy
 
   	# Notifications
   	has_many :notifications, foreign_key: "recipient_id",
@@ -91,6 +92,22 @@ class User < ApplicationRecord
 	# Returns true if the current user is following the other user
 	def following?(other_user)
 		following.include?(other_user)
+	end
+
+	# Like a comment
+	def like!(comment, user)
+		self.likes.create!(comment_id: comment.id, user_id: user.id)
+	end
+
+	# Dislike a comment
+	def dislike!(comment, user)
+		like = self.likes.find_by_comment_id(comment.id, user_id: user.id)
+		like.destroy!
+	end
+
+	# Checl if like?
+	def like?(comment)
+		self.likes.find_by_comment_id(comment.id)
 	end
 
 end

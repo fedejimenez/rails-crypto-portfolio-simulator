@@ -18,6 +18,10 @@ Rails.application.routes.draw do
     resources :comments
   end
 
+  # Likes for comments
+  match 'like', to: 'likes#like', via: :post
+  match 'dislike', to: 'likes#dislike', via: :delete
+
   # Follow users
   resources :users do
     member do

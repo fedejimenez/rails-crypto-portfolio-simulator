@@ -7,8 +7,7 @@
 			<div class="comment-head">
 				<h6 class="comment-name by-author"><a href="#"><%= User.where(id: comment.user_id).first.name %></a></h6>
 				<span class="posted-time">  <small>Submitted <%= time_ago_in_words(comment.created_at) %> ago</small></span>
-				<i class="fa fa-reply"></i>
-				<i class="fa fa-heart"></i>
+				<%= render 'likes/like_form', comment: comment %>
 			</div>
 			<div class="comment-content"> 
 				<%= comment.body %> 
