@@ -66,6 +66,12 @@ class UsersController < ApplicationController
     @title = "Following"
     @user = User.find(params[:id])
     @users = @user.following.paginate(page: params[:page])
+    @breadcrumb_title = ' PROFILE - Following'
+    @breadcrumb_icon = 'user-plus'
+    @breadcrumb_subtitle = ''
+    @breadcrumb_path1 = 'Profile'
+    @breadcrumb_link1 = '/./users/'+current_user.id.to_s
+    @breadcrumb_current = 'Following'
     render 'show_follow'
   end
 
@@ -73,6 +79,12 @@ class UsersController < ApplicationController
     @title = "Followers"
     @user = User.find(params[:id])
     @users = @user.followers.paginate(page: params[:page])
+    @breadcrumb_title = ' PROFILE - Followers'
+    @breadcrumb_icon = 'users'
+    @breadcrumb_subtitle = ''
+    @breadcrumb_path1 = 'Profile'
+    @breadcrumb_link1 = '/./users/'+current_user.id.to_s
+    @breadcrumb_current = 'Followers'
     render 'show_follow'
   end
 
