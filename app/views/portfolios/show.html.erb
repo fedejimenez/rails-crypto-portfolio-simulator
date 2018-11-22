@@ -87,6 +87,14 @@
                                                 <div class="progress-bar bg-flat-color-1" role="progressbar" style="width:<%=percentage_invested%>%" aria-valuenow="<%=percentage_invested%>" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
                                         </div>
+                                        <div class="progress-box progress-2">
+                                            <h4 class="por-title pull-left">Available for Selling</h4><br><br>
+                                            <div class="por-txt pull-right"> <strong> $ <%= (@initial_amount + @profit).round(1) -current_portfolio.balance.round(2)  %> | <%= percentage_for_selling = (100 * ((@initial_amount + @profit).round(1) - current_portfolio.balance.round(2) )/((@initial_amount + @profit).round(2))).round(2) %> % </strong> (From Total Amount)
+                                            </div> <div class="clearfix"></div>
+                                            <div class="progress mb-2" style="height: 5px;">
+                                                <div class="progress-bar bg-flat-color-1" role="progressbar" style="width:<%=percentage_for_selling%>%" aria-valuenow="<%=percentage_for_selling%>" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
                                     </div> <!-- /.card-body -->
                                 </div>
                                 <div class= "col-lg-4"><br>
@@ -150,6 +158,23 @@
                                     <div class="text-left dib">
                                         <div class="stat-text"><strong>$<span class="count"><%= current_portfolio.balance.round(2) %></span></strong></div>
                                         <div class="stat-heading">Available to Invest</div>
+                                   </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-10">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="stat-widget-five">
+                                <div class="stat-icon dib flat-color-2">
+                                    <i class="fa fa-money"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <div class="text-left dib">
+                                        <div class="stat-text"><strong>$<span class="count"><%= (@initial_amount + @profit).round(1) -current_portfolio.balance.round(2) %></span></strong></div>
+                                        <div class="stat-heading">Available for Selling </div>
                                    </div>
                                 </div>
                             </div>

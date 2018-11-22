@@ -1,15 +1,107 @@
-<div class="panel panel-default">
-	<div class="panel-heading">
-		<h4><strong>New Order</strong></h4>
-	</div>
-	<div class="panel-body">
+<%= render 'layouts/flash' %>
+<%= render 'home/breadcrumbs' %>
 
-		<%= render 'form_edit', crypto: @crypto %>
+<div class="content">
+    <!-- Animated -->
+    <div class="animated fadeIn">
+        <!--  Form  -->
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="card-body text-center">
+						<%= render 'form_edit', crypto: @crypto %>
+					</div>
 
-	</div>
+					<div class="panel-footer" id="total-amount-footer">
+						<br>
+						<%= render 'totals' %>
+					</div>
+				</div>
+			</div>
+			
+			<!-- Widgets -->
+		    <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="stat-widget-five">
+                            <div class="stat-icon dib">
+                                <% value_1h = [] %>	
+                            	<% @coins.each do |c| %>
+                                	<% value_1h << c["percent_change_1h"].to_d %>
+                                <% end %>	
+                                <img src="/assets/<%=@coins[value_1h.each_with_index.max[1]]['symbol'].downcase%>" alt="" width="40px" title="<%=@coins[value_1h.each_with_index.max[1]]['name']%>">
+                            </div>
+                            <div class="stat-content">
+                                <div class="text-left dib">
+                                    <div class="stat-text"><strong>
+                                        <span class="color-text">
+                                            <%= value_1h.max.to_d.round(2) %> %
+                                        </span></strong>
+                                    </div>
+                                    <div class="stat-heading">Max % 1 h</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-	<div class="panel-footer" id="total-amount-footer">
-		<br>
-		<%= render 'totals' %>
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="stat-widget-five">
+                            <div class="stat-icon dib flat-color-3">
+                                <i class="fa fa-money"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="text-left dib">
+                                    <div class="stat-text"><strong>$<span class="count"><%= current_portfolio.balance.round(2) %></span></strong></div>
+                                    <div class="stat-heading">Available to Invest</div>
+                               </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="stat-widget-five">
+                            <div class="stat-icon dib flat-color-2">
+                                <i class="fa fa-money"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="text-left dib">
+                                    <div class="stat-text"><strong>$<span class="count"><%= (@initial_amount + @profit).round(1) -current_portfolio.balance.round(2) %></span></strong></div>
+                                    <div class="stat-heading">Available for Selling </div>
+                               </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="stat-widget-five">
+                            <div class="stat-icon dib flat-color-3">
+                                <% @last_crypto_id = current_portfolio.movements.last.crypto_id %>
+                                <% @last_crypto_symbol = Crypto.where(id: @last_crypto_id).first.symbol.downcase %>
+                                <img src="/assets/<%=@last_crypto_symbol%>" width="50vw" title="<%=@crypto_names[@last_crypto_id]%>" >
+                            </div>
+                            <div class="stat-content">
+                                <div class="text-left dib">
+                                    <div class="stat-text"><strong><span class=""><%= current_portfolio.movements.last.operation.upcase %></span></strong></div>
+                                    <div class="stat-heading">Last Order: <strong><%=@crypto_names[@last_crypto_id].upcase%></strong></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+		</div>
 	</div>
 </div>
+
+<%= javascript_include_tag 'count' %>
