@@ -96,7 +96,7 @@
     <div class="slider-container col-md-8 col-md-offset-2 animated animatedFadeInUp fadeInUp" id="slider-container">
       <div class="slider-outer clearfix" id="slider-outer">
         <div class="slide clearfix">
-            <div class="slide-thump"><img src="https://d2lm6fxwu08ot6.cloudfront.net/img-thumbs/960w/DI64TAJTIS.jpg"/>
+            <div class="slide-thump"><img src="https://d2lm6fxwu08ot6.cloudfront.net/img-thumbs/960w/DI64TAJTIS.jpg" class="loading" />
                 <div class="overlay"></div>
             </div>
             <div class="slide-details">
@@ -108,7 +108,7 @@
             </div>
         </div>
         <div class="slide clearfix">
-            <div class="slide-thump"><img src="https://d2lm6fxwu08ot6.cloudfront.net/img-thumbs/960w/FOWR0O1WQ6.jpg"/>
+            <div class="slide-thump"><img src="https://d2lm6fxwu08ot6.cloudfront.net/img-thumbs/960w/FOWR0O1WQ6.jpg" class="loading" />
                 <div class="overlay"></div>
             </div>
             <div class="slide-details">
@@ -120,7 +120,7 @@
             </div>
         </div>
         <div class="slide clearfix">
-            <div class="slide-thump"><img src="https://d2lm6fxwu08ot6.cloudfront.net/img-thumbs/960w/2YMA649WFC.jpg"/>
+            <div class="slide-thump"><img src="https://d2lm6fxwu08ot6.cloudfront.net/img-thumbs/960w/2YMA649WFC.jpg" class="loading" />
                 <div class="overlay"></div>
             </div>
             <div class="slide-details">
@@ -132,7 +132,7 @@
             </div>
         </div>
         <div class="slide clearfix">
-            <div class="slide-thump"><img src="https://d2lm6fxwu08ot6.cloudfront.net/img-thumbs/960w/ONV344KX9K.jpg"/>
+            <div class="slide-thump"><img src="https://d2lm6fxwu08ot6.cloudfront.net/img-thumbs/960w/ONV344KX9K.jpg" class="loading" />
                 <div class="overlay"></div>
             </div>
             <div class="slide-details">
@@ -202,7 +202,7 @@
         delay);
   });
 
-  //smoothscroll
+  // Smoothscroll
   $(document).on("scroll", onScroll);
   $('.sections').on('click', function (e) {
       e.preventDefault();
@@ -217,6 +217,7 @@
           'scrollTop': $target.offset().top-55},delay);
   });
 
+  // Change active State of the Buttons in Nabvar
   function onScroll(event){
       var scrollPos = $(document).scrollTop();
       $('.sections').each(function () {

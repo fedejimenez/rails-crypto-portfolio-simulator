@@ -65,7 +65,29 @@ $(function() {
     });
 });
 
+
 $(document).on('turbolinks:load', function() {
+	// Change Active State of the Buttons in Sidebar
+	if (document.querySelector('.breadcrumb-title') !=null){
+		var header = document.getElementById("main-menu");
+		var btns = header.getElementsByClassName("li-sidebar");
+		var selected = document.querySelector('.breadcrumb-title').innerText.split(' ')[1].toLowerCase()
+		for (var i = 0; i < btns.length; i++) {
+		  btns[i].addEventListener("click", function() {
+		  	changeActive();
+		  });
+		}
+	}
+	function changeActive(){
+	    var current = document.getElementsByClassName("active");
+	    current[0].className = current[0].className.replace(" active", "");
+	    this.className += " active";
+	}
+	
+	if (document.querySelector('.breadcrumb-title') !=null){
+		changeActive();
+		$('#li-'+selected).addClass('active');
+	}
 	// Search Bar 
 	$('.search-trigger').on('click', function(event) {
 		event.preventDefault();
@@ -108,3 +130,20 @@ $(window).on("load resize", function(event) {
 	
 });
    
+
+// Show spinner when loading pages
+$(document).on('turbolinks:click', function() {
+	// $("#just_load_please").on("click", function(e) {
+    // e.preventDefault();
+
+	$("#loadMe").modal({
+	  backdrop: "static", //remove ability to close modal with click
+	  keyboard: false, //remove option to close with keyboard
+	  show: true //Display loader!
+	});
+});
+// });
+
+$(document).on('turbolinks:load', function() {
+	$("#loadMe").modal("hide");
+});

@@ -11,6 +11,12 @@ class MovementsController < ApplicationController
   # GET /movements.json
   def index
     @movements = Movement.all
+    @breadcrumb_title = " MOVEMENTS"
+    @breadcrumb_icon = 'exchange'
+    @breadcrumb_subtitle = ''
+    @breadcrumb_path1 = ''
+    @breadcrumb_link1 = ''
+    @breadcrumb_current = 'Movements'
   end
 
   # GET /movements/1

@@ -29,11 +29,11 @@
                                 <td> <img src="/assets/<%=c['symbol'].downcase%>" width="17vw" alt="">
                                   <abbr title="<%= c["name"] %>"><%= link_to c["symbol"], "/lookup?q=#{c['symbol']}" %></abbr></td>
                                 <td> <%= c["price_usd"].to_d.round(5) %> </td>
-                                                        <% value_1h << c["percent_change_1h"] %> </td>
+                                                        <% value_1h << c["percent_change_1h"].to_d %> </td>
                                 <td class="color-text"> <%= c["percent_change_1h"] %> </td>
-                                                         <% value_24h << c["percent_change_24h"] %> </td>
+                                                         <% value_24h << c["percent_change_24h"].to_d %> </td>
                                 <td class="color-text"> <%= c["percent_change_24h"] %> </td>
-                                                        <% value_7d << c["percent_change_7d"] %>
+                                                        <% value_7d << c["percent_change_7d"].to_d %>
                               </tr>
                             <% end %>
                           </tbody>
