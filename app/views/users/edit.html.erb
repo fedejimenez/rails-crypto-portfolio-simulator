@@ -27,7 +27,7 @@
                     <%= f.label :username,  class: 'text-right col-sm-3' do %>
                       User Name
                     <% end %>
-                    <%= content_tag :div, class: 'col-sm-9' do %>
+                    <%= content_tag :div, class: 'col-sm-6' do %>
                       <p><%= f.text_field :username, class: "custom-input", required: true  %></p>
                       <div class="text-muted space-top-1">
                     <% end %>
@@ -38,7 +38,7 @@
                     <%= f.label :user_name,  class: 'text-right col-sm-3' do %>
                       Full Name
                     <% end %>
-                    <%= content_tag :div, class: 'col-sm-9' do %>
+                    <%= content_tag :div, class: 'col-sm-6' do %>
                       <p><%= f.text_field :name, class: "custom-input", required: true %></p>
                       <div class="text-muted space-top-1">Your public profile only shows your first name or your username.
                     <% end %>
@@ -77,7 +77,7 @@
                     <%= f.label :user_email,  class: 'text-right col-sm-3' do %>
                       Email
                     <% end %>
-                    <%= content_tag :div, class: 'col-sm-9' do %>
+                    <%= content_tag :div, class: 'col-sm-6' do %>
                       <p><%= f.text_field :email, class: "custom-input", required: true, readonly: true  %></p>
                       <div class="text-muted space-top-1">
                          We won’t share your private email address with other users.
@@ -88,7 +88,7 @@
 
                   <div class="row row-condensed space-4">
                     <label class="text-right col-sm-3" for="user_profile_info_current_city">Where You Live</label>
-                    <div class="col-sm-9">
+                    <div class="col-sm-6">
                       <!-- <input class="custom-input" id="autocomplete" placeholder="user[country]" name="user[country]" type="text"> -->
                       <p><%= f.text_field :country, class: "custom-input", id: "autocomplete", type: "text", required: true %></p>
                    </div>
@@ -104,21 +104,21 @@
 
                   <div class="row row-condensed space-4">
                     <label class="text-right col-sm-3" for="user_profile_info_university">School / University</label>
-                    <div class="col-sm-9">
+                    <div class="col-sm-6">
                       <input  class= "custom-input" id="user_profile_info_university" name="user_profile_info[university]" placeholder="School / University name" size="30" type="text" value=""/>
                     </div>
                   </div> <br>
 
                   <div class="row row-condensed space-4">
                     <label class="text-right col-sm-3" for="user_profile_info_employer">Work</label>
-                    <div class="col-sm-9">
+                    <div class="col-sm-6">
                       <input class= "custom-input" id="user_profile_info_employer" name="user_profile_info[employer]" placeholder="Company name or job title" size="30" type="text" value=""/>
                     </div>
                   </div> <br>
 
                   <div class="row row-condensed space-4">
                     <label class="text-right col-sm-3" for="user_emergency_contact_phone">Phone</label>
-                    <div class="col-sm-9">
+                    <div class="col-sm-6">
                       <input class= "custom-input" id="user_emergency_contact_phone" name="user_emergency_contact[phone]" size="30" type="text" placeholder="55512345678" />
                     </div>
                   </div>

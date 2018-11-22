@@ -57,7 +57,7 @@
                             <div class="stat-content">
                                 <div class="text-left dib">
                                     <div class="stat-text"><strong><span class=""><%= current_portfolio.movements.last.operation.upcase %></span></strong></div>
-                                    <div class="stat-heading">Last: <strong><%=@crypto_names[@last_crypto_id].upcase%></strong></div>
+                                    <div class="stat-heading">Last Order: <strong><%=@crypto_names[@last_crypto_id].upcase%></strong></div>
                                 </div>
                             </div>
                         </div>
@@ -74,7 +74,9 @@
                             </div>
                             <div class="stat-content">
                                 <div class="text-left dib">
-                                    <div class="stat-text"><strong>#<span class="count"> <%= @rank %></span></strong></div>
+                                    <a href="/home/ranking">
+                                        <div class="stat-text"><strong>#<span class="count"> <%= @rank %></span></strong></div>
+                                    </a>
                                     <div class="stat-heading">Rank</div>
                                 </div>
                             </div>
@@ -90,12 +92,13 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body text-center">
-                        <h4 class="box-title"><i class="glyphicon glyphicon-btc" style="color:orange"> </i> Bitcoin Historical Chart and Current Data (U$D)</h4>
+                        <h4 class="box-title"><i class="glyphicon glyphicon-btc" style="color:orange"> </i> BITCOIN Historical Chart and Current Data (U$D)</h4>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-8">
                             <div class="card-body">
+                                <div class="col-md-1"></div>
                                 <button class="btn btn-default" value="Full Screen" onclick="showPopup('charthistorical');"> <i class="fa fa-arrows-alt"> </i> Full Screen</button> 
                                 <div id="charthistorical" style="width: 50vw; height: 40vh;padding-top: 2vh;" ></div>
                             </div>
