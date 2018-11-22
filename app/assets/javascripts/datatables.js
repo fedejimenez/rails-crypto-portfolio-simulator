@@ -12,7 +12,9 @@ $(document).on('turbolinks:load', function() {
 
 	 $('#table-index').DataTable({
     	"iDisplayLength": 10,
-    	 "order": [[ 0, "asc" ]]
+    	 "order": [[ 0, "asc" ]],
+    	"lengthChange": false,
+    	"info": false
 	 });
 
 	 var tableRanking = $('#table-ranking').DataTable({
@@ -29,6 +31,10 @@ $(document).on('turbolinks:load', function() {
      }).draw();
 
 	 $('#table-cryptos').DataTable({
+	 	"iDisplayLength": 10,
+    	"order": [[ 0, "asc" ]],
+    	"lengthChange": false,
+    	"info": false
 	 });
 
 	 $('#table-movements').parent().addClass('table-responsive');
