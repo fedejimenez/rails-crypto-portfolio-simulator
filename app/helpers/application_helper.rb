@@ -107,14 +107,14 @@ module ApplicationHelper
     end
   end
 
-  # def coin_name_by_id(id)
-  #   for c in @coins
-  #     if (Crypto.where(id = "#{id}").first.symbol == c["symbol"])
-  #       @current_coin_name = c["name"]
-  #       return @current_coin_name
-  #     end
-  #   end
-  # end
+  def coin_name_by_symbol(symbol)
+    for c in @coins
+      if c['symbol'] == symbol
+        @coin_name = c["name"]
+        return @coin_name
+      end
+    end
+  end
 
 
 end

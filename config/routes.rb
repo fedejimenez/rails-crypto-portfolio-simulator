@@ -11,11 +11,11 @@ Rails.application.routes.draw do
   get '/home/suggestions' => 'home#suggestions'
   post '/home/suggestions/users/:id/new' => 'comment#create'
 
-  resources :comments do
-    resources :comments
+  resources :comments, except: [:edit, :update, :destroy] do
+    resources :comments, except: [:edit, :update, :destroy]
   end
   resources :users do
-    resources :comments
+    resources :comments, except: [:edit, :update, :destroy]
   end
 
   # Likes for comments
@@ -65,7 +65,7 @@ Rails.application.routes.draw do
 
   # Portfolio and Movements
   resources :portfolios do
-    resources :cryptos 
+    resources :cryptos, except: [:index]
     resources :movements
   end
   resources :cryptos
