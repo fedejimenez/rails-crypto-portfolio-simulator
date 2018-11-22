@@ -99,8 +99,7 @@ body{
 //     .sidenav a {font-size: 18px;}
 // }
 
-
-//  Text green / red 
+// Notifications navbar
 #notifications-id{
   .dropdown-menu{
     .show{
@@ -117,6 +116,7 @@ div.dropdown-mennu.show{
       display: inline-block !important;
 }
 
+//  Text green / red 
 .red{
   color: red;
   font-weight: 600;
@@ -124,7 +124,7 @@ div.dropdown-mennu.show{
 .red:before {
   @extend .fa;
   @extend .fa-caret-down;
-  padding: 0 0.5vw 0 0;
+  padding: 0 0.1vw 0 0;
  }
 
 .green{
@@ -134,7 +134,7 @@ div.dropdown-mennu.show{
 .green:before {
   @extend .fa;
   @extend .fa-caret-up;
-  padding: 0 0 1vw 0;
+  padding: 0 0.2vw 0 0;
  }
 
 // Custom Shadow for buttons and panels
