@@ -1,5 +1,5 @@
 .table{
-	padding: 20px !important;
+	padding: 20px 20px 0 20px !important;
 	.row{
 		text-align: left !important;
 		tbody td{
@@ -10,6 +10,14 @@
 		}
 		a{
 			font-size: 1.5vh;
+		}
+	}
+	#table-portfolio {
+		tr td{
+			font-size: 12px !important;
+		}
+		.color-text{
+			font-size: 12px !important;
 		}
 	}
 }

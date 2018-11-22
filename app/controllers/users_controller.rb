@@ -13,6 +13,10 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by id: params[:id]
+    if User.find_by_id(params[:id]) == nil
+      flash[:warning] = "Oops! The user you are looking for does not exist. " 
+      redirect_to '/users/'+current_user.id.to_s 
+    end
     @breadcrumb_title = ' PROFILE'
     @breadcrumb_icon = 'user'
     @breadcrumb_subtitle = ''
@@ -76,7 +80,8 @@ class UsersController < ApplicationController
   
   def correct_user
     @correct = User.find_by(id: params[:id])
-    if @correct.id != current_user.id
+
+    if  ((@correct == nil)) || (@correct.id != current_user.id)
       flash[:warning] = "Oops! You're not Authorized to view or edit this page! " 
       redirect_to user_path(current_user.id)
     end

@@ -27,10 +27,10 @@
                                       <td>
                                       </td>
                                       <td>
-                                          <%= u.name.split(' ').first %>
+                                          <a href="/users/<%=u.id%>"><%= u.name.split(' ').first %></a>  
                                       </td>
                                       <td>
-                                          <%= @initial_amount + @profit_array[i] %>
+                                          $ <%= @initial_amount + @profit_array[i] %>
                                       </td>
                                       <td>
                                           <span class= "color-text"><%= ((@profit_array[i].to_d)*100/@initial_amount).round(2) %> % </span>

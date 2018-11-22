@@ -12,6 +12,13 @@ class PortfoliosController < ApplicationController
   # GET /portfolios/1
   # GET /portfolios/1.json
   def show
+    @portfolio = Portfolio.new(portfolio_params)
+    @breadcrumb_title = ' DETAILS - PORTFOLIO'
+    @breadcrumb_icon = 'tasks'
+    @breadcrumb_subtitle = ''
+    @breadcrumb_path1 = ''
+    @breadcrumb_link1 = ''
+    @breadcrumb_current = 'Details'
   end
 
   # GET /portfolios/new

@@ -11,13 +11,13 @@
                 </li>
                 <li class="menu-title">Portfolio</li><!-- /.menu-title -->
                 <li class="li-sidebar" id="li-details">
-                    <a href="/portfolios/<%=current_user.portfolio.id%>/cryptos"> <i class="menu-icon fa fa-tasks" title="DETAILS"></i>DETAILS</a>
-                </li>
-                <li class="li-sidebar" id="li-charts">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-bar-chart" title="CHARTS"></i>CHARTS</a>
+                    <a href="/portfolios/<%=current_user.portfolio.id%>"> <i class="menu-icon fa fa-tasks" title="DETAILS"></i>DETAILS</a>
                 </li>
                 <li class="li-sidebar" id="li-movements">
                     <a href="/portfolios/<%=current_user.portfolio.id%>/movements"> <i class="menu-icon fa fa-exchange" title="MOVEMENTS"></i>MOVEMENTS</a>
+                </li>
+                <li class="li-sidebar" id="li-order">
+                    <a href="/portfolios/<%=current_user.portfolio.id%>/cryptos/new"> <i class="menu-icon fa fa-shopping-cart" title="CHARTS"></i>NEW ORDER</a>
                 </li>
 
                 <li class="menu-title">USER</li><!-- /.menu-title -->

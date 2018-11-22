@@ -9,7 +9,6 @@
             <div class="col-lg-8">
                 <div class="card">
                     <div class="card-body text-center">
-                    <!-- <div id="list-cryptos" class="tabcontent" > -->
                       <div class="table">
                         <table class="table table-hover table-condensed text-center" id="table-index">
                           <thead class="">
@@ -29,9 +28,9 @@
                                 <td> <img src="/assets/<%=c['symbol'].downcase%>" width="17vw" alt="">
                                   <abbr title="<%= c["name"] %>"><%= link_to c["symbol"], "/lookup?q=#{c['symbol']}" %></abbr></td>
                                 <td> <%= c["price_usd"].to_d.round(5) %> </td>
-                                                        <% value_1h << c["percent_change_1h"].to_d %> </td>
+                                                        <% value_1h << c["percent_change_1h"].to_d %>
                                 <td class="color-text"> <%= c["percent_change_1h"] %> </td>
-                                                         <% value_24h << c["percent_change_24h"].to_d %> </td>
+                                                         <% value_24h << c["percent_change_24h"].to_d %>
                                 <td class="color-text"> <%= c["percent_change_24h"] %> </td>
                                                         <% value_7d << c["percent_change_7d"].to_d %>
                               </tr>
@@ -39,7 +38,6 @@
                           </tbody>
                         </table>
                       </div>
-                     <!-- </div> -->
                     </div>
                 </div>
             </div>
