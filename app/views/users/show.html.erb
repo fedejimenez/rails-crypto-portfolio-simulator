@@ -105,7 +105,7 @@
                           <% @user.portfolio.crypto_ids.each do |u| %>
                             <% coin = Crypto.where(id: u).first.symbol %>
                             <small class="">
-                              <a href="">
+                              <a href="/lookup?q=<%=coin.upcase%>">
                                 <div>
                                   <img src="/assets/<%=coin.downcase%>.png" width="17vw" alt="">
                                   <%= coin %>

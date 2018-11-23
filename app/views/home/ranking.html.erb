@@ -28,7 +28,11 @@
                                       <td>
                                       </td>
                                       <td>
-                                          <img src="<%=u.avatar.url%>" class="user-avatar rounded-circle" alt="" width="40px"> 
+                                        <% if u.avatar.blank? %>
+                                          <%= image_tag("avatar.svg", :alt => "avatar", class: "rounded-circle", style: "width: 40px") %>
+                                        <% else %>  
+                                          <%= image_tag(u.avatar.url, :alt => "avatar", class: "user-avatar rounded-circle", style: "width: 40px") %>
+                                        <% end %> 
                                       </td>
                                       <td>
                                           <a href="/users/<%=u.id%>"><%= u.name.split(' ').first %></a>  

@@ -56,6 +56,14 @@ class HomeController < ApplicationController
   def lookup
     @crypto = Crypto.all
     get_data_from_API
+    if params[:q]
+      @breadcrumb_title = " TOP 50 - " + params[:q]
+      @breadcrumb_icon = 'search'
+      @breadcrumb_subtitle = ''
+      @breadcrumb_path1 = 'Top 50'
+      @breadcrumb_link1 = '/home/index'
+      @breadcrumb_current = ''+params[:q]
+    end
     respond_to do |format|
       format.html {
         @lookup = params[:q].upcase
