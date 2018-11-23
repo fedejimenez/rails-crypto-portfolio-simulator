@@ -1,49 +1,45 @@
-<h2><strong>Edit My Profile</strong></h2>
+<%= render 'layouts/flash' %>
+<%= render 'home/breadcrumbs' %>
 
 <% form_for current_user, url: {action: "update"} do |f| %>
   <%= render :partial => "form", :object => f %>
-
   <%= f.submit "Update" %>
 <% end %>
 
-<main id="site-content" role="main" tabindex="-1">
+<div class="clearfix"></div><br><br>
+
+<main>
   <div id="notification-area"/>
     <div class="page-container-responsive space-top-4 space-4">
       <div class="">
-        <div class="col-md-9">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
           <div id="dashboard-content">
-            <!-- <form accept-charset="UTF-8" action="/update/175283939" data-hook="update-profile-form" enctype="multipart/form-data" id="update_form" method="post"> -->
             <%= form_for(@user) do |f| %>
               <div class="panel space-4">
-                <div class="panel-header">
-                  <h3 class="edit-profile-section-heading">Required</h3>
+                <div class="panel-header col-md-6">
+                  <br>
+                  <span><h3 class="edit-profile-section-heading">Required</h3></span>
                 </div>
+                <div class="clearfix"></div> <br>
                 <div class="panel-body">
                   <%= content_tag :div, class: 'row row-condensed space-4' do %>
-                    <%= f.label :user_first_name,  class: 'text-right col-sm-3' do %>
-                      First Name
+                    <%= f.label :username,  class: 'text-right col-sm-3' do %>
+                      User Name
                     <% end %>
-                    <%= content_tag :div, class: 'col-sm-9' do %>
-                      <p><%= f.text_field :firstname, class: "custom-input"  %></p>
-                    <% end %>
-                  <% end %> <br>
-                  <%= content_tag :div, class: 'row row-condensed space-4' do %>
-                    <%= f.label :user_last_name,  class: 'text-right col-sm-3' do %>
-                      Last Name
-                    <% end %>
-                    <%= content_tag :div, class: 'col-sm-9' do %>
-                      <p><%= f.text_field :lastname, class: "custom-input"  %></p>
+                    <%= content_tag :div, class: 'col-sm-6' do %>
+                      <p><%= f.text_field :username, class: "custom-input", required: true  %></p>
                       <div class="text-muted space-top-1">
                     <% end %>
                     </div>
                   <% end %> <br>
 
                   <%= content_tag :div, class: 'row row-condensed space-4' do %>
-                    <%= f.label :name,  class: 'text-right col-sm-3' do %>
-                      Username
+                    <%= f.label :user_name,  class: 'text-right col-sm-3' do %>
+                      Full Name
                     <% end %>
-                    <%= content_tag :div, class: 'col-sm-9' do %>
-                      <p><%= f.text_field :name, class: "custom-input"  %></p>
+                    <%= content_tag :div, class: 'col-sm-6' do %>
+                      <p><%= f.text_field :name, class: "custom-input", required: true %></p>
                       <div class="text-muted space-top-1">Your public profile only shows your first name or your username.
                     <% end %>
                     </div>
@@ -52,7 +48,7 @@
                   <div class="row row-condensed space-4">
                     <label class="text-right col-sm-3" for="user_sex"> I am</label>
                     <div class="col-sm-9">
-                      <%= f.select(:gender, options_for_select([['Female', 'Female'], ['Male', 'Male'], ['Other', 'Other']], @user.gender), {},{autofocus: 'true', class: 'custom-input-short', :selected => params[:gender]})%>
+                      <%= f.select(:gender, options_for_select([['Female', 'Female'], ['Male', 'Male'], ['Other', 'Other']], @user.gender), {},{required: true, autofocus: 'true', class: 'custom-input-short', :selected => params[:gender]})%>
                       <div class="text-muted space-top-1">We use this data for analysis and never share it with other users.
                       </div>
                     </div>
@@ -81,55 +77,56 @@
                     <%= f.label :user_email,  class: 'text-right col-sm-3' do %>
                       Email
                     <% end %>
-                    <%= content_tag :div, class: 'col-sm-9' do %>
-                      <p><%= f.text_field :email, class: "custom-input"  %></p>
+                    <%= content_tag :div, class: 'col-sm-6' do %>
+                      <p><%= f.text_field :email, class: "custom-input", required: true, readonly: true  %></p>
                       <div class="text-muted space-top-1">
                          We won’t share your private email address with other users.
-                      <a href="/help/article/694" target="blank">Learn more</a>.
+                      <a href="#" target="blank">Learn more</a>.
                       </div>    
                     <% end %>
                   <% end %> <br>
 
                   <div class="row row-condensed space-4">
                     <label class="text-right col-sm-3" for="user_profile_info_current_city">Where You Live</label>
-                    <div class="col-sm-9">
+                    <div class="col-sm-6">
                       <!-- <input class="custom-input" id="autocomplete" placeholder="user[country]" name="user[country]" type="text"> -->
-                      <p><%= f.text_field :country, class: "custom-input", id: "autocomplete", type: "text" %></p>
+                      <p><%= f.text_field :country, class: "custom-input", id: "autocomplete", type: "text", required: true %></p>
                    </div>
                   </div>
                 </div>
-              </div>
+              </div><hr>
               <div class="panel space-4">
-                <div class="panel-header">
-                  <h3 class="edit-profile-section-heading">Optional</h3>
+                <div class="panel-header col-md-6">
+                  <span><h3 class="edit-profile-section-heading">Optional</h3></span>
                 </div>
+                <div class="clearfix"></div> <br>
                 <div class="panel-body">
 
                   <div class="row row-condensed space-4">
                     <label class="text-right col-sm-3" for="user_profile_info_university">School / University</label>
-                    <div class="col-sm-9">
+                    <div class="col-sm-6">
                       <input  class= "custom-input" id="user_profile_info_university" name="user_profile_info[university]" placeholder="School / University name" size="30" type="text" value=""/>
                     </div>
                   </div> <br>
 
                   <div class="row row-condensed space-4">
                     <label class="text-right col-sm-3" for="user_profile_info_employer">Work</label>
-                    <div class="col-sm-9">
+                    <div class="col-sm-6">
                       <input class= "custom-input" id="user_profile_info_employer" name="user_profile_info[employer]" placeholder="Company name or job title" size="30" type="text" value=""/>
                     </div>
                   </div> <br>
 
                   <div class="row row-condensed space-4">
                     <label class="text-right col-sm-3" for="user_emergency_contact_phone">Phone</label>
-                    <div class="col-sm-9">
+                    <div class="col-sm-6">
                       <input class= "custom-input" id="user_emergency_contact_phone" name="user_emergency_contact[phone]" size="30" type="text" placeholder="55512345678" />
                     </div>
                   </div>
                 </div>
               </div><br>
-              <div class="col-md-2"></div>
+              <div class="col-md-3"></div>
               <div class="submit-field">
-                <%= f.submit 'Save', class: 'col-md-2 btn btn-primary btn-large',  data: { confirm: 'Are you sure?'} %> 
+                <%= f.submit 'Save', class: 'col-md-2 btn btn-primary btn-large',  data: { confirm: 'Are you sure?' }%> 
               </div>
               <div class="col-md-1"></div>
 			       <% end %>
@@ -141,5 +138,4 @@
   </div>
 </main>
 
-    
 <script src="https://maps.googleapis.com/maps/api/js?key=<%=ENV['GOOGLE_MAPS_API_KEY']%>&libraries=places&callback=initAutocomplete" async defer></script>

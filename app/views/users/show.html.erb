@@ -1,54 +1,131 @@
-<% flash.each do |key, value| %>
-  <div class="alert alert-<%= key %>"><%= value %></div>
-<% end %>
+<%= render 'layouts/flash' %>
+<%= render 'home/breadcrumbs' %>
 
-<h3><strong> Profile - <%= current_user.name %></strong></h3> <br>
-
-<div class="col-md-3">
-  <div class="panel-default">
-    <div class="panel-heading">
-      <%= label_tag :profile_picture%>
-    </div>
-    <div class="panel-body pull-center">
-      <br>
-      <div class="container">
-        <% if current_user.avatar.blank? %>
-          <%= image_tag("avatar.svg", :alt => "avatar", class: "avatar-edit") %>
-        <% else %>  
-        <%= image_tag(current_user.avatar.url, :alt => "avatar",  class: "avatar-edit") %>
-        <% end %> 
-      </div>
-      <hr>
-          <div class="form-group">
-            <%= form_for current_user, url: {action: "update"} do |form| %>
-              <%= form.label "Select an image" %> <br><br>
-              <%= form.file_field :avatar %>  <hr> 
-              <% if !current_user.avatar.blank? %>
-                <%= form.label "Check the box below to remove the picture" %> <br><br>
-                <%= form.check_box :remove_avatar %> 
-                <strong><p id="checkbox_user" class= "btn btn-light active">Delete</p> </strong>
+<div class="content">
+  <!-- Animated -->
+  <div class="animated fadeIn">
+    <div class="row">
+      <div class="col-lg-6" id="layout-profile">
+        <div class="profile">
+          <div class="profile__picture">
+            <% if @user.avatar.blank? %>
+              <%= image_tag("avatar.svg", :alt => "avatar", class: "avatar-edit responsive") %>
+            <% else %>  
+              <%= image_tag(@user.avatar.url, :alt => "avatar",  class: "avatar-edit beat-less responsive") %>
+            <% end %>
+          </div>
+          <div class="profile__header">
+            <div class="profile__account">
+                <h5 class="profile__username"><%= @user.name %></h5>
+            </div>
+            <div class="profile__edit">
+               <%= render 'follow_form' %>
+            </div>
+          </div>
+          <div class="profile__stats stats">
+            <a href="/home/ranking">
+              <div class="profile__stat ">
+                <div class="profile__icon profile__icon--gold"><i class="fa fa-trophy"></i></div>
+                <div class="profile__value count"><%= @hash_ranking.find_index{|key,_| key == @user.id} +1 %>
+                  <div class="profile__key">Ranking</div>
+                </div>
+              </div>
+            </a>
+            <%= render 'users/stats'%>
+          </div>
+          <% if current_user.id == @user.id %>
+            <div class="clearfix"></div> <br><hr>
+            <div class="form-group">
+              <%= form_for @user, url: {action: "update"}, remote: true do |form| %>
+                <%= form.label "Change image" %> <br><br>
+                <%= form.file_field :avatar %>  <hr> 
+                <% if !@user.avatar.blank? %>
+                  <%= form.label "Check the box below to remove the picture" %> <br><br>
+                  <%= form.check_box :remove_avatar %> 
+                  <strong><p id="checkbox_user" class= "btn btn-light active">Delete</p> </strong>
+                  <div class="clearfix"></div><hr>
+                <% end%> 
+                <div class="col-md-2"></div>
+                <%= form.submit 'Save', class: 'col-md-8 btn-custom btn-custom-blue ripple', onclick: 'launchLoadingModal()'  %>
               <% end%>
-              <div class="clearfix"></div>
+            </div>
+          <% end%>
+        </div>
+      </div>
+      <!-- Widgets -->
+      <div class="col-lg-4"><br><br>
+        <div class="col-lg-10">
+          <div class="card">
+            <div class="card-body">
+              <div class="stat-widget-five">
+                <div class="stat-icon dib flat-color-3">
+                  <i class="fa fa-calendar"></i>
+                </div>
+                <div class="stat-content">
+                  <div class="text-left dib">
+                    <h5 class="stat-text"><strong><span class="count"><%= @user.created_at.localtime.strftime('%d-%m-%Y') %></span></strong></h5>
+                    <div class="stat-heading">Date Joined</div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="panel-footer">
-          <%= form.submit 'Save', class: 'btn btn-primary btn-large'  %>
+
+        <div class="col-lg-10">
+          <div class="card">
+            <div class="card-body">
+              <div class="stat-widget-five">
+                <div class="stat-icon dib flat-color-1">
+                  <i class="fa fa-money"></i>
+                </div>
+                <div class="stat-content">
+                  <div class="text-left dib">
+                  
+                    <div class="stat-text"><strong>$<span class="count"> <%= (@initial_amount + @profit_array.sort.reverse[@hash_ranking.find_index{|key,_| key == @user.id}]).round(1) %></span></strong></div>
+                    <div class="stat-heading">Total</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      <% end%>
-  </div>
-</div>
 
-<div class="col-md-9"> 
-  <div class="panel panel-default"  id = "user-details">
-    <div class="panel-heading">
-      <%= label_tag "User Information"%> <span class="pull-right"><b>Date joined: </b><%= current_user.created_at %>  <span>
+        <div class="col-lg-10">
+          <div class="card">
+            <div class="card-body">
+              <div class="stat-widget-five">
+                <div class="stat-icon dib flat-color-4">
+                  <i class="fa fa-bitcoin"></i>
+                </div>
+                <div class="stat-content">
+                  <div class="text-left dib">
+                    <div class="stat-text">
+                      <strong>
+                        <span class="">
+                          <% @user.portfolio.crypto_ids.each do |u| %>
+                            <% coin = Crypto.where(id: u).first.symbol %>
+                            <small class="">
+                              <a href="/lookup?q=<%=coin.upcase%>">
+                                <div>
+                                  <img src="/assets/<%=coin.downcase%>.png" width="17vw" alt="">
+                                  <%= coin %>
+                                </div>
+                              </a>
+                            </small>
+                          <% end %>                        
+                        </span>
+                      </strong>
+                    </div>
+                    <div class="stat-heading">Coins owned</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-2"></div>
     </div>
-    <div class="panel-body">
-      <%= render "user" %>
-    </div>
-    <div class="panel-footer">
-      <%= link_to 'Edit Profile', edit_user_path(current_user), class: "btn btn-primary" %>
-    </div>
-
   </div>
 </div>

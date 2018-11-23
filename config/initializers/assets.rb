@@ -12,3 +12,17 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
+
+Rails.application.config.assets.precompile += %w( validation.js )
+Rails.application.config.assets.precompile += %w( tabs.js )
+Rails.application.config.assets.precompile += %w( fadeinup-animation.js )
+Rails.application.config.assets.precompile += %w( tabs-slides.js )
+Rails.application.config.assets.precompile += %w( count.js )
+
+# Fonts
+Rails.application.config.assets.precompile << /\.(?:svg|eot|woff|ttf)\z/
+Rails.application.config.assets.precompile += %w( cryptofont.css )
+
+Rails.application.config.assets.precompile += %w( .svg .eot .woff .woff2 .ttf .png)
+
+

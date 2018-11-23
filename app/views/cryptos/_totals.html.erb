@@ -1,11 +1,14 @@
 <div class="row">
 	<div class="col-md-6">
       <%= label_tag "Total Transaction Amount (U$D): " %>
-      <input type="number"  id="total-amount" class="text-center custom-input-short"  value="" readonly="readonly" />
+      <input type="number"  id="total-amount" class="text-center custom-input-short"  value="" readonly="readonly" /> (*)
       <p id="error-amount" style="visibility: hidden; color: red" class="text-center"> Incorrect value, reduce the quantity.</p>
 	</div>
 	<div class="col-md-6">
       <%= label_tag "Total Amount Available (U$D): " %>
       <input type="number"  id="total-amount-available" class="text-center custom-input-short" value="<%=current_portfolio.balance.to_d.round(2)%>" readonly="readonly" />
 	</div>
+</div>
+<div class="row">
+	 <span class="col-md-8">  (*) Transaction fees included in the total </span>
 </div>

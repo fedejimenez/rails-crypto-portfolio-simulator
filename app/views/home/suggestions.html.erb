@@ -1,0 +1,83 @@
+<%= render 'layouts/flash' %>
+<%= render 'home/breadcrumbs' %>
+
+<div class="clearfix"></div>
+
+<div class="comments-container">
+    <!-- Animated -->
+    <div class="animated fadeIn">
+        <!--  User Ranking  -->
+        <div class="card">
+            <div class="card-body">
+                <div class="pull-right"><strong><i class="fa fa-send"> </i> </strong> Post a new suggestion </div><br>
+				<% if logged_in? %>
+					<ul id="comments-list" class="comments-list">	
+						<li>
+							<div class="comment-main-level">
+								<!-- Avatar -->
+								<div class="comment-avatar"><img src="/assets/avatar.svg" alt=""></div>
+								<!-- Contenedor del Comentario -->
+								<div class="comment-box">
+									<div class="comment-head">
+										<div class="comment-form">
+											<%= form_for [current_user, Comment.new] do |f| %>
+									      		<%= f.text_area :body, class:"form-control", placeholder: "Add a suggestion" %><br/>
+												<div class="pull-right send-button">
+									      			<%= f.submit "Add", class: "btn-send"  %>
+												</div>
+									      	<% end %>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="comments-container">
+    <!-- Animated -->
+    <div class="animated fadeIn">
+        <!--  User Ranking  -->
+        <div class="card">
+            <div class="card-body">
+                <div class="pull-right"><strong><i class="fa fa-comments-o "> </i> User's Suggestions</strong></div><br>
+					<ul id="comments-list" class="comments-list">
+					   <%= render(partial: 'comments/comment', collection: Comment.all.where(commentable_type: "User")) %>
+					   <!-- I I want just current users comments --- collectiion: current_user.comments --> 
+					</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	$(document).on('click', '.btn-reply', function(eve){	
+		eve.preventDefault();
+		$(this).parent().parent().siblings('.comment-footer').slideToggle();
+		eve.stopImmediatePropagation();
+		console.log($(this));
+	});
+		
+	$(document).on('click', '.btn-send', function(eve){
+		var targetObject = $(this).parent().parent().parent().parent().parent();
+		//console.log(targetObject);
+		var reply_text = $(this).parent().siblings('textarea').val();
+
+		if($.trim(reply_text) == " " || $.trim(reply_text) == ""){
+			alert("insert comment");
+		} 
+		// else {
+		// if($(targetObject).hasClass("comment-main-level"))
+		// 	{	
+		// 		if($(targetObject).siblings('.comments-list.reply-list')) {
+		// 			element_prepend = '<li> <div class="comment-avatar"><img alt="" src="/assets/avatar.svg"></div><div class="comment-box"> <div class="comment-head"> <h6 class="comment-name"><a href="#">Lorena Rojero</a></h6> <span class="posted-time">Posted on DD-MM-YYYY HH:MM</span> <i class="fa fa-reply"></i> <i class="fa fa-heart"></i> </div> <div class="comment-content">'+ reply_text +' <div class="comment-open"> <a class="btn-reply"> <i class="fa fa-reply"></i> </a> </div> </div> <div class="comment-footer"> <div class="comment-form"> <textarea id="" name="" class="form-control"></textarea> <div class="pull-right send-button"> <a class="btn-send">send</a> </div> </div> </div> </div> </li>';
+		// 			 $(targetObject).siblings('.comments-list.reply-list').prepend(element_prepend);
+		// 		}
+		// 	}
+		// }	
+	});
+</script>

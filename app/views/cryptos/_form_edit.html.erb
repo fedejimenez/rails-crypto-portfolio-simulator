@@ -15,52 +15,57 @@
     </div>
 
     <div class="field">
-      <%= form.label "Symbol:", class: "col-md-2" %>
-      <span class="col-md-2 text-center">  <%= crypto.symbol %> </span>
-      <div class="clearfix"></div>
+      <%= form.label "Currency:", class: "col-md-6" %> 
+      <span class="col-md-2 text-center">  
+        <%= crypto.symbol %> | <%= coin_name_by_symbol(crypto.symbol) %> 
+      </span>
+      <div class="clearfix"></div> <br>
     </div>
     
     <div class="field">
-      <%= form.label "Current Price (U$D):", class: "col-md-2" %>
+      <%= form.label "Current Price (U$D):", class: "col-md-6" %>
       <span class= "col-md-2 text-center"> <%= @current_usd = current_coin(crypto.symbol)["price_usd"].to_d.round(5) %></span> 
       <input type="number" id="current-price" readonly="" value="<%= @current_usd %>" style="visibility: hidden;"/> 
-      <div class="clearfix"></div>
+      <div class="clearfix"></div> <br>
     </div>
 
     <div class="field">
-      <%= form.label "Quantity owned: " , class: "col-md-2"%>
+      <%= form.label "Quantity owned: " , class: "col-md-6"%>
       <span  class= "col-md-2 text-center" id="quantity-owned"> <%= crypto.amount_owned.to_d.round(2) %> </span>
-      <div class="clearfix"></div>
+      <div class="clearfix"></div> <br>
     </div>
 
     <div class="field">
-     <%= form.label "Check the box if you want to sell" , class: "col-md-2" %>
+     <%= form.label "Check the box if you want to sell" , class: "col-md-6" %>
      <div class="form-group">
         <%= form.check_box :last_action, {:class => "col-md-2", :id => "selected-checkbox", :style => "", :onchange => "checkboxText()"}, 'Sell', 'Buy' %>
-        <strong><p id="text-checkbox" class= "btn btn-light active"></p></strong>
+        <strong><p id="text-checkbox" class= "btn btn-light active pull-left"></p></strong>
      </div>
-      <div class="clearfix"></div>
+      <div class="clearfix"></div> <br>
     </div>
 
     <div class="field">
-      <%= form.label "Transaction Price (U$D):" , class: "col-md-2"%>
-      <%= form.number_field :cost_per, min: "#{(@current_usd.round(5))*1.001}", :value => (@current_usd*1.001).round(5),  step: :any, class: "text-center col-md-2 custom-input-short", id: "selected-price", oninput: "validity.valid||(value='')", onchange: "showTotalAmount()"%> <span>(0.1 % added to simulate Broker Comision)</span>
-      <div class="clearfix"></div>
+      <%= form.label "Transaction Price (U$D):" , class: "col-md-6"%>
+      <%= form.number_field :cost_per, min: "#{@current_usd.round(5)}", :value => @current_usd.round(5),  step: :any, class: "text-center col-md-2 custom-input-short", id: "selected-price", oninput: "validity.valid||(value='')", onchange: "showTotalAmount()"%>
+      <div class="clearfix"></div> <br>
     </div>
 
     <div class="field">
-      <%= form.label "Quantity", class: "col-md-2" %>
+      <%= form.label "Quantity", class: "col-md-6" %>
       <%= form.number_field :last_transaction, class: "text-center col-md-2 custom-input-short", id: "selected-quantity" , value: "1", min: "0.01", max: "50000", step: :any, onchange: "showTotalAmount()" %>
-      <div class="clearfix"></div>
+      <div class="clearfix"></div> <br>
     </div>
     <br>
     <div class="">
       <div class="col-md-1"></div>
-      <div class="actions col-md-2">
-        <%= form.submit 'Place Order', class: "btn btn-success", id: "button-submit", data: { confirm: 'Are you sure?'} %>
+      <div class="actions col-md-5">
+        <%= form.submit 'Place Order', id: "button-submit", class: "btn btn-success", data: {
+                                                                                             confirm: 'Are you sure?',
+                                                                                             text: '0.1 % Transaction fee will be added '
+                                                                                           } %>
       </div>
       <div class="col-md-2">
-        <%= link_to 'Cancel Order', cryptos_path, class: "btn btn-danger" %>
+        <%= link_to 'Cancel Order', root_path, class: "btn btn-danger" %>
       </div>
       <div class="col-md-8"></div>
     </div>

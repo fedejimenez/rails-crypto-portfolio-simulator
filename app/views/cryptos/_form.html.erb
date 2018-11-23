@@ -21,27 +21,30 @@
     </div> 
     <div class="clearfix"></div><br>
     <div class="field">
-      <%= form.label :symbol, class: "col-md-2" %>
+      <%= form.label :symbol, class: "col-md-6" %>
       <%= form.text_field :symbol , id: "selected-symbol" , class: "col-md-2 text-center custom-input-short" , readonly: true%>
       <input type="number" id="current-price" readonly="" value="" style="visibility: hidden;"/> 
       <div class="clearfix"></div>
     </div><br>
 
     <div class="field">
-      <%= form.label "Buying Price (U$D) ", class: "col-md-2" %>
-      <%= form.number_field :cost_per, id: "selected-price" ,class: "col-md-2 text-center custom-input-short" , onchange: "showTotalAmount()",  step: :any, oninput: "validity.valid||(value='')" %> <span>(0.1 % added to simulate Broker Comision)</span>
+      <%= form.label "Buying Price (U$D) ", class: "col-md-6" %>
+      <%= form.number_field :cost_per, id: "selected-price" ,class: "col-md-2 text-center custom-input-short" , onchange: "showTotalAmount()",  step: :any, oninput: "validity.valid||(value='')" %>
       <div class="clearfix"></div>
     </div><br>
 
     <div class="field">
-      <%= form.label "Quantity", class: "col-md-2" %>
+      <%= form.label "Quantity", class: "col-md-6" %>
       <%= form.number_field :amount_owned, id: "selected-quantity", onchange: "showTotalAmount()" ,value: "1", min: "0.01", max: "50000", step: :any, class: "col-md-2 text-center custom-input-short", oninput: "validity.valid||(value='')" %>
       <div class="clearfix"></div>
     </div><br>
     
-    <div class="actions col-md-1"></div>
+    <div class="actions col-md-4"></div>
     <div class="actions col-md-2">
-      <%= form.submit 'Buy Currency', id: "button-submit", class: "btn btn-success", data: { confirm: 'Are you sure?'} %>
+      <%= form.submit 'Buy Currency', id: "button-submit", class: "btn btn-success", data: {
+                                                                                             confirm: 'Are you sure?',
+                                                                                             text: '0.1 % Transaction fee will be added '
+                                                                                           } %>
     </div>
 
 <% end %>

@@ -1,3 +1,32 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.table-index i{
+	color: orange;
+}
+.table-index abbr{
+	margin-left: 10px;
+}
+
+#last-updated{
+    transition: 0.5s;
+    border: none;
+    margin-right: 10px;
+    button{
+    	background-color: #CDE6FA !important;
+    	padding-bottom: 0px;
+    }
+
+	p{
+		padding: 5px 5px 0 0;
+		margin-bottom: 0;
+    	font-weight: 700 !important;
+	}
+
+	i{
+		margin-right: 10px;
+		padding-top: 10px;
+	}
+}
+

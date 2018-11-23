@@ -1,0 +1,86 @@
+* {box-sizing: border-box}
+body {font-family: "Lato", sans-serif;}
+/* Style the tab */
+.tab {
+    float: left;
+    background-color: none;
+    width: 6%;
+    height: auto;
+    margin-right: 25px;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+    font-size: 17px;
+    color: black;
+    display: block;
+    background-color: inherit;
+    width: 4vw;
+    height: 4vw;
+    padding: 16px 0 22px 0;
+    margin-bottom: 10px;
+    text-align: center;
+    vertical-align: center;
+    outline: none;
+    cursor: pointer;
+    opacity: 0.3;
+    filter: alpha(opacity=30); /* For IE8 and earlier */
+    border-radius: 4px;
+    transition: 0.5s;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 7px 20px 2px;
+    border: 1px solid #ccc;
+    i{
+        color: #F09A34;
+        font-size: 2vw;
+    }
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #eee;
+}
+
+/* Create an active/current "tab button" class */
+.tab button.active {
+    background-color: #222;
+}
+.tab button.active, .tab button:hover{  
+    opacity: 1;
+    filter: alpha(opacity=100); /* For IE8 and earlier */
+    transform: scale(1.1, 1.1);
+    -ms-transform: scale(1.1, 1.1);
+    -webkit-transform: scale(1.1, 1.1);
+    border: 1px solid #ccc;
+}
+/* Style the tab content */
+.tabcontent {
+    float: left;
+    padding: 30px;
+    border: 1px solid #ccc;
+    width: 87%;
+    height: auto;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 10px 25px 2px;
+    border-radius: 4px;
+}
+
+/* On screens that are less than 768px wide, make the sidebar into a topbar */
+@media screen and (max-width: 768px) {
+  .tab {
+    width: 100% !important;
+    height: auto;
+    position: relative;
+    button{
+        width: 90% !important;
+    }
+  }
+  .tab a {float: left;}
+  div.content {margin-left: 0;}
+}
+
+/* On screens that are less than 400px, display the bar vertically, instead of horizontally */
+@media screen and (max-width: 400px) {
+  .tab a {
+    text-align: center;
+    float: none;
+  }
+}

@@ -1,0 +1,17 @@
+<div id="like-button-<%=comment.id%>">
+	<% if current_user.like?(comment) %>
+		<span class="count pull-right badge" id="comment-likes-<%=comment.id%>" style="color: white"><%= Comment.find_by_id(comment.id).likes.count %></span>
+		<span class="pull-right">
+			<%= button_to dislike_path(comment_id: comment.id, user_id: current_user.id, class: "btn btn-primary-outline"), remote: true, method: :delete do %>
+		    	<span class="fa fa-heart" style="color: red"></span>
+			<% end %>
+		</span>
+	<% else %>
+		<span class="count pull-right badge" style="color: white"><%= Comment.find_by_id(comment.id).likes.count %></span>
+		<span class="pull-right">
+			<%= button_to like_path(comment_id: comment.id, user_id: current_user.id), remote: true do %>
+		    	<span class="fa fa-heart"></span>
+			<% end %>
+		</span>
+	<% end %>
+</div>

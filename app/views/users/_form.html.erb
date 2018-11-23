@@ -1,30 +1,30 @@
 <div class="text-field">
-    <%= form.text_field :name, type: 'text', class: 'form-control-form', placeholder: 'Full Name'  %>
+    <%= form.text_field :username, type: 'text', class: 'form-control-form', placeholder: 'Username', required: true  %>
     <span class="fa fa-user" id="input-font-awesome"></span>
-
 </div>
 
 <div class="text-field">
-    <%= form.text_field :email, type: 'email', class: 'form-control-form', placeholder: 'Email'%>
+    <%= form.text_field :email, type: 'email', class: 'form-control-form', placeholder: 'Email', required: true%>
     <span class="fa fa-envelope" id="input-font-awesome"></span>
     <small id="" class="form-text text-muted">(We'll never share your email with anyone else.)</small>
 </div>
 
 <div class="password-field">
-    <%= form.password_field :password, class: 'form-control-form', placeholder: 'Password' %>
-    <span class="fa fa-lock" id="input-font-awesome"></span>
-</div>
-<div class="password-field">
-    <%= form.password_field :password_confirmation, class: 'form-control-form', placeholder: 'Password Confirmation' %>
+    <%= form.password_field :password, class: 'form-control-form password', id: "psw", pattern: '(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}', title: 'Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters', placeholder: 'Password', required: true %>
     <span class="fa fa-lock" id="input-font-awesome"></span>
 </div>
 
 <div class="submit-field">
-    <%= form.submit :'Sign Up', class: 'btn-lgin', placeholder: 'Login'  %>
+    <%= form.submit :'Sign Up', class: 'btn-lgin', placeholder: 'Signup'  %>
 </div>
 
 
+<div id="message-signup">
+  <strong> <p>Password must contain the following:</p></strong><br>
+  <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+  <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+  <p id="number" class="invalid">A <b>number</b></p>
+  <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+</div>
 
-
-
-
+<%= javascript_include_tag 'validation' %>

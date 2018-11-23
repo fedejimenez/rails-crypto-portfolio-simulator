@@ -1,29 +1,111 @@
-<div class="panel panel-default">
-	<div class="panel-heading">
-		<h4><strong>New Order</strong></h4>
-		
-	</div>
-	<div class="panel-body">
-		
-		<p> Choose the currency: </p>
-		<% array_names = @coins.map {|c| c['symbol']} %>
-		<% array_prices = @coins.map{|c| c['price_usd']} %>
-      	<% @user_coins = [] %>
-		<% @cryptos.each do |crypto| %>
-      		<% if (crypto.user_id == current_user.id) && (crypto.amount_owned != 0) %>
-      			<% @user_coins.push((crypto['symbol'])) unless @user_coins.include?((crypto['symbol'])) %>
-			<% end %>
-		<% end %>
-		<div class="col-md-5">
-			<%= select(:model, :coin, @coins.map {|c| [c['symbol'] + " | " + c['name'] + " | " + c['price_usd']]},{:prompt => 'Symbol | Name | Price'}, id:"new-order", onchange: "showForm('#{array_names}', '#{@user_coins}', '#{array_prices}')" , class: "custom-input custom-select") %> <br><br>
-		</div>
-		<div id='form-new' style='visibility: hidden'>
-			<%= render 'form', crypto: @crypto %>
-		</div>
-	</div>
+<%= render 'layouts/flash' %>
+<%= render 'home/breadcrumbs' %>
 
-	<div class="panel-footer" id="total-amount-footer" style='visibility: hidden;'>
-		<br>
-		<%= render 'totals' %>
+<div class="content">
+    <!-- Animated -->
+    <div class="animated fadeIn">
+		<!-- Form  -->
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="card-body text-center">
+						<strong><h3 class="pull-left"> Select the currency: </h3></strong><div class="clearfix"></div> <br>
+
+						<% array_names = @coins.map {|c| c['symbol']} %>
+						<% array_prices = @coins.map{|c| c['price_usd']} %>
+				      	<% @user_coins = [] %>
+						<% @cryptos.each do |crypto| %>
+				      		<% if (crypto.user_id == current_user.id) && (crypto.amount_owned != 0) %>
+				      			<% @user_coins.push((crypto['symbol'])) unless @user_coins.include?((crypto['symbol'])) %>
+							<% end %>
+						<% end %>
+						<div class="col-md-5">
+							<%= select(:model, :coin, @coins.map {|c| [c['symbol'] + " | " + c['name'] + " | " + c['price_usd']]},{:prompt => 'Symbol | Name | Price'}, id:"new-order", onchange: "showForm('#{array_names}', '#{@user_coins}', '#{array_prices}')" , class: "custom-input custom-select") %> <br><br>
+						</div>
+						<div id='form-new' style='visibility: hidden'>
+							<%= render 'form', crypto: @crypto %>
+						</div>
+					</div>
+					 
+					<div class="panel-footer" id="total-amount-footer" style='visibility: hidden;'>
+						<br>
+						<%= render 'totals' %>
+					</div>
+				</div>
+			</div>
+
+			<!-- Widgets -->
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="stat-widget-five">
+                            <div class="stat-icon dib flat-color-3">
+                                <i class="fa fa-money"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="text-left dib">
+                                    <div class="stat-text"><strong>$<span class="count"><%= current_portfolio.balance.round(2) %></span></strong></div>
+                                    <div class="stat-heading">Available to Invest</div>
+                               </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="stat-widget-five">
+                            <div class="stat-icon dib flat-color-2">
+                                <i class="fa fa-money"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="text-left dib">
+                                    <div class="stat-text"><strong>$<span class="count"><%= (@initial_amount + @profit).round(1) -current_portfolio.balance.round(2) %></span></strong></div>
+                                    <div class="stat-heading">Available for Selling </div>
+                               </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+			<div class="col-lg-4">
+	          <div class="card">
+	            <div class="card-body">
+	              <div class="stat-widget-five">
+	                <div class="stat-icon dib flat-color-4">
+	                  <i class="fa fa-bitcoin"></i>
+	                </div>
+	                <div class="stat-content">
+	                  <div class="text-left dib">
+	                    <div class="stat-text">
+	                      <strong>
+	                        <span class="">
+	                          <% current_user.portfolio.crypto_ids.each do |u| %>
+	                            <% coin = Crypto.where(id: u).first.symbol %>
+	                            <small class="">
+	                              <a href="">
+	                                <div>
+	                                  <img src="/assets/<%=coin.downcase%>.png" width="17vw" alt="">
+	                                  <%= coin %>
+	                                </div>
+	                              </a>
+	                            </small>
+	                          <% end %>                        
+	                        </span>
+	                      </strong>
+	                    </div>
+	                    <div class="stat-heading">Coins owned</div>
+	                  </div>
+	                </div>
+	              </div>
+	            </div>
+	          </div>
+	        </div>
+		</div>
 	</div>
 </div>	
+
+<%= javascript_include_tag 'count' %>

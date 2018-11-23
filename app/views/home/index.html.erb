@@ -1,65 +1,115 @@
-<% flash.each do |key, value| %>
-  <div class="alert alert-<%= key %>"><%= value %></div>
-<% end %>
-<strong id="last-updated"><p class="pull-right">Last Updated: <%= Time.now.strftime('%H:%M:%S') %></p></strong>
+<%= render 'layouts/flash' %>
+<%= render 'home/breadcrumbs' %>
 
+<div class="content">
+    <!-- Animated -->
+    <div class="animated fadeIn">
+        <!--  Top 50 Table  -->
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="card-body text-center">
+                      <div class="table">
+                        <table class="table table-hover table-condensed text-center" id="table-index">
+                          <thead class="">
+                            <th class="text-center">Rank</th>
+                            <th class="text-center">Symbol</th>
+                            <th class="text-center">Price (U$D)</th>
+                            <th class="text-center"> % (1 hs)</th>
+                            <th class="text-center"> % (24 hs)</th>
+                          </thead>
+                          <tbody class="table-index">
+                            <% value_1h = [] %>
+                            <% value_24h = [] %>
+                            <% value_7d = [] %>
+                            <% @coins.each do |c| %>
+                              <tr>
+                                <td><%= c['rank'] %></td>
+                                <td> <img src="/assets/<%=c['symbol'].downcase%>" width="17vw" alt="">
+                                  <abbr title="<%= c["name"] %>"><%= link_to c["symbol"], "/lookup?q=#{c['symbol']}" %></abbr></td>
+                                <td> <%= c["price_usd"].to_d.round(5) %> </td>
+                                                        <% value_1h << c["percent_change_1h"].to_d %>
+                                <td class="color-text"> <%= c["percent_change_1h"] %> </td>
+                                                         <% value_24h << c["percent_change_24h"].to_d %>
+                                <td class="color-text"> <%= c["percent_change_24h"] %> </td>
+                                                        <% value_7d << c["percent_change_7d"].to_d %>
+                              </tr>
+                            <% end %>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                </div>
+            </div>
 
-<h3 class="text-muted"> <strong> Top 50 Crypto Currencies of the day</strong> </h3>
-<br>
-<div class="col-md-10">
-  <div class="table-responsive">
-    <table class="table datatable" id="table-index">
-      <thead class="">
-        <th>Rank</th>
-        <th>Symbol</th>
-        <th>Name</th>
-        <th>Price (U$D)</th>
-        <th>Variation (1 hs)</th>
-        <th>Variation (24 hs)</th>
-      </thead>
-      <tbody>
-        <% @coins.each do |c| %>
-          <tr>
-            <td><%= c['rank'] %></td>
-            <td> <%= link_to c["symbol"], "/lookup?q=#{c['symbol']}" %> </td>
-            <td> <%= link_to c["name"], "/lookup?q=#{c['symbol']}" %> </td>
-            <td> <%= c["price_usd"] %> </td>
-            <td> <%= c["percent_change_1h"] %> </td>
-            <td> <%= c["percent_change_24h"] %> </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
+            <!-- Widgets -->
+            <div class="col-lg-4">
+                <div class="col-lg-10">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="stat-widget-five">
+                                <div class="stat-icon dib">
+                                    <img src="/assets/<%=@coins[value_1h.each_with_index.max[1]]['symbol'].downcase%>" alt="" width="40px" title="<%=@coins[value_1h.each_with_index.max[1]]['name']%>">
+                                </div>
+                                <div class="stat-content">
+                                    <div class="text-left dib">
+                                        <div class="stat-text"><strong>
+                                            <span class="color-text">
+                                                <%= value_1h.max.to_d.round(2) %> %
+                                            </span></strong>
+                                        </div>
+                                        <div class="stat-heading">Max % 1 h</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-10">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="stat-widget-five">
+                                <div class="stat-icon dib">
+                                    <img src="/assets/<%=@coins[value_24h.each_with_index.max[1]]['symbol'].downcase%>" alt="" width="40px" title="<%=@coins[value_24h.each_with_index.max[1]]['name']%>">
+                                </div>
+                                <div class="stat-content">
+                                    <div class="text-left dib">
+                                        <div class="stat-text"><strong>
+                                            <span class="color-text">
+                                                <%= value_24h.max.to_d.round(2) %> %
+                                            </span></strong>
+                                        </div>
+                                        <div class="stat-heading">Max % 24 hs</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-10">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="stat-widget-five">
+                                <div class="stat-icon dib">
+                                  <img src="/assets/<%=@coins[value_7d.each_with_index.max[1]]['symbol'].downcase%>" alt="" width="40px" title="<%=@coins[value_7d.each_with_index.max[1]]['name']%>">
+                                </div>
+                                <div class="stat-content">
+                                    <div class="text-left dib">
+                                        <div class="stat-text"><strong>
+                                            <span class="color-text">
+                                                <%= value_7d.max.to_d.round(2) %> %
+                                            </span></strong>
+                                        </div>
+                                        <div class="stat-heading">Max % 7d</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
-
-<!--  Add Users Profit Rankings -->
-
-<!--   <div class="col-md-2 panel panel-default">
-    <div class="">
-      <h4 class="text-muted text-center"> Users Ranking</h4>
-    </div>
-    <div class="">
-      <table class="table">
-        <thead>
-            <th> User </th>
-            <th> Balance </th>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-               User.all.each do |u| %>
-                = u.name.partition(" ").first %>
-              end %>
-            </td>
-            <td>
-               Portfolio.all.each do |p| %>
-               $  p.balance.round(2) %>
-              end %>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div> -->
+<%= javascript_include_tag 'count' %>

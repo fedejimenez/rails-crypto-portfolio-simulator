@@ -1,11 +1,22 @@
 class MovementsController < ApplicationController
+  include CryptosHelper
+  include PortfoliosHelper
+  
   before_action :set_movement, only: [:show, :edit, :update, :destroy]
   before_action :get_portfolio_and_crypto, only: [:create, :new]
+  before_action :calculate_profit
+  before_action :authorize
 
   # GET /movements
   # GET /movements.json
   def index
     @movements = Movement.all
+    @breadcrumb_title = " MOVEMENTS"
+    @breadcrumb_icon = 'exchange'
+    @breadcrumb_subtitle = ''
+    @breadcrumb_path1 = ''
+    @breadcrumb_link1 = ''
+    @breadcrumb_current = 'Movements'
   end
 
   # GET /movements/1

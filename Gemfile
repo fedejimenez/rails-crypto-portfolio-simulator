@@ -41,9 +41,6 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem "database_cleaner"
   gem "rspec-rails"
-  gem "database_cleaner"
-
-
 end
 
 group :development do
@@ -87,7 +84,6 @@ gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
 
-
 # Security Update
 gem "loofah", ">= 2.2.3"
 
@@ -103,3 +99,27 @@ gem 'carrierwave', '~> 1.0'
 
 # Use mini_magick to resize images
 gem 'mini_magick'
+
+# Upload images on Cloud AWS
+gem 'carrierwave-aws'
+gem 'aws-sdk-rails'
+
+# Sidekiq for sending emails
+gem 'sidekiq'
+
+# Graphs
+gem 'chartkick'
+gem 'groupdate'
+
+# Cryptocurrencies fonts
+gem 'cryptofont-rails'
+
+#Security Update
+gem "rack", ">= 2.0.6"
+
+# Pagination
+gem 'kaminari', :git => "git://github.com/amatsuda/kaminari.git"
+gem 'will_paginate'
+
+# ColorPicker
+gem 'jquery-minicolors-rails'

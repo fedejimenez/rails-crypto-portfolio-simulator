@@ -1,0 +1,3 @@
+$('#like-button-<%=@comment.id%>').html('<%= j render "likes/like_form", comment: @comment %>');
+$('#comment-likes-<%=@comment.id%>').html('<%= Comment.find_by_id(@comment.id).likes.count %>');
+

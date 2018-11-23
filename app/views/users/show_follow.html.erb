@@ -1,0 +1,99 @@
+<%= render 'layouts/flash' %>
+<%= render 'home/breadcrumbs' %>
+
+<div class="row">
+  <div class="content">
+    <!-- Animated -->
+    <div class="animated fadeIn">
+      <div class="row">
+        <!-- Current User Profile -->
+        <div class="col-lg-6" id="layout-profile">
+          <div class="profile">
+            <div class="profile__picture">
+              <% if @user.avatar.blank? %>
+                <%= image_tag("avatar.svg", :alt => "avatar", class: "avatar-edit responsive") %>
+              <% else %>  
+                <%= image_tag(@user.avatar.url, :alt => "avatar",  class: "avatar-edit beat-less responsive") %>
+              <% end %>
+            </div>
+            <div class="profile__header">
+              <div class="profile__account">
+                  <h5 class="profile__username"><%= @user.name %></h5>
+              </div>
+              <div class="profile__edit">
+                 <%= render 'follow_form' %>
+              </div>
+            </div>
+            <div class="profile__stats stats">
+              <a href="/home/ranking">
+                <div class="profile__stat ">
+                  <div class="profile__icon profile__icon--gold"><i class="fa fa-trophy"></i></div>
+                  <div class="profile__value count"><%= @hash_ranking.find_index{|key,_| key == @user.id} +1 %>
+                    <div class="profile__key">Ranking</div>
+                  </div>
+                </div>
+              </a>
+              <%= render 'users/stats'%>
+            </div>
+            <% if current_user.id == @user.id %>
+              <div class="clearfix"></div> <br><hr>
+              <div class="form-group">
+                <%= form_for @user, url: {action: "update"}, remote: true do |form| %>
+                  <%= form.label "Change image" %> <br><br>
+                  <%= form.file_field :avatar %>  <hr> 
+                  <% if !@user.avatar.blank? %>
+                    <%= form.label "Check the box below to remove the picture" %> <br><br>
+                    <%= form.check_box :remove_avatar %> 
+                    <strong><p id="checkbox_user" class= "btn btn-light active">Delete</p> </strong>
+                    <div class="clearfix"></div><hr>
+                  <% end%> 
+                  <div class="col-md-2"></div>
+                  <%= form.submit 'Save', class: 'col-md-8 btn-custom btn-custom-blue ripple'  %>
+                <% end%>
+              </div>
+            <% end%>
+          </div>
+        </div>
+
+        <!--  Folliwing / Follower User Tag -->
+        <div class="col-md-5">
+          <% if @users.any? %>
+            <ul class="users follow">
+              <% @users.each do |user| %>
+
+                 <div class="profile">
+                    <div class="profile__picture">
+                      <% if @user.avatar.blank? %>
+                        <%= image_tag("avatar.svg", :alt => "avatar", class: "avatar-edit responsive") %>
+                      <% else %>  
+                        <%= link_to image_tag(user.avatar.url, :alt => "avatar", class: "avatar-edit beat-less responsive"), user %>
+                      <% end %>
+                    </div>
+                    <div class="profile__header pull-left"> 
+                      <div class="profile__account">
+                          <h5 class="profile__username"> 
+                            <%= link_to user.name, user_path(user.id) %>
+                          </h5>
+                      </div>
+                    </div> <div class="clearfix"></div> <br>
+                    <div class="profile__stats stats">
+                      <a href="/home/ranking">
+                        <div class="profile__stat ">
+                          <div class="profile__icon profile__icon--gold"><i class="fa fa-trophy"></i></div>
+                          <div class="profile__value count"><%= @hash_ranking.find_index{|key,_| key == user.id} +1 %>
+                            <div class="profile__key">Ranking</div>
+                          </div>
+                        </div>
+                      </a>
+                      <%= render 'users/stats'%>
+                    </div>
+                  </div>
+              <% end %> 
+            </ul>
+            <%= will_paginate %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

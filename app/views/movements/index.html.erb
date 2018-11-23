@@ -1,35 +1,237 @@
-<p id="notice"><%= notice %></p>
-<strong id="last-updated"><p class="pull-right">Last Updated: <%= Time.now.strftime('%H:%M:%S') %></p></strong>
+<%= render 'layouts/flash' %>
+<%= render 'home/breadcrumbs' %>
 
-<h2><strong>Orders History</strong></h2><br>
+<div class="content">
+    <!-- Animated -->
+    <div class="animated fadeIn">
+        <!--  User Ranking  -->
+        <div class="row">
+            <div class="col-lg-7">
+                <div class="card" >
+                    <div class="card-body">
+                        <div class="pull-right"><strong><i class="glyphicon glyphicon-transfer "> </i> Orders Details</strong></div><br>
+                        <!--  Add Users Profit Rankings -->
+                         <div id="details" class="">
+                          <div class="table">
+                            <table class="table text-center" id="table-movements">
+                              <thead >
+                                <tr>
+                                  <th class="text-center">Nr</th>
+                                  <th class="text-center">Currency</th>
+                                  <th class="text-center">Quantity</th>
+                                  <th class="text-center">Price</th>
+                                  <th class="text-center">Amount</th>
+                                  <th class="text-center">Date</th>
+                                  <th class="text-center">Operation</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <% @current_user.portfolio.movements.each do |movement| %>
+                                  <tr>
+                                    <td><%= movement.id %> </td>
+                                    <td><%= Crypto.find(movement.crypto_id).symbol %></td>
+                                    <td><%= movement.quantity %></td>
+                                    <td><%= movement.price.to_f.round(3) %></td>
+                                    <td><%= @total_amount = (movement.price.to_f * movement.quantity.to_f).round(3) %></td>
+                                    <td><%= @date = movement.date.strftime('%d/%m/%Y') %></td>
+                                    <td>
+                                        <% if movement.operation.capitalize == "Buy" %>
+                                          <span class="badge badge-complete">
+                                        <% else %>
+                                          <span class="badge badge-pending">
+                                        <% end %>
+                                        <%= movement.operation.capitalize %>
+                                    </td>
+                                  </tr>
+                                <% end %>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Widgets -->
+            <div class="col-lg-5">
+                <div class="col-lg-12">
+                    <div class="card" >
+                        <div class="card-body">
+                            <div class="chart-container ov-h">
+                              <div class="stat-heading"> <strong> Total Distribution</strong>
+                              </div>
+                              <div id="flotPie1" style="height:27vh;" ></div>
+                                <!-- <div id="flotPie1" class="float-chart"></div> -->
+                                <%  if current_user.portfolio.cryptos.count > 0 %>
+                                  <% buy_qty = current_portfolio.movements.where(operation: "buy").length %>
+                                  <% sell_qty = current_portfolio.movements.where(operation: "sell").length %>
+                                  <% buy_percentage = (100 * buy_qty/(buy_qty+sell_qty)).to_d.round(2) %>
+                                  <% sell_percentage = (100 * sell_qty/(buy_qty+sell_qty)).to_d.round(2) %>
+                                  <% @buy = [buy_qty, buy_percentage] %>
+                                  <% @sell = [sell_qty, sell_percentage] %>
+                                <% else %>
+                                  <% buy_percentage = 0 %>
+                                  <% sell_percentage = 0 %>
+                                  <% @buy = [0, buy_percentage] %>
+                                  <% @sell = [0, sell_percentage] %>
+                                <% end %>
+                            </div>
+                        </div>
+                    </div> <!-- /.card -->
+                </div> <!-- /.col -->
 
-<table class="table table-striped table-hover table-responsive datatable" id="table-movements">
-  <thead>
-    <tr>
-      <th>Order Nr</th>
-      <th>Currency</th>
-      <th>Quantity</th>
-      <th>Price</th>
-      <th>Total Amount</th>
-      <th>Date</th>
-      <th>Operation</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+                <div class="col-lg-12">
+                    <div class="card" >
+                        <div class="card-body">
+                          <div class="chart-container ov-h">
+                            <div class="stat-heading"> <strong> Orders - Last Week</strong> <button class="btn btn-default pull-right" value="Full Screen" onclick="showPopup('lineChart');"> <i class="fa fa-arrows-alt"> </i> Full Screen</button> 
+                            </div>
+                              <canvas id="lineChart" style="height:40vh;" ></canvas>
+                              <% @date = []%>
+                              <% @buy_count = []%>
+                              <% @sell_count = []%>
+                              <% 7.downto(0) do |d| %>
+                                <% @date << d.day.ago.strftime('%A') %>
+                                <% @buy_count << current_portfolio.movements.where(date: d.day.ago.beginning_of_day..d.day.ago.end_of_day, operation: "buy").count %>
+                                <% @sell_count << current_portfolio.movements.where(date: d.day.ago.beginning_of_day..d.day.ago.end_of_day, operation: "sell").count %>
+                              <% end %>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- /Widgeets -->
+        </div> 
+        <!--  /User Ranking -->
+    </div>
+</div>
 
-  <tbody>
-    <% @movements.each do |movement| %>
-      <tr>
-        <td><%= movement.id %></td>
-        <td><%= Crypto.find(movement.crypto_id).symbol %></td>
-        <td><%= movement.quantity %></td>
-        <td><%= movement.price.to_f.round(3) %></td>
-        <td><%= (movement.price.to_f * movement.quantity.to_f).round(3) %></td>
-        <td><%= movement.date %></td>
-        <td><%= movement.operation.capitalize %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
 
-<br>
+<!--  Chart js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.7.3/dist/Chart.bundle.min.js"></script>
+
+<!--Chartist Chart-->
+<script src="https://cdn.jsdelivr.net/npm/chartist@0.11.0/dist/chartist.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartist-plugin-legend@0.6.2/chartist-plugin-legend.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery.flot@0.8.3/jquery.flot.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flot-pie@1.0.0/src/jquery.flot.pie.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flot-spline@0.0.1/js/jquery.flot.spline.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
+<script>
+    // Counter Number
+    // $('.count').each(function () {
+    //     $(this).prop('Counter',0).animate({
+    //         Counter: $(this).text()
+    //     }, {
+    //         duration: 3000,
+    //         easing: 'swing',
+    //         step: function (now) {
+    //             $(this).text(Math.ceil(now));
+    //         }
+    //     });
+    // });
+    // - Counter End
+
+    // Pie chart flotPie1 - FlotChart
+    var data_buy = [<%= raw @buy.to_json %>];
+    var data_sell = [<%= raw @sell.to_json %>];
+    
+    var piedata = [
+        { label: "BUY ("+data_buy[0][0]+")", data: [[1, parseFloat(data_buy[0][1])]], color: '#ef5350'},
+        { label: "SELL ("+data_sell[0][0]+")", data: [[2,parseFloat(data_sell[0][1])]], color: '#66bb6a'}
+    ];
+
+    $.plot($("#flotPie1"), piedata, {
+      series: {
+          pie: {
+              show: true,
+              radius: 0.8,
+              innerRadius: 0.5,
+              label: {
+                  show: true,
+                  radius: 1,
+                  formatter: _labelFormatter,
+                  background: {
+                      opacity: 0,
+                      color: '#000'
+                  }
+              }
+          }
+      },
+      legend: {
+          show: true
+      }
+    });         
+
+    function _labelFormatter(label, series) {
+        return "<div style='font-size:4pt; text-align:center; color:black;'>" + "<strong>" + Math.round(series.percent) + "% </strong></div>";
+    }
+    // Pie chart flotPie1  End
+
+    // Line chart -- ChartJS
+    var dates = [<%= raw @date.to_json %>];
+    var buy_count = [<%= raw @buy_count.to_json %>];
+    var sell_count = [<%= raw @sell_count.to_json %>];
+
+    var ctx = document.getElementById( "lineChart" );
+    ctx.height = 150;
+    var myChart = new Chart( ctx, {
+        type: 'line',
+        data: {
+            labels: dates[0],
+            datasets: [
+                {
+                    label: "BUY Orders",
+                    borderColor: "rgba(102, 187, 106, 0.7)",
+                    borderWidth: "1",
+                    backgroundColor: "rgba(102, 187, 106, 0.7)",
+                    pointHighlightStroke: "rgba(26,179,148,1)",
+                    data: buy_count[0]
+                            },
+                {
+                    label: "SELL orders",
+                    borderColor: "rgba(255,1,1,.8)",
+                    fill: true,
+                    borderWidth: "1",
+                    backgroundColor: "rgba(255,1,1,.8)",
+                    data: sell_count[0]
+                            }
+                        ]
+
+        },
+        options: {
+            responsive: true,
+            tooltips: {
+                mode: 'index',
+                intersect: false
+            },
+            hover: {
+                mode: 'nearest',
+                intersect: true
+            }
+
+        }
+    } );
+    // End Line Chart
+
+    // Make Full screen
+    function showPopup( id ) {
+      var chart = $( "#" + id );
+      var modal = $( "<div>" ).addClass( "modal-chart" );
+      var shade = $( "<div>" ).addClass( "shade" ).appendTo( modal ).on( "click", close );
+      var placeholder = $( "<div>" ).prop( "id", id + "_placeholder" ).hide().insertBefore( chart );
+      $( document.body ).append( modal );
+      chart.appendTo( modal ).addClass( "chart" );
+
+      function close() {
+        chart.insertAfter( placeholder ).removeClass( "chart" );
+        placeholder.remove();
+        modal.remove();
+      }
+    }
+
+</script>
+
+

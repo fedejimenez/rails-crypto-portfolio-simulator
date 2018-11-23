@@ -41,3 +41,27 @@
 		</div>
 	<% end %>
 <% end %>
+
+<%= paginate @search_filtered, :left => 1, :right => 3 %>
+
+<table>
+	<thead>
+		<tr>
+			<th>id</th>
+			<th>name</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @search.advanced_search.each do |c| %>
+			<tr>
+				<td><%= c['id'] %></td>
+				<td><%= c['name']%></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<%= paginate @search_filtered, :left => 1, :right => 3 %>
+
+<%= @search.advanced_search %> <br><hr>
+<%= Search.all.last.id %>

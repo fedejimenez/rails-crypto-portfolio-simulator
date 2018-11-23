@@ -1,5 +1,7 @@
 class PortfoliosController < ApplicationController
   before_action :set_portfolio, only: [:show, :edit, :update, :destroy]
+  before_action :calculate_profit
+  before_action :authorize
 
   # GET /portfolios
   # GET /portfolios.json
@@ -10,6 +12,13 @@ class PortfoliosController < ApplicationController
   # GET /portfolios/1
   # GET /portfolios/1.json
   def show
+    @portfolio = Portfolio.new(portfolio_params)
+    @breadcrumb_title = ' DETAILS - PORTFOLIO'
+    @breadcrumb_icon = 'tasks'
+    @breadcrumb_subtitle = ''
+    @breadcrumb_path1 = ''
+    @breadcrumb_link1 = ''
+    @breadcrumb_current = 'Details'
   end
 
   # GET /portfolios/new

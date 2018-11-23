@@ -4,16 +4,14 @@ class CryptosController < ApplicationController
 
   before_action :set_crypto, only: [:show, :edit, :update, :destroy]
   before_action :authorize
-  before_action :correct_user, only: [:edit, :update, :destroy, :show]
+  before_action :correct_user_cryptos, only: [:edit, :update, :destroy, :show]
+  before_action :calculate_profit
   rescue_from ActiveRecord::RecordNotFound, with: :handle_record_not_found
   after_action :calculate_quantity, only: [:update]
   after_action :update_portfolio_balance, only: [:update, :create]
-
   # GET /cryptos
   # GET /cryptos.json
   def index
-    @cryptos = Crypto.all
-    get_data_from_API
   end
 
   # GET /cryptos/1
@@ -23,13 +21,23 @@ class CryptosController < ApplicationController
 
   # GET /cryptos/new
   def new
-    get_data_from_API
     @crypto = Crypto.new
-    @cryptos = Crypto.all
+    @breadcrumb_title = ' NEW ORDER'
+    @breadcrumb_icon = 'shopping-cart'
+    @breadcrumb_subtitle = ''
+    @breadcrumb_path1 = ''
+    @breadcrumb_link1 = ''
+    @breadcrumb_current = 'New Order'
   end
 
   # GET /cryptos/1/edit
   def edit
+    @breadcrumb_title = ' NEW ORDER - OWNED CRYPTO'
+    @breadcrumb_icon = 'shopping-cart'
+    @breadcrumb_subtitle = ''
+    @breadcrumb_path1 = ' New Order'
+    @breadcrumb_link1 = '/portfolios/'+current_user.id.to_s+'/cryptos/new'
+    @breadcrumb_current = 'Owned Crypto'
   end
 
   # POST /cryptos
@@ -55,7 +63,7 @@ class CryptosController < ApplicationController
   def update
     respond_to do |format|
       if @crypto.update(crypto_params)
-        format.html { redirect_to portfolio_cryptos_url(current_portfolio.id) }
+        format.html { redirect_to portfolio_url(current_portfolio.id) }
         format.json { render :show, status: :ok, location: @crypto }
       else
         format.html { render :edit, notice: 'Error while processing the transaction. Please check your balance and the quantity.' }
@@ -70,7 +78,7 @@ class CryptosController < ApplicationController
     @crypto.destroy
     respond_to do |format|
       if @crypto.sell(params[:crypto][:amount_owned].to_i)
-        format.html { redirect_to portfolio_cryptos_url(current_portfolio.id), notice: 'Crypto was successfully destroyed.' }
+        format.html { redirect_to portfolio_url(current_portfolio.id), notice: 'Crypto was successfully destroyed.' }
         format.json { head :no_content }
       end
     end
@@ -87,16 +95,16 @@ class CryptosController < ApplicationController
       params.require(:crypto).permit(:symbol, :user_id, :cost_per, :amount_owned, :last_transaction, :last_action, :portfolio_id)
     end
 
-    def correct_user
-      @correct = current_user.cryptos.find_by(id: params[:id])
+    def correct_user_cryptos
+      @correct = current_user.portfolio.cryptos.find_by(id: params[:id])
       if @correct.nil?
         flash[:warning] = "Oops! You're not Authorized to view or edit this page! " 
-        redirect_to cryptos_path
+        redirect_to '/'
       end
     end
 
     def handle_record_not_found
       flash[:warning] = "Oops! You're not Authorized to view or edit this page! "
-      redirect_to cryptos_path
+      redirect_to '/'
     end
 end

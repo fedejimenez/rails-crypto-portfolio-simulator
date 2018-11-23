@@ -1,0 +1,128 @@
+<%= render 'layouts/flash' %>
+<%= render 'home/breadcrumbs' %>
+
+<div class="content">
+    <!-- Animated -->
+    <div class="animated fadeIn">
+        <!--  User Ranking  -->
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h4 class="box-title"><i class="fa fa-trophy" style="color:orange"> </i> User's Ranking</h4>
+                        <div id="tab-ranking" class="">
+                          <div class="table">
+                            <table class="table table-hover text-center" id="table-ranking">
+                              <thead>
+                                <tr>
+                                  <th class="text-center"> Rank </th>
+                                  <th class="text-center"> Avatar </th>
+                                  <th class="text-center"> User </th>
+                                  <th class="text-center"> Amount </th>
+                                  <th class="text-center"> % Profit </th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <% User.all.each_with_index do |u,i| %>
+                                  <tr>
+                                      <td>
+                                      </td>
+                                      <td>
+                                        <% if u.avatar.blank? %>
+                                          <%= image_tag("avatar.svg", :alt => "avatar", class: "rounded-circle", style: "width: 40px") %>
+                                        <% else %>  
+                                          <%= image_tag(u.avatar.url, :alt => "avatar", class: "user-avatar rounded-circle", style: "width: 40px") %>
+                                        <% end %> 
+                                      </td>
+                                      <td>
+                                          <a href="/users/<%=u.id%>"><%= u.username %></a>  
+                                      </td>
+                                      <td>
+                                          $ <%= @initial_amount + @profit_array[i] %>
+                                      </td>
+                                      <td>
+                                          <span class= "color-text"><%= ((@profit_array[i].to_d)*100/@initial_amount).round(2) %> % </span>
+                                      </td>
+                                  </tr>
+                                <% end %>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Widgets -->
+            <div class="col-lg-4">
+                <div class="col-lg-10">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="stat-widget-five">
+                                <div class="stat-icon dib flat-color-1">
+                                    <i class="fa fa-money"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <div class="text-left dib">
+                                        <div class="stat-text"><strong>$<span class="count"><%= (@initial_amount + @profit).round(1) %></span></strong></div>
+                                        <div class="stat-heading">Total</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-10">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="stat-widget-five">
+                                <div class="stat-icon dib flat-color-4">
+                                    <i class="fa fa-trophy"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <div class="text-left dib">
+                                        <div class="stat-text"><strong># <span class="count"> <%= @rank %></span></strong></div>
+                                        <div class="stat-heading">Rank</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-10">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="stat-widget-five">
+                                <div class="stat-icon dib flat-color-3">
+                                    <i class="fa fa-users"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <div class="text-left dib">
+                                        <div class="stat-text"><strong># <span class="count"> <%= User.all.length %></span></strong></div>
+                                        <div class="stat-heading">Total Users</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- /Widgeets -->
+        </div> 
+        <!--  /User Ranking -->
+    </div>
+</div>
+
+<script>
+    // Counter Number
+    $('.count').each(function () {
+        $(this).prop('Counter',0).animate({
+            Counter: $(this).text()
+        }, {
+            duration: 3000,
+            easing: 'swing',
+            step: function (now) {
+                $(this).text(Math.ceil(now));
+            }
+        });
+    });
+    // - Counter End
+</script>

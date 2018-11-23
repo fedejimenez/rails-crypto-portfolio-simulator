@@ -1,4 +1,207 @@
-<p id="notice"><%= notice %></p>
+<%= render 'layouts/flash' %>
+<%= render 'home/breadcrumbs' %>
 
-<%= link_to 'Edit', edit_portfolio_path(@portfolio) %> |
-<%= link_to 'Back', portfolios_path %>
+<div class="content">
+    <!-- Animated -->
+    <div class="animated fadeIn">
+        <!--  User Ranking  -->
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <ul class="nav nav-tabs">
+                          <li class="active"><a data-toggle="tab" href="#home">CURRENCIES</a></li>
+                          <li><a data-toggle="tab" href="#menu1">RESUME</a></li>
+                        </ul>
+                        <div class="tab-content">
+                          <div id="home" class="tab-pane fade in active">
+                              <button class="btn btn-default pull-right" value="Full Screen" onclick="showPopup('table-portfolio-details');"> <i class="fa fa-arrows-alt"> </i> Full Screen</button> 
+                              <div class="table" id="table-portfolio-details">
+                                <table class="table table-hover table-condensed text-center" id="table-cryptos"  >
+                                  <thead>
+                                    <tr>
+                                      <th class="text-center">Symbol</th>
+                                      <th class="text-center">Name</th>
+                                      <th class="text-center">Current Price</th>
+                                      <th class="text-center">1 hr-</th>
+                                      <th class="text-center">24 hrs</th>
+                                      <th class="text-center">7 days</th>
+                                      <th class="text-center">Qty</th>
+                                      <th class="text-center">Buying Price</th>
+                                      <th class="text-center">Current Amount</th>
+                                      <th class="text-center">Balance (U$D)</th>
+                                      <th class="text-center"> Order</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody id="table-portfolio">
+                                    <% @current_amount = [] %>
+                                    <% @current_name = [] %>
+                                    <% @cryptos.each do |crypto| %>
+                                      <% if (crypto.user_id == current_user.id)  && (crypto.amount_owned != 0) %>
+                                        <tr>
+                                          <td><%= link_to crypto.symbol, edit_crypto_path(crypto.id) %></td>
+                                          <% for c in @coins %>
+                                            <% if (crypto.symbol == c["symbol"]) %>
+                                              <% @current_name << c["symbol"].upcase %>
+                                              <td> <%= link_to c["name"], edit_crypto_path(crypto.id) %> </td>
+                                              <td> $<%= c["price_usd"].to_d.round(4) %> </td>
+                                              <td  class="color-text"> <%= c["percent_change_1h"] %></td>
+                                              <td class="color-text"> <%= c["percent_change_24h"] %></td>
+                                              <td class="color-text"> <%= c["percent_change_7d"] %></td>
+                                              <td> <%= crypto.amount_owned.to_d %> </td>
+                                              <td> <%= number_to_currency(crypto.cost_per) %></td>
+                                              <% @current_amount << (c["price_usd"].to_d * crypto.amount_owned.to_d).round(2) %>
+                                              <td> $ <%= @current_amount.last %> </td>
+                                              <td> <span class="color-text"> <%= @balance = ((c["price_usd"].to_d * crypto.amount_owned.to_d)-(crypto.cost_per.to_d * crypto.amount_owned.to_d)).round(2) %> </span> </td>
+                                            <% end %>
+                                          <% end %>
+                                          <td> <%= link_to 'New Order', edit_crypto_path(crypto) %></td>
+                                        </tr>
+                                      <% end %>
+                                    <% end %>
+                                  </tbody>
+                                </table>
+                              </div>
+                          </div>
+                          <div id="menu1" class="tab-pane fade">
+                            <div class="row">
+                                <div class="col-lg-6">                                    
+                                    <div class="card-body">
+                                        <div class="progress-box progress-1">
+                                           <strong> <h2 class="por-title pull-left">Total Amount (U$D):</h2></strong><div class="clearfix"></div>
+
+                                            <div class="por-txt"><strong class="fa-2x" style="color: #558DC5"> $ <span class="count" ><%=(@initial_amount + @profit).round(2) %></span> </strong> </div>
+                                        </div>
+                                        <div class="progress-box progress-1">
+                                            <h3 class="por-title pull-left">Total Portfolio Profit (U$D):</h3><br><br>
+                                            <div class="por-txt"><strong class="color-text pull-center"> <%= @profit.to_d.round(2) %> $</strong> | <span class="color-text"><%=((@profit.to_d)*100/@initial_amount).round(2)%> %</span>  </div>
+                                            <div class="progress mb-2" style="height: 5px;">
+                                                <div class="progress-bar bg-flat-color-1" role="progressbar" style="width: <%=((@profit.to_d)*100/@initial_amount).abs.round(2)%>%" aria-valuenow="<%=((@profit.to_d)*100/@initial_amount).abs.round(2)%>" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                        <div class="progress-box progress-2">
+                                            <h4 class="por-title pull-left">Available to Invest</h4><br><br>
+                                            <div class="por-txt pull-right"> <strong> $ <%= current_portfolio.balance.round(2) %> | <%= percentage_invested = (100 * (current_portfolio.balance.round(2))/((@initial_amount + @profit).round(2))).round(2) %> % </strong> (From Total Amount)
+                                            </div> <div class="clearfix"></div>
+                                            <div class="progress mb-2" style="height: 5px;">
+                                                <div class="progress-bar bg-flat-color-1" role="progressbar" style="width:<%=percentage_invested%>%" aria-valuenow="<%=percentage_invested%>" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                        <div class="progress-box progress-2">
+                                            <h4 class="por-title pull-left">Available for Selling</h4><br><br>
+                                            <div class="por-txt pull-right"> <strong> $ <%= (@initial_amount + @profit).round(1) -current_portfolio.balance.round(2)  %> | <%= percentage_for_selling = (100 * ((@initial_amount + @profit).round(1) - current_portfolio.balance.round(2) )/((@initial_amount + @profit).round(2))).round(2) %> % </strong> (From Total Amount)
+                                            </div> <div class="clearfix"></div>
+                                            <div class="progress mb-2" style="height: 5px;">
+                                                <div class="progress-bar bg-flat-color-1" role="progressbar" style="width:<%=percentage_for_selling%>%" aria-valuenow="<%=percentage_for_selling%>" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                    </div> <!-- /.card-body -->
+                                </div>
+                                <div class= "col-lg-4"><br>
+                                    <strong class="progress-box progress-1"><h3> Currencies Distribution </h3></strong><br>
+                                    <%= pie_chart  Hash[@current_name.zip @current_amount], prefix: "$ "  %>
+                                </div><br>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Widgets -->
+            <div class="col-lg-4">
+                <div class="col-lg-10">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="stat-widget-five">
+                                <div class="stat-icon dib flat-color-1">
+                                    <i class="fa fa-money"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <div class="text-left dib">
+                                        <div class="stat-text"><strong>$<span class="count"><%= (@initial_amount + @profit).round(1) %></span></strong></div>
+                                        <div class="stat-heading">Total Owned</div>
+                                   </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-10">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="stat-widget-five">
+                                <div class="stat-icon dib flat-color-2">
+                                    <i class="fa fa-percent"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <div class="text-left dib">
+                                        <div class="stat-text responsive"><strong><span class="color-text">
+                                          <%=((@profit.to_d)*100/@initial_amount).round(2)%>%  
+                                          </span> </strong>
+                                        </div>
+                                        <div class="stat-heading">Balance</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-10">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="stat-widget-five">
+                                <div class="stat-icon dib flat-color-3">
+                                    <i class="fa fa-money"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <div class="text-left dib">
+                                        <div class="stat-text"><strong>$<span class="count"><%= current_portfolio.balance.round(2) %></span></strong></div>
+                                        <div class="stat-heading">Available to Invest</div>
+                                   </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-10">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="stat-widget-five">
+                                <div class="stat-icon dib flat-color-2">
+                                    <i class="fa fa-money"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <div class="text-left dib">
+                                        <div class="stat-text"><strong>$<span class="count"><%= (@initial_amount + @profit).round(1) -current_portfolio.balance.round(2) %></span></strong></div>
+                                        <div class="stat-heading">Available for Selling </div>
+                                   </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%= javascript_include_tag 'count' %>
+
+<script>
+    // Make Full screen
+    function showPopup( id ) {
+      var chart = $( "#" + id );
+      var modal = $( "<div>" ).addClass( "modal-chart" );
+      var shade = $( "<div>" ).addClass( "shade" ).appendTo( modal ).on( "click", close );
+      var placeholder = $( "<div>" ).prop( "id", id + "_placeholder" ).hide().insertBefore( chart );
+      $( document.body ).append( modal );
+      chart.appendTo( modal ).addClass( "chart" );
+
+      function close() {
+        chart.insertAfter( placeholder ).removeClass( "chart" );
+        placeholder.remove();
+        modal.remove();
+      }
+    }
+</script>

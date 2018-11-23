@@ -1,0 +1,35 @@
+.table{
+	padding: 20px 20px 0 20px !important;
+	.row{
+		text-align: left !important;
+		tbody td{
+			// color: #7C8083 ;
+		}
+		.col-sm-6{
+			width: 0% !important;
+		}
+		a{
+			font-size: 1.5vh;
+		}
+	}
+	#table-portfolio {
+		tr td{
+			font-size: 12px !important;
+		}
+		.color-text{
+			font-size: 12px !important;
+		}
+	}
+}
+
+table tr th{
+  background:#CDE6FA;
+  font-size: 1.7vh;
+  color: #777778;
+  text-align:left;
+  vertical-align:center;
+}
+
+#table-ranking tbody tr td{
+	line-height: 5vh !important;
+}

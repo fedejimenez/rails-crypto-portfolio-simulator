@@ -1,0 +1,50 @@
+<!-- Left Panel -->
+<aside id="left-panel" class="left-panel">
+    <nav class="navbar navbar-expand-sm navbar-default">
+        <div id="main-menu" class="main-menu collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="li-sidebar active" id="li-dashboard">
+                    <a href="/home"><i class="menu-icon fa fa-laptop" title="DASHBOARD"></i>DASHBOARD </a>
+                </li>
+                <li class="li-sidebar" id="li-top">
+                    <a href="/home/index"><i class="menu-icon fa fa-list-alt" title="TOP 50"></i>TOP 50 </a>
+                </li>
+                <li class="menu-title">Portfolio</li><!-- /.menu-title -->
+                <li class="li-sidebar" id="li-details">
+                    <a href="/portfolios/<%=current_user.portfolio.id%>"> <i class="menu-icon fa fa-tasks" title="DETAILS"></i>DETAILS</a>
+                </li>
+                <li class="li-sidebar" id="li-movements">
+                    <a href="/portfolios/<%=current_user.portfolio.id%>/movements"> <i class="menu-icon fa fa-exchange" title="MOVEMENTS"></i>MOVEMENTS</a>
+                </li>
+                <li class="li-sidebar" id="li-new">
+                    <a href="/portfolios/<%=current_user.portfolio.id%>/cryptos/new"> <i class="menu-icon fa fa-shopping-cart" title="CHARTS"></i>NEW ORDER</a>
+                </li>
+
+                <li class="menu-title">USER</li><!-- /.menu-title -->
+
+                <li class="li-sidebar" id="li-profile">
+                    <a href="/users/<%=current_user.id%>" class="dropdown-toggle"> <i class="menu-icon fa fa-user" title="PROFILE"></i>PROFILE</a>
+                </li>
+                <li class="li-sidebar" id="li-ranking">
+                    <a href="/home/ranking"> <i class="menu-icon fa fa-trophy" title="RANKING"></i>RANKING </a>
+                </li>
+                <li class="menu-title">Extras</li><!-- /.menu-title -->
+                <li class="li-sidebar" id="li-suggestions">
+                    <a href="/home/suggestions"> <i class="menu-icon fa fa-send" title="SUGGESTIONS"></i>SUGGESTIONS</a>
+                </li>
+                <li class="li-sidebar" id="li-colaborate">
+                    <a href="https://github.com/fedejimenez/crypto-portfolio-simulator" target="_blank"> <i class="menu-icon fa fa-github" title="COLABORATE"></i>COLABORATE</a>
+                </li>
+<!--                 <li class="li-sidebar" id="li-help"> 
+                    <a href="#" class="dropdown-toggle"> <i class="menu-icon fa fa-info" title="HELP"></i>HELP</a>
+                </li>
+                <li class="li-sidebar" id="li-about">
+                    <a href="#" class="dropdown-toggle"> <i class="menu-icon fa fa-question" title="ABOUT"></i>ABOUT</a>
+                </li> -->
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </nav>
+</aside>
+<!-- /#left-panel -->
+
