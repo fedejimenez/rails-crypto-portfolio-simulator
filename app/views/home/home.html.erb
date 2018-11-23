@@ -50,14 +50,29 @@
                     <div class="card-body">
                         <div class="stat-widget-five">
                             <div class="stat-icon dib flat-color-3">
-                                <% @last_crypto_id = current_portfolio.movements.last.crypto_id %>
-                                <% @last_crypto_symbol = Crypto.where(id: @last_crypto_id).first.symbol.downcase %>
-                                <img src="/assets/<%=@last_crypto_symbol%>" width="50vw" title="<%=@crypto_names[@last_crypto_id]%>" >
+                                <%  if current_user.portfolio.cryptos.count > 0 %>
+                                    <% @last_crypto_id = current_portfolio.movements.last.crypto_id %>
+                                    <% @last_crypto_symbol = Crypto.where(id: @last_crypto_id).first.symbol.downcase %>
+                                    <img src="/assets/<%=@last_crypto_symbol%>" width="50vw" title="<%=@crypto_names[@last_crypto_id]%>" >
+                                <% end %>
                             </div>
                             <div class="stat-content">
                                 <div class="text-left dib">
-                                    <div class="stat-text"><strong><span class=""><%= current_portfolio.movements.last.operation.upcase %></span></strong></div>
-                                    <div class="stat-heading">Last Order: <strong><%=@crypto_names[@last_crypto_id].upcase%></strong></div>
+                                    <div class="stat-text"><strong><span class="">
+                                         <%  if current_user.portfolio.cryptos.count == 0 %>
+                                             N / A </span></strong>
+                                         <% else%>
+                                            <%= current_portfolio.movements.last.operation.upcase %></span></strong>
+                                         <% end %>
+
+                                    </div>
+                                    <div class="stat-heading">Last Order: 
+                                        <%  if current_user.portfolio.cryptos.count > 0 %>
+                                            <a href="/lookup?q=<%=@last_crypto_symbol.upcase%>">
+                                                <strong><%=@crypto_names[@last_crypto_id].upcase%></strong>
+                                            </a> 
+                                        <% end %>
+                                    </div>
                                 </div>
                             </div>
                         </div>

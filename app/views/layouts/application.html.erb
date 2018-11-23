@@ -23,6 +23,7 @@
     
     <meta charset="UTF-8">
     <meta name=viewport content="width=device-width, initial-scale=1">
+    <%= favicon_link_tag asset_path('brand-logo.png') %>
 
     <!-- Disable caching with turbolinks -->
     <meta name="turbolinks-cache-control" content="no-cache">
@@ -34,8 +35,6 @@
 
   <body>
     
-
-
     <% if logged_in? %>
       <!-- Modal when loading -->
       <div class="modal fade" id="loadMe" tabindex="-1" role="dialog" aria-labelledby="loadMeLabel" data-backdrop="static" data-keyboard="false">
@@ -67,7 +66,7 @@
     </div>
     <% end %>
 
-
+  
   </body>
 </html>
 

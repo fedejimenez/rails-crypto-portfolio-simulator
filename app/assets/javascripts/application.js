@@ -34,8 +34,10 @@
 
 // Add style to search bar (easyAutocomplete)
 $(document).on('turbolinks:load', function() {
-	document.querySelector('#q').classList.add("lookup-input")
-	document.querySelector('#q').parentNode.classList.add("lookup-input")
+	if (document.querySelector('#q')) {
+		document.querySelector('#q').classList.add("lookup-input")
+		document.querySelector('#q').parentNode.classList.add("lookup-input")
+	}
 })
 
 // Add style to variation if positive/negative number
@@ -88,6 +90,7 @@ $(document).on('turbolinks:load', function() {
 		changeActive();
 		$('#li-'+selected).addClass('active');
 	}
+
 	// Search Bar 
 	$('.search-trigger').on('click', function(event) {
 		event.preventDefault();
@@ -142,8 +145,16 @@ $(document).on('turbolinks:click', function() {
 	  show: true //Display loader!
 	});
 });
-// });
+
+function launchLoadingModal(){
+	$("#loadMe").modal({
+	  backdrop: "static", //remove ability to close modal with click
+	  keyboard: false, //remove option to close with keyboard
+	  show: true //Display loader!
+	});
+}
 
 $(document).on('turbolinks:load', function() {
 	$("#loadMe").modal("hide");
 });
+

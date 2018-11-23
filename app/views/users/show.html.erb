@@ -46,7 +46,7 @@
                   <div class="clearfix"></div><hr>
                 <% end%> 
                 <div class="col-md-2"></div>
-                <%= form.submit 'Save', class: 'col-md-8 btn-custom btn-custom-blue ripple'  %>
+                <%= form.submit 'Save', class: 'col-md-8 btn-custom btn-custom-blue ripple', onclick: 'launchLoadingModal()'  %>
               <% end%>
             </div>
           <% end%>
@@ -81,7 +81,8 @@
                 </div>
                 <div class="stat-content">
                   <div class="text-left dib">
-                    <div class="stat-text"><strong>$<span class="count"><%= (@initial_amount + @profit).round(1) %></span></strong></div>
+                  
+                    <div class="stat-text"><strong>$<span class="count"> <%= (@initial_amount + @profit_array.sort.reverse[@hash_ranking.find_index{|key,_| key == @user.id}]).round(1) %></span></strong></div>
                     <div class="stat-heading">Total</div>
                   </div>
                 </div>

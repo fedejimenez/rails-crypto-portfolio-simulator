@@ -181,6 +181,47 @@ a.wrimagecard:hover, .wrimagecard-topimage:hover, .wrimagecard-topimage.active {
 }
 
 
+
+
+//=============================================
+//           Section ABOUT / FOOTER
+//==============================================
+
+#section-about{
+  height: 75vh !important;
+  a{
+    color: #888;
+  }
+  a:hover{
+    color: black;
+  }
+}  
+
+// Footer
+
+
+#footer-index{
+  margin: 0;
+  padding: 20px;
+  background: rgb(30, 30, 30);
+  color: lightgrey;
+  a {
+    color: lightgrey;
+    font-size: 20px;
+  }
+  a:hover {
+    color: white;
+  }
+  p{
+    margin: 20px;
+    font-size: 16px;
+  }
+  i{
+    padding: 10px;
+  }
+}
+
+
 //=============================================
 //           Buttons signup/login
 //==============================================
@@ -545,27 +586,139 @@ a.wrimagecard:hover, .wrimagecard-topimage:hover, .wrimagecard-topimage.active {
 
 
 
-//============================================
-//                 Footer
-//===============================================
+/* ==========================================*/
+/* ----------  Share Buttoon -----------------*/
+/* ==========================================*/
 
-#footer-index{
-  margin: 0;
-  padding: 80px;
-  background: rgb(30, 30, 30);
-  color: lightgrey;
-  a {
-    color: lightgrey;
-    font-size: 20px;
-  }
-  a:hover {
-    color: white;
-  }
-  p{
-    margin: 20px;
-    font-size: 16px;
-  }
-  i{
-    padding: 10px;
-  }
+.menu-button {
+  -webkit-transition: 0.4s;
+  -moz-transition: 0.4s;
+  transition: 0.4s;
+  position: fixed;
+  z-index: 1;
+  right: 20px;
+  bottom: 350px;
+  width: 80px;
+  height: 80px;
+  padding-top: 10px;
+  text-align: center;
+  line-height: 60px;
+  border-radius: 50%;
+  background: rgba(233, 30, 99, 0.9);
+  color: #FFFFFF;
+  font-size: 24px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26), 0 2px 10px 0 rgba(0, 0, 0, 0.22);
+  cursor: pointer;
+
+}
+.menu-button:hover {
+  background: #d81558;
+  box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.28), 0 4px 15px 0 rgba(0, 0, 0, 0.25);
+}
+.menu-button a {
+  -webkit-transition: 0.4s;
+  -moz-transition: 0.4s;
+  transition: 0.4s;
+  opacity: 0;
+  width: 0px;
+  height: 0px;
+  text-align: center;
+  line-height: 50px;
+  border-radius: 50%;
+  color: #FFFFFF;
+  font-size: 24px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26), 0 2px 10px 0 rgba(0, 0, 0, 0.22);
+  cursor: pointer;
+}
+.menu-button a:hover {
+  box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.28), 0 4px 15px 0 rgba(0, 0, 0, 0.25);
+}
+/* Twitter */
+.menu-button a:nth-child(2) { 
+  -webkit-transition-delay: 0.4s;
+  -moz-transition-delay: 0.4s;
+  transition-delay: 0.4s;
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  background: #55acee;
+}
+/* Linkedin */
+.menu-button a:nth-child(3) {
+  -webkit-transition-delay: 0.5s;
+  -moz-transition-delay: 0.5s;
+  transition-delay: 0.5s;
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  background: #0077B5;
+}
+
+/* Github */
+.menu-button a:nth-child(4) {
+  -webkit-transition-delay: 0.7s;
+  -moz-transition-delay: 0.7s;
+  transition-delay: 0.7s;
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  background: #3F3F3F;
+}
+
+/* Facebook */
+.menu-button a:nth-child(5) {
+  -webkit-transition-delay: 0.3s;
+  -moz-transition-delay: 0.3s;
+  transition-delay: 0.3s;
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  background: #4267B2;
+}
+
+.menu-button:hover a {
+  opacity: 1;
+  width: 40px;
+  height: 40px;
+}
+.menu-button:hover a:nth-child(2) {
+  right: 60px;
+  bottom: -10px;
+}
+.menu-button:hover a:nth-child(2):hover {
+  -webkit-transition-delay: 0s;
+  -moz-transition-delay: 0s;
+  transition-delay: 0s;
+  background: #3ea1ec;
+}
+.menu-button:hover a:nth-child(3) {
+  right: 60px;
+  bottom: 50px;
+}
+.menu-button:hover a:nth-child(3):hover {
+  -webkit-transition-delay: 0s;
+  -moz-transition-delay: 0s;
+  transition-delay: 0s;
+  background: #0077B5;
+}
+.menu-button:hover a:nth-child(4) {
+  right: 5px;
+  bottom: 70px;
+}
+.menu-button:hover a:nth-child(4):hover {
+  -webkit-transition-delay: 0s;
+  -moz-transition-delay: 0s;
+  transition-delay: 0s;
+  background: #323232;
+}
+
+.menu-button:hover a:nth-child(5) {
+  right: 5px;
+  bottom: -30px;
+}
+.menu-button:hover a:nth-child(5):hover {
+  -webkit-transition-delay: 0s;
+  -moz-transition-delay: 0s;
+  transition-delay: 0s;
+  background: #4267a2;
 }

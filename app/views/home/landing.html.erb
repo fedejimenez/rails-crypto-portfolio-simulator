@@ -1,8 +1,9 @@
+
 <div class="container-landing">
   <div class="banner">
     <div class="banner-content animated animatedFadeInUp fadeInUp">
-      <h1>My playground app</h1><br>
-      <p>This is the important line everyone reads..</p><br><br><br><br>
+      <h1>Crypto Currency Trade Simulator</h1><br><br>
+      <p>Without risks, just fun..</p><br><br><br><br>
       <div>
         <a class="btn btn-theme btn-sm btn-min-block" data-toggle="modal" data-target= "#at-login" href="#">Login</a>
         <a class="btn btn-theme btn-sm btn-min-block" data-toggle="modal" data-target= "#at-signup" href="#">Register</a>
@@ -96,51 +97,51 @@
     <div class="slider-container col-md-8 col-md-offset-2 animated animatedFadeInUp fadeInUp" id="slider-container">
       <div class="slider-outer clearfix" id="slider-outer">
         <div class="slide clearfix">
-            <div class="slide-thump"><img src="https://d2lm6fxwu08ot6.cloudfront.net/img-thumbs/960w/DI64TAJTIS.jpg" class="loading" />
-                <div class="overlay"></div>
+            <div class="slide-thump"><img src="/assets/market.png" class="loading" id="full-market" />
+                <div class="overlay" onclick="showPopup('full-market')"></div>
             </div>
             <div class="slide-details">
                 <div class="header-tabs-landing">
                     <h2>MARKET PRICES<span class="top"></span><span class="bottom"></span><span class="left-border"></span></h2>
                 </div>
-                <p>Check the updated market price of your favourite cryptocurencies along with the variation during the last hour, last 24 hourss and last 7 days.</p>
-                <button>Start trading</button>
+                <p>Check the updated market prices of your favourite cryptocurencies along with the variation during the last hour, last 24 hours and last 7 days.</p>
+                <button><%= link_to 'Start Trading', users_path, { :class => 'dropdown-toggle', 'type' => 'button' , 'data-toggle' => 'modal', 'data-target' => '#at-login', 'style'=> "text-decoration: none"} %></button>
             </div>
         </div>
-        <div class="slide clearfix">
-            <div class="slide-thump"><img src="https://d2lm6fxwu08ot6.cloudfront.net/img-thumbs/960w/FOWR0O1WQ6.jpg" class="loading" />
-                <div class="overlay"></div>
+        <div class="slide clearfix" >
+            <div class="slide-thump"><img src="/assets/portfolio.png" class="loading" id="full-portfolio"/>
+                <div class="overlay" onclick="showPopup('full-portfolio')"></div>
             </div>
             <div class="slide-details">
                 <div class="header-tabs-landing">
                     <h2>BUILD YOUR PORTFOLIO<span class="top"></span><span class="bottom"></span><span class="left-border"></span></h2>
                 </div>
-                <p>After checking the prices, start building your portfolio, buying and selling cryptocurrencies like in the real market.</p>
-                <button>Start trading</button>
+                <p>After selecting your favourites, start building your portfolio, buying and selling cryptocurrencies like in the real market.</p>
+                <button><%= link_to 'Start Trading', users_path, { :class => 'dropdown-toggle', 'type' => 'button' , 'data-toggle' => 'modal', 'data-target' => '#at-login', 'style'=> "text-decoration: none"} %></button>
             </div>
         </div>
-        <div class="slide clearfix">
-            <div class="slide-thump"><img src="https://d2lm6fxwu08ot6.cloudfront.net/img-thumbs/960w/2YMA649WFC.jpg" class="loading" />
-                <div class="overlay"></div>
+        <div class="slide clearfix" >
+            <div class="slide-thump"><img src="/assets/stats.png" class="loading" id="full-stats"/>
+                <div class="overlay" onclick="showPopup('full-stats')"></div>
             </div>
             <div class="slide-details">
                 <div class="header-tabs-landing">
                     <h2>WATCH YOUR PERFORMANCE<span class="top"></span><span class="bottom"></span><span class="left-border"></span></h2>
                 </div>
                 <p>You can list all your movements and follow the stats to improve your habilities and increase your profits.</p>
-                <button>Start trading</button>
+                <button><%= link_to 'Start Trading', users_path, { :class => 'dropdown-toggle', 'type' => 'button' , 'data-toggle' => 'modal', 'data-target' => '#at-login', 'style'=> "text-decoration: none"} %></button>
             </div>
         </div>
-        <div class="slide clearfix">
-            <div class="slide-thump"><img src="https://d2lm6fxwu08ot6.cloudfront.net/img-thumbs/960w/ONV344KX9K.jpg" class="loading" />
-                <div class="overlay"></div>
+        <div class="slide clearfix"  >
+            <div class="slide-thump"><img src="/assets/ranking.png" class="loading" id="full-ranking" />
+                <div class="overlay" onclick="showPopup('full-ranking')"></div>
             </div>
             <div class="slide-details">
                 <div class="header-tabs-landing">
                     <h2>PLAY AGAINST OTHERS<span class="top"></span><span class="bottom"></span><span class="left-border"></span></h2>
                 </div>
-                <p>Compare your perfomance with other users and see how well or bad you are doing in the game. Are you happy or sad that it is not real money??</p>
-                <button>Start trading</button>
+                <p>Compare your perfomance with other users and see how well or bad you are doing in the game. Are you happy or sad that this is not real money??</p>
+                <button><%= link_to 'Start Trading', users_path, { :class => 'dropdown-toggle', 'type' => 'button' , 'data-toggle' => 'modal', 'data-target' => '#at-login', 'style'=> "text-decoration: none"} %></button>
             </div>
         </div>
       </div>
@@ -154,23 +155,33 @@
     <div class="">
       <div class=" col-md-6 ">
         <div class="text-slide animated animatedFadeInUp fadeInUp">
-          <h1> ABOUT ME</h1>
-            <p><strong>TRADE CRYPTOCURRENCIES VIRTUALLY</strong></p>
-            <p>Test and improve your skills as a digital trader without losing your hard-earned savings!</p>
-            <p>Sounds easy? See how much can you earn!</p>
+          <h1> ABOUT THE PROJECT</h1>
+            <p><strong>THIS IS A PERSONAL PLAYGROUND PROJECT</strong></p>
+            <p>The values are taken from a free API, so the real prices may differ from the ones shown. </p>
+            <p>There is no real money involved in any way and please be aware that changes can be made without previous notice.</p>
         </div>
       </div>
       <div class=" col-md-6 ">
         <div class="text-slide animated animatedFadeInUp fadeInUp">
-        <h1> ABOUT THE PROJECT</h1>
-          <p><strong>START WITH 10.000 U$D IN VIRTUAL CASH.</strong></p>
-          <p>Select your cryptocurrencies from the top 50 best ranked in the market, at real values. </p>
-          <p>Start learning and playing now!</p>
+        <h1> ABOUT ME</h1>
+          <p><strong>YOU'RE WELCOME TO COLABORATE</strong></p>
+          <p> I'm a Junior Web Developer trying to improve my knowledge and programming skills. </p>
+          <p>Feel free to contact me for questions or suggestions.</p>
+            <ul class="list-inline animated animatedFadeInUp fadeInUp">
+              <li> <a href="https://github.com/fedejimenez/crypto-portfolio-simulator" target="_blank"><i class="fa fa-github fa-2x"></i> Details on Github!</a></li>
+           </ul>
         </div>
       </div>
     </div>
   </section>
 
+  <!--.........  Share button ...................-->
+  <div class="menu-button"><i class="fa fa-share-alt beat"></i>
+      <a href="#"><i class="fa fa-twitter beat"></i></a>
+      <a href="#"><i class="fa fa-linkedin beat"></i></a>
+      <a href="https://github.com/fedejimenez"><i class="fa fa-github beat"></i></a>
+      <a href="https://www.facebook.com/fede.jimenez.10"><i class="fa fa-facebook beat"></i></a>
+  </div>
 
   <!--  Return to Top Button -->
   <a href="javascript:" id="return-to-top"><i class="glyphicon glyphicon-chevron-up"></i></a>
@@ -179,13 +190,17 @@
 
   <!--  Footer -->
   <div class="text-center " id="footer-index">
-    <p class="animated animatedFadeInUp fadeInUp">This is my playground landing page</p><br>
-    <ul class="list-inline animated animatedFadeInUp fadeInUp">
-      <li><a href="#"><i class="fa fa-youtube fa-2x"></i></a></li>
-      <li><a href="#"><i class="fa fa-facebook fa-2x"></i></a></li>
-      <li><a href="#"><i class="fa fa-twitter fa-2x"></i></a></li>
-      <li><a href="#"><i class="fa fa-github fa-2x"></i></a></li>
-     </ul>
+    <!-- <ul class="list-inline animated animatedFadeInUp fadeInUp"> -->
+      <!-- <li><a href="#"><i class="fa fa-youtube fa-2x"></i></a></li> -->
+      <!-- <li><a href="#"><i class="fa fa-twitter fa-2x"></i></a></li> -->
+      <!-- <li><a href="#"><i class="fa fa-facebook fa-2x"></i></a></li> -->
+      <!-- <li><a href="#"><i class="fa fa-github fa-2x"></i></a></li> -->
+    <!-- </ul> -->
+    <p class="">
+      The content of this simulator is informative, and under no circumstances is it intended to encourage the purchase/sale of financial instruments. Do not invest more money than you can lose. 
+      <br>The cryptocurrency market is highly volatile and uncertain.
+    <i class="fa fa-copyright"> 2018</i> 
+    </p>
   </div>
 </div>
   
@@ -198,7 +213,7 @@
 
   $(".wrimagecard").click(function() {
     $('html, body').animate({
-        scrollTop: $("#section-tabs").offset().top -55},
+        scrollTop: $("#section-tabs").offset().top -54},
         delay);
   });
 
@@ -214,7 +229,7 @@
           menu = target;
       $target = $(target);
       $('html, body').stop().animate({
-          'scrollTop': $target.offset().top-55},delay);
+          'scrollTop': $target.offset().top-54},delay);
   });
 
   // Change active State of the Buttons in Nabvar
@@ -223,7 +238,7 @@
       $('.sections').each(function () {
         var currLink = $(this);
         var refElement = $(currLink.attr("href"));
-        if (refElement.position().top-56 <= scrollPos && refElement.position().top-56 + refElement.height() > scrollPos) {
+        if (refElement.position().top-55 <= scrollPos && refElement.position().top-55 + refElement.height() > scrollPos) {
             $('.sections').removeClass("active");
             currLink.addClass("active");
         }
@@ -246,5 +261,21 @@
           scrollTop : 0                       // Scroll to top of body
       }, 1000);
   });
+
+  // Make Full screen
+  function showPopup( id ) {
+    var chart = $( "#" + id );
+    var modal = $( "<div>" ).addClass( "modal-chart" );
+    var shade = $( "<div>" ).addClass( "shade" ).appendTo( modal ).on( "click", close );
+    var placeholder = $( "<div>" ).prop( "id", id + "_placeholder" ).hide().insertBefore( chart );
+    $( document.body ).append( modal );
+    chart.appendTo( modal ).addClass( "chart" );
+
+    function close() {
+      chart.insertAfter( placeholder ).removeClass( "chart" );
+      placeholder.remove();
+      modal.remove();
+    }
+  }
 
 </script>

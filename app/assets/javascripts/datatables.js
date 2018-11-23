@@ -19,7 +19,7 @@ $(document).on('turbolinks:load', function() {
 
 	 var tableRanking = $('#table-ranking').DataTable({
 	 	"iDisplayLength": 10,
-    	"order": [[ 2, "desc" ]],
+    	"order": [[ 3, "desc" ]],
     	"lengthChange": false,
     	"info": false
 	 });

@@ -38,3 +38,22 @@
     left: -35px;
     content: "✖";
 }
+
+/*========================================================================
+                 LOGIN PASSWORD VALIDATION 
+ ========================================================================*/
+
+/* The message box is shown when the user clicks on the password field */
+#message-login {
+    display:none;
+    background: #lightgrey;
+    color: #000;
+    position: relative;
+    padding: 20px;
+    margin-top: 5px;
+}
+
+#message-login p {
+    padding: 2px 35px;
+    font-size: 12px;
+}

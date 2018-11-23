@@ -4,10 +4,10 @@ class HomeController < ApplicationController
   include UsersHelper
   include PortfoliosHelper
 
+  before_action :authorize, except: [:landing]
   before_action :calculate_profit, except: [:landing]
   before_action :update_ranking, except: [:landing, :lookup]
   before_action :get_historical_from_API, only: [:home, :index]
-  before_action :authorize, except: [:landing]
 
 
   def index
@@ -42,15 +42,15 @@ class HomeController < ApplicationController
   end
 
   def landing
-    if logged_in?
-      redirect_to home_path, turbolinks: false
-    end
+    # if logged_in?
+    #   redirect_to home_path, turbolinks: false
+    # end
   end
 
   def home
-    if !logged_in?
-      redirect_to root_path, turbolinks: false
-    end
+    # if !logged_in?
+    #   redirect_to root_path, turbolinks: false
+    # end
   end
 
   def lookup

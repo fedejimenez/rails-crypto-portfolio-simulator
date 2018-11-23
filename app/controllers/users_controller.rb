@@ -26,6 +26,7 @@ class UsersController < ApplicationController
 
   def create
     user = User.new(user_params)
+    user.name = ""
     if user.save
       session[:user_id] = user.id
       flash[:success] = "User was successfully created!! Now you have U$D 10000 to start the game!!"
@@ -86,6 +87,16 @@ class UsersController < ApplicationController
     @breadcrumb_link1 = '/./users/'+current_user.id.to_s
     @breadcrumb_current = 'Followers'
     render 'show_follow'
+  end
+
+  def settings
+    @user = User.find(params[:user_id])
+    @breadcrumb_title = ' PROFILE - Settings'
+    @breadcrumb_icon = 'edit'
+    @breadcrumb_subtitle = ''
+    @breadcrumb_path1 = 'Profile'
+    @breadcrumb_link1 = '/./users/'+current_user.id.to_s
+    @breadcrumb_current = 'Settings'
   end
 
   private

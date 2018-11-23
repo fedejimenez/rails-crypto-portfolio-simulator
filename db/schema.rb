@@ -10,9 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_21_004832) do
+ActiveRecord::Schema.define(version: 2018_11_23_192343) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "hstore"
   enable_extension "plpgsql"
 
   create_table "authentications", force: :cascade do |t|
@@ -134,6 +135,7 @@ ActiveRecord::Schema.define(version: 2018_11_21_004832) do
     t.boolean "verification"
     t.string "role", default: "user"
     t.string "avatar"
+    t.hstore "settings"
     t.index ["email"], name: "index_users_on_email"
   end
 

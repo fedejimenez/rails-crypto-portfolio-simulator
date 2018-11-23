@@ -3,7 +3,9 @@
   <header id="header" class="header">
       <div class="top-left">
           <div class="navbar-header">
-              <a class="navbar-brand" href="./"><img src="/assets/brand-logo.svg" width="30px" alt="Logo"></a>
+              <span class="brand-logo-text">CryptoSim </span>
+              <a class="navbar-brand" href="/home"><img src="/assets/brand-logo.png" width="30px" alt="Logo">
+              </a>
               <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
           </div>
       </div>
@@ -30,6 +32,9 @@
                   </div>
 
                   <div class=" dropdown">
+                    <%  if (current_user.portfolio.cryptos.count) == 0 && (current_user.portfolio.balance == 10000) %>
+                      <% @profit = 0 %>
+                    <% end %>
                     <strong style="color: #528bc4"> $ <span class="count" > <%= (@initial_amount + @profit).round(1) %></span></strong> 
                   </div>
 
@@ -48,8 +53,8 @@
                   </a>
 
                   <div class="user-menu dropdown-menu">
-                    <i class="fa fa-user"> </i> <%= link_to "My Profile", user_path(current_user.id)%>
-                    <a class="nav-link" href="#"><i class="fa fa-cog"></i>Settings</a>
+                    <i class="fa fa-user"> </i> <%= link_to "My Profile", user_path(current_user.id)%> <br>
+                    <i class="fa fa-cog"></i><%= link_to "Settings", user_settings_path(current_user.id)%> <br>
                     <i class="fa fa-power-off"></i> <%= link_to "Logout", logout_path, onClick: "history.go(0)" %>
                   </div>
               </div>
@@ -65,7 +70,11 @@
   <header id="header" class="header not-logged" >
       <div class="top-left">
           <div class="navbar-header">
-              <a class="navbar-brand" href="./"><img src="/assets/brand-logo.svg" width="30px" alt="Logo"></a>
+              <div>
+                <a class="navbar-brand" href="./">
+                  <img src="/assets/brand-logo-text.png" style="margin-top: -10px" width="130px" alt="Logo">
+                </a>
+              </div>
           </div>
       </div>
       <div class="top-right">
@@ -73,7 +82,7 @@
               <div class="header-left"> 
                 <div class="dropdown btn-group btn-space">
                   <a type="button" href="#section-help" class="dropdown-toggle sections" aria-haspopup="true" aria-expanded="false" style="text-decoration: none">
-                    <strong> <span class="">HELP</span></strong>
+                    <strong> <span class="">INFO</span></strong>
                   </a>
                 </div>
                 <div class="dropdown btn-group btn-space">
@@ -191,7 +200,7 @@
                   <i class="fa fa-envelope" aria-hidden="true"></i>
                   Sign up with Email
                   </button> <hr>
-                  <p>By signing up, I agree to Portfolio Simulator’s , <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></p>
+                  <p>By signing up, I agree to CryptoSim's , <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></p>
                 </div>
                 <div class="modal-footer">
                   <div class="row">
@@ -233,7 +242,7 @@
                           I’d like to receive emails with information.
                         </label>
                       </div>
-                      <p>By signing up, I agree to Portfolio Simulator’s , <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></p>
+                      <p>By signing up, I agree to CryptoSim's , <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></p>
                     </div>
                   </div>
                 </div>
