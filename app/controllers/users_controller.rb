@@ -89,6 +89,16 @@ class UsersController < ApplicationController
     render 'show_follow'
   end
 
+  def settings
+    @user = User.find(params[:user_id])
+    @breadcrumb_title = ' PROFILE - Settings'
+    @breadcrumb_icon = 'edit'
+    @breadcrumb_subtitle = ''
+    @breadcrumb_path1 = 'Profile'
+    @breadcrumb_link1 = '/./users/'+current_user.id.to_s
+    @breadcrumb_current = 'Settings'
+  end
+
   private
   
   def correct_user

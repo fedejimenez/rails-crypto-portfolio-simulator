@@ -37,6 +37,11 @@ Rails.application.routes.draw do
     end
   end
 
+  # User Settings
+  resources :users , only: [:show] do 
+      get '/settings' => 'users#settings'
+  end
+
   # Lookup search
   get :lookup, controller: :home
   post '/lookup' => 'home#lookup'
