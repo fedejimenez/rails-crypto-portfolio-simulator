@@ -97,8 +97,8 @@
     <div class="slider-container col-md-8 col-md-offset-2 animated animatedFadeInUp fadeInUp" id="slider-container">
       <div class="slider-outer clearfix" id="slider-outer">
         <div class="slide clearfix">
-            <div class="slide-thump"><img src="https://d2lm6fxwu08ot6.cloudfront.net/img-thumbs/960w/DI64TAJTIS.jpg" class="loading" />
-                <div class="overlay"></div>
+            <div class="slide-thump"><img src="/assets/market.png" class="loading" id="full-market" />
+                <div class="overlay" onclick="showPopup('full-market')"></div>
             </div>
             <div class="slide-details">
                 <div class="header-tabs-landing">
@@ -108,9 +108,9 @@
                 <button>Start trading</button>
             </div>
         </div>
-        <div class="slide clearfix">
-            <div class="slide-thump"><img src="https://d2lm6fxwu08ot6.cloudfront.net/img-thumbs/960w/FOWR0O1WQ6.jpg" class="loading" />
-                <div class="overlay"></div>
+        <div class="slide clearfix" >
+            <div class="slide-thump"><img src="/assets/portfolio.png" class="loading" id="full-portfolio"/>
+                <div class="overlay" onclick="showPopup('full-portfolio')"></div>
             </div>
             <div class="slide-details">
                 <div class="header-tabs-landing">
@@ -120,9 +120,9 @@
                 <button>Start trading</button>
             </div>
         </div>
-        <div class="slide clearfix">
-            <div class="slide-thump"><img src="https://d2lm6fxwu08ot6.cloudfront.net/img-thumbs/960w/2YMA649WFC.jpg" class="loading" />
-                <div class="overlay"></div>
+        <div class="slide clearfix" >
+            <div class="slide-thump"><img src="/assets/stats.png" class="loading" id="full-stats"/>
+                <div class="overlay" onclick="showPopup('full-stats')"></div>
             </div>
             <div class="slide-details">
                 <div class="header-tabs-landing">
@@ -132,9 +132,9 @@
                 <button>Start trading</button>
             </div>
         </div>
-        <div class="slide clearfix">
-            <div class="slide-thump"><img src="https://d2lm6fxwu08ot6.cloudfront.net/img-thumbs/960w/ONV344KX9K.jpg" class="loading" />
-                <div class="overlay"></div>
+        <div class="slide clearfix"  >
+            <div class="slide-thump"><img src="/assets/ranking.png" class="loading" id="full-ranking" />
+                <div class="overlay" onclick="showPopup('full-ranking')"></div>
             </div>
             <div class="slide-details">
                 <div class="header-tabs-landing">
@@ -247,5 +247,21 @@
           scrollTop : 0                       // Scroll to top of body
       }, 1000);
   });
+
+  // Make Full screen
+  function showPopup( id ) {
+    var chart = $( "#" + id );
+    var modal = $( "<div>" ).addClass( "modal-chart" );
+    var shade = $( "<div>" ).addClass( "shade" ).appendTo( modal ).on( "click", close );
+    var placeholder = $( "<div>" ).prop( "id", id + "_placeholder" ).hide().insertBefore( chart );
+    $( document.body ).append( modal );
+    chart.appendTo( modal ).addClass( "chart" );
+
+    function close() {
+      chart.insertAfter( placeholder ).removeClass( "chart" );
+      placeholder.remove();
+      modal.remove();
+    }
+  }
 
 </script>

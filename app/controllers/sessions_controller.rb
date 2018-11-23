@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:password])
       # Save the user id inside the browser cookie. This is how we keep the user 
       # logged in when they navigate around our website.
-      flash[:success] = 'Successfully Logged In!'
+      # flash[:success] = 'Successfully Logged In!'
       session[:user_id] = user.id
       sign_in(user)
       respond_to do |format|
@@ -30,7 +30,7 @@ class SessionsController < ApplicationController
   def destroy
     session[:user_id] = nil
     reset_session
-    flash[:success] = 'Successfully Logged Out!'
+    # flash[:success] = 'Successfully Logged Out!'
     redirect_to root_path, turbolinks: false
   end
 
@@ -43,7 +43,7 @@ class SessionsController < ApplicationController
       user = authentication.user
       authentication.update_token(auth_hash)
       @next = home_path
-      flash[:success] = 'Successfully Logged In!'
+      # flash[:success] = 'Successfully Logged In!'
     # else: user logs in with OAuth for the first time
     else
       user = User.create_with_auth_and_hash(authentication, auth_hash)

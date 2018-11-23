@@ -133,7 +133,7 @@ $(window).on("load resize", function(event) {
 	
 });
    
-   
+
 // Show spinner when loading pages
 $(document).on('turbolinks:click', function() {
 	// $("#just_load_please").on("click", function(e) {
@@ -145,7 +145,14 @@ $(document).on('turbolinks:click', function() {
 	  show: true //Display loader!
 	});
 });
-// });
+
+function launchLoadingModal(){
+	$("#loadMe").modal({
+	  backdrop: "static", //remove ability to close modal with click
+	  keyboard: false, //remove option to close with keyboard
+	  show: true //Display loader!
+	});
+}
 
 $(document).on('turbolinks:load', function() {
 	$("#loadMe").modal("hide");
