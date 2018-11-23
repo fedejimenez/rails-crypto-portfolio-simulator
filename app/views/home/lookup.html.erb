@@ -1,75 +1,147 @@
 <%= render 'layouts/flash' %>
+<%= render 'home/breadcrumbs' %>
 
-<% if logged_in? %> 
-	<% @crypto.each do |c| %>
-		<% if c['amount_owned'] != 0 %>
-			<%  if c['symbol'] == @lookup %>
-				<% if (c['user_id'].to_s == current_user.id.to_s) %>
-					<% controller.redirect_to edit_crypto_path(c.id) %>
-				<% end %>
-			<% end %>
-		<% end %>
-	<% end %>
-<% end %>
 
-<div class="panel panel-default">
-	<div class="panel-heading">
-	</div>
-	<div class="panel-body">
-		<div class="col-md-4">
-			<% if @lookup %>
-				<% @coins.each do |c| %>
-					<% if @lookup == c["symbol"] %>
-						<h3>
-							<strong> <%= c["symbol"] %> </strong><br>
-						</h3>
-						<p><hr>
-						<strong>Name:</strong>
-							<%= c["name"] %> <br> 
-						</p>
-						<p>		
-							<strong>Current Price:</strong>
-							U$D <%= c["price_usd"] %> <br>
-						</p>
-						<p>
-							<strong>Variation (1h):</strong>
-							<span class="color-text"><%= c["percent_change_1h"] %> %</span>
-						</p>
-						<p>
-							<strong>Variation (24h):</strong>
-							<span class="color-text"><%= c["percent_change_24h"] %> %</span>
-						</p>
-						<p>
-							<strong>Variation (7d):</strong>
-							<span class="color-text"><%= c["percent_change_7d"] %> %</span>
-						</p>
-						<p>
-							<strong>Volume 24hs (U$D):</strong>
-							<span ><%= c["24h_volume_usd"] %> %</span>
-						</p>
-					<% end %>
-				<% end %>
-			<% end %>
-		</div>
-		<div class="col-md-2">
-		</div>
-		<div class="col-md-4 text-center">
-			<br><br><br><br><br>	
-			<% if logged_in? %>
-				<%= link_to 'New Order', new_portfolio_crypto_path(current_portfolio.id), class: "btn btn-primary" %>
-			<% else %>
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<p><strong> Sign up or Login to make a transaction. </strong></p>
+<div class="content">
+    <!-- Animated -->
+    <div class="animated fadeIn">
+        <!--  User Ranking  -->
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="card-body ">
+
+						<div class="col-md-10">
+							<% if @lookup %>
+								<% @coins.each do |c| %>
+									<% if @lookup == c["symbol"] %>
+										<h3>
+											<img src="/assets/<%=c['symbol'].downcase%>" width="30px" alt="">
+											<strong> <%= @symbol = c["symbol"] %> </strong><br>
+										</h3>
+										<hr><div class="clearfix"></div>
+										<div class="col-md-6">
+											<p>
+											<strong>Name:</strong>
+												<%= c["name"] %> <br> 
+											</p>
+											<p>
+												<strong>Volume 24hs (U$D):</strong>
+												<span ><%= c["24h_volume_usd"] %></span>
+											</p>
+											<p>
+												<strong>Available Supply:</strong>
+												<span ><%= c["available_supply"] %></span>
+											</p>
+											<p>
+												<strong>Market Cap.:</strong>
+												<span ><%= c["market_cap_usd"] %></span>
+											</p>
+											<p>
+												<strong>Total Supply:</strong>
+												<span ><%= c["total_supply"] %></span>
+											</p>
+										</div>
+
+										<div class="col-md-6">
+											<p>		
+												<strong>Current Price:</strong>
+												<%= c["price_usd"].to_d.round(4) %> U$D<br>
+											</p>
+											<p>
+												<strong>Variation (1h):</strong>
+												<span class="color-text"><%= c["percent_change_1h"] %> %</span>
+											</p>
+											<p>
+												<strong>Variation (24h):</strong>
+												<span class="color-text"><%= c["percent_change_24h"] %> %</span>
+											</p>
+											<p>
+												<strong>Variation (7d):</strong>
+												<span class="color-text"><%= c["percent_change_7d"] %> %</span>
+											</p>
+										</div>
+									<% end %>
+								<% end %>
+							<% end %>
+						</div>
+
+						<div class="col-md-2 text-center">
+							<br><br><br><br><br>	
+
+							<% if logged_in? %> 
+								<% @crypto.each do |c| %>
+									<% if c['amount_owned'] != 0 %>
+										<% if c['symbol'] == @lookup %>
+											<% if (c['user_id'].to_s == current_user.id.to_s) %>
+												<% @coin_id = c.id %> 
+											<% else %>
+												<% @aux = false %>
+											<% end %>
+										<% end %>
+									<% end %>
+								<% end %>
+							<% end %>
+							<% if @coin_id == nil %>
+								 <!-- controller.redirect_to edit_crypto_path(c.id) %> -->
+								<%= link_to 'New Order', new_portfolio_crypto_path(current_portfolio.id),  class: "btn btn-primary" %>
+							<% else %>
+								<%= link_to 'New Order', edit_crypto_path(@coin_id),  class: "btn btn-custom-blue ripple" %>
+							<% end %>
+
+						</div>
 					</div>
 				</div>
-			<% end %>
-		</div>
-		<div class="col-md-2">
-		</div>
-	</div>
-	<div>
-		<div class="panel-footer">
+			</div>
+
+			<!-- Widgets -->
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="stat-widget-five">
+                            <div class="stat-icon dib flat-color-3">
+                                <i class="fa fa-money"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="text-left dib">
+                                    <div class="stat-text"><strong>$<span class="count"><%= current_portfolio.balance.round(2) %></span></strong></div>
+                                    <div class="stat-heading">Available to Invest</div>
+                               </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>			
+
+            <!-- Widgets -->
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="stat-widget-five">
+                            <div class="stat-icon dib flat-color-1">
+                                <i class="fa fa-hashtag"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="text-left dib">
+                                    <div class="stat-text">
+                                    	<strong>
+                                    		<span class="count">
+	                                    		<% if current_portfolio.cryptos.find_by_symbol(params[:q].to_s) %>
+	                                    			<%= current_portfolio.cryptos.find_by_symbol(params[:q].to_s).amount_owned %>
+	                                    		<% else %>
+	                                    			0
+	                                    		<% end %>
+                                    		</span>
+                                    	</strong>
+                                    </div>
+                                    <div class="stat-heading">Quantity Owned</div>
+                               </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 		</div>
 	</div>
 </div>
