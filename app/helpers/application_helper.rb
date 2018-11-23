@@ -70,17 +70,24 @@ module ApplicationHelper
               	@array_ids.push(u.id)
                 # Calculate all the profits for all users
                 @profit_array[i] += ((c["price_usd"].to_d * crypto.amount_owned.to_d)-(crypto.cost_per.to_d * crypto.amount_owned.to_d)).round(2)
+              
               end
           end
         end
+      end
+      if (u.portfolio.cryptos.count) == 0 && (u.portfolio.balance == 10000)
+        @profit_array[i] += 0
+        @array_ids.push(u.id)
       end
     end
     # Find the position of the object current_user
     if logged_in?
       position = User.all.map(&:id).index(current_user.id.to_i)
       @profit = @profit_array[position]
+      if (current_user.portfolio.cryptos.count) == 0 && (current_user.portfolio.balance == 10000) 
+        @profit = 0
+      end
     end
-
     return @profit, @profit_array
   end
 
@@ -91,7 +98,7 @@ module ApplicationHelper
 
     # Update current user position
     if logged_in?
-	   @rank = @hash_ranking.find_index { |k,_| k== current_user.id } + 1 
+      @rank = @hash_ranking.find_index { |k,_| k== current_user.id } + 1 
     end
   end
 

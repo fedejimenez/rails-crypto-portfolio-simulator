@@ -13,12 +13,17 @@ class SessionsController < ApplicationController
       flash[:success] = 'Successfully Logged In!'
       session[:user_id] = user.id
       sign_in(user)
-      redirect_to home_path, turbolinks: false
+      respond_to do |format|
+        format.html {redirect_to home_path(valid_pass: true)}
+      end
 
     else
     # If user's login doesn't work, send them back to the login form.
       flash[:warning] = 'Invalid Username or Password'
-      redirect_to root_path, turbolinks: false
+      respond_to do |format|
+        format.html {redirect_to root_path(valid_pass: false)}
+        format.js {render 'login.js'}
+      end
     end
   end
 

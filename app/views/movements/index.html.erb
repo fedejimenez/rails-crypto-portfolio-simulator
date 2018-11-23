@@ -34,7 +34,7 @@
                                 </tr>
                               </thead>
                               <tbody>
-                                <% @movements.each do |movement| %>
+                                <% @current_user.portfolio.movements.each do |movement| %>
                                   <tr>
                                     <td><%= movement.id %> </td>
                                     <td><%= Crypto.find(movement.crypto_id).symbol %></td>
@@ -69,12 +69,19 @@
                               </div>
                               <div id="flotPie1" style="height:27vh;" ></div>
                                 <!-- <div id="flotPie1" class="float-chart"></div> -->
-                                <% buy_qty = current_portfolio.movements.where(operation: "buy").length %>
-                                <% sell_qty = current_portfolio.movements.where(operation: "sell").length %>
-                                <% buy_percentage = (100 * buy_qty/(buy_qty+sell_qty)).to_d.round(2) %>
-                                <% sell_percentage = (100 * sell_qty/(buy_qty+sell_qty)).to_d.round(2) %>
-                                <% @buy = [buy_qty, buy_percentage] %>
-                                <% @sell = [sell_qty, sell_percentage] %>
+                                <%  if current_user.portfolio.cryptos.count > 0 %>
+                                  <% buy_qty = current_portfolio.movements.where(operation: "buy").length %>
+                                  <% sell_qty = current_portfolio.movements.where(operation: "sell").length %>
+                                  <% buy_percentage = (100 * buy_qty/(buy_qty+sell_qty)).to_d.round(2) %>
+                                  <% sell_percentage = (100 * sell_qty/(buy_qty+sell_qty)).to_d.round(2) %>
+                                  <% @buy = [buy_qty, buy_percentage] %>
+                                  <% @sell = [sell_qty, sell_percentage] %>
+                                <% else %>
+                                  <% buy_percentage = 0 %>
+                                  <% sell_percentage = 0 %>
+                                  <% @buy = [0, buy_percentage] %>
+                                  <% @sell = [0, sell_percentage] %>
+                                <% end %>
                             </div>
                         </div>
                     </div> <!-- /.card -->

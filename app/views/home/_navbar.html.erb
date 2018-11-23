@@ -30,6 +30,9 @@
                   </div>
 
                   <div class=" dropdown">
+                    <%  if (current_user.portfolio.cryptos.count) == 0 && (current_user.portfolio.balance == 10000) %>
+                      <% @profit = 0 %>
+                    <% end %>
                     <strong style="color: #528bc4"> $ <span class="count" > <%= (@initial_amount + @profit).round(1) %></span></strong> 
                   </div>
 

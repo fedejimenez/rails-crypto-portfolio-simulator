@@ -6,7 +6,7 @@ $(document).on('turbolinks:load', function() {
 	var options = {
 		url: "/lookup.json",
 		getValue: function(element) {
-			return element.symbol + " | " + element.name;
+			return element.symbol + " | " + element.name + " | " + element.price_usd +" U$D ";
 		},
 		list: {
 			onChooseEvent: function(){

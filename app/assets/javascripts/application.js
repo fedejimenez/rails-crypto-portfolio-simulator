@@ -34,8 +34,10 @@
 
 // Add style to search bar (easyAutocomplete)
 $(document).on('turbolinks:load', function() {
-	document.querySelector('#q').classList.add("lookup-input")
-	document.querySelector('#q').parentNode.classList.add("lookup-input")
+	if (document.querySelector('#q')) {
+		document.querySelector('#q').classList.add("lookup-input")
+		document.querySelector('#q').parentNode.classList.add("lookup-input")
+	}
 })
 
 // Add style to variation if positive/negative number
@@ -88,6 +90,7 @@ $(document).on('turbolinks:load', function() {
 		changeActive();
 		$('#li-'+selected).addClass('active');
 	}
+
 	// Search Bar 
 	$('.search-trigger').on('click', function(event) {
 		event.preventDefault();
@@ -130,7 +133,7 @@ $(window).on("load resize", function(event) {
 	
 });
    
-
+   
 // Show spinner when loading pages
 $(document).on('turbolinks:click', function() {
 	// $("#just_load_please").on("click", function(e) {
@@ -147,3 +150,4 @@ $(document).on('turbolinks:click', function() {
 $(document).on('turbolinks:load', function() {
 	$("#loadMe").modal("hide");
 });
+

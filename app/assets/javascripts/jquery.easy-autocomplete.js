@@ -52,12 +52,12 @@ var EasyAutocomplete = (function(scope){
 					}
 				},
 
-				maxNumberOfElements: 6,
+				maxNumberOfElements: 50,
 
 				hideOnEmptyPhrase: true,
 
 				match: {
-					enabled: false,
+					enabled: true,
 					caseSensitive: false,
 					method: function(element, phrase) {
 
