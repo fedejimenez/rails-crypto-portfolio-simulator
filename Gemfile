@@ -123,3 +123,6 @@ gem 'will_paginate'
 
 # ColorPicker
 gem 'jquery-minicolors-rails'
+
+# Maintenance
+gem "turnout"

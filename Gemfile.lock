@@ -214,6 +214,8 @@ GEM
     public_suffix (3.0.3)
     puma (3.12.0)
     rack (2.0.6)
+    rack-accept (0.4.5)
+      rack (>= 0.4)
     rack-protection (2.0.4)
       rack
     rack-test (1.1.0)
@@ -312,6 +314,9 @@ GEM
     turbolinks (5.2.0)
       turbolinks-source (~> 5.2)
     turbolinks-source (5.2.0)
+    turnout (1.0.0)
+      rack
+      rack-accept (~> 0.4)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
     uglifier (4.1.19)
@@ -373,6 +378,7 @@ DEPENDENCIES
   spring-watcher-listen (~> 2.0.0)
   sweet-alert2-rails
   turbolinks (~> 5)
+  turnout
   tzinfo-data
   uglifier (>= 1.3.0)
   web-console (>= 3.3.0)
