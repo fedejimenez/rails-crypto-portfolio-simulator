@@ -3,8 +3,8 @@ class AddNewColumnToUsers < ActiveRecord::Migration[5.2]
   	 remove_column :users, :name
   	 remove_column :users, :username
 
-  	 add_column :users, :name
-  	 add_column :users, :username, null: false
+  	 add_column :users, :name, :string
+  	 add_column :users, :username, :string, null: false
   	 
   	 enable_extension 'hstore' unless extension_enabled?('hstore')
   	 add_column :users, :settings, :hstore
