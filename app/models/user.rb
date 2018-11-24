@@ -75,7 +75,7 @@ class User < ApplicationRecord
 		@user = User.last
 		mail = UserMailer.welcome_email(@user.id)
 		# mail.deliver_now
-		mail.deliver_later
+		# mail.deliver_later
         # UserJob.perform_later(@user.id)
 	end
 

@@ -49,7 +49,7 @@ class CryptosController < ApplicationController
     check_amount_available
     respond_to do |format|
       if @crypto.buy(params[:crypto][:quantity].to_i)
-        format.html { redirect_to portfolio_cryptos_url(current_portfolio.id), :flash => { :success => "A new currency #{@crypto.symbol} was successfully added into the Portfolio." }}
+        format.html { redirect_to portfolio_path(current_portfolio.id), :flash => { :success => "A new currency #{@crypto.symbol} was successfully added into the Portfolio." }}
         format.json { render :show, status: :created, location: @crypto }
       else
         format.html { render :new }
@@ -78,7 +78,7 @@ class CryptosController < ApplicationController
     @crypto.destroy
     respond_to do |format|
       if @crypto.sell(params[:crypto][:amount_owned].to_i)
-        format.html { redirect_to portfolio_url(current_portfolio.id), notice: 'Crypto was successfully destroyed.' }
+        format.html { redirect_to portfolio_path(current_portfolio.id), notice: 'Crypto was successfully deleted.' }
         format.json { head :no_content }
       end
     end
