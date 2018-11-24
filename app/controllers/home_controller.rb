@@ -42,15 +42,15 @@ class HomeController < ApplicationController
   end
 
   def landing
-    # if logged_in?
-    #   redirect_to home_path, turbolinks: false
-    # end
+    if logged_in?
+      redirect_to home_path, turbolinks: false
+    end
   end
 
   def home
-    # if !logged_in?
-    #   redirect_to root_path, turbolinks: false
-    # end
+    if !logged_in?
+      redirect_to root_path, turbolinks: false
+    end
   end
 
   def lookup
