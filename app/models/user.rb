@@ -76,7 +76,7 @@ class User < ApplicationRecord
 		mail = UserMailer.welcome_email(@user.id)
 		mail.deliver_now
 		# mail.deliver_later
-        UserJob.perform_later(@user.id)
+        # UserJob.perform_later(@user.id)
 	end
 
 	# Follow a user
