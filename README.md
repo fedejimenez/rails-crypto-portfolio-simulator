@@ -25,6 +25,9 @@
 	<li>
 		PostgreSQL
 	</li>
+	<li>
+		Amazon AWS 
+	</li>
 </ul>
 
 # Setup 
