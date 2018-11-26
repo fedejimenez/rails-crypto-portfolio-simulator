@@ -1,18 +1,38 @@
-<h3> Crypto Portfolio Simulator </h3>
+# Crypto Portfolio Simulator
 
 <p> This is a Fictional Crypto Currencies Exchange Simulator. After sign up the user will have U$D 10000 to start trading crypto currencies. </p>
 <p> The prices are obtained through the Coinmarketcap API and the goal is allowing the user to simulate trades in a safe enviroment, before jumping into real operations with a broker. </p>
 
-<h3> <a href="https://cryptosimulator.herokuapp.com">LIVE in HEROKU</a> </h3>
+<img src="https://s3.amazonaws.com/crypto-portfolio-simulator/uploads/image-heroku.png" alt="Poster" width="600" />
 
-<h3> Framework version </h3>
+<h3> <a href="https://cryptosimulator.herokuapp.com" target="_blank">LIVE in HEROKU</a> </h3>
+
+# Framework version
 <p> Ruby on Rails 5.2.1 </p>
 
-<h3> Setup </h3>
+# Technologies involved
+
+<ul>
+	<li>
+		CSS3 / HTML5
+	</li>
+	<li>
+		JS / JQuery / Ajax
+	</li>
+	<li>
+		API / Facebook / Google Auth
+	</li>
+	<li>
+		PostgreSQL
+	</li>
+</ul>
+
+# Setup 
 <p> Clone this repository and run <code> bundle install </code></p> 
 
-<h3> Database creation and initialization </h3> 
+# Database creation and initialization 
  <code>  rake db:create </code>  
  <code>  rake db:migrate </code>
 
-<h3> This Website is still in developing stage, more changes and features will be added soon. </h3> 
+# Disclaimer
+This Website is just a personal playground, and under no circumstances is it intended to encourage the purchase/sale of financial instruments. Please be aware that the cryptocurrency market is highly volatile and uncertain.
