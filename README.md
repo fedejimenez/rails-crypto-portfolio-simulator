@@ -2,9 +2,9 @@
 
 <p> This is a Fictional Crypto Currencies Exchange Simulator. After sign up the user will have U$D 10000 to start trading crypto currencies. </p>
 <p> The prices are obtained through the Coinmarketcap API and the goal is allowing the user to simulate trades in a safe enviroment, before jumping into real operations with a broker. </p>
-
-<img src="https://s3.amazonaws.com/crypto-portfolio-simulator/uploads/image-heroku.png" alt="Poster" width="600" />
-
+</br>
+<img src="https://s3.amazonaws.com/crypto-portfolio-simulator/uploads/image-heroku.png" alt="Poster" width="800" />
+</br>
 <h3> <a href="https://cryptosimulator.herokuapp.com" target="_blank">LIVE in HEROKU</a> </h3>
 
 # Framework version
