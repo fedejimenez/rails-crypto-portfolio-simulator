@@ -2,20 +2,20 @@ class User < ApplicationRecord
 	has_secure_password
 	has_many :cryptos, through: :portfolio
 	has_one :portfolio, dependent: :destroy
-	has_one :movements, dependent: :destroy
-  	has_many :authentications, dependent: :destroy
-  	has_many :comments, as: :commentable, dependent: :destroy
-  	has_many :likes, dependent: :destroy
+	has_many :movements, dependent: :destroy
+  has_many :authentications, dependent: :destroy
+  has_many :comments, as: :commentable, dependent: :destroy
+  has_many :likes, dependent: :destroy
 
-  	# Notifications
-  	has_many :notifications, foreign_key: "recipient_id",
-  							 dependent: :destroy
+  # Notifications
+  has_many :notifications, foreign_key: "recipient_id", 
+                           dependent: :destroy
 
-  	# Follow other users
-  	has_many :active_relationships, class_name: "Relationship", 
+  # Follow other users
+  has_many :active_relationships, class_name: "Relationship", 
   									foreign_key: "follower_id", 
   									dependent: :destroy
-  	has_many :following, through: :active_relationships, source: :followed 
+  has_many :following, through: :active_relationships, source: :followed 
 	has_many :passive_relationships, class_name: "Relationship", 
 									 foreign_key: "followed_id", 
 									 dependent: :destroy
