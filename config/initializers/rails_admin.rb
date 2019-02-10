@@ -15,7 +15,8 @@ RailsAdmin.config do |config|
     else
       @user_admin = User.find_by id: session[:id]
       if @user_admin.role != "admin"
-      redirect_to '/', flash[:warning] = "Oops! You are not an Admin.."
+        redirect_to '/', flash[:warning] = "Oops! You are not an Admin.."
+      end
     end
   end
 
