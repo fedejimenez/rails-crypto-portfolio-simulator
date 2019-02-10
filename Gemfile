@@ -126,3 +126,6 @@ gem 'jquery-minicolors-rails'
 
 # Maintenance
 gem "turnout"
+
+# Admin
+gem 'rails_admin', '~> 1.3'
