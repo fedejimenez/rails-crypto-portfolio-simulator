@@ -9,11 +9,13 @@ RailsAdmin.config do |config|
   # config.current_user_method(&:current_user)
 
   # Authentication
-  config.authorize_with do |controller|
+  config.authorize_with do
     if @current_user.nil?
-      redirect_to '/', flash: {error: 'Please Login to Continue..'}
-    elsif @current_user.role != "admin"
-      redirect_to '/', flash: {error: 'Please Login to Continue..'}
+      redirect_to '/'
+    else
+      @user_admin = User.find_by id: session[:id]
+      if @user_admin.role != "admin"
+      redirect_to '/', flash[:warning] = "Oops! You are not an Admin.."
     end
   end
 
