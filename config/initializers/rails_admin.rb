@@ -10,7 +10,7 @@ RailsAdmin.config do |config|
 
   # Authentication
   config.authorize_with do
-    if !logged_in?
+    if (User.find_by id: session[:id]).nil?
       redirect_to '/'
     else
       @user_admin = User.find_by id: session[:id]
