@@ -8,6 +8,15 @@ RailsAdmin.config do |config|
   # end
   # config.current_user_method(&:current_user)
 
+  # Authentication
+  config.authorize_with do |controller|
+    if @current_user.nil?
+      redirect_to '/', flash: {error: 'Please Login to Continue..'}
+    elsif @current_user.role != "admin"
+      redirect_to '/', flash: {error: 'Please Login to Continue..'}
+    end
+  end
+
   ## == Cancan ==
   # config.authorize_with :cancan
 
