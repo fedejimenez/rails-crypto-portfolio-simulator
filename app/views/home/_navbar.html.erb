@@ -55,7 +55,7 @@
                   <div class="user-menu dropdown-menu">
                     <i class="fa fa-user"> </i> <%= link_to "My Profile", user_path(current_user.id)%> <br>
                     <i class="fa fa-cog"></i><%= link_to "Settings", user_settings_path(current_user.id)%> <br>
-                    <i class="fa fa-power-off"></i> <%= link_to "Logout", logout_path, onClick: "history.go(0)" %>
+                    <i class="fa fa-power-off"></i> <%= link_to "Logout", logout_path, :method => :delete, onClick: "history.go(0)" %>
                   </div>
               </div>
 

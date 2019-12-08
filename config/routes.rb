@@ -56,7 +56,7 @@ Rails.application.routes.draw do
   # these routes are for showing users a login form and log in / out.
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
-  get '/logout' => 'sessions#destroy'
+  delete '/logout' => 'sessions#destroy'
 
   # Routes for showing and editing users data
   resources :users
