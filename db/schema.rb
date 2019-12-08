@@ -120,7 +120,6 @@ ActiveRecord::Schema.define(version: 2018_11_23_192343) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name", null: false
     t.string "email", null: false
     t.string "password_digest", null: false
     t.string "gender"
@@ -131,10 +130,11 @@ ActiveRecord::Schema.define(version: 2018_11_23_192343) do
     t.datetime "updated_at", null: false
     t.string "firstname"
     t.string "lastname"
-    t.string "username"
     t.boolean "verification"
     t.string "role", default: "user"
     t.string "avatar"
+    t.string "name"
+    t.string "username", null: false
     t.hstore "settings"
     t.index ["email"], name: "index_users_on_email"
   end
