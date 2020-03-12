@@ -46,19 +46,19 @@
 										<div class="col-md-6">
 											<p>		
 												<strong>Current Price:</strong>
-												<%= c["price_usd"].to_d.round(4) %> U$D<br>
+												<%= c['quote']['USD']['price'].to_d.round(4) %> U$D<br>
 											</p>
 											<p>
 												<strong>Variation (1h):</strong>
-												<span class="color-text"><%= c["percent_change_1h"] %> %</span>
+												<span class="color-text"><%= c['quote']['USD']['percent_change_1h'] %> %</span>
 											</p>
 											<p>
 												<strong>Variation (24h):</strong>
-												<span class="color-text"><%= c["percent_change_24h"] %> %</span>
+												<span class="color-text"><%= c['quote']['USD']['percent_change_24h'] %> %</span>
 											</p>
 											<p>
 												<strong>Variation (7d):</strong>
-												<span class="color-text"><%= c["percent_change_7d"] %> %</span>
+												<span class="color-text"><%= c['quote']['USD']['percent_change_7d'] %> %</span>
 											</p>
 										</div>
 									<% end %>

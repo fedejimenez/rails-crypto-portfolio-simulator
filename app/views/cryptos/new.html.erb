@@ -12,7 +12,7 @@
 						<strong><h3 class="pull-left"> Select the currency: </h3></strong><div class="clearfix"></div> <br>
 
 						<% array_names = @coins.map {|c| c['symbol']} %>
-						<% array_prices = @coins.map{|c| c['price_usd']} %>
+						<% array_prices = @coins.map{|c| c['quote']['USD']['price_usd']} %>
 				      	<% @user_coins = [] %>
 						<% @cryptos.each do |crypto| %>
 				      		<% if (crypto.user_id == current_user.id) && (crypto.amount_owned != 0) %>
@@ -20,7 +20,7 @@
 							<% end %>
 						<% end %>
 						<div class="col-md-5">
-							<%= select(:model, :coin, @coins.map {|c| [c['symbol'] + " | " + c['name'] + " | " + c['price_usd']]},{:prompt => 'Symbol | Name | Price'}, id:"new-order", onchange: "showForm('#{array_names}', '#{@user_coins}', '#{array_prices}')" , class: "custom-input custom-select") %> <br><br>
+							<%= select(:model, :coin, @coins.map {|c| [c['symbol'] + " | " + c['name'] + " | " + c['quote']['USD']['price'].to_s]},{:prompt => 'Symbol | Name | Price'}, id:"new-order", onchange: "showForm('#{array_names}', '#{@user_coins}', '#{array_prices}')" , class: "custom-input custom-select") %> <br><br>
 						</div>
 						<div id='form-new' style='visibility: hidden'>
 							<%= render 'form', crypto: @crypto %>

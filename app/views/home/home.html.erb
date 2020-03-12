@@ -122,8 +122,8 @@
                             <div class="card-body">
                                 <div class="progress-box progress-1">
                                     <h4 class="por-title">Current Price</h4>
-                                    <% @max_btc = @historical.values.take(@historical.values.size - 1).max %>
-                                    <% @price_btc = @coins.first['price_usd'].to_d.round(2) %>
+                                    <% @max_btc = @historical.map { |h| h['high'] }.max %>
+                                    <% @price_btc = @coins.first['quote']['USD']['price'].to_d.round(2) %>
                                     <% @percentage_max = 100*(@price_btc/@max_btc).to_d.round(2) %>
 
                                     <div class="por-txt"><strong><%= @price_btc %> </strong> (% <%= @percentage_max %>  from maximum value) </div>
@@ -133,18 +133,18 @@
                                 </div>
                                 <div class="progress-box progress-2">
                                     <h4 class="por-title">Volume (24h)</h4>
-                                    <div class="por-txt"><%=@coins.first['24h_volume_usd']%> (% <%= @percentage_volume = (100*(@coins.first['24h_volume_usd'].to_d.round(2))/(@coins.first['market_cap_usd'].to_d.round(2))).round(2)%> from total market cap) </div>
+                                    <div class="por-txt"><%=@coins.first['quote']['USD']['volume_24h']%> (% <%= @percentage_volume = (100*(@coins.first['quote']['USD']['volume_24h'].to_d.round(2))/(@coins.first['quote']['USD']['market_cap'].to_d.round(2))).round(2)%> from total market cap) </div>
                                     <div class="progress mb-2" style="height: 5px;">
                                         <div class="progress-bar bg-flat-color-2" role="progressbar" style="width: <%=@percentage_volume%>%;" aria-valuenow="<%=@percentage_volume%>" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                 </div>
                                 <div class="progress-box progress-2">
                                     <h4 class="por-title">Percentage change (1 hr)</h4>
-                                    <div class="por-txt color-text"><%=@coins.first['percent_change_1h'] %>%</div>
+                                    <div class="por-txt color-text"><%=@coins.first['quote']['USD']['percent_change_1h'] %>%</div>
                                 </div>
                                 <div class="progress-box progress-2">
                                     <h4 class="por-title">Percentage change (24 hr)</h4>
-                                    <div class="por-txt color-text"> <%= @coins.first['percent_change_24h'] %>%</div>
+                                    <div class="por-txt color-text"> <%= @coins.first['quote']['USD']['percent_change_24h'] %>%</div>
                                 </div>
                             </div> <!-- /.card-body -->
                         </div>
@@ -212,7 +212,7 @@
     // Traffic Chart using chartist End
 
     // Chart BTC 
-    var data = [<%= raw @array_of_hashes.to_json %>];
+    var data = [<%= raw @values_by_date.to_json %>];
     var chartHistorical = AmCharts.makeChart("charthistorical", {
         "type": "serial",
         "theme": "light",
