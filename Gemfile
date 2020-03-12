@@ -133,3 +133,6 @@ gem "turnout"
 
 # Admin
 gem 'rails_admin', '~> 1.3'
+
+# Requests
+gem "httparty"

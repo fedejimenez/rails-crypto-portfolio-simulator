@@ -24,15 +24,15 @@
                             <% value_7d = [] %>
                             <% @coins.each do |c| %>
                               <tr>
-                                <td><%= c['rank'] %></td>
+                                <td><%= c['cmc_rank'] %></td>
                                 <td> <img src="/assets/<%=c['symbol'].downcase%>" width="17vw" alt="">
                                   <abbr title="<%= c["name"] %>"><%= link_to c["symbol"], "/lookup?q=#{c['symbol']}" %></abbr></td>
-                                <td> <%= c["price_usd"].to_d.round(5) %> </td>
-                                                        <% value_1h << c["percent_change_1h"]&.to_d || "0" %>
-                                <td class="color-text"> <%= c["percent_change_1h"] %> </td>
-                                                         <% value_24h << c["percent_change_24h"]&.to_d || "0" %>
-                                <td class="color-text"> <%= c["percent_change_24h"] %> </td>
-                                                        <% value_7d << c["percent_change_7d"]&.to_d || "0" %>
+                                <td> <%= c['quote']['USD']["price"].to_d.round(5) %> </td>
+                                                        <% value_1h << c['quote']['USD']["percent_change_1h"]&.to_d || "0" %>
+                                <td class="color-text"> <%= c['quote']['USD']["percent_change_1h"] %> </td>
+                                                         <% value_24h << c['quote']['USD']["percent_change_24h"]&.to_d || "0" %>
+                                <td class="color-text"> <%= c['quote']['USD']["percent_change_24h"] %> </td>
+                                                        <% value_7d << c['quote']['USD']["percent_change_7d"]&.to_d || "0" %>
                               </tr>
                             <% end %>
                           </tbody>
