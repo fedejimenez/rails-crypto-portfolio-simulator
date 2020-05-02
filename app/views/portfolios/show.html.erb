@@ -44,15 +44,15 @@
                                             <% if (crypto.symbol == c["symbol"]) %>
                                               <% @current_name << c["symbol"].upcase %>
                                               <td> <%= link_to c["name"], edit_crypto_path(crypto.id) %> </td>
-                                              <td> $<%= c["price_usd"].to_d.round(4) %> </td>
-                                              <td  class="color-text"> <%= c["percent_change_1h"] %></td>
-                                              <td class="color-text"> <%= c["percent_change_24h"] %></td>
-                                              <td class="color-text"> <%= c["percent_change_7d"] %></td>
+                                              <td> $<%= c['quote']['USD']['price'].to_d.round(4) %> </td>
+                                              <td  class="color-text"> <%= c['quote']['USD']['percent_change_1h'] %></td>
+                                              <td class="color-text"> <%= c['quote']['USD']['percent_change_24h'] %></td>
+                                              <td class="color-text"> <%= c['quote']['USD']['percent_change_7d'] %></td>
                                               <td> <%= crypto.amount_owned.to_d %> </td>
                                               <td> <%= number_to_currency(crypto.cost_per) %></td>
-                                              <% @current_amount << (c["price_usd"].to_d * crypto.amount_owned.to_d).round(2) %>
+                                              <% @current_amount << (c['quote']['USD']['price'].to_d * crypto.amount_owned.to_d).round(2) %>
                                               <td> $ <%= @current_amount.last %> </td>
-                                              <td> <span class="color-text"> <%= @balance = ((c["price_usd"].to_d * crypto.amount_owned.to_d)-(crypto.cost_per.to_d * crypto.amount_owned.to_d)).round(2) %> </span> </td>
+                                              <td> <span class="color-text"> <%= @balance = ((c['quote']['USD']['price'].to_d * crypto.amount_owned.to_d)-(crypto.cost_per.to_d * crypto.amount_owned.to_d)).round(2) %> </span> </td>
                                             <% end %>
                                           <% end %>
                                           <td> <%= link_to 'New Order', edit_crypto_path(crypto) %></td>

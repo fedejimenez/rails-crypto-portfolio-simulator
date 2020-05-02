@@ -22,19 +22,19 @@
 					</p>
 					<p>		
 						<strong>Current Price:</strong>
-						U$D <%= c["price_usd"] %> <br>
+						U$D <%= c['quote']['USD']['price'] %> <br>
 					</p>
 					<p>
 						<strong>Variation (1h):</strong>
-						<%= c["percent_change_1h"] %> %
+						<%= c['quote']['USD']['percent_change_1h'] %> %
 					</p>
 					<p>
 						<strong>Variation (24h):</strong>
-						<%= c["percent_change_24h"] %> %
+						<%= c['quote']['USD']['percent_change_24h'] %> %
 					</p>
 					<p>
 						<strong>Variation (7 days):</strong>
-						<%= c["percent_change_7d"] %> %
+						<%= c['quote']['USD']['percent_change_7d'] %> %
 					</p>
 				</div>
 			</div>

@@ -5,49 +5,53 @@ module ApplicationHelper
     require 'net/http'
     require 'json'
     require "open-uri"
-    @url_API = 'https://api.coinmarketcap.com/v1/ticker/?limit=50'
-    @uri_API = URI(@url_API)
-    http_API = Net::HTTP.new(@uri_API.host, @uri_API.port)
-    http_API.use_ssl = true
-    http_API.verify_mode = OpenSSL::SSL::VERIFY_PEER
-    @response_API = Net::HTTP.get(@uri_API)
-    @coins = JSON.parse(@response_API) 
+    
+    url_API = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?start=1&limit=50'
+
+    request = headers = {
+      'Accepts': 'application/json',
+      'X-CMC_PRO_API_KEY': ENV['API_KEY_COINMARKETCAP']
+    }
+
+    response = HTTParty.get(url_API, headers: headers)
+    @coins = response['data']
   end 
 
-  def get_monthly_from_API
-    require 'net/http'
-    require 'json'
-    require "open-uri"
-    @url_month = 'http://api.coindesk.com/v1/bpi/historical/close.json'
-    @uri_month = URI(@url_month)
-    http_month = Net::HTTP.new(@uri_month.host, @uri_month.port)
-    http_month.use_ssl = true
-    http_month.verify_mode = OpenSSL::SSL::VERIFY_PEER
-    @response_month = URI.parse(@url_month).read
-    @monthly = JSON.parse(@response_month)['bpi'] 
-    @monthly.store(Time.now().strftime('%Y-%m-%d'), @coins.first['price_usd'] )
-  end 
+  # def get_monthly_from_API
+  #   require 'net/http'
+  #   require 'json'
+  #   require "open-uri"
+  #   @url_month = 'http://api.coindesk.com/v1/bpi/historical/close.json'
+  #   @uri_month = URI(@url_month)
+  #   http_month = Net::HTTP.new(@uri_month.host, @uri_month.port)
+  #   http_month.use_ssl = true
+  #   http_month.verify_mode = OpenSSL::SSL::VERIFY_PEER
+  #   @response_month = URI.parse(@url_month).read
+  #   @monthly = JSON.parse(@response_month)['bpi'] 
+  #   @monthly.store(Time.now().strftime('%Y-%m-%d'), @coins.first['price_usd'] )
+  # end 
 
   def get_historical_from_API
     require 'net/http'
     require 'json'
     require "open-uri"
     today = Time.now.strftime('%Y-%m-%d')
-    @url_hist = 'https://api.coindesk.com/v1/bpi/historical/close.json?start=2015-09-01&end='+today
-    @uri_hist = URI(@url_hist)
-    http_hist = Net::HTTP.new(@uri_hist.host, @uri_hist.port)
-    http_hist.use_ssl = true
-    http_hist.verify_mode = OpenSSL::SSL::VERIFY_PEER
-    @response_hist = URI.parse(@url_hist).read
-    @historical = JSON.parse(@response_hist)['bpi'] 
+    
+    url_historical = 'https://min-api.cryptocompare.com/data/v2/histoday?fsym=BTC&tsym=USD&limit=300'
+
+    response = HTTParty.get(url_historical)
+
     # Array with data
-    @historical.store(Time.now().strftime('%Y-%m-%d'), @coins.first['price_usd'] )
-    # Obtain array of hashes 
-    key_value = @historical.map do |key, value| 
-      [key, value]
+    @historical = response['Data']['Data']
+    
+    # Obtain array of hashes like [{'date' => 'xxxxxxx', 'value' => 'yyyy'}]
+    @values_by_date = [] 
+    @historical.each do |record| 
+      @values_by_date << {
+                          'date' => DateTime.strptime(record['time'].to_s, '%s').strftime('%Y-%m-%d'), 
+                          'value' => record['close'] 
+                         }
     end
-    @array_of_hashes = [] 
-    key_value.each { |record| @array_of_hashes << {'date' => record[0], 'value' => record[1].to_i }} 
   end 
 
   def calculate_profit
@@ -69,7 +73,7 @@ module ApplicationHelper
               	# Save array with user id's
               	@array_ids.push(u.id)
                 # Calculate all the profits for all users
-                @profit_array[i] += ((c["price_usd"].to_d * crypto.amount_owned.to_d)-(crypto.cost_per.to_d * crypto.amount_owned.to_d)).round(2)
+                @profit_array[i] += ((c['quote']['USD']["price"].to_d * crypto.amount_owned.to_d)-(crypto.cost_per.to_d * crypto.amount_owned.to_d)).round(2)
               
               end
           end

@@ -24,7 +24,7 @@
     
     <div class="field">
       <%= form.label "Current Price (U$D):", class: "col-md-6" %>
-      <span class= "col-md-2 text-center"> <%= @current_usd = current_coin(crypto.symbol)["price_usd"].to_d.round(5) %></span> 
+      <span class= "col-md-2 text-center"> <%= @current_usd = current_coin(crypto.symbol)['quote']['USD']['price'].to_d.round(5) %></span> 
       <input type="number" id="current-price" readonly="" value="<%= @current_usd %>" style="visibility: hidden;"/> 
       <div class="clearfix"></div> <br>
     </div>

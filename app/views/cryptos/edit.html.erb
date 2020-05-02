@@ -27,7 +27,7 @@
                             <div class="stat-icon dib">
                                 <% value_1h = [] %>	
                             	<% @coins.each do |c| %>
-                                	<% value_1h << c["percent_change_1h"].to_d %>
+                                	<% value_1h << c['quote']['USD']['percent_change_1h'].to_d %>
                                 <% end %>	
                                 <img src="/assets/<%=@coins[value_1h.each_with_index.max[1]]['symbol'].downcase%>" alt="" width="40px" title="<%=@coins[value_1h.each_with_index.max[1]]['name']%>">
                             </div>
