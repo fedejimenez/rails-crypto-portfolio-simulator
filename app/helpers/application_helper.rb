@@ -10,7 +10,7 @@ module ApplicationHelper
 
     request = headers = {
       'Accepts': 'application/json',
-      'X-CMC_PRO_API_KEY': '19d34bbf-b9a6-4a40-885c-41431dacefee'
+      'X-CMC_PRO_API_KEY': ENV['API_KEY_COINMARKETCAP']
     }
 
     response = HTTParty.get(url_API, headers: headers)
