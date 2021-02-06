@@ -51,6 +51,7 @@ class SessionsController < ApplicationController
       # @next = edit_user_path(user)
       @next = home_path
       flash[:success] = 'User was successfully created, now you have U$D 10000 to start the game!'
+      RegistrationJob.perform_later user.email
     end
     session[:user_id] = user.id
     sign_in(user)

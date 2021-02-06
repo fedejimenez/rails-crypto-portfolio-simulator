@@ -69,7 +69,7 @@
                                     <div class="stat-heading">Last Order: 
                                         <%  if current_user.portfolio.cryptos.count > 0 %>
                                             <a href="/lookup?q=<%=@last_crypto_symbol.upcase%>">
-                                                <strong><%=@crypto_names[@last_crypto_id].upcase%></strong>
+                                                <strong><%= current_portfolio.movements.last.crypto.symbol.upcase%></strong>
                                             </a> 
                                         <% end %>
                                     </div>
