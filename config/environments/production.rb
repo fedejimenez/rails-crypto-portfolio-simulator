@@ -108,21 +108,12 @@ Rails.application.configure do
 
   # Config gmail
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default_url_options = { :host => "ec2-34-192-25-148.compute-1.amazonaws.com" }
-  config.action_mailer.default_url_options = { :host => "localhost:3000" }
-  config.action_mailer.perform_deliveries = true
-  config.action_mailer.raise_delivery_errors = true
   config.action_mailer.smtp_settings = {
-    address:              'smtp.gmail.com',
-    port:                 48629,
-    # port:                 587,
-    domain:               'gmail.com',
-    user_name:            'ENV[GMAIL_USERNAME]',
-    password:             'ENV[GMAIL_PASSWORD]',
-    authentication:       'login',
-    enable_starttls_auto: true ,
-    openssl_verify_mode:  'none',
-    ssl: true,
-    tls: true
+    :user_name => ENV.fetch('MAILTRAP_USERNAME'),
+    :password => ENV.fetch('MAILTRAP_PASSWORD'),
+    :address => ENV.fetch('MAILTRAP_ADDRESS'),
+    :domain => ENV.fetch('MAILTRAP_ADDRESS'),
+    :port => ENV.fetch('MAILTRAP_PORT'),
+    :authentication => :cram_md5
   }
 end

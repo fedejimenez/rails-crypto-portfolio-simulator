@@ -17,8 +17,8 @@ module StockPortfolioSimulator
     # the framework and any gems in your application.
 
     # Use sidekiq
-  	config.active_job.queue_adapter = Rails.env.production? ? :sidekiq : :async
-    # config.action_mailer.deliver_later_queue_name = 'default_mailer_queue'
+  	config.active_job.queue_adapter = :sidekiq
+    config.action_mailer.deliver_later_queue_name = 'default_mailer_queue'
 
     # Add fonts
     config.assets.enabled = true
