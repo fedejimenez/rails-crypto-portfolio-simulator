@@ -99,7 +99,7 @@ gem 'sweet-alert2-rails'
 gem 'jquery-datatables-rails', '~> 3.4.0'
 
 # Use CarrierWave for image uploading
-gem 'carrierwave', '~> 1.0'
+gem 'carrierwave', '~> 1.3'
 
 # Use mini_magick to resize images
 gem 'mini_magick'
